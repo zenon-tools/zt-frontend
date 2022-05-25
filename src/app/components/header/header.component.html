@@ -1,0 +1,28 @@
+<header class="header">
+    <div class="header-logo">
+        <img src="../../../assets/vectors/logo.svg">
+        <div class="logo-texts">
+            <div>Zenon Tools</div>
+            <div>A community project.</div>
+        </div>
+    </div>
+    <div class="navigation-wrapper">
+        <nav class="navigation">
+            <a draggable="false" routerLink="/overview" routerLinkActive="active">Overview</a>
+            <a draggable="false" routerLink="/calculator" routerLinkActive="active">Calculator</a>
+            <a draggable="false" routerLink="/pillars" routerLinkActive="active">Pillars</a>
+        </nav>
+    </div>
+    <div class="info-items">
+        <a target="_blank" rel="noopener noreferrer" style="text-decoration: none;"
+            href="https://github.com/zenon-network/syrius/releases">
+            <div class="version" [matTooltipClass]="'tool-tip'" matTooltip="Get official wallet">Alphanet {{nodeVersion$
+                | async}}</div>
+        </a>
+        <div class="momentum-height">
+            <fa-icon [icon]="faCube"></fa-icon>
+            <p [matTooltipClass]="'tool-tip'" matTooltip="Current momentum height" class="momentum-height-title">
+                {{momentumHeight$ | async}}</p>
+        </div>
+    </div>
+</header>

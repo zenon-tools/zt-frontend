@@ -1,0 +1,12 @@
+@use "../../../assets/variables.scss";
+
+.chart-container {
+    width: 100%;
+    height: inherit;
+}
+
+.chart {
+    border-radius: 0 0 variables.$radius-l variables.$radius-l;
+    width: 100%;
+    height: inherit;
+}

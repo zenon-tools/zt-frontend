@@ -1,0 +1,85 @@
+@use "../../../../assets/variables.scss";
+
+.dropdown {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-list {
+    opacity: 0;
+    position: absolute;
+    border-radius: variables.$radius-s;
+    transition: opacity variables.$animation-duration;
+    visibility: hidden;
+    filter: drop-shadow(0 0 0.5em #00000065);
+    width: calc(100% - variables.$spacing-xl * 2);
+    height: 50%;
+    overflow-y: scroll;
+    scrollbar-width: none !important;
+
+    :first-child {
+        border-radius: variables.$radius-s variables.$radius-s 0 0;
+    }
+
+    :last-child {
+        border-radius: 0 0 variables.$radius-s variables.$radius-s;
+    }
+
+    &--open {
+        @extend .dropdown-list;
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.selected-item {
+    display: flex;
+    align-items: center;
+    gap: variables.$spacing-s;
+    background:  variables.$tertiary-grey;
+    height: 2.8em;
+
+    padding-left: variables.$spacing-s;
+    padding-right: variables.$spacing-s;
+    border-radius: variables.$radius-s;
+
+    transition: variables.$animation-duration variables.$animation-curve;
+
+    img {
+        height: 2.3em;
+    }
+
+    div {
+        font-weight: bold;
+        font-size: variables.$font-s;
+        flex: 1;
+    }
+}
+
+.selected-item:hover {
+    background-color: variables.$input-hover;
+  }
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: variables.$spacing-s;
+    background:  variables.$tertiary-grey;
+    height: 2.8em;
+    padding-left: variables.$spacing-s;
+    transition: variables.$animation-duration variables.$animation-curve;
+
+    div {
+        font-weight: bold;
+        font-size: variables.$font-s;
+    }
+}
+
+.dropdown-item:hover {
+    background: variables.$input-hover;
+}
+
+.dropdown-item:active {
+    background: #505050;
+}

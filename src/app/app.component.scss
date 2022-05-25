@@ -1,0 +1,21 @@
+h1 {
+    font-weight: bold;
+}
+
+.root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.transparent {
+    opacity: 0;
+}
+
+.loader {
+    position: absolute;
+    display: flex;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

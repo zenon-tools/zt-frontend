@@ -1,0 +1,15 @@
+<div class="container">
+    <div>
+        <div class="input-label">Staked ZNN</div>
+        <div class="input-wrapper">
+            <input type="number" class="input-field" onwheel="return false;" id="stakeAmountInput" name="stakeAmountInput" [value]="defaultStakeAmount" #stakeAmountInput>
+            <div class="input-unit">ZNN</div>
+        </div>
+    </div>
+    <div>
+        <div class="input-label">Lock-up duration in months</div>
+        <app-tab-selector [items]="lockUpDurationItems" (selectedValue)="onLockUpDurationChanged($event)"></app-tab-selector>
+        <div class="input-extra-info">Average lock-up duration is ~{{avgStakeLockUp$ | async}} months.</div>
+    </div>
+    <app-time-period-selector (selectedValue)="onTimePeriodChanged($event)"></app-time-period-selector>
+</div>

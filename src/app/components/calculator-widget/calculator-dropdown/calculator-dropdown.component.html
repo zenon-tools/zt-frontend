@@ -1,0 +1,13 @@
+<div class="dropdown">
+    <div class="selected-item" (click)="onDropdownSelected()">
+        <img src="{{ selectedItem.iconPath }}" alt="Icon">
+        <div>{{ selectedItem.label }}</div>
+        <mat-icon>expand_more</mat-icon>
+    </div>
+    <div class="dropdown-list" [class.dropdown-list--open]="isOpen">
+        <a *ngFor="let item of dropdownItems" class="dropdown-item" (click)="onItemSelected(item)">
+            <img src="{{ item.iconPath }}" alt="Icon">
+            <div>{{ item.label }}</div>
+        </a>
+    </div>
+</div>

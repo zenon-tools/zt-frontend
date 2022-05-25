@@ -1,0 +1,17 @@
+<div class="container">
+    <div>
+        <div class="input-label">Provided liquidity</div>
+        <div class="input-wrapper">
+            <input class="input-field" type="number" onwheel="return false;" id="liquidityAmountInput" name="liquidityAmountInput"
+                [value]="defaultLiquidityAmount" #liquidityAmountInput>
+            <div class="input-unit">wZNN</div>
+        </div>
+        <div class="input-extra-info">Requires {{requiredWbnbAmount$ | async | number: '1.0-3'}} wBNB to match
+            liquidity.</div>
+    </div>
+    <div>
+        <div class="input-label">Time period</div>
+        <app-tab-selector [initialIndex]="2" [items]="timePeriodItems" (selectedValue)="onTimePeriodChanged($event)">
+        </app-tab-selector>
+    </div>
+</div>

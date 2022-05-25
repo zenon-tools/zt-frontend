@@ -1,0 +1,20 @@
+@use "../../../assets/variables.scss";
+
+.footer {
+    width: 100%;
+    background: linear-gradient(90deg, #212121BF, #212121, #212121BF);
+    height: 2.2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: variables.$spacing-l;
+
+    img {
+        opacity: 70%;
+        height: 1em;
+    }
+
+    img:hover {
+        opacity: 100%;
+    }
+  }

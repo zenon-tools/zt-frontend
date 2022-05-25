@@ -1,0 +1,15 @@
+@use "../../../../assets/variables.scss";
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-l;
+}
+
+.input-unit {
+    color: variables.$primary-blue;
+}
+
+.top-30-selector {
+    width: 50%;
+}

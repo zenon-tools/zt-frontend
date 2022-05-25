@@ -1,0 +1,6 @@
+<div class="container">
+    <app-calculator-widget #primaryCalculator (duplicateCalculator)="onDuplicateCalculatorPressed($event)"
+        (closeCalculator)="onCloseCalculatorPressed($event)"></app-calculator-widget>
+    <app-calculator-widget [isClosable]="true" class="duplicate" [class.duplicate--visible]="duplicateCalculator"
+        (closeCalculator)="onCloseCalculatorPressed($event)"></app-calculator-widget>
+</div>

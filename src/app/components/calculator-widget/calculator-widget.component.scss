@@ -1,0 +1,266 @@
+@use "../../../assets/variables.scss";
+
+.container {
+    display: flex;
+    background: linear-gradient(90deg, #1b1b1b, #1f1f1f, #1b1b1b);
+    border-radius: variables.$radius-l;
+    flex-direction: column;
+    width: 35em;
+    filter: drop-shadow(0 0.8em 0.3em #0000001c);
+    overflow: hidden;
+    padding-bottom: variables.$spacing-l;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+.scroll {
+    overflow-y: scroll;
+    max-height: 80vh;
+}
+
+.header {
+    display: flex;
+    height: 3.8em;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: variables.$spacing-l;
+    padding-right: variables.$spacing-l;
+    background-color: variables.$tertiary-grey;
+
+    filter: drop-shadow(0 0.3em 0.3em #00000020);
+
+    .title {
+        font-size: variables.$font-m;
+        font-weight: bold;
+    }
+    .icons {
+        display: flex;
+        gap: variables.$spacing-xs;
+        .icon-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            width: 2em;
+            height: 2em;
+            border-radius: variables.$radius-s;
+            transition: variables.$animation-duration variables.$animation-curve;
+
+            &--selected {
+                @extend .icons;
+                background-color: variables.$secondary-green;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &:not(.no-hover):hover {
+                cursor: pointer;
+                background-color: variables.$input-hover;
+                filter: none;
+            }
+        }
+    }
+}
+
+.participation-dropdown {
+    padding-top: variables.$spacing-l;
+    padding-left: variables.$spacing-l;
+    padding-right: variables.$spacing-l;
+    z-index: 1000;
+}
+
+.inputs {
+    padding-top: variables.$spacing-l;
+    padding-bottom: variables.$spacing-l;
+    padding-left: variables.$spacing-l;
+    padding-right: variables.$spacing-l;
+}
+
+.price-inputs {
+    padding-left: variables.$spacing-l;
+    padding-right: variables.$spacing-l;
+    opacity: 0;
+    transition: variables.$animation-duration variables.$animation-curve;
+    max-height: 0;
+
+    &--visible {
+        @extend .price-inputs;
+        opacity: 1;
+        max-height: 500px;
+        padding-bottom: variables.$spacing-l;
+    }
+}
+
+.results {
+    display: flex;
+    flex-direction: column;
+    margin-left: variables.$spacing-l;
+    margin-right: variables.$spacing-l;
+    background-color: variables.$tertiary-grey;
+    border-radius: variables.$radius-s;
+    filter: drop-shadow(0 0 0.3em #0000001c);
+}
+
+.result-divider {
+    height: 2px;
+    margin-left: variables.$spacing-m;
+    margin-right: variables.$spacing-m;
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+.pcs-banner {
+    border-radius: variables.$radius-s;
+    margin-top: variables.$spacing-m;
+    margin-left: variables.$spacing-l;
+    margin-right: variables.$spacing-l;
+    background: linear-gradient(45deg, #378991, #7ea3a8);
+    filter: drop-shadow(0 0.8em 0.3em #0000001c);
+    clip-path: inset(0 0 0 0);
+}
+
+.pcs-content {
+    display: flex;
+    flex-direction: column;
+    padding: variables.$spacing-l;
+    gap: variables.$spacing-m;
+    position: relative;
+
+    div:first-child {
+        font-size: variables.$font-l;
+        font-weight: bold;
+        max-width: 80%;
+    }
+}
+
+.pcs-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: variables.$radius-s;
+    height: 3.4em;
+    background-color: variables.$tertiary-grey;
+    font-size: variables.$font-xs;
+    padding-left: variables.$spacing-xl;
+    padding-right: calc(variables.$spacing-xl - 8px);
+    gap: variables.$spacing-xs;
+    align-self: start;
+    transition: variables.$animation-duration variables.$animation-curve;
+    filter: drop-shadow(0 0 0.5em #00000072);
+
+    fa-icon {
+        margin-left: variables.$spacing-s;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: variables.$input-hover;
+    }
+}
+
+.pcs-bunny {
+    position: absolute;
+    top: 50%;
+    transform: translate(0%, -50%);
+    right: variables.$spacing-xs;
+    width: 33%;
+}
+
+.details {
+    margin-left: variables.$spacing-l;
+    margin-right: variables.$spacing-l;
+    .show-details {
+        display: flex;
+        margin-top: variables.$spacing-l;
+        gap: variables.$spacing-s;
+        justify-content: center;
+        opacity: 0.7;
+        font-size: variables.$font-s;
+        transition: variables.$animation-duration variables.$animation-curve;
+
+        .caret-down {
+            transition: variables.$animation-duration variables.$animation-curve;
+            &--rotate {
+                @extend .caret-down;
+                transform: rotate(180deg);
+            }
+        }
+
+        &:hover {
+            cursor: pointer;
+            opacity: 1;
+        }
+    }
+
+    .details-content {
+        text-align: center;
+        font-size: variables.$font-xs;
+        color: variables.$white-70;
+        opacity: 0;
+        max-height: 0;
+        transition: variables.$animation-duration variables.$animation-curve;
+        visibility: hidden;
+
+        &--visible {
+            @extend .details-content;
+            opacity: 1;
+            max-height: 500px;
+            margin-top: variables.$spacing-m;
+            visibility: visible;
+        }
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .container {
+        width: 104%;
+        margin-left: 2.1vw;
+        padding-bottom: variables.$spacing-l;
+    }
+
+    .header {
+        padding-left: variables.$spacing-m;
+        padding-right: variables.$spacing-m;
+    }
+
+    .duplicate-icon {
+        display: none !important;
+    }
+
+    .participation-dropdown {
+        padding-left: variables.$spacing-m;
+        padding-right: variables.$spacing-m;
+    }
+
+    .inputs {
+        padding-left: variables.$spacing-m;
+        padding-right: variables.$spacing-m;
+    }
+
+    .results {
+        margin-left: variables.$spacing-m;
+        margin-right: variables.$spacing-m;
+    }
+
+    .pcs-banner {
+        margin-left: variables.$spacing-m;
+        margin-right: variables.$spacing-m;
+    }
+
+    .pcs-content {
+        padding: variables.$spacing-m;
+    }
+
+    .pcs-button {
+        padding-left: variables.$spacing-l;
+        padding-right: calc(variables.$spacing-l - 8px);
+    }
+
+    .pcs-bunny {
+        width: 42%;
+    }
+}

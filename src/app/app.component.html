@@ -1,0 +1,7 @@
+<app-loader class="loader" [class.transparent]="!isInitializing">Test</app-loader>
+<div class="root" [class.transparent]="isInitializing">
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+    <div class="page-mask"></div>
+</div>

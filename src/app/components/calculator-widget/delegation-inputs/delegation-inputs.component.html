@@ -1,0 +1,26 @@
+<div class="container">
+    <div>
+        <div class="input-label">Delegated ZNN</div>
+        <div class="input-wrapper">
+            <input class="input-field" type="number" onwheel="return false;" id="delegationAmountInput" name="delegationAmountInput"
+                [value]="defaultDelegationAmount" #delegationAmountInput>
+            <div class="input-unit">ZNN</div>
+        </div>
+    </div>
+    <div class="pillar-dropdown">
+        <div class="input-label">Pillar</div>
+        <div class="selected-item" (click)="onSelectPillar()">
+            <div>{{ (selectedPillar$ | async)?.name }}</div>
+            <div class="input-end">
+                <div>{{ (selectedPillar$ | async)?.delegateApr?.toFixed(2) }}% APR</div>
+                <mat-icon>unfold_more</mat-icon>
+            </div>
+        </div>
+    </div>
+    <div class="add-to-weight-selector">
+        <div class="input-label">Add to Pillar's weight</div>
+        <app-tab-selector [initialIndex]="1" [items]="addToPillarWeightItems" (selectedValue)="onAddToPillarWeightChanged($event)">
+        </app-tab-selector>
+    </div>
+    <app-time-period-selector (selectedValue)="onTimePeriodChanged($event)"></app-time-period-selector>
+</div>

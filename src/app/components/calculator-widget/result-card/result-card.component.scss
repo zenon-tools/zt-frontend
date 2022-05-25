@@ -1,0 +1,35 @@
+@use "../../../../assets/variables.scss";
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: variables.$tertiary-grey;
+    border-radius: variables.$radius-s;
+    padding-left: variables.$spacing-l;
+    padding-right: variables.$spacing-l;
+    height: 5.5em;
+    justify-content: center;
+    filter: drop-shadow(0 0 0.3em #0000001c);
+    transition: variables.$animation-duration variables.$animation-curve;
+}
+
+.container:hover {
+    background-color: variables.$input-hover;
+}
+
+.label {
+    font-size: variables.$font-xs;
+    font-weight: bold;
+    margin-bottom: variables.$spacing-s;
+}
+
+.value {
+    font-size: variables.$font-l;
+    font-weight: bold;
+}
+
+.info {
+    margin-top: variables.$spacing-s;
+    font-size: 0.65em;
+    color: variables.$white-50;
+}

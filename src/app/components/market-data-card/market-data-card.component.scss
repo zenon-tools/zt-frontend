@@ -1,0 +1,111 @@
+@use "../../../assets/variables.scss";
+
+.container {
+    position: relative;
+
+    .waiting-text {
+        z-index: 2;
+        position: absolute;
+        top: 75%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: variables.$font-s;
+        opacity: 0.7;
+        text-align: center;
+        width: 100%;
+        background-color: #212121;
+        border-radius: variables.$radius-l;
+        padding: 0.5em;
+    }
+}
+
+.card {
+    background: radial-gradient(#161616, #212121);
+    border-radius: variables.$radius-l;
+    height: 100%;
+    filter: drop-shadow(0 0.8em 0.3em #0000001c);
+    min-width: 19em;
+
+    transition: 0s;
+
+    &--translucent {
+        @extend .card;
+        opacity: 0.25;
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: variables.$spacing-xl variables.$spacing-xl variables.$spacing-s variables.$spacing-xl;
+    height: 4em;
+}
+
+.value-label-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: variables.$spacing-s;
+}
+
+.value-delta-wrapper {
+    display: flex;
+    column-gap: variables.$spacing-m;
+    align-items: center;
+
+    .value {
+        font-weight: bold;
+        font-size: variables.$font-xl;
+    }
+
+    .delta {
+        font-size: variables.$font-s;
+        transition: 0s;
+    }
+
+    .date {
+        font-size: variables.$font-s;
+        color: variables.$white-70;
+    }
+}
+
+.red {
+    color: variables.$primary-red;
+}
+
+.green {
+    color: variables.$primary-green;
+}
+
+.label {
+    font-size: variables.$font-s;
+    color: variables.$white-70;
+}
+
+.dropdown-container {
+    display: flex;
+    column-gap: variables.$spacing-s;
+}
+
+.line-chart {
+    height: 6em;
+}
+
+@media only screen and (max-width: 1800px) {
+    .header {
+        height: 3.5em;
+    }
+
+    .line-chart {
+        height: 5em;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .card {
+        width: 21em;
+    }
+
+    .header {
+        padding: variables.$spacing-l variables.$spacing-l variables.$spacing-s variables.$spacing-l;
+    }
+}

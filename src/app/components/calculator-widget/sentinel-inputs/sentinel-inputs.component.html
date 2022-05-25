@@ -1,0 +1,8 @@
+<div class="container">
+    <div>
+        <div class="input-label">Your Sentinels</div>
+        <app-tab-selector [items]="sentinelAmountItems" (selectedValue)="onSentinelAmountChanged($event)">
+        </app-tab-selector>
+    </div>
+    <app-time-period-selector (selectedValue)="onTimePeriodChanged($event)"></app-time-period-selector>
+</div>

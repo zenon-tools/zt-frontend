@@ -1,0 +1,119 @@
+<div class="container" *ngIf="participationTypeSubject$ | async as type">
+    <div class="header">
+        <div class="title">Reward calculator</div>
+        <div class="icons">
+            <div class="icon-container" [class.icon-container--selected]="useCustomPricesSubject$ | async"
+                [class.no-hover]="useCustomPricesSubject$ | async" [matTooltipClass]="'tool-tip'"
+                matTooltip="Edit ZNN and QSR price" (click)="onUseCustomPricesPressed()">
+                <fa-icon [icon]="faDollarSign"></fa-icon>
+            </div>
+            <div *ngIf="!isClosable" class="icon-container duplicate-icon"
+                [class.icon-container--selected]="duplicateCalculatorSubject$ | async"
+                [class.no-hover]="duplicateCalculatorSubject$ | async" [matTooltipClass]="'tool-tip'"
+                matTooltip="Duplicate calculator" (click)="onDuplicateCalculatorPressed()">
+                <fa-icon [icon]="faClone"></fa-icon>
+            </div>
+            <div *ngIf="isClosable" class="icon-container" matTooltip="Close" (click)="onCloseCalculatorPressed()">
+                <fa-icon [icon]="faXmark" class="fa-lg"></fa-icon>
+            </div>
+        </div>
+    </div>
+
+    <div class="content" [class.scroll]="shouldScrollContent">
+
+        <div class="participation-dropdown">
+            <div class="input-label">Participation type</div>
+            <app-calculator-dropdown [initialType]="(participationTypeSubject$ | async)!"
+                (selectItem)="onParticipationTypeChanged($event)"></app-calculator-dropdown>
+        </div>
+
+        <div class="inputs">
+            <app-stake-inputs *ngIf="type == ParticipationType.Stake" (stakeInputs)="onStakeInputsChanged($event)">
+            </app-stake-inputs>
+            <app-delegation-inputs *ngIf="type == ParticipationType.Delegation"
+                (delegationInputs)="onDelegationInputsChanged($event)" [initialPillar]="initialPillar">
+            </app-delegation-inputs>
+            <app-liquidity-inputs *ngIf="type == ParticipationType.Liquidity"
+                (liquidityInputs)="onLiquidityInputsChanged($event)"></app-liquidity-inputs>
+            <app-sentinel-inputs *ngIf="type == ParticipationType.Sentinel"
+                (sentinelInputs)="onSentinelInputsChanged($event)"></app-sentinel-inputs>
+            <app-pillar-inputs *ngIf="type == ParticipationType.Pillar" (pillarInputs)="onPillarInputsChanged($event)">
+            </app-pillar-inputs>
+        </div>
+
+        <app-price-inputs #priceInputs class="price-inputs" [class.price-inputs--visible]="useCustomPricesSubject$ | async"
+            (customPrices)="onCustomPricesChanged($event)"></app-price-inputs>
+
+        <div class="results" *ngIf="rewardsToDisplay$ | async as rewards">
+            <app-result-item *ngIf="rewards.hasZnnRewards" [label]="'ZNN rewards'"
+                [value]="(rewards.znnRewards | number: '1.2-2') + ' ZNN'" [valueColor]="'#6CEF4B'">
+            </app-result-item>
+            <div *ngIf="rewards.hasZnnRewards" class="result-divider"></div>
+
+            <app-result-item *ngIf="rewards.hasQsrRewards" [label]="'QSR rewards'"
+                [value]="(rewards.qsrRewards | number: '1.2-2') + ' QSR'" [valueColor]="'#706AFF'">
+            </app-result-item>
+            <div *ngIf="rewards.hasQsrRewards" class="result-divider"></div>
+
+            <app-result-item *ngIf="rewards.hasTradingFeeRewards" [label]="'Trading fee rewards'"
+                [value]="'$' + (rewards.tradingFeeRewards | number: '1.2-2')" [info]="'Based on past 7 days.'">
+            </app-result-item>
+            <div *ngIf="rewards.hasTradingFeeRewards" class="result-divider"></div>
+
+            <app-result-item [label]="'Rewards in USD'" [value]="'*$' + (rewards.rewardsInUsd | number: '1.2-2')"
+                [info]="'*If QSR price is 1/10th of ZNN price.'">
+            </app-result-item>
+            <div class="result-divider"></div>
+
+            <app-result-item [label]="'ROI'" [value]="(rewards.roi | number: '1.2-2') + '%'">
+            </app-result-item>
+            <div class="result-divider"></div>
+
+            <app-result-item *ngIf="type == ParticipationType.Stake || type == ParticipationType.Delegation"
+                [label]="'Holdings value'" [value]="'$' + (rewards.holdingsInUsd | number: '1.2-2')">
+            </app-result-item>
+            <app-result-item *ngIf="type == ParticipationType.Liquidity" [label]="'Holdings value'"
+                [value]="'$' + (rewards.holdingsInUsd | number: '1.2-2')"
+                [info]="(liquidityInputsSubject$ | async)!.amount + ' wZNN + ' + ((liquidityInputsSubject$ | async)!.wBnbAmout | number: '1.0-3') + ' wBNB'">
+            </app-result-item>
+            <app-result-item *ngIf="type == ParticipationType.Sentinel" [label]="'Holdings value'"
+                [value]="'$' + (rewards.holdingsInUsd | number: '1.2-2')"
+                [info]="(sentinelInputsSubject$ | async)!.amount * 5 + 'k ZNN + ' + (sentinelInputsSubject$ | async)!.amount * 50 + 'k QSR'">
+            </app-result-item>
+            <app-result-item *ngIf="type == ParticipationType.Pillar" [label]="'Holdings value'"
+                [value]="'$' + (rewards.holdingsInUsd | number: '1.2-2')"
+                [info]="(pillarInputsSubject$ | async)!.amount * 15 + 'k ZNN + ' + (pillarInputsSubject$ | async)!.slotCost / 1000 + 'k QSR'">
+            </app-result-item>
+        </div>
+
+        <div class="pcs-banner" *ngIf="type == ParticipationType.Liquidity">
+            <img class="pcs-bunny" src="../../../assets/images/bunny-color.png" alt="PCS bunny">
+            <div class="pcs-content">
+                <div>Add liquidity on PancakeSwap</div>
+                <a class="pcs-button" target="_blank" rel="noopener noreferrer" style="text-decoration: none;"
+                    href="https://pancakeswap.finance/info/pool/0xe6b03fcb16daf3462ddfb8b0afb3f0e87d38d884">
+                    <div>View pool</div>
+                    <fa-icon [icon]="faArrowUpRightFromSquare" class="fa-lg"></fa-icon>
+                </a>
+            </div>
+        </div>
+
+        <div class="details">
+            <div class="show-details" (click)="onShowDetailsPressed()">
+                <div>Show details</div>
+                <fa-icon class="caret-down" [icon]="faChevronDown" [class.caret-down--rotate]="showDetails">
+                </fa-icon>
+            </div>
+            <div class="details-content" [class.details-content--visible]="showDetails">
+                The results are an estimation of potential rewards based on the current network conditions and <a
+                    target="_blank" rel="noopener noreferrer"
+                    href="https://miro.medium.com/max/2400/1*v549v2daQbLHfTI6dpxxiA.png">reward allocations.</a>
+                The changes in <a target="_blank" rel="noopener noreferrer"
+                    href="https://miro.medium.com/max/2400/1*GqXBE27YFv2UGX1o5S2vFA.png">ZNN reward emissions</a>
+                and in <a target="_blank" rel="noopener noreferrer"
+                    href="https://miro.medium.com/max/2400/1*39_GdwH9W1Zk2JbIjqcbjw.png">QSR reward emissions</a>
+                are used in the calculations.
+            </div>
+        </div>
+    </div>
+</div>

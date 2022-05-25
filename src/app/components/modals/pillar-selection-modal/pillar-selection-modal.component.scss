@@ -1,0 +1,88 @@
+@use "../../../../assets/variables.scss";
+
+.container {
+    border-radius: variables.$radius-l;
+    height: 80vh;
+    width: 34em;
+    background: linear-gradient(90deg, #1b1b1b, #1f1f1f, #1b1b1b);
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding-left: variables.$spacing-l;
+    padding-right: calc(variables.$spacing-l - 8px);
+    padding-top: variables.$spacing-l;
+    padding-bottom: variables.$spacing-m;
+}
+
+.title {
+    font-size: variables.$font-s;
+    font-weight: bold;
+}
+
+.close-icon:hover {
+    cursor: pointer;
+}
+
+.input-field {
+    margin-left: variables.$spacing-l;
+    margin-right: variables.$spacing-l;
+    margin-bottom: variables.$spacing-l;
+    height: 3.5em;
+
+    &::placeholder {
+        color: variables.$white-70;
+        font-size: variables.$font-s;
+        font-weight: 500;
+    }
+}
+
+.divider {
+    height: 2px;
+    background-color: variables.$white-10;
+}
+
+.pillar-list {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 2.8em;
+    padding-left: variables.$spacing-l;
+    padding-right: variables.$spacing-l;
+
+    transition: variables.$animation-duration variables.$animation-curve;
+
+    :first-child {
+        font-size: variables.$font-s;
+        font-weight: bold;
+    }
+
+    :last-child {
+        font-size: variables.$font-s;
+        color: variables.$white-70;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: variables.$input-hover;
+    }
+}
+
+#bottom-divider {
+    margin-bottom: variables.$spacing-l;
+}
+
+@media only screen and (max-width: 800px) {
+    .container {
+        width: 100% !important;
+    }
+}

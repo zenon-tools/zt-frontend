@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="header">
+        <div class="title">Select Pillar</div>
+        <mat-icon class="close-icon" (click)="onNoClick()">close</mat-icon>
+    </div>
+    <input class="input-field" type="text" id="searchInput" name="searchInput" placeholder="Search by name"
+        #searchInput>
+    <div class="divider"></div>
+    <div class="pillar-list">
+        <a *ngFor="let item of filteredPillars$ | async" class="list-item" (click)="onItemSelected(item)">
+            <div>{{ item.name }}</div>
+            <div>{{ item.delegateApr.toFixed(2) }}% APR</div>
+        </a>
+    </div>
+    <div class="divider" id="bottom-divider"></div>
+</div>

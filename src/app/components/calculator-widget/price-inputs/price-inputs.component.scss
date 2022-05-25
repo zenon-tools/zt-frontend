@@ -1,0 +1,41 @@
+@use "../../../../assets/variables.scss";
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-l;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: row;
+    gap: variables.$spacing-m;
+    align-items: stretch;
+}
+
+.input-wrapper {
+    flex: 1;
+}
+
+.input-unit {
+    color: variables.$white-70;
+}
+
+.button {
+    display: flex;
+    border-radius: variables.$radius-s;
+    background-color: variables.$secondary-green;
+    font-size: variables.$font-s;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    padding-left: variables.$spacing-l;
+    padding-right: variables.$spacing-l;
+    transition: variables.$animation-duration variables.$animation-curve;
+    filter: drop-shadow(0 0 0.3em #00000040);
+
+    &:hover {
+        cursor: pointer;
+        background-color: #48743c;
+    }
+}

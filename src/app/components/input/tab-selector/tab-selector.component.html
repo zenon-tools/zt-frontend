@@ -1,0 +1,6 @@
+<div class="container">
+    <div class="tab" (click)="onTabSelected($event, i)" *ngFor="let item of items; index as i"
+        [class.tab--selected]="i == selectedIndex" [class.no-hover]="i == selectedIndex">
+        {{ item.label }}
+    </div>
+</div>

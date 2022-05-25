@@ -1,0 +1,39 @@
+@use "../../../../assets/variables.scss";
+
+.container {
+    display: flex;
+    padding-left: variables.$spacing-l;
+    padding-right: variables.$spacing-l;
+    height: 3.6em;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.label-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.label {
+    font-size: variables.$font-s;
+    font-weight: bold;
+}
+
+.value {
+    font-size: variables.$font-l;
+    font-weight: bold;
+}
+
+.info {
+    font-size: variables.$font-xs;
+    color: variables.$white-50;
+    padding-top: variables.$spacing-xs;
+}
+
+@media only screen and (max-width: 800px) {
+    .container {
+        padding-left: variables.$spacing-m;
+        padding-right: variables.$spacing-m;
+    }
+}

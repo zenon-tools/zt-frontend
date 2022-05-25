@@ -1,0 +1,53 @@
+@use "../../../../assets/variables.scss";
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-l;
+}
+
+.input-unit {
+    color: variables.$primary-green;
+}
+
+.selected-item {
+    display: flex;
+    align-items: center;
+    gap: variables.$spacing-s;
+    background: variables.$tertiary-grey;
+    height: 2.8em;
+
+    padding-left: variables.$spacing-m;
+    padding-right: variables.$spacing-s;
+    border-radius: variables.$radius-s;
+
+    transition: variables.$animation-duration variables.$animation-curve;
+
+    :first-child {
+        font-weight: bold;
+        font-size: variables.$font-s;
+        flex: 1;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: variables.$input-hover;
+    }
+}
+
+.input-end {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: variables.$spacing-s;
+
+    div {
+        font-size: variables.$font-s !important;
+        font-weight: 500 !important;
+        color: variables.$white-70;
+    }
+}
+
+.add-to-weight-selector {
+    width: 50%;
+}

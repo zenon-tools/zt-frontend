@@ -1,0 +1,24 @@
+@use "../../../assets/variables.scss";
+
+:host {
+    flex: 1;
+}
+
+.container {
+    display: flex;
+    padding-top: variables.$spacing-l;
+    padding-bottom: variables.$spacing-xl;
+    justify-content: center;
+    gap: variables.$spacing-xl;
+
+    .duplicate {
+        opacity: 0;
+        transition: variables.$animation-duration variables.$animation-curve;
+        max-width: 0;
+        &--visible {
+            @extend .duplicate;
+            opacity: 1;
+            max-width: 500px;
+        }
+    }
+}

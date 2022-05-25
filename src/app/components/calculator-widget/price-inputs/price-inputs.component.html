@@ -1,0 +1,24 @@
+<div class="container">
+    <div>
+        <div class="input-label">ZNN price</div>
+        <div class="input-container">
+            <div class="input-wrapper">
+                <input class="input-field" type="number" onwheel="return false;" id="znnPriceInput" name="znnPriceInput"
+                    #znnPriceInput [(ngModel)]="znnPriceToShow">
+                <div class="input-unit">USD</div>
+            </div>
+            <div class="button" (click)="onZnnPriceReset()">Reset</div>
+        </div>
+    </div>
+    <div>
+        <div class="input-label">QSR price</div>
+        <div class="input-container">
+            <div class="input-wrapper">
+                <input class="input-field" type="number" onwheel="return false;" id="qsrPriceInput" name="qsrPriceInput"
+                    [value]="qsrPriceToShow" #qsrPriceInput>
+                <div class="input-unit">USD</div>
+            </div>
+            <div class="button" (click)="onQsrPriceReset()">Reset</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+<div class="container">
+    <div class="label-info">
+        <div class="label">{{ label }}</div>
+        <div class="info" *ngIf="info">{{ info }}</div>
+    </div>
+    <div class="value" [ngStyle]="{ 'color': valueColor }">{{ value }}</div>
+</div>

@@ -1,0 +1,22 @@
+<div class="container">
+    <div>
+        <div class="input-label">Your Pillars</div>
+        <app-tab-selector [items]="pillarAmountItems" (selectedValue)="onPillarAmountChanged($event)">
+        </app-tab-selector>
+    </div>
+    <div>
+        <div class="input-label">Slot cost</div>
+        <div class="input-wrapper">
+            <input class="input-field" type="number" onwheel="return false;" id="slotCostInput" name="slotCostInput" [value]="defaultSlotCost"
+                #slotCostInput>
+            <div class="input-unit">QSR</div>
+        </div>
+    </div>
+    <div class="top-30-selector">
+        <div *ngIf="(pillarAmountSubject$ | async)! == 1" class="input-label">Pillar is in top 30</div>
+        <div *ngIf="(pillarAmountSubject$ | async)! > 1" class="input-label">Pillars are in top 30</div>
+        <app-tab-selector [initialIndex]="1" [items]="isTop30Items" (selectedValue)="onIsTop30Changed($event)">
+        </app-tab-selector>
+    </div>
+    <app-time-period-selector (selectedValue)="onTimePeriodChanged($event)"></app-time-period-selector>
+</div>
