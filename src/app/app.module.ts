@@ -38,6 +38,8 @@ import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CalculatorModalComponent } from './components/modals/calculator-modal/calculator-modal.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { PillarProfilePageComponent } from './components/pillar-profile-page/pillar-profile-page.component';
+import { TwemojiPipe } from './pipes/twemoji.pipe';
 
 @NgModule({
     declarations: [
@@ -67,6 +69,8 @@ import { LoaderComponent } from './components/loader/loader.component';
         PriceInputsComponent,
         CalculatorModalComponent,
         LoaderComponent,
+        PillarProfilePageComponent,
+        TwemojiPipe,
     ],
     imports: [
         BrowserModule,

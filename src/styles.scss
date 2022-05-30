@@ -129,6 +129,93 @@ input[type="number"] {
   margin-top: variables.$spacing-s;
 }
 
+//
+
+// General table styling
+
+.mat-table {
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: variables.$radius-l;
+  overflow: hidden !important;
+  background-color: variables.$secondary-grey;
+}
+
+.table-title-container {
+  height: 3.5em;
+  display: flex;
+
+  th {
+    flex: 1;
+    display: flex;
+    gap: variables.$spacing-m;
+  }
+
+  .table-title {
+    display: flex;
+    padding-left: 24px;
+    text-align: start;
+    font-size: variables.$font-l;
+    font-weight: bold;
+    align-self: flex-end;
+    padding-bottom: variables.$spacing-s;
+  }
+
+  .voting-icon {
+    width: 1.5em;
+    height: 1.5em;
+    align-self: flex-end;
+    padding-bottom: variables.$spacing-s;
+  }
+}
+
+.mat-header-cell {
+  border: none !important;
+  font-size: variables.$font-s;
+  font-weight: bold;
+  color: white;
+  padding-right: 5em !important;
+  white-space: nowrap;
+}
+
+.mat-cell {
+  border: none !important;
+  color: variables.$white-70;
+  font-size: variables.$font-s;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.mat-row {
+  height: 3.4em !important;
+}
+
+.mat-row:nth-child(odd) {
+  background-color: #1f1f1f;
+  &:hover {
+    background-color: variables.$input-hover;
+  }
+}
+
+.mat-row:nth-child(even) {
+  background-color: variables.$secondary-grey;
+  &:hover {
+    background-color: variables.$input-hover;
+  }
+}
+
+//
+
+.pillar-avatar {
+  width: 2.7em;
+  border-radius: variables.$radius-s;
+  margin-right: variables.$spacing-m;
+  -webkit-transition: variables.$animation-duration variables.$animation-curve;
+  -moz-transition: variables.$animation-duration variables.$animation-curve;
+  -o-transition: variables.$animation-duration variables.$animation-curve;
+  transition: variables.$animation-duration variables.$animation-curve;
+}
+
 mat-dialog-container {
   background-color: transparent !important;
   padding: 0 !important;

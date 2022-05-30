@@ -11,6 +11,7 @@ import {
 import { ZenonToolsApiService } from 'src/app/services/zenon-tools-api/zenon-tools-api.service';
 import { CalculatorModalComponent } from '../modals/calculator-modal/calculator-modal.component';
 import { faCalculator, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 export interface PillarRow {
     name: string;
@@ -52,7 +53,8 @@ export class PillarsPageComponent implements OnInit {
 
     constructor(
         public dialog: MatDialog,
-        private zenonToolsApiService: ZenonToolsApiService
+        private zenonToolsApiService: ZenonToolsApiService,
+        private router: Router
     ) {}
 
     // NOTE: The column name must match the property name exactly for sorting to work properly for the column.
@@ -101,5 +103,9 @@ export class PillarsPageComponent implements OnInit {
         this.dialog.open(CalculatorModalComponent, {
             data: pillarName,
         });
+    }
+
+    onRowPressed(pillarName: string) {
+        this.router.navigate(['/pillars', pillarName]);
     }
 }

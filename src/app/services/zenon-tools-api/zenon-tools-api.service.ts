@@ -7,6 +7,7 @@ import { NomData } from './interfaces/nom-data';
 import { PcsPoolData } from './interfaces/pcs-pool-data';
 import { Pillars } from './interfaces/pillar';
 import { PillarsOffChainInfo } from './interfaces/pillar-off-chain-info';
+import { Votes } from './interfaces/vote';
 
 @Injectable({
     providedIn: 'root',
@@ -74,4 +75,12 @@ export class ZenonToolsApiService {
     );
 
     constructor(private httpClient: HttpClient) {}
+
+    getVotesByPillar(pillar: string, page: number) {
+        return this.httpClient
+            .get<Votes>(
+                `${environment.ztApiUrl}/votes?pillar=${pillar}`
+            )
+            .pipe(shareReplay(1));
+    }
 }

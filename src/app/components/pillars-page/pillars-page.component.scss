@@ -22,8 +22,6 @@
 
 .mat-table {
     min-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .timer-container {
@@ -62,12 +60,6 @@
     }
 }
 
-.mat-table {
-    border-radius: variables.$radius-l;
-    overflow: hidden !important;
-    background-color: variables.$secondary-grey;
-}
-
 .mat-column-rank {
     padding-right: 4em !important;
 }
@@ -76,27 +68,10 @@
     padding-right: 7em !important;
 }
 
-.mat-header-cell {
-    border: none !important;
-    font-size: variables.$font-s;
-    font-weight: bold;
-    color: white;
-    padding-right: 5em;
-    white-space: nowrap;
-}
-
 ::ng-deep .mat-sort-header-content {
     font-size: variables.$font-m;
     font-weight: bold;
     color: white;
-}
-
-.mat-cell {
-    border: none !important;
-    color: variables.$white-70;
-    font-size: variables.$font-s;
-    font-weight: bold;
-    white-space: nowrap;
 }
 
 .name-cell {
@@ -105,18 +80,10 @@
     font-weight: inherit;
     display: flex;
     align-items: center;
+}
 
-    img {
-        width: 2.7em;
-        border-radius: variables.$radius-s;
-        margin-right: variables.$spacing-m;
-        -webkit-transition: variables.$animation-duration variables.$animation-curve;
-        -moz-transition: variables.$animation-duration variables.$animation-curve;
-        -o-transition: variables.$animation-duration variables.$animation-curve;
-        transition: variables.$animation-duration variables.$animation-curve;
-    }
-
-    img:hover {
+.pillar-avatar {
+    &:hover {
         transform: scale(3);
     }
 }
@@ -143,28 +110,24 @@
     }
 }
 
-.mat-row {
-    height: 3.3em;
-}
-
 .mat-row:nth-child(odd) {
-    background-color: #1f1f1f;
     &:hover {
-        background-color: variables.$input-hover;
+        cursor: pointer;
     }
+
     &:hover .calculator-icon {
         opacity: 0.7;
-    }
+      }
 }
 
 .mat-row:nth-child(even) {
-    background-color: variables.$secondary-grey;
     &:hover {
-        background-color: variables.$input-hover;
+        cursor: pointer;
     }
+
     &:hover .calculator-icon {
         opacity: 0.7;
-    }
+      }
 }
 
 .social-links {
@@ -181,7 +144,6 @@
 }
 
 @media only screen and (max-width: 1600px) {
-
     .mat-column-rank {
         padding-right: 3em !important;
     }
@@ -193,7 +155,6 @@
     .mat-header-cell {
         padding-right: 4em;
     }
-
 }
 
 @media only screen and (max-width: 600px) {

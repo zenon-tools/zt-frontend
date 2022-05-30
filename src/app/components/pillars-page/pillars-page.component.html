@@ -2,14 +2,14 @@
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort matSortStart="desc">
         <ng-container matColumnDef="rank">
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">#</th>
-            <td mat-cell *matCellDef="let row"> {{row.rank + 1}} </td>
+            <td mat-cell *matCellDef="let row" (click)="onRowPressed(row.name)"> {{row.rank + 1}} </td>
         </ng-container>
 
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef>Pillar</th>
-            <td mat-cell *matCellDef="let row">
+            <td mat-cell *matCellDef="let row" (click)="onRowPressed(row.name)">
                 <div class="name-cell">
-                    <img [src]="row.avatar" *ngIf="row.avatar">
+                    <img class="pillar-avatar" [src]="row.avatar" *ngIf="row.avatar">
                     {{row.name}}
                 </div>
             </td>
@@ -18,12 +18,12 @@
         <ng-container matColumnDef="weight">
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">Weight (ZNN)
             </th>
-            <td mat-cell *matCellDef="let row"> {{row.weight / 100000000 | number: '1.0-0'}} </td>
+            <td mat-cell *matCellDef="let row" (click)="onRowPressed(row.name)"> {{row.weight / 100000000 | number: '1.0-0'}} </td>
         </ng-container>
 
         <ng-container matColumnDef="momentums">
             <th mat-header-cell *matHeaderCellDef>Produced/target<br>momentums</th>
-            <td mat-cell class="momentum-info-cell" *matCellDef="let row"> {{row.producedMomentums}} /
+            <td mat-cell class="momentum-info-cell" *matCellDef="let row" (click)="onRowPressed(row.name)"> {{row.producedMomentums}} /
                 {{row.expectedMomentums}}
                 <fa-icon class="red" *ngIf="!row.isActive" [icon]="faCircleInfo" [matTooltipClass]="'tool-tip'"
                     matTooltip="Issue with producing momentums. This may affect the Pillar's rewards">
@@ -33,7 +33,7 @@
 
         <ng-container matColumnDef="rewardSharing">
             <th mat-header-cell *matHeaderCellDef>Momentums/delegate<br>rewards sharing</th>
-            <td mat-cell *matCellDef="let row"> {{row.giveMomentumRewardPercentage}}% /
+            <td mat-cell *matCellDef="let row" (click)="onRowPressed(row.name)"> {{row.giveMomentumRewardPercentage}}% /
                 {{row.giveDelegateRewardPercentage}}% </td>
         </ng-container>
 
@@ -44,11 +44,12 @@
         </ng-container> -->
 
         <ng-container matColumnDef="delegateApr">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by delegate APR">Delegation
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by delegate APR">
+                Delegation
                 APR</th>
-            <td mat-cell class="delegate-apr-cell" *matCellDef="let row"> {{row.delegateApr | number: '1.2-2'}}%
+            <td mat-cell id="calculator-icon" class="delegate-apr-cell" *matCellDef="let row" (click)="onCalculatorPressed(row.address)"> {{row.delegateApr | number: '1.2-2'}}%
                 <fa-icon class="calculator-icon" [icon]="faCalculator" [matTooltipClass]="'tool-tip'"
-                    matTooltip="Estimate your rewards" (click)="onCalculatorPressed(row.address)">
+                    matTooltip="Estimate your rewards">
                 </fa-icon>
             </td>
         </ng-container>
