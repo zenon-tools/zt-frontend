@@ -40,6 +40,8 @@ import { CalculatorModalComponent } from './components/modals/calculator-modal/c
 import { LoaderComponent } from './components/loader/loader.component';
 import { PillarProfilePageComponent } from './components/pillar-profile-page/pillar-profile-page.component';
 import { TwemojiPipe } from './pipes/twemoji.pipe';
+import { AcceleratorPageComponent } from './components/accelerator-page/accelerator-page.component';
+import { ProposalCardComponent } from './components/proposal-card/proposal-card.component';
 
 @NgModule({
     declarations: [
@@ -71,6 +73,8 @@ import { TwemojiPipe } from './pipes/twemoji.pipe';
         LoaderComponent,
         PillarProfilePageComponent,
         TwemojiPipe,
+        AcceleratorPageComponent,
+        ProposalCardComponent,
     ],
     imports: [
         BrowserModule,

@@ -102,6 +102,11 @@
     align-items: center;
 }
 
+.az-tab:after {
+    content: 'Accelerator-Z';
+    white-space: nowrap;
+}
+
 @media only screen and (max-width: 1800px) {
     .header {
         padding-left: variables.$spacing-screen-m;
@@ -135,5 +140,31 @@
 
     .version {
         display: none;
+    }
+
+    .az-tab:after {
+        content: 'A-Z';
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .navigation {
+        gap: 2em;
+    }
+}
+
+@media only screen and (max-width: 390px) {
+    .navigation {
+        gap: 1.4em;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .navigation {
+        gap: 1.2em;
+
+        a {
+            font-size: variables.$font-xs;
+        }
     }
 }

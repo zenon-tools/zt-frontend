@@ -1,0 +1,107 @@
+@use "../../../assets/variables.scss";
+
+:host {
+    flex: 1;
+}
+
+.container {
+    display: flex;
+    padding-top: variables.$spacing-l;
+    padding-bottom: variables.$spacing-xl;
+    justify-content: center;
+}
+
+.proposals {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 900px;
+    filter: drop-shadow(0 0.8em 0.3em #0000001c);
+    padding-bottom: variables.$spacing-l;
+}
+
+.title-line {
+    display: flex;
+    align-items: center;
+    gap: variables.$spacing-m;
+    .title {
+        font-size: variables.$font-xl;
+        font-weight: bold;
+    }
+
+    fa-icon {
+        opacity: 0.7;
+    }
+
+    a {
+        margin-left: auto;
+        .more-info {
+            font-size: variables.$font-s;
+            color: variables.$white-70;
+
+            &:hover {
+                cursor: pointer;
+                color: white;
+            }
+        }
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-l;
+    padding-top: variables.$spacing-xl;
+}
+
+.loader {
+    position: absolute;
+    display: flex;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.end-text {
+    width: 100%;
+    text-align: center;
+    font-size: variables.$font-s;
+    color: variables.$white-70;
+    margin-top: variables.$spacing-l;
+}
+
+.page-selector {
+    display: flex;
+    margin-top: variables.$spacing-l;
+    width: 100%;
+
+    .browse-btn {
+        display: flex;
+        gap: variables.$spacing-s;
+        opacity: 0.7;
+
+        &:hover {
+            cursor: pointer;
+            gap: variables.$spacing-m;
+            opacity: 1;
+        }
+
+        &--next {
+            @extend .browse-btn;
+            margin-left: auto;
+        }
+    }
+
+    .hidden {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    .container {
+        padding-bottom: variables.$spacing-xxl;
+        padding-left: 1em;
+        padding-right: 1em;
+        align-items: flex-start;
+    }
+}

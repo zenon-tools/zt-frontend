@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="proposals">
+        <div class="title-line">
+            <div class="title text-glow-white">Projects</div>
+            <fa-icon [icon]="faCircleInfo" [matTooltipClass]="'tool-tip'"
+                matTooltip="Accelerator-Z is the on-chain funding framework for Network of Momentum where anyone can apply for funding.">
+            </fa-icon>
+            <a *ngIf="false" target="_blank" rel="noopener noreferrer" style="text-decoration: none;"
+                href="https://zenon.network/accelerator.html">
+                <div class="more-info">How to apply?</div>
+            </a>
+        </div>
+        <div class="content">
+            <app-proposal-card [class.hidden]="isLoading" *ngFor="let proposal of proposals$ | async;"
+                [proposal]="proposal" [quorumCount]="(quorumCount$ | async)!">
+            </app-proposal-card>
+        </div>
+        <div class="end-text" *ngIf="!isLoading && ((proposals$ | async)?.length ?? 0) < 10">
+            End of projects.
+        </div>
+        <div class="page-selector">
+            <div class="browse-btn" [class.hidden]="activePage === 1" (click)="onPreviousSelected()">
+                <fa-icon [icon]="faAngleLeft"></fa-icon>
+                <div>Previous</div>
+            </div>
+            <div class="browse-btn--next" [class.hidden]="((proposals$ | async)?.length ?? 0) < 10"
+                (click)="onNextSelected()">
+                <div>Next</div>
+                <fa-icon [icon]="faAngleRight"></fa-icon>
+            </div>
+        </div>
+    </div>
+</div>
+<app-loader class="loader" *ngIf="isLoading"></app-loader>
