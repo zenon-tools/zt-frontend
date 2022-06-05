@@ -88,7 +88,7 @@ export class ZenonToolsApiService {
     getProposals(page: number) {
         return this.httpClient
             .get<ProposalListItems>(
-                `${environment.ztApiUrl}/proposals?page=${page}`
+                `${environment.ztApiUrl}/projects?page=${page}`
             )
             .pipe(shareReplay(1));
     }
