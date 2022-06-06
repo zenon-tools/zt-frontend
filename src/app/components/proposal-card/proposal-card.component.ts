@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+import { map, take } from 'rxjs';
 import { ProposalListItem } from 'src/app/services/zenon-tools-api/interfaces/proposal-list-item';
+import { ZenonToolsApiService } from 'src/app/services/zenon-tools-api/zenon-tools-api.service';
 
 enum ProposalStatus {
     Voting,
@@ -17,7 +19,6 @@ enum ProposalStatus {
 })
 export class ProposalCardComponent implements OnInit {
     @Input() proposal!: ProposalListItem;
-    @Input() quorumCount!: number;
 
     faArrowUpRightFromSquare = faArrowUpRightFromSquare;
 
@@ -33,13 +34,19 @@ export class ProposalCardComponent implements OnInit {
     statusChipGradientEnd: string = '';
     votingStatusText: string = '';
 
-    constructor() {}
+    quorumCount$ = this.zenonToolsApiService.nomData$.pipe(
+        map((nom) => Math.round(nom.pillarCount * 0.33))
+    );
+
+    constructor(private zenonToolsApiService: ZenonToolsApiService) {}
 
     ngOnInit(): void {
-        this.updateTitle();
-        this.updatePercentages();
-        this.updateStatusChip();
-        this.updateVotingStatusText();
+        this.quorumCount$.pipe(take(1)).subscribe((quorumCount: number) => {
+            this.updateTitle();
+            this.updatePercentages(quorumCount);
+            this.updateStatusChip();
+            this.updateVotingStatusText();
+        });
     }
 
     updateTitle() {
@@ -49,17 +56,21 @@ export class ProposalCardComponent implements OnInit {
         }
     }
 
-    updatePercentages() {
-        this.yesPercent =
-            (this.proposal.yesVotes /
-                (this.proposal.yesVotes + this.proposal.noVotes)) *
-            100;
-        this.noPercent =
-            (this.proposal.noVotes /
-                (this.proposal.yesVotes + this.proposal.noVotes)) *
-            100;
+    updatePercentages(quorumCount: number) {
+        if (this.proposal.yesVotes + this.proposal.noVotes > 0) {
+            this.yesPercent =
+                (this.proposal.yesVotes /
+                    (this.proposal.yesVotes + this.proposal.noVotes)) *
+                100;
+            this.noPercent =
+                (this.proposal.noVotes /
+                    (this.proposal.yesVotes + this.proposal.noVotes)) *
+                100;
+        } else {
+            this.noPercent = 100;
+        }
 
-        const votesUntilQuorum = this.quorumCount - this.proposal.totalVotes;
+        const votesUntilQuorum = quorumCount - this.proposal.totalVotes;
         this.votesUntilQuorumText =
             votesUntilQuorum > 0
                 ? votesUntilQuorum == 1
@@ -68,9 +79,9 @@ export class ProposalCardComponent implements OnInit {
                 : 'Quorum reached';
 
         this.quorumPercent =
-            this.proposal.totalVotes / this.quorumCount > 1
+            this.proposal.totalVotes / quorumCount > 1
                 ? 100
-                : (this.proposal.totalVotes / this.quorumCount) * 100;
+                : (this.proposal.totalVotes / quorumCount) * 100;
     }
 
     updateStatusChip() {

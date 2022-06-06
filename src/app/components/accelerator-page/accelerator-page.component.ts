@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { map, Observable, Subject, Subscription, take } from 'rxjs';
+import { Observable, Subject, Subscription, take } from 'rxjs';
 import { ProposalListItems } from 'src/app/services/zenon-tools-api/interfaces/proposal-list-item';
 import { ZenonToolsApiService } from 'src/app/services/zenon-tools-api/zenon-tools-api.service';
 import { faAngleLeft, faAngleRight, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
@@ -17,10 +17,6 @@ export class AcceleratorPageComponent implements OnInit, OnDestroy {
     proposals$!: Observable<ProposalListItems>;
     proposalsObservableSubject$ = new Subject<Observable<ProposalListItems>>();
     proposalsObservableSubscription!: Subscription;
-
-    quorumCount$ = this.zenonToolsApiService.nomData$.pipe(
-        map((nom) => Math.round(nom.pillarCount * 0.33))
-    );
 
     isLoading: boolean = true;
     activePage: number = 1;
