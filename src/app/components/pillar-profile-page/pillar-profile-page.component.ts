@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, take } from 'rxjs';
@@ -17,6 +17,7 @@ export interface VoteRow {
     voteIconHex: string;
     timestamp: number;
     url: string;
+    projectId: string;
 }
 
 enum VoteType {
@@ -59,7 +60,7 @@ export class PillarProfilePageComponent implements OnInit {
                 this.pillarName,
                 1
             );
-            this.votes$.subscribe((votes: Votes) => {
+            this.votes$.pipe(take(1)).subscribe((votes: Votes) => {
                 this.isLoading = false;
                 this.hasVotes = votes.length > 0;
                 this.dataSource.data = votes.map(
@@ -70,6 +71,7 @@ export class PillarProfilePageComponent implements OnInit {
                         voteIconHex: this.getVoteIconHex(vote.vote),
                         timestamp: vote.momentumTimestamp,
                         url: vote.projectUrl ?? '',
+                        projectId: vote.projectId,
                     })
                 );
             });

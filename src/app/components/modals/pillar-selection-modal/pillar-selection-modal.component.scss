@@ -7,6 +7,7 @@
     background: linear-gradient(90deg, #1b1b1b, #1f1f1f, #1b1b1b);
     display: flex;
     flex-direction: column;
+    border: 1px solid variables.$border-green;
 }
 
 .header {
@@ -42,7 +43,7 @@
 
 .divider {
     height: 2px;
-    background-color: variables.$white-10;
+    background-color: variables.$border-green;
 }
 
 .pillar-list {

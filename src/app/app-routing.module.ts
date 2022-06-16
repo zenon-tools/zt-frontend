@@ -5,6 +5,7 @@ import { CalculatorPageComponent } from './components/calculator-page/calculator
 import { OverviewPageComponent } from './components/overview-page/overview-page.component';
 import { PillarProfilePageComponent } from './components/pillar-profile-page/pillar-profile-page.component';
 import { PillarsPageComponent } from './components/pillars-page/pillars-page.component';
+import { ProjectPageComponent } from './components/project-page/project-page.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'overview', pathMatch: 'full' },
@@ -27,6 +28,10 @@ const routes: Routes = [
     {
         path: 'pillars/:name',
         component: PillarProfilePageComponent,
+    },
+    {
+        path: 'accelerator/:projectId',
+        component: ProjectPageComponent,
     },
 ];
 

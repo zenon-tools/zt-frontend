@@ -1,0 +1,20 @@
+<div class="container" *ngIf="project$ | async as project">
+    <app-proposal-info-card [status]="project.status" [name]="project.name" [description]="project.description"
+        [isPhase]="false" [znnFundsNeeded]="project.znnFundsNeeded" [qsrFundsNeeded]="project.qsrFundsNeeded"
+        [url]="project.url" [owner]="project.owner" [projectId]="project.projectId"
+        [creationTimestamp]="project.creationTimestamp" [lastUpdateTimestamp]="project.lastUpdateTimestamp"
+        [yesVotes]="project.yesVotes" [noVotes]="project.noVotes" [totalVotes]="project.totalVotes"
+        [phases]="project.phases" (showPhases)="onShowPhases()">
+    </app-proposal-info-card>
+    <div *ngIf="project.phases.length" class="divider"></div>
+    <div *ngIf="project.phases.length" id="phases" class="section-title">PHASES ({{ project.phases.length }})</div>
+    <div *ngIf="project.phases.length" class="phases-container">
+        <app-proposal-info-card *ngFor="let phase of project.phases;" [status]="phase.status" [name]="phase.name"
+            [description]="phase.description" [isPhase]="true" [znnFundsNeeded]="phase.znnFundsNeeded"
+            [qsrFundsNeeded]="phase.qsrFundsNeeded" [url]="phase.url" [projectId]="project.projectId"
+            [phaseId]="phase.phaseId" [creationTimestamp]="phase.creationTimestamp" [yesVotes]="phase.yesVotes"
+            [noVotes]="phase.noVotes" [totalVotes]="phase.totalVotes">
+        </app-proposal-info-card>
+    </div>
+</div>
+<app-loader class="loader" *ngIf="isLoading"></app-loader>

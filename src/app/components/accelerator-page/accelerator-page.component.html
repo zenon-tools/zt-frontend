@@ -12,7 +12,7 @@
         </div>
         <div class="content">
             <app-proposal-card [class.hidden]="isLoading" *ngFor="let proposal of proposals$ | async;"
-                [proposal]="proposal">
+                [proposal]="proposal" (click)="onProjectPressed(proposal.projectId, proposal.phaseName.length > 0)">
             </app-proposal-card>
         </div>
         <div class="end-text" *ngIf="!isLoading && ((proposals$ | async)?.length ?? 0) < 10">

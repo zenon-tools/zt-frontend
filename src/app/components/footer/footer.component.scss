@@ -2,19 +2,71 @@
 
 .footer {
     width: 100%;
-    background: linear-gradient(90deg, #212121BF, #212121, #212121BF);
+    background: linear-gradient(90deg, #212121bf, variables.$primary-grey, #212121bf);
     height: 2.2em;
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: variables.$spacing-l;
 
-    img {
-        opacity: 70%;
-        height: 1em;
+    div:first-child {
+        flex: 1;
     }
 
-    img:hover {
-        opacity: 100%;
+    .icons-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: variables.$spacing-l;
+        img {
+            opacity: 70%;
+            height: 1em;
+        }
+
+        img:hover {
+            opacity: 100%;
+        }
     }
-  }
+
+    div:last-child {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+
+        .donate {
+            display: flex;
+            flex: 0;
+            gap: variables.$spacing-xs;
+            align-items: center;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &:hover .donate-text {
+                color: white;
+            }
+
+            .donate-text {
+                text-align: right;
+                font-size: variables.$font-xs;
+                color: variables.$white-70;
+            }
+
+            .icon {
+                height: variables.$font-xs;
+                width: variables.$font-xs;
+                padding-right: variables.$spacing-m;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    .footer {
+        div:last-child {
+            .donate {
+                display: none;
+            }
+        }
+    }
+}

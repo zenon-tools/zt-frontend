@@ -72,14 +72,14 @@
 
             <ng-container matColumnDef="title">
                 <th *matHeaderCellDef colspan="8">
+                    <div class="table-title-icon" [innerHTML]="'1F5F3' | twemoji"></div>
                     <div class="table-title text-glow-white">Voting</div>
-                    <div class="voting-icon" [innerHTML]="'1F5F3' | twemoji"></div>
                 </th>
             </ng-container>
 
             <tr mat-header-row class="table-title-container" *matHeaderRowDef="['title']"></tr>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/accelerator', row.projectId]"></tr>
         </table>
     </div>
 </div>

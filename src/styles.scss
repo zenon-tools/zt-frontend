@@ -61,7 +61,7 @@ body {
 }
 
 .text-glow-white {
-  text-shadow: 0 0 1.4em variables.$white-40;
+  text-shadow: 0 0 1.4em variables.$white-30;
 }
 
 // General input styling
@@ -139,33 +139,34 @@ input[type="number"] {
   border-radius: variables.$radius-l;
   overflow: hidden !important;
   background-color: variables.$secondary-grey;
+  border: 1px solid variables.$border-green;
 }
 
 .table-title-container {
   height: 3.5em;
   display: flex;
+  padding-left: 24px;
 
   th {
     flex: 1;
     display: flex;
-    gap: variables.$spacing-m;
   }
 
   .table-title {
     display: flex;
-    padding-left: 24px;
     text-align: start;
     font-size: variables.$font-l;
     font-weight: bold;
     align-self: flex-end;
-    padding-bottom: variables.$spacing-s;
+    padding-bottom: 0.5em;
   }
 
-  .voting-icon {
-    width: 1.5em;
-    height: 1.5em;
+  .table-title-icon {
+    width: 1.2em;
+    height: 1.2em;
     align-self: flex-end;
-    padding-bottom: variables.$spacing-s;
+    padding-bottom: 0.71em;
+    margin-right: variables.$spacing-s;
   }
 }
 
@@ -225,11 +226,21 @@ mat-dialog-container {
 
 .tool-tip {
   background-color: #555555 !important;
+  word-break: break-all !important;
+  white-space: normal !important;
 }
 
 // FA stylings
 fa-icon.red path {
   fill: variables.$primary-red;
+}
+
+.loader {
+  position: absolute;
+  display: flex;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 // mat-dialog width override

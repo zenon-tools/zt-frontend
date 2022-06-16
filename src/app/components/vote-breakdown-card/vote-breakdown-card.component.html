@@ -1,0 +1,38 @@
+<div class="voting-info-card">
+    <div class="voting-info">
+        <div class="vote-breakdown">
+            <div class="votes">
+                <div class="vote-results-container">
+                    <div class="vote-results">
+                        {{ yesVotes }} Yes
+                    </div>
+
+                </div>
+                <div class="vote-results-container">
+                    <div class="vote-results">
+                        {{ noVotes }} No
+                    </div>
+                </div>
+            </div>
+            <div class="vote-bar-container">
+                <div class="vote-bar"
+                    [ngStyle]="{'background': 'linear-gradient(90deg, #4b863e, #81FF62)', 'width': yesPercent + '%', 'filter': 'drop-shadow(0 0 0.3em #81ff6243)'}">
+                </div>
+                <div class="vote-bar"
+                    [ngStyle]="{'width': noPercent + '%'}">
+                </div>
+            </div>
+        </div>
+        <div class="quorum">
+            <div class="quorum-text">{{ votesUntilQuorumText }}</div>
+            <div class="vote-bar-container">
+                <div class="vote-bar"
+                    [ngStyle]="{'background': 'linear-gradient(90deg, #9B6EFF, #dbdaeb)', 'width': quorumPercent + '%', 'filter': 'drop-shadow(0 0 0.3em #dbdaeb5a)'}">
+                </div>
+                <div class="vote-bar"
+                    [ngStyle]="{'width': 100 - quorumPercent + '%'}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

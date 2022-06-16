@@ -25,7 +25,7 @@
 }
 
 .card {
-    background: radial-gradient(#161616, #212121);
+    background: radial-gradient(#161616, variables.$primary-grey);
     border-radius: variables.$radius-l;
     display: flex;
     align-items: center;
@@ -34,7 +34,6 @@
     width: calc(100% - 1.5em);
     height: 24.5em;
     filter: drop-shadow(0 0.8em 0.3em #0000001c);
-    transition: variables.$animation-duration variables.$animation-curve;
 }
 
 .top-container {

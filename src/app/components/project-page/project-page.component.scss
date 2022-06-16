@@ -1,0 +1,62 @@
+@use "../../../assets/variables.scss";
+
+:host {
+    flex: 1;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-top: variables.$spacing-l;
+    padding-bottom: variables.$spacing-xxl;
+}
+
+.section-title {
+    color: variables.$white-70;
+    font-weight: bold;
+    font-size: variables.$font-xs;
+    width: 900px;
+    text-align: start;
+    margin-bottom: variables.$spacing-xl;
+    scroll-margin: variables.$spacing-xl;
+}
+
+.divider {
+    margin-top: 3em;
+    margin-bottom: 3em;
+    height: 1px;
+    width: calc(900px);
+    background-color: variables.$border-green;
+}
+
+.phases-container {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-xl;
+}
+
+@media only screen and (max-width: 950px) {
+    .container {
+        padding-bottom: 5em;
+        align-items: flex-start;
+    }
+
+    .section-title {
+        width: calc(100% - 3em);
+        margin-left: 1.5em;
+        margin-right: 1.5em;
+    }
+
+    .divider {
+        width: calc(100% - 2em);
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+
+    .divider {
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
+    }
+}

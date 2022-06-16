@@ -42,6 +42,11 @@ import { PillarProfilePageComponent } from './components/pillar-profile-page/pil
 import { TwemojiPipe } from './pipes/twemoji.pipe';
 import { AcceleratorPageComponent } from './components/accelerator-page/accelerator-page.component';
 import { ProposalCardComponent } from './components/proposal-card/proposal-card.component';
+import { ProjectPageComponent } from './components/project-page/project-page.component';
+import { ProjectStatusChipComponent } from './components/project-status-chip/project-status-chip.component';
+import { VoteBreakdownCardComponent } from './components/vote-breakdown-card/vote-breakdown-card.component';
+import { ProposalInfoCardComponent } from './components/proposal-info-card/proposal-info-card.component';
+import { MiddleEllipsisPipe } from './pipes/middle-ellipsis.pipe';
 
 @NgModule({
     declarations: [
@@ -75,6 +80,11 @@ import { ProposalCardComponent } from './components/proposal-card/proposal-card.
         TwemojiPipe,
         AcceleratorPageComponent,
         ProposalCardComponent,
+        ProjectPageComponent,
+        ProjectStatusChipComponent,
+        VoteBreakdownCardComponent,
+        ProposalInfoCardComponent,
+        MiddleEllipsisPipe,
     ],
     imports: [
         BrowserModule,
@@ -87,10 +97,10 @@ import { ProposalCardComponent } from './components/proposal-card/proposal-card.
         MatIconModule,
         MatDialogModule,
         MatTooltipModule,
-        FontAwesomeModule
+        FontAwesomeModule,
     ],
     providers: [ZenonToolsApiService],
     bootstrap: [AppComponent],
-    entryComponents: [PillarSelectionModalComponent]
+    entryComponents: [PillarSelectionModalComponent],
 })
 export class AppModule {}

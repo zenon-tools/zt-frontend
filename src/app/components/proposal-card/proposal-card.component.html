@@ -1,68 +1,35 @@
 <div class="container">
-    <div class="primary-info">
-        <div class="info-items">
-            <div class="title-container">
-                <div class="title-line">
-                    <div class="title">{{ title }}</div>
-                    <a class="open-link-icon" target="_blank" rel="noopener noreferrer" href="{{ formatUrl(proposal.url) }}">
-                        <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
-                    </a>
+    <div class="hover-background">
+        <div class="primary-info">
+            <div class="info-items">
+                <div class="title-container">
+                    <div class="title-line">
+                        <div class="title">{{ title }}</div>
+                        <a (click)="onLinkPressed($event)" class="open-link-icon" target="_blank"
+                            rel="noopener noreferrer" href="{{ formattedUrl }}">
+                            <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
+                        </a>
+                    </div>
+                </div>
+                <div class="additional-info">
+                    <div class="requested-funds">{{(proposal.znnFundsNeeded / coinDecimals) | number: '1.0'}} ZNN +
+                        {{(proposal.qsrFundsNeeded / coinDecimals) | number: '1.0'}} QSR</div>
+                    <div class="text-divider">|</div>
+                    <div class="voting-status">{{ votingStatusText }}</div>
                 </div>
             </div>
-            <div class="additional-info">
-                <div class="requested-funds">{{(proposal.znnFundsNeeded / coinDecimals) | number: '1.0'}} ZNN +
-                    {{(proposal.qsrFundsNeeded / coinDecimals) | number: '1.0'}} QSR</div>
-                <div class="text-divider">|</div>
-                <div class="voting-status">{{ votingStatusText }}</div>
+            <div class="info-chips">
+                <div *ngIf="proposal.phaseName.length > 0" class="chip-container phase-chip"
+                    [ngStyle]="{'background': 'linear-gradient(45deg, #535F60, #3B4748)'}">
+                    <div>Phase</div>
+                </div>
+                <app-project-status-chip [status]="proposal.status">
+                </app-project-status-chip>
             </div>
         </div>
-        <div class="info-chips">
-            <div *ngIf="isPhase()" class="chip-container phase-chip"
-                [ngStyle]="{'background': 'linear-gradient(45deg, #535F60, #3B4748)'}">
-                <div>Phase</div>
-            </div>
-            <div class="chip-container"
-                [ngStyle]="{'background': 'linear-gradient(45deg, ' + statusChipGradientStart + ', ' + statusChipGradientEnd + ')'}">
-                <div>{{ statusText }}</div>
-            </div>
-        </div>
-    </div>
-    <div *ngIf="proposal.status === 0" class="voting-info-container">
-        <div class="voting-info">
-            <div class="vote-breakdown">
-                <div class="votes">
-                    <div class="vote-results-container">
-                        <div class="vote-results">
-                            {{ proposal.yesVotes }} Yes
-                        </div>
-
-                    </div>
-                    <div class="vote-results-container">
-                        <div class="vote-results">
-                            {{ proposal.noVotes }} No
-                        </div>
-                    </div>
-                </div>
-                <div class="vote-bar-container">
-                    <div class="vote-bar"
-                        [ngStyle]="{'background': 'linear-gradient(90deg, #4b863e, #81FF62)', 'width': yesPercent + '%', 'filter': 'drop-shadow(0 0 0.3em #81ff6243)'}">
-                    </div>
-                    <div class="vote-bar"
-                        [ngStyle]="{'width': noPercent + '%'}">
-                    </div>
-                </div>
-            </div>
-            <div class="quorum">
-                <div class="quorum-text">{{ votesUntilQuorumText }}</div>
-                <div class="vote-bar-container">
-                    <div class="vote-bar"
-                        [ngStyle]="{'background': 'linear-gradient(90deg, #9B6EFF, #dbdaeb)', 'width': quorumPercent + '%', 'filter': 'drop-shadow(0 0 0.3em #dbdaeb5a)'}">
-                    </div>
-                    <div class="vote-bar"
-                        [ngStyle]="{'width': 100 - quorumPercent + '%'}">
-                    </div>
-                </div>
-            </div>
+        <div *ngIf="proposal.status === 0" class="voting-info-container">
+            <app-vote-breakdown-card [yesVotes]="proposal.yesVotes" [noVotes]="proposal.noVotes"
+                [totalVotes]="proposal.totalVotes"></app-vote-breakdown-card>
         </div>
     </div>
 </div>

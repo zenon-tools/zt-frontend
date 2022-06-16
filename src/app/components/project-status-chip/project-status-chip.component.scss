@@ -1,0 +1,14 @@
+@use "../../../assets/variables.scss";
+
+.chip-container {
+    display: flex;
+    padding: variables.$spacing-s variables.$font-m variables.$spacing-s variables.$font-m;
+    border-radius: variables.$radius-l;
+    filter: drop-shadow(0 0 0.5em #00000040);
+
+    div:first-child {
+        font-size: variables.$font-xs;
+        font-weight: bold;
+        white-space: nowrap;
+    }
+}

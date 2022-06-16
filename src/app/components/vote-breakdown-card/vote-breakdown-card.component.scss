@@ -1,0 +1,89 @@
+@use "../../../assets/variables.scss";
+
+.voting-info-card {
+    background-color: variables.$tertiary-grey;
+    border-radius: variables.$radius-s;
+    justify-content: center;
+    filter: drop-shadow(0 0 0.8em #00000040);
+    transition: variables.$animation-duration variables.$animation-curve;
+    border: 1px solid variables.$border-green;
+
+    .voting-info {
+        display: flex;
+        justify-content: space-between;
+        padding: variables.$spacing-l variables.$spacing-l variables.$spacing-l variables.$spacing-l;
+        align-items: center;
+        gap: 4em;
+
+        .vote-breakdown {
+            display: flex;
+            flex-direction: column;
+            gap: variables.$spacing-m;
+            width: 50%;
+
+            .votes {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+
+                .vote-results-container {
+                    display: flex;
+                    flex-direction: column;
+
+                    .vote-results {
+                        font-size: variables.$font-xs;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+
+        .quorum {
+            display: flex;
+            flex-direction: column;
+            gap: variables.$spacing-m;
+            width: 50%;
+
+            .quorum-text {
+                font-size: variables.$font-xs;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.vote-bar-container {
+    display: flex;
+    height: 0.3em;
+    width: 100%;
+
+    .vote-bar {
+        border-radius: variables.$radius-s;
+        background-color: #585858;
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    .voting-info-card {
+        .voting-info {
+            flex-direction: column;
+            gap: 1em;
+            padding: variables.$spacing-l variables.$spacing-l variables.$spacing-l variables.$spacing-l;
+
+            .vote-breakdown {
+                gap: variables.$spacing-s;
+                width: 100%;
+            }
+
+            .quorum {
+                gap: variables.$spacing-s;
+                width: 100%;
+    
+                .quorum-text {
+                    font-size: variables.$font-xs;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

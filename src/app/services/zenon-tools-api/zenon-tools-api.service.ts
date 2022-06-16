@@ -7,6 +7,8 @@ import { NomData } from './interfaces/nom-data';
 import { PcsPoolData } from './interfaces/pcs-pool-data';
 import { Pillars } from './interfaces/pillar';
 import { PillarsOffChainInfo } from './interfaces/pillar-off-chain-info';
+import { Project } from './interfaces/project';
+import { ProposalVotes } from './interfaces/proposal-vote';
 import { ProposalListItems } from './interfaces/proposal-list-item';
 import { Votes } from './interfaces/vote';
 
@@ -79,9 +81,7 @@ export class ZenonToolsApiService {
 
     getVotesByPillar(pillar: string, page: number) {
         return this.httpClient
-            .get<Votes>(
-                `${environment.ztApiUrl}/votes?pillar=${pillar}`
-            )
+            .get<Votes>(`${environment.ztApiUrl}/votes?pillar=${pillar}`)
             .pipe(shareReplay(1));
     }
 
@@ -89,6 +89,30 @@ export class ZenonToolsApiService {
         return this.httpClient
             .get<ProposalListItems>(
                 `${environment.ztApiUrl}/projects?page=${page}`
+            )
+            .pipe(shareReplay(1));
+    }
+
+    getProject(projectId: string) {
+        return this.httpClient
+            .get<Project>(
+                `${environment.ztApiUrl}/project?projectId=${projectId}`
+            )
+            .pipe(shareReplay(1));
+    }
+
+    getProjectVotes(projectId: string) {
+        return this.httpClient
+            .get<ProposalVotes>(
+                `${environment.ztApiUrl}/project-votes?projectId=${projectId}`
+            )
+            .pipe(shareReplay(1));
+    }
+
+    getPhaseVotes(projectId: string) {
+        return this.httpClient
+            .get<ProposalVotes>(
+                `${environment.ztApiUrl}/phase-votes?projectId=${projectId}`
             )
             .pipe(shareReplay(1));
     }

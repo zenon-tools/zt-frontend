@@ -54,14 +54,6 @@
     padding-top: variables.$spacing-xl;
 }
 
-.loader {
-    position: absolute;
-    display: flex;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
 .end-text {
     width: 100%;
     text-align: center;
