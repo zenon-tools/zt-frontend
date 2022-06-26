@@ -4,8 +4,8 @@
     display: flex;
     padding-top: variables.$spacing-l;
     padding-bottom: variables.$spacing-xs;
-    padding-left: variables.$spacing-screen-l;
-    padding-right: variables.$spacing-screen-l;
+    padding-left: variables.$spacing-screen-xl;
+    padding-right: variables.$spacing-screen-xl;
     gap: 5.5em;
 }
 
@@ -105,6 +105,13 @@
 .az-tab:after {
     content: 'Accelerator-Z';
     white-space: nowrap;
+}
+
+@media only screen and (max-width: 2000px) {
+    .header {
+        padding-left: variables.$spacing-screen-l;
+        padding-right: variables.$spacing-screen-l;
+    }
 }
 
 @media only screen and (max-width: 1800px) {

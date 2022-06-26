@@ -9,8 +9,8 @@
     gap: variables.$spacing-l;
     padding-top: variables.$spacing-l;
     padding-bottom: variables.$spacing-l;
-    padding-left: variables.$spacing-screen-l;
-    padding-right: variables.$spacing-screen-l;
+    padding-left: variables.$spacing-screen-xl;
+    padding-right: variables.$spacing-screen-xl;
 
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -39,8 +39,8 @@
 .apr-cards {
     display: flex;
     padding-bottom: variables.$spacing-m;
-    padding-left: calc(variables.$spacing-screen-l - 0.75em);
-    padding-right: calc(variables.$spacing-screen-l - 0.75em);
+    padding-left: calc(variables.$spacing-screen-xl - 0.75em);
+    padding-right: calc(variables.$spacing-screen-xl - 0.75em);
 
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -52,6 +52,18 @@
 
     app-apr-card {
         flex: 1;
+    }
+}
+
+@media only screen and (max-width: 2000px) {
+    .market-data-cards {
+        padding-left: variables.$spacing-screen-l;
+        padding-right: variables.$spacing-screen-l;
+    }
+
+    .apr-cards {
+        padding-left: calc(variables.$spacing-screen-l - 0.75em);
+        padding-right: calc(variables.$spacing-screen-l - 0.75em);
     }
 }
 
