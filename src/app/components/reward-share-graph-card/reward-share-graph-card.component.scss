@@ -1,0 +1,69 @@
+@use "../../../assets/variables.scss";
+
+.card {
+    //background: radial-gradient(#161616, variables.$primary-grey);
+    background-color: variables.$tertiary-grey;
+    border-radius: variables.$radius-l;
+    height: 100%;
+    filter: drop-shadow(0 0 0.8em #0000000c);
+    min-width: 19em;
+    transition: 0s;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: variables.$spacing-l variables.$spacing-l variables.$spacing-s variables.$spacing-l;
+    height: 3.5em;
+}
+
+.value-label-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: variables.$spacing-s;
+}
+
+.value-date-wrapper {
+    display: flex;
+    column-gap: variables.$spacing-m;
+    align-items: center;
+
+    .value {
+        font-weight: bold;
+        font-size: variables.$font-l;
+    }
+
+    .date {
+        font-size: variables.$font-s;
+        color: variables.$white-70;
+    }
+}
+
+.label {
+    font-size: variables.$font-s;
+    color: variables.$white-70;
+}
+
+.line-chart {
+    height: 5em;
+}
+
+@media only screen and (max-width: 1800px) {
+    .header {
+        height: 3.5em;
+    }
+
+    .line-chart {
+        height: 5em;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .card {
+        width: 21em;
+    }
+
+    .header {
+        padding: variables.$spacing-l variables.$spacing-l variables.$spacing-s variables.$spacing-l;
+    }
+}

@@ -3,10 +3,16 @@
 .chart-container {
     width: 100%;
     height: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0;
 }
 
 .chart {
     border-radius: 0 0 variables.$radius-l variables.$radius-l;
     width: 100%;
     height: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0;
 }

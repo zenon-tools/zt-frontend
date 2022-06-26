@@ -9,7 +9,7 @@ import {
     ViewChild,
 } from '@angular/core';
 import Chart from 'chart.js/auto';
-import { ChartData, ChartDataset } from 'chart.js/auto';
+import { ChartDataset } from 'chart.js/auto';
 import { distinctUntilChanged, Observable, Subject } from 'rxjs';
 
 @Component({
@@ -29,7 +29,10 @@ export class LineChartComponent implements AfterViewInit, OnChanges {
 
     private hoveredValueSubject = new Subject<number[]>();
     @Output() public hoveredValue$ = this.hoveredValueSubject.pipe(
-        distinctUntilChanged((previous, current) => JSON.stringify(previous) === JSON.stringify(current))
+        distinctUntilChanged(
+            (previous, current) =>
+                JSON.stringify(previous) === JSON.stringify(current)
+        )
     );
 
     private chart!: Chart<'line', number[], number>;

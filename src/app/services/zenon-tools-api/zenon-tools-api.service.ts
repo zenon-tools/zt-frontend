@@ -11,6 +11,7 @@ import { Project } from './interfaces/project';
 import { ProposalVotes } from './interfaces/proposal-vote';
 import { ProposalListItems } from './interfaces/proposal-list-item';
 import { Votes } from './interfaces/vote';
+import { RewardShareChanges } from './interfaces/rewardShareChange';
 
 @Injectable({
     providedIn: 'root',
@@ -81,7 +82,9 @@ export class ZenonToolsApiService {
 
     getVotesByPillar(pillar: string, page: number) {
         return this.httpClient
-            .get<Votes>(`${environment.ztApiUrl}/votes?pillar=${pillar}`)
+            .get<Votes>(
+                `${environment.ztApiUrl}/votes?pillar=${pillar}&page=${page}`
+            )
             .pipe(shareReplay(1));
     }
 
@@ -113,6 +116,14 @@ export class ZenonToolsApiService {
         return this.httpClient
             .get<ProposalVotes>(
                 `${environment.ztApiUrl}/phase-votes?projectId=${projectId}`
+            )
+            .pipe(shareReplay(1));
+    }
+
+    getRewardShareChanges(pillar: string) {
+        return this.httpClient
+            .get<RewardShareChanges>(
+                `${environment.ztApiUrl}/reward-share-history?pillar=${pillar}`
             )
             .pipe(shareReplay(1));
     }

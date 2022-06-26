@@ -47,6 +47,9 @@ import { ProjectStatusChipComponent } from './components/project-status-chip/pro
 import { VoteBreakdownCardComponent } from './components/vote-breakdown-card/vote-breakdown-card.component';
 import { ProposalInfoCardComponent } from './components/proposal-info-card/proposal-info-card.component';
 import { MiddleEllipsisPipe } from './pipes/middle-ellipsis.pipe';
+import { PillarVotingTableComponent } from './components/tables/pillar-voting-table/pillar-voting-table.component';
+import { PillarRewardShareTableComponent } from './components/tables/pillar-reward-share-table/pillar-reward-share-table.component';
+import { RewardShareGraphCardComponent } from './components/reward-share-graph-card/reward-share-graph-card.component';
 
 @NgModule({
     declarations: [
@@ -85,6 +88,9 @@ import { MiddleEllipsisPipe } from './pipes/middle-ellipsis.pipe';
         VoteBreakdownCardComponent,
         ProposalInfoCardComponent,
         MiddleEllipsisPipe,
+        PillarVotingTableComponent,
+        PillarRewardShareTableComponent,
+        RewardShareGraphCardComponent,
     ],
     imports: [
         BrowserModule,

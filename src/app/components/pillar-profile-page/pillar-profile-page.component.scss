@@ -12,7 +12,7 @@
     padding-left: 2em;
     padding-right: 2em;
     align-items: center;
-    gap: variables.$spacing-l;
+    gap: variables.$spacing-xl;
 
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -60,94 +60,6 @@
             }
         }
     }
-}
-
-.mat-table {
-    min-width: 900px;
-    max-width: 900px;
-    border: 1px solid variables.$border-green;
-}
-
-.mat-column-proposal {
-    padding-right: 5em !important;
-}
-
-.mat-column-vote {
-    padding-right: 5em !important;
-}
-
-.mat-column-timestamp {
-    padding-right: 5em !important;
-}
-
-.mat-column-url {
-    padding-right: 5em !important;
-}
-
-.mat-row {
-    &:hover {
-        cursor: pointer;
-    }
-}
-
-.proposal-cell {
-    color: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    display: flex;
-    flex-direction: column;
-    gap: variables.$spacing-xs;
-
-    div {
-        color: inherit;
-        font-size: inherit;
-        font-weight: inherit;
-    }
-
-    .project-text {
-        font-size: variables.$font-m;
-        &--is-phase {
-            @extend .project-text;
-            font-size: variables.$font-s;
-            font-weight: normal;
-        }
-    }
-}
-
-.vote-cell {
-    color: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    gap: variables.$spacing-s;
-    display: flex;
-
-    div:last-child {
-        color: inherit;
-        font-size: inherit;
-        font-weight: inherit;
-    }
-
-    div:first-child {
-        width: variables.$spacing-m;
-        height: variables.$spacing-m;
-        align-self: center;
-    }
-}
-
-.open-link-icon {
-    opacity: 70%;
-    height: 1em;
-    padding-right: 0.75em;
-
-    &:hover {
-        opacity: 100%;
-    }
-}
-
-.no-votes {
-    font-size: variables.$font-s;
-    color: variables.$white-70;
-    padding: variables.$spacing-xs;
 }
 
 @media only screen and (max-width: 950px) {
@@ -201,35 +113,5 @@
                 }
             }
         }
-    }
-
-    .table-container {
-        width: 100%;
-        overflow-x: auto;
-    }
-
-    .mat-table {
-        min-width: 600px;
-        max-width: 600px;
-    }
-
-    .mat-column-proposal {
-        padding-right: 2em !important;
-    }
-
-    .mat-column-vote {
-        padding-right: 2em !important;
-    }
-
-    .mat-column-timestamp {
-        padding-right: 2em !important;
-    }
-
-    .mat-column-url {
-        padding-right: 2em !important;
-    }
-
-    .mat-header-cell {
-        padding-right: 2em;
     }
 }

@@ -1,0 +1,64 @@
+<div class="card" [class.card--loading]="isLoading">
+    <div class="title-container text-glow-white">
+        <div class="title">Reward sharing</div>
+        <div class="title-icon" [innerHTML]="'1F389' | twemoji"></div>
+    </div>
+    <div class="graphs">
+        <app-reward-share-graph-card [currentValue]="currentMomentumRewardShare" [label]="'Momentum reward share'"
+            [chartSeries]="momentumRewardShareChartData" [gradientStartColor]="'#3931AA'" [gradientEndColor]="'#B07EFF'"
+            [dates]="rewardShareDates">
+        </app-reward-share-graph-card>
+        <app-reward-share-graph-card [currentValue]="currentDelegateRewardShare" [label]="'Delegate reward share'"
+            [chartSeries]="delegateRewardShareChartData" [gradientStartColor]="'#3F6036'" [gradientEndColor]="'#6B9560'"
+            [dates]="rewardShareDates">
+        </app-reward-share-graph-card>
+    </div>
+    <div class="divider"></div>
+    <div class="no-votes" *ngIf="!isLoading && !hasRewardShareChanges">The Pillar hasn't changed their reward sharing.
+    </div>
+    <app-loader class="loader" *ngIf="isLoading"></app-loader>
+    <div class="table-container" [class.table-container--visible]="!isLoading && hasRewardShareChanges">
+        <table mat-table [dataSource]="dataSource" fixedLayout="true" class="mat-elevation-z0">
+            <ng-container matColumnDef="momentumRewardShare">
+                <th mat-header-cell *matHeaderCellDef>Momentum reward share</th>
+                <td mat-cell *matCellDef="let row">
+                    <div class="reward-share-cell">
+                        <div [innerHTML]="row.momentumRewardShareIconHex | twemoji"></div>
+                        <div>{{row.momentumRewardShare}}%</div>
+                    </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="delegateRewardShare">
+                <th mat-header-cell *matHeaderCellDef>Delegate reward share</th>
+                <td mat-cell *matCellDef="let row">
+                    <div class="reward-share-cell">
+                        <div [innerHTML]="row.delegateRewardShareIconHex | twemoji"></div>
+                        <div>{{row.delegateRewardShare}}%</div>
+                    </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="timestamp">
+                <th mat-header-cell *matHeaderCellDef>Timestamp</th>
+                <td mat-cell *matCellDef="let row"> {{row.timestamp * 1000 | date:'MM/dd/yy h:mm a'}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+        </table>
+
+    </div>
+    <div class="divider" *ngIf="hasRewardShareChanges"></div>
+    <div class="page-selector">
+        <div class="browse-btn" [class.hidden]="activePage === 1" (click)="onPreviousSelected()">
+            <fa-icon [icon]="faAngleLeft"></fa-icon>
+            <div>Previous</div>
+        </div>
+        <div class="browse-btn--next" [class.hidden]="dataSource.data.length < 5" (click)="onNextSelected()">
+            <div>Next</div>
+            <fa-icon [icon]="faAngleRight"></fa-icon>
+        </div>
+    </div>
+</div>
