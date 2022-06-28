@@ -18,7 +18,7 @@ export class VoteBreakdownCardComponent implements OnInit {
     votesUntilQuorumText: string = '';
 
     quorumCount$ = this.zenonToolsApiService.nomData$.pipe(
-        map((nom) => Math.round(nom.pillarCount * 0.33))
+        map((nom) => Math.ceil(nom.pillarCount * 0.33))
     );
 
     constructor(private zenonToolsApiService: ZenonToolsApiService) {}

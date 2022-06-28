@@ -112,10 +112,10 @@ export class ZenonToolsApiService {
             .pipe(shareReplay(1));
     }
 
-    getPhaseVotes(projectId: string) {
+    getPhaseVotes(phaseId: string) {
         return this.httpClient
             .get<ProposalVotes>(
-                `${environment.ztApiUrl}/phase-votes?projectId=${projectId}`
+                `${environment.ztApiUrl}/phase-votes?phaseId=${phaseId}`
             )
             .pipe(shareReplay(1));
     }

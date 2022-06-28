@@ -49,7 +49,7 @@
             </div>
             <div class="info-card-line-cell" *ngIf="isPhase">
                 <div class="label">Phase ID</div>
-                <div class="value--cursor" [matTooltipClass]="'tool-tip'" matTooltip={{phaseId}}>{{ phaseId |
+                <div (click)="onCopyText(phaseId)" class="value--cursor" [matTooltipClass]="'tool-tip'" matTooltip={{phaseId}}>{{ phaseId |
                     middleEllipsis }} <fa-icon [icon]="faCopy"></fa-icon>
                 </div>
             </div>
@@ -57,7 +57,7 @@
         <div class="info-card-line" *ngIf="!isPhase">
             <div class="info-card-line-cell">
                 <div class="label">Owner address</div>
-                <div class="value--cursor" [matTooltipClass]="'tool-tip'" matTooltip={{owner}}>{{ owner | middleEllipsis
+                <div (click)="onCopyText(owner)" class="value--cursor" [matTooltipClass]="'tool-tip'" matTooltip={{owner}}>{{ owner | middleEllipsis
                     }} <fa-icon [icon]="faCopy"></fa-icon>
                 </div>
             </div>

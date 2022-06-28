@@ -97,7 +97,7 @@ export class ProposalInfoCardComponent implements OnInit {
 
         if (this.isPhase) {
             this.votes$ = this.zenonToolsApiService.getPhaseVotes(
-                this.projectId
+                this.phaseId
             );
         } else {
             this.votes$ = this.zenonToolsApiService.getProjectVotes(
