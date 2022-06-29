@@ -29,7 +29,7 @@
         </div>
         <div *ngIf="proposal.status === 0" class="voting-info-container">
             <app-vote-breakdown-card [yesVotes]="proposal.yesVotes" [noVotes]="proposal.noVotes"
-                [totalVotes]="proposal.totalVotes"></app-vote-breakdown-card>
+                [totalVotes]="proposal.totalVotes" [proposalStatus]="proposal.status"></app-vote-breakdown-card>
         </div>
     </div>
 </div>

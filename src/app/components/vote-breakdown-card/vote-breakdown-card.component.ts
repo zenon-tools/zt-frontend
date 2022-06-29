@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { map, take } from 'rxjs';
 import { ZenonToolsApiService } from 'src/app/services/zenon-tools-api/zenon-tools-api.service';
+import { ProposalStatus } from '../project-status-chip/project-status-chip.component';
 
 @Component({
     selector: 'app-vote-breakdown-card',
@@ -11,6 +12,7 @@ export class VoteBreakdownCardComponent implements OnInit {
     @Input() yesVotes: number = 0;
     @Input() noVotes: number = 0;
     @Input() totalVotes: number = 0;
+    @Input() proposalStatus: ProposalStatus = ProposalStatus.Voting;
 
     yesPercent: number = 0;
     noPercent: number = 0;
@@ -39,16 +41,25 @@ export class VoteBreakdownCardComponent implements OnInit {
             this.noPercent = 100;
         }
 
+        const proposalIsAccepted =
+            this.proposalStatus == ProposalStatus.Active ||
+            this.proposalStatus == ProposalStatus.Completed ||
+            this.proposalStatus == ProposalStatus.Paid;
+
         const votesUntilQuorum = quorumCount - this.totalVotes;
         this.votesUntilQuorumText =
-            votesUntilQuorum > 0
+            votesUntilQuorum > 0 && !proposalIsAccepted
                 ? votesUntilQuorum == 1
                     ? `${votesUntilQuorum} vote until quorum`
                     : `${votesUntilQuorum} votes until quorum`
                 : 'Quorum reached';
 
+        if (votesUntilQuorum > 0 && this.proposalStatus == ProposalStatus.Closed) {
+            this.votesUntilQuorumText = 'Quorum not reached';
+        }
+
         this.quorumPercent =
-            this.totalVotes / quorumCount > 1
+            this.totalVotes / quorumCount > 1 || proposalIsAccepted
                 ? 100
                 : (this.totalVotes / quorumCount) * 100;
     }
