@@ -208,6 +208,9 @@ input[type="number"] {
 
 .pillar-avatar {
   width: 2.7em;
+  height: 2.7em;
+  object-fit: contain;
+  background-color: black;
   border-radius: variables.$radius-s;
   margin-right: variables.$spacing-m;
   -webkit-transition: variables.$animation-duration variables.$animation-curve;
