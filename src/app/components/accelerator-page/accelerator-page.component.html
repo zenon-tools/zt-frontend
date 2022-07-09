@@ -18,17 +18,10 @@
         <div class="end-text" *ngIf="!isLoading && ((proposals$ | async)?.length ?? 0) < 10">
             End of projects.
         </div>
-        <div class="page-selector">
-            <div class="browse-btn" [class.hidden]="activePage === 1" (click)="onPreviousSelected()">
-                <fa-icon [icon]="faAngleLeft"></fa-icon>
-                <div>Previous</div>
-            </div>
-            <div class="browse-btn--next" [class.hidden]="((proposals$ | async)?.length ?? 0) < 10"
-                (click)="onNextSelected()">
-                <div>Next</div>
-                <fa-icon [icon]="faAngleRight"></fa-icon>
-            </div>
-        </div>
+        <app-page-selector class="page-selector" [hidePreviousBtn]="activePage === 1"
+            [hideNextBtn]="((proposals$ | async)?.length ?? 0) < 10" (selectNext)="onNextSelected()"
+            (selectPrevious)="onPreviousSelected()">
+        </app-page-selector>
     </div>
 </div>
 <app-loader class="loader" *ngIf="isLoading"></app-loader>

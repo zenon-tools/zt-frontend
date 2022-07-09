@@ -95,6 +95,10 @@
         }
     }
 
+    .funding-status {
+        margin-bottom: variables.$spacing-l;
+    }
+
     .info-card {
         display: flex;
         flex-direction: column;
@@ -251,6 +255,7 @@
     min-width: 900px;
     max-width: 900px;
     border-radius: 0;
+    border: 0px;
 }
 
 .mat-column-pillar {

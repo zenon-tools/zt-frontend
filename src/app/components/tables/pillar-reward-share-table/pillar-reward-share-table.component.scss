@@ -1,0 +1,179 @@
+@use "../../../../assets/variables.scss";
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(90deg, variables.$primary-grey, #1e1e1e, variables.$primary-grey);
+    border-radius: variables.$radius-l;
+    width: 900px;
+    filter: drop-shadow(0 0 0.1em #0000001c);
+    overflow: hidden;
+    border: 1px solid variables.$border-green;
+
+    .title-container {
+        display: flex;
+        align-items: center;
+        padding: variables.$spacing-l variables.$spacing-xl variables.$spacing-l variables.$spacing-xl;
+        gap: variables.$spacing-m;
+
+        .title-icon {
+            height: 1em;
+            width: 1em;
+        }
+
+        .title {
+            font-weight: bold;
+            font-size: variables.$font-l;
+        }
+    }
+
+    .graphs {
+        display: flex;
+        gap: variables.$spacing-l;
+        margin-left: variables.$spacing-xl;
+        margin-right: variables.$spacing-xl;
+        margin-bottom: variables.$spacing-l;
+
+        app-reward-share-graph-card {
+            flex: 1;
+        }
+    }
+
+    .divider {
+        width: 100%;
+        height: 1px;
+        background-color: variables.$border-green;
+    }
+
+    .table-container {
+        opacity: 0;
+
+        &--hidden {
+            display: none;
+        }
+
+        &--visible {
+            @extend .table-container;
+            opacity: 1;
+        }
+    }
+
+    .mat-table {
+        min-width: 900px;
+        max-width: 900px;
+        border-radius: 0;
+        border: 0px;
+    }
+
+    .mat-column-momentumRewardShare {
+        max-width: 200px;
+        max-width: 200px;
+        padding-left: calc(4em - 24px) !important;
+    }
+
+    .mat-column-delegateRewardShare {
+        max-width: 200px;
+        max-width: 200px;
+    }
+
+    .mat-column-timestamp {
+        max-width: 200px;
+        max-width: 200px;
+    }
+
+    .reward-share-cell {
+        color: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        gap: variables.$spacing-s;
+        display: flex;
+
+        div:last-child {
+            color: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+        }
+
+        div:first-child {
+            width: variables.$spacing-m;
+            height: variables.$spacing-m;
+            align-self: center;
+        }
+    }
+
+    .no-reward-share-changes {
+        font-size: variables.$font-s;
+        color: variables.$white-70;
+        padding: variables.$spacing-xl;
+        align-self: center;
+        margin-top: variables.$spacing-l;
+    }
+
+    .page-selector {
+        padding-top: variables.$spacing-m;
+        padding-bottom: variables.$spacing-m;
+        margin-left: variables.$spacing-xl;
+        margin-right: variables.$spacing-xl;
+    }
+}
+
+.loader {
+    top: 84%;
+}
+
+@media only screen and (max-width: 950px) {
+    .card {
+        width: calc(99.5vw - 2em);
+
+        .title-container {
+            padding: variables.$spacing-l;
+        }
+
+        .graphs {
+            flex-direction: column;
+            gap: variables.$spacing-m;
+            margin-left: variables.$spacing-l;
+            margin-right: variables.$spacing-l;
+
+            app-reward-share-graph-card {
+                flex: 1;
+            }
+        }
+
+        .table-container {
+            overflow-x: auto;
+            width: 100%;
+
+            &--visible {
+                @extend .table-container;
+                display: flex;
+            }
+        }
+
+        .page-selector {
+            margin-left: variables.$spacing-l;
+            margin-right: variables.$spacing-l;
+        }
+
+        .mat-table {
+            min-width: 100%;
+            max-width: 100%;
+        }
+
+        .mat-column-momentumRewardShare {
+            padding-right: 2em !important;
+            max-width: none;
+            padding-left: calc(3.4em - 24px) !important;
+        }
+
+        .mat-column-delegateRewardShare {
+            padding-right: 2em !important;
+            max-width: none;
+        }
+
+        .mat-column-timestamp {
+            padding-right: 2em !important;
+            max-width: none;
+        }
+    }
+}

@@ -1,0 +1,33 @@
+@use "../../../assets/variables.scss";
+
+.page-selector {
+    display: flex;
+    width: 100%;
+
+    .browse-btn {
+        display: flex;
+        flex-direction: row !important;
+        gap: variables.$spacing-s;
+        opacity: 0.7;
+        align-items: center;
+
+        div {
+            font-size: variables.$font-m;
+        }
+
+        &:hover {
+            cursor: pointer;
+            gap: variables.$spacing-m;
+            opacity: 1;
+        }
+
+        &--next {
+            @extend .browse-btn;
+            margin-left: auto;
+        }
+    }
+
+    .hidden {
+        display: none;
+    }
+}

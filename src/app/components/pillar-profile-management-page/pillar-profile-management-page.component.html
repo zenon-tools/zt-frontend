@@ -1,0 +1,120 @@
+<div class="container" [class.container--hidden]="!pillarExists">
+    <div class="content">
+        <div class="header">
+            <div class="title">
+                Manage Pillar profile
+            </div>
+            <div class="name">
+                {{ pillarName }}
+            </div>
+        </div>
+        <div class="instructions">
+            To update your Pillar profile a valid signature created with the Pillar's address is required.
+            <br><br>
+            All fields are optional. Please note that the avatar image has to be self-hosted by the Pillar operator. Any
+            image hosting service can be used.
+            <a target="_blank" rel="noopener noreferrer" href="https://imgbb.com/">ImgBB</a> is one of many free hosting
+            services and the direct link to the image would look something like this:
+            https://i.ibb.co/9bBnp59/my-avatar.png
+
+        </div>
+        <div class="divider"></div>
+        <div class="avatar-description-container">
+            <div class="input-line">
+                <div>
+                    <div class="input-label">Avatar (max size: 400x400px)</div>
+                    <div class="input-wrapper">
+                        <input class="input-field" type="text" [placeholder]="'Direct link to hosted image'"
+                            #avatarInput>
+                    </div>
+                </div>
+                <div>
+                    <div class="input-label">Pillar description</div>
+                    <div class="input-wrapper description-container">
+                        <textarea class="input-field" type="text"
+                            [placeholder]="'Tell the community something about your Pillar'"
+                            #descriptionInput></textarea>
+                    </div>
+                    <div class="char-counter">
+                        {{ (descriptionLength$ | async) ?? 0 }}/{{ maxDescriptionLength }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="links-container">
+            <div class="input-line">
+                <div>
+                    <div class="input-label">Telegram</div>
+                    <div class="input-wrapper">
+                        <input class="input-field" type="text" [placeholder]="'https://t.me/your-telegram'"
+                            #telegramInput>
+                    </div>
+                </div>
+                <div>
+                    <div class="input-label">Twitter</div>
+                    <div class="input-wrapper">
+                        <input class="input-field" type="text" [placeholder]="'https://twitter.com/your-twitter'"
+                            #twitterInput>
+                    </div>
+                </div>
+            </div>
+            <div class="input-line">
+                <div>
+                    <div class="input-label">GitHub</div>
+                    <div class="input-wrapper">
+                        <input class="input-field" type="text" [placeholder]="'https://github.com/your-github'"
+                            #gitHubInput>
+                    </div>
+                </div>
+                <div>
+                    <div class="input-label">Website</div>
+                    <div class="input-wrapper">
+                        <input class="input-field" type="text" [placeholder]="'https://your-pillar.com'" #websiteInput>
+                    </div>
+                </div>
+            </div>
+            <div class="input-line">
+                <div>
+                    <div class="input-label">Medium</div>
+                    <div class="input-wrapper">
+                        <input class="input-field" type="text" [placeholder]="'https://medium.com/your-medium'"
+                            #mediumInput>
+                    </div>
+                </div>
+                <div>
+                    <div class="input-label">Email</div>
+                    <div class="input-wrapper">
+                        <input class="input-field" type="email" name="emailInput" [placeholder]="'your-email@email.com'"
+                            #emailInput>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="signature-container">
+            <div class="challenge-container">
+                <div class="instructions">Provide a valid signature by signing the following text with your
+                    Pillar's address. The signature can be created in Syrius via Settings > Security >
+                    Sign. Remember to treat this signature like a password!</div>
+                <div class="challenge">{{ messageToSign }} <fa-icon (click)="onCopyText(messageToSign)" [icon]="faCopy">
+                    </fa-icon>
+                </div>
+            </div>
+            <div>
+                <div class="input-label">Signature</div>
+                <div class="input-wrapper">
+                    <input class="input-field" type="text"
+                        [placeholder]="'Signature created with the Pillar\'s address'" #signatureInput>
+                </div>
+            </div>
+        </div>
+        <div class="btn-container">
+            <div *ngIf="!isLoading" class="status-container">
+                <div (click)="onUpdateProfile()" class="update-btn">Update Pillar profile</div>
+                <div class="error-text" [class.error-text--hidden]="!isError">{{ errorText }}</div>
+            </div>
+            <app-loader class="loader" *ngIf="isLoading"></app-loader>
+        </div>
+    </div>
+</div>

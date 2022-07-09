@@ -47,6 +47,12 @@ import { ProjectStatusChipComponent } from './components/project-status-chip/pro
 import { VoteBreakdownCardComponent } from './components/vote-breakdown-card/vote-breakdown-card.component';
 import { ProposalInfoCardComponent } from './components/proposal-info-card/proposal-info-card.component';
 import { MiddleEllipsisPipe } from './pipes/middle-ellipsis.pipe';
+import { PillarVotingTableComponent } from './components/tables/pillar-voting-table/pillar-voting-table.component';
+import { PillarRewardShareTableComponent } from './components/tables/pillar-reward-share-table/pillar-reward-share-table.component';
+import { RewardShareGraphCardComponent } from './components/reward-share-graph-card/reward-share-graph-card.component';
+import { PillarDelegatorTableComponent } from './components/tables/pillar-delegator-table/pillar-delegator-table.component';
+import { PillarProfileManagementPageComponent } from './components/pillar-profile-management-page/pillar-profile-management-page.component';
+import { PageSelectorComponent } from './components/page-selector/page-selector.component';
 
 @NgModule({
     declarations: [
@@ -85,6 +91,12 @@ import { MiddleEllipsisPipe } from './pipes/middle-ellipsis.pipe';
         VoteBreakdownCardComponent,
         ProposalInfoCardComponent,
         MiddleEllipsisPipe,
+        PillarVotingTableComponent,
+        PillarRewardShareTableComponent,
+        RewardShareGraphCardComponent,
+        PillarDelegatorTableComponent,
+        PillarProfileManagementPageComponent,
+        PageSelectorComponent,
     ],
     imports: [
         BrowserModule,

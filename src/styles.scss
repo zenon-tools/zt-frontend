@@ -143,9 +143,8 @@ input[type="number"] {
 }
 
 .table-title-container {
-  height: 3.5em;
+  height: 3.4em;
   display: flex;
-  padding-left: 24px;
 
   th {
     flex: 1;
@@ -228,6 +227,11 @@ mat-dialog-container {
   background-color: #555555 !important;
   word-break: break-all !important;
   white-space: normal !important;
+
+  &--normal-word-break {
+    @extend .tool-tip;
+    word-break: normal !important;
+  }
 }
 
 // FA stylings

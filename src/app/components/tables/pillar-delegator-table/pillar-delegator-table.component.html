@@ -1,0 +1,53 @@
+<div class="card" [class.card--loading]="isLoading">
+    <div class="title-container text-glow-white">
+        <div class="title">Delegators</div>
+        <div class="title-icon" [innerHTML]="'1F91D' | twemoji"></div>
+        <div class="count">{{delegators?.length ?? 0}} in total</div>
+    </div>
+    <div class="divider"></div>
+    <div class="no-delegators" *ngIf="!isLoading && !hasDelegators">The Pillar has no delegators.</div>
+    <app-loader class="loader" *ngIf="isLoading"></app-loader>
+    <div class="table-container" [class.table-container--hidden]="!isLoading && !hasDelegators"
+        [class.table-container--visible]="!isLoading && hasDelegators">
+        <table mat-table [dataSource]="dataSource" fixedLayout="true" class="mat-elevation-z0">
+            <ng-container matColumnDef="address">
+                <th mat-header-cell *matHeaderCellDef>Address</th>
+                <td mat-cell *matCellDef="let row" [matTooltipClass]="'tool-tip'" matTooltipPosition="above"
+                    matTooltip={{row.address}}>
+                    <div class="address-cell">
+                        <div>{{row.address | middleEllipsis}} <fa-icon (click)="onCopyText(row.address)"
+                                [icon]="faCopy"></fa-icon>
+                        </div>
+                        <div class="info-text" *ngIf="row.isSelfDelegation">Pillar self-delegation</div>
+                    </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="delegationAmount">
+                <th mat-header-cell *matHeaderCellDef>Weight (ZNN)</th>
+                <td mat-cell *matCellDef="let row">{{row.delegationAmount | number: '1.2-2'}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="share">
+                <th mat-header-cell *matHeaderCellDef>Share</th>
+                <td mat-cell *matCellDef="let row"> {{row.share | number: '1.2-2'}}%</td>
+            </ng-container>
+
+            <ng-container matColumnDef="delegationStartTimestamp">
+                <th mat-header-cell *matHeaderCellDef>Delegation start</th>
+                <td mat-cell *matCellDef="let row"> {{row.delegationStartTimestamp * 1000 | date:'MM/dd/yy h:mm a'}}
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+        </table>
+
+    </div>
+    <div class="divider" *ngIf="hasDelegators"></div>
+    <app-page-selector class="page-selector" [hidePreviousBtn]="activePage === 1"
+        [hideNextBtn]="dataSource.data.length < 5" (selectNext)="onNextSelected()"
+        (selectPrevious)="onPreviousSelected()">
+    </app-page-selector>
+</div>

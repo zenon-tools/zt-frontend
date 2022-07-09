@@ -9,8 +9,8 @@ import {
     ViewChild,
 } from '@angular/core';
 import Chart from 'chart.js/auto';
-import { ChartData, ChartDataset } from 'chart.js/auto';
-import { distinctUntilChanged, Observable, Subject } from 'rxjs';
+import { ChartDataset } from 'chart.js/auto';
+import { distinctUntilChanged, Subject } from 'rxjs';
 
 @Component({
     selector: 'app-line-chart',
@@ -23,13 +23,20 @@ export class LineChartComponent implements AfterViewInit, OnChanges {
     @Input() chartSeries?: number[] | null;
     @Input() gradientStartColor!: string;
     @Input() gradientEndColor!: string;
+    @Input() lineWidth: number = 4;
+    @Input() pointHoverRadius: number = 5;
+    @Input() roundCorners: boolean = true;
+    @Input() maxValue: number | undefined = 110;
 
     private isHovered = new Subject<boolean>();
     @Output() public isHovered$ = this.isHovered.pipe(distinctUntilChanged());
 
     private hoveredValueSubject = new Subject<number[]>();
     @Output() public hoveredValue$ = this.hoveredValueSubject.pipe(
-        distinctUntilChanged((previous, current) => JSON.stringify(previous) === JSON.stringify(current))
+        distinctUntilChanged(
+            (previous, current) =>
+                JSON.stringify(previous) === JSON.stringify(current)
+        )
     );
 
     private chart!: Chart<'line', number[], number>;
@@ -62,6 +69,9 @@ export class LineChartComponent implements AfterViewInit, OnChanges {
                     y: {
                         beginAtZero: true,
                         display: false,
+                        grace: '1%',
+                        max: this.maxValue,
+                        min: -10,
                     },
                 },
                 plugins: {
@@ -136,9 +146,9 @@ export class LineChartComponent implements AfterViewInit, OnChanges {
             pointBackgroundColor: 'transparent',
             pointHoverBackgroundColor: this.gradientEndColor,
             pointRadius: 0,
-            pointHoverRadius: 6,
+            pointHoverRadius: this.pointHoverRadius,
             tension: 0.3,
-            borderWidth: 4,
+            borderWidth: this.lineWidth,
         };
     }
 }

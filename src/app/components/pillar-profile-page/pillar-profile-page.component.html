@@ -1,85 +1,153 @@
 <div class="container">
-    <div class="pillar-info-container">
-        <img class="pillar-avatar" *ngIf="pillarOffChainInfo?.avatar" [src]="pillarOffChainInfo?.avatar">
-        <div class="name-and-social-links">
-            <div class="pillar-name text-glow-white">{{ pillarName }}</div>
-            <div class="social-links" *ngIf="hasSocialLinks">
-                <a target="_blank" rel="noopener noreferrer" href={{pillarOffChainInfo?.links?.telegram}}
-                    *ngIf="pillarOffChainInfo?.links?.telegram">
-                    <img src="../../../assets/vectors/telegram_logo.svg" alt="Telegram logo">
-                </a>
-                <a target="_blank" rel="noopener noreferrer" href={{pillarOffChainInfo?.links?.twitter}}
-                    *ngIf="pillarOffChainInfo?.links?.twitter">
-                    <img src="../../../assets/vectors/twitter_logo.svg" alt="Twitter logo">
-                </a>
-                <a target="_blank" rel="noopener noreferrer" href={{pillarOffChainInfo?.links?.website}}
-                    *ngIf="pillarOffChainInfo?.links?.website">
-                    <img src="../../../assets/vectors/globe.svg" alt="Globe icon">
-                </a>
-                <a target="_blank" rel="noopener noreferrer" href={{pillarOffChainInfo?.links?.github}}
-                    *ngIf="pillarOffChainInfo?.links?.github">
-                    <img src="../../../assets/vectors/github_logo.svg" alt="Github logo">
-                </a>
-                <a target="_blank" rel="noopener noreferrer" href={{pillarOffChainInfo?.links?.medium}}
-                    *ngIf="pillarOffChainInfo?.links?.medium">
-                    <img src="../../../assets/vectors/medium_logo.svg" alt="Medium logo">
-                </a>
+    <div class="pillar-info-card">
+        <div class="header">
+            <div>
+                <img class="pillar-avatar" *ngIf="pillarOffChainInfo?.avatar" [src]="pillarOffChainInfo?.avatar">
+                <img class="pillar-avatar" *ngIf="!pillarOffChainInfo?.avatar"
+                    src="../../../assets/images/default_pillar_avatar.png">
+            </div>
+            <fa-icon class="menu-icon fa-lg" [icon]="faEllipsisH" (click)="onMenuSelected()"></fa-icon>
+            <div class="menu" [class.menu--open]="isMenuOpen" (click)="onManageProfileSelected()">
+                Manage Pillar profile
+            </div>
+        </div>
+        <div class="pillar-info-container">
+            <div class="name-and-social-links">
+                <div class="pillar-name text-glow-white">{{ pillarName }}</div>
+                <div class="social-links" *ngIf="hasSocialLinks">
+                    <a target="_blank" rel="noopener noreferrer" href={{pillarOffChainInfo?.links?.telegram}}
+                        *ngIf="pillarOffChainInfo?.links?.telegram">
+                        <img src="../../../assets/vectors/telegram_logo.svg" alt="Telegram logo">
+                    </a>
+                    <a target="_blank" rel="noopener noreferrer" href={{pillarOffChainInfo?.links?.twitter}}
+                        *ngIf="pillarOffChainInfo?.links?.twitter">
+                        <img src="../../../assets/vectors/twitter_logo.svg" alt="Twitter logo">
+                    </a>
+                    <a target="_blank" rel="noopener noreferrer" href={{pillarOffChainInfo?.links?.website}}
+                        *ngIf="pillarOffChainInfo?.links?.website">
+                        <img src="../../../assets/vectors/globe.svg" alt="Globe icon">
+                    </a>
+                    <a target="_blank" rel="noopener noreferrer" href={{pillarOffChainInfo?.links?.github}}
+                        *ngIf="pillarOffChainInfo?.links?.github">
+                        <img src="../../../assets/vectors/github_logo.svg" alt="Github logo">
+                    </a>
+                    <a target="_blank" rel="noopener noreferrer" href={{pillarOffChainInfo?.links?.medium}}
+                        *ngIf="pillarOffChainInfo?.links?.medium">
+                        <img src="../../../assets/vectors/medium_logo.svg" alt="Medium logo">
+                    </a>
+                    <a target="_blank" rel="noopener noreferrer" href="mailto:{{pillarOffChainInfo?.links?.email}}"
+                        *ngIf="pillarOffChainInfo?.links?.email">
+                        <img src="../../../assets/vectors/email.svg" alt="Email icon">
+                    </a>
+                </div>
+            </div>
+            <div class="description" *ngIf="pillarDescription">{{pillarDescription}}</div>
+            <div class="additional-info">
+                <div class="delegation-apr-card info-card">
+                    <div>
+                        <div class="text-glow-white">{{pillar?.delegateApr | number: '1.2-2'}}%</div>
+                        <div>Delegation APR</div>
+                    </div>
+                    <div class="apr-btn" (click)="onCalculatorSelected(pillarProfile?.ownerAddress ?? '')">
+                        Estimate your rewards
+                    </div>
+                </div>
+                <div class="loader-container" *ngIf="isLoading">
+                    <app-loader class="loader"></app-loader>
+                </div>
+                <div class="info-card" *ngIf="!isLoading">
+                    <div class="info-card-line">
+                        <div class="info-card-line-cell">
+                            <div class="label">Produced/target momentums <fa-icon [icon]="faCircleInfo"
+                                    [matTooltipClass]="'tool-tip--normal-word-break'"
+                                    matTooltip="The ratio of produced vs. target momentums during the current epoch. Missing momentums will negatively affect the rewards earned by the Pillar.">
+                                </fa-icon>
+                            </div>
+                            <div class="value">
+                                {{pillar?.producedMomentums}} / {{pillar?.expectedMomentums}}
+                            </div>
+                        </div>
+                        <div class="info-card-line-cell">
+                            <div class="label">Weight <fa-icon [icon]="faCircleInfo"
+                                    [matTooltipClass]="'tool-tip--normal-word-break'"
+                                    matTooltip="The amount of ZNN delegated to the Pillar.">
+                                </fa-icon>
+                            </div>
+                            <div class="value">
+                                {{(pillar?.weight ?? 0) / coinDecimals | number: '1.0-0'}} ZNN
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-card-line">
+                        <div class="info-card-line-cell">
+                            <div class="label">Rank <fa-icon [icon]="faCircleInfo"
+                                    [matTooltipClass]="'tool-tip--normal-word-break'"
+                                    matTooltip="The Pillar’s rank based on its weight.">
+                                </fa-icon>
+                            </div>
+                            <div class="value">{{(pillar?.rank ?? 0) + 1}}</div>
+                        </div>
+                        <div class="info-card-line-cell">
+                            <div class="label">Slot cost <fa-icon [icon]="faCircleInfo"
+                                    [matTooltipClass]="'tool-tip--normal-word-break'"
+                                    matTooltip="The amount of QSR the Pillar had to burn to spawn the Pillar.">
+                                </fa-icon>
+                            </div>
+                            <div class="value icon-container">
+                                <div class="icon" [innerHTML]="'1F525' | twemoji"></div>
+                                {{((pillarProfile?.slotCostQsr ?? -1) == 0 ? 150000 * coinDecimals :
+                                (pillarProfile?.slotCostQsr ?? -1) == -1 ? 0 :
+                                (pillarProfile?.slotCostQsr ?? 0))
+                                / coinDecimals | number: '1.0-0'}} QSR
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-card-line">
+                        <div class="info-card-line-cell">
+                            <div class="label">Spawned on</div>
+                            <div class="value">{{(pillarProfile?.spawnTimestamp ?? -1) == 0 ? 'Genesis' :
+                                (pillarProfile?.spawnTimestamp ?? -1) == -1 ? '' :
+                                ((pillarProfile?.spawnTimestamp ?? 0) * 1000 | date:'MM/dd/yy h:mm a')}}</div>
+                        </div>
+                        <div class="info-card-line-cell">
+                            <div class="label">Owner address</div>
+                            <div (click)="onCopyText(pillarProfile?.ownerAddress ?? '')" class="value--cursor"
+                                [matTooltipClass]="'tool-tip'" matTooltip={{pillarProfile?.ownerAddress}}>{{
+                                pillarProfile?.ownerAddress ?? '' |
+                                middleEllipsis
+                                }} <fa-icon [icon]="faCopy"></fa-icon>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-card-line">
+                        <div class="info-card-line-cell">
+                            <div class="label">Producer address</div>
+                            <div (click)="onCopyText(pillarProfile?.producerAddress ?? '')" class="value--cursor"
+                                [matTooltipClass]="'tool-tip'" matTooltip={{pillarProfile?.producerAddress}}>{{
+                                pillarProfile?.producerAddress ?? '' |
+                                middleEllipsis
+                                }} <fa-icon [icon]="faCopy"></fa-icon>
+                            </div>
+                        </div>
+                        <div class="info-card-line-cell">
+                            <div class="label">Withdraw address</div>
+                            <div (click)="onCopyText(pillarProfile?.withdrawAddress ?? '')" class="value--cursor"
+                                [matTooltipClass]="'tool-tip'" matTooltip={{pillarProfile?.withdrawAddress}}>{{
+                                pillarProfile?.withdrawAddress ?? '' |
+                                middleEllipsis
+                                }} <fa-icon [icon]="faCopy"></fa-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-    <app-loader class="loader" *ngIf="isLoading"></app-loader>
-    <div class="no-votes" *ngIf="!isLoading && !hasVotes">The Pillar hasn't voted.</div>
-    <div *ngIf="!isLoading && hasVotes" class="table-container">
-        <table mat-table [dataSource]="dataSource" fixedLayout="true" class="mat-elevation-z8">
-            <ng-container matColumnDef="proposal">
-                <th mat-header-cell *matHeaderCellDef>Proposal</th>
-                <td mat-cell *matCellDef="let row">
-                    <div class="proposal-cell">
-                        <div class="phase-text" *ngIf="row.phaseName">{{row.phaseName.length > 40 ?
-                            row.phaseName.slice(0,
-                            40) + '...' : row.phaseName}}</div>
-                        <div class="project-text" [class.project-text--is-phase]="row.phaseName">
-                            {{row.projectName.length >
-                            40 ? row.projectName.slice(0, 40) + '...' : row.projectName}}</div>
-                    </div>
-                </td>
-            </ng-container>
-
-            <ng-container matColumnDef="vote">
-                <th mat-header-cell *matHeaderCellDef>Vote</th>
-                <td mat-cell *matCellDef="let row">
-                    <div class="vote-cell">
-                        <div [innerHTML]="row.voteIconHex | twemoji"></div>
-                        <div>{{row.vote}}</div>
-                    </div>
-                </td>
-            </ng-container>
-
-            <ng-container matColumnDef="timestamp">
-                <th mat-header-cell *matHeaderCellDef>Timestamp</th>
-                <td mat-cell *matCellDef="let row"> {{row.timestamp * 1000 | date:'MM/dd/yy h:mm a'}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="url">
-                <th mat-header-cell *matHeaderCellDef>URL</th>
-                <td mat-cell *matCellDef="let row">
-                    <a class="open-link-icon" target="_blank" rel="noopener noreferrer" href={{row.url}}>
-                        <fa-icon [icon]="faArrowUpRightFromSquare" class="fa-lg"></fa-icon>
-                    </a>
-                </td>
-            </ng-container>
-
-            <ng-container matColumnDef="title">
-                <th *matHeaderCellDef colspan="8">
-                    <div class="table-title-icon" [innerHTML]="'1F5F3' | twemoji"></div>
-                    <div class="table-title text-glow-white">Voting</div>
-                </th>
-            </ng-container>
-
-            <tr mat-header-row class="table-title-container" *matHeaderRowDef="['title']"></tr>
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/accelerator', row.projectId]"></tr>
-        </table>
-    </div>
+    <app-pillar-reward-share-table [pillarName]="pillarName"
+        [currentMomentumRewardShare]="pillar?.giveMomentumRewardPercentage ?? 0"
+        [currentDelegateRewardShare]="pillar?.giveDelegateRewardPercentage ?? 0"></app-pillar-reward-share-table>
+    <app-pillar-voting-table [pillarName]="pillarName"></app-pillar-voting-table>
+    <app-pillar-delegator-table [pillarName]="pillarName" [totalWeight]="pillar?.weight ?? 1"
+        [ownerAddress]="pillarProfile?.ownerAddress ?? ''" [withdrawAddress]="pillarProfile?.withdrawAddress ?? ''">
+    </app-pillar-delegator-table>
 </div>

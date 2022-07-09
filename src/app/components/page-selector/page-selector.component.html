@@ -1,0 +1,10 @@
+<div class="page-selector">
+    <div class="browse-btn" [class.hidden]="hidePreviousBtn" (click)="onPreviousSelected()">
+        <fa-icon [icon]="faAngleLeft"></fa-icon>
+        <div>Previous</div>
+    </div>
+    <div class="browse-btn--next" [class.hidden]="hideNextBtn" (click)="onNextSelected()">
+        <div>Next</div>
+        <fa-icon [icon]="faAngleRight"></fa-icon>
+    </div>
+</div>
