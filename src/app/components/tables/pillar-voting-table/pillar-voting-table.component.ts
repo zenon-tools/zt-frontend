@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import {
     faAngleLeft,
     faAngleRight,
@@ -49,7 +50,10 @@ export class PillarVotingTableComponent implements OnInit {
 
     displayedColumns: string[] = ['proposal', 'vote', 'timestamp', 'url'];
 
-    constructor(private zenonToolsApiService: ZenonToolsApiService) {}
+    constructor(
+        private zenonToolsApiService: ZenonToolsApiService,
+        private router: Router
+    ) {}
 
     ngOnInit(): void {
         this.votesObservableSubscription =
@@ -84,6 +88,10 @@ export class PillarVotingTableComponent implements OnInit {
 
     ngOnDestroy(): void {
         this.votesObservableSubscription.unsubscribe();
+    }
+
+    onRowPressed(projectId: string) {
+        this.router.navigate(['/accelerator', projectId]);
     }
 
     onNextSelected() {

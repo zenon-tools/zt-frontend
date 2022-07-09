@@ -12,6 +12,8 @@ import { ProposalVotes } from './interfaces/proposal-vote';
 import { ProposalListItems } from './interfaces/proposal-list-item';
 import { Votes } from './interfaces/vote';
 import { RewardShareChanges } from './interfaces/rewardShareChange';
+import { Delegators } from './interfaces/delegator';
+import { PillarProfile } from './interfaces/pillar-profile';
 
 @Injectable({
     providedIn: 'root',
@@ -126,5 +128,28 @@ export class ZenonToolsApiService {
                 `${environment.ztApiUrl}/reward-share-history?pillar=${pillar}`
             )
             .pipe(shareReplay(1));
+    }
+
+    getPillarDelegators(pillar: string) {
+        return this.httpClient
+            .get<Delegators>(
+                `${environment.ztApiUrl}/pillar-delegators?pillar=${pillar}`
+            )
+            .pipe(shareReplay(1));
+    }
+
+    getPillarProfile(pillar: string) {
+        return this.httpClient
+            .get<PillarProfile>(
+                `${environment.ztApiUrl}/pillar-profile?pillar=${pillar}`
+            )
+            .pipe(shareReplay(1));
+    }
+
+    putPillarOffChainInfo(data: any) {
+        return this.httpClient.put<any>(
+            `${environment.ztApiUrl}/pillar-off-chain`,
+            data
+        );
     }
 }

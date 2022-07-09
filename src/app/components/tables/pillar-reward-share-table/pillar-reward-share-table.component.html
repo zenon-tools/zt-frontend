@@ -1,23 +1,25 @@
-<div class="card" [class.card--loading]="isLoading">
+<div class="card">
     <div class="title-container text-glow-white">
         <div class="title">Reward sharing</div>
         <div class="title-icon" [innerHTML]="'1F389' | twemoji"></div>
     </div>
     <div class="graphs">
         <app-reward-share-graph-card [currentValue]="currentMomentumRewardShare" [label]="'Momentum reward share'"
-            [chartSeries]="momentumRewardShareChartData" [gradientStartColor]="'#3931AA'" [gradientEndColor]="'#B07EFF'"
+            [chartSeries]="momentumRewardShareChartData" [gradientStartColor]="'#2F6922'" [gradientEndColor]="'#81FF62'"
             [dates]="rewardShareDates">
         </app-reward-share-graph-card>
         <app-reward-share-graph-card [currentValue]="currentDelegateRewardShare" [label]="'Delegate reward share'"
-            [chartSeries]="delegateRewardShareChartData" [gradientStartColor]="'#3F6036'" [gradientEndColor]="'#6B9560'"
+            [chartSeries]="delegateRewardShareChartData" [gradientStartColor]="'#9A5301'" [gradientEndColor]="'#FFB612'"
             [dates]="rewardShareDates">
         </app-reward-share-graph-card>
     </div>
     <div class="divider"></div>
-    <div class="no-votes" *ngIf="!isLoading && !hasRewardShareChanges">The Pillar hasn't changed their reward sharing.
+    <div class="no-reward-share-changes" *ngIf="!isLoading && !hasRewardShareChanges">The Pillar hasn't changed its
+        reward sharing.
     </div>
     <app-loader class="loader" *ngIf="isLoading"></app-loader>
-    <div class="table-container" [class.table-container--visible]="!isLoading && hasRewardShareChanges">
+    <div class="table-container" [class.table-container--hidden]="!isLoading && !hasRewardShareChanges"
+        [class.table-container--visible]="!isLoading && hasRewardShareChanges">
         <table mat-table [dataSource]="dataSource" fixedLayout="true" class="mat-elevation-z0">
             <ng-container matColumnDef="momentumRewardShare">
                 <th mat-header-cell *matHeaderCellDef>Momentum reward share</th>
@@ -51,14 +53,8 @@
 
     </div>
     <div class="divider" *ngIf="hasRewardShareChanges"></div>
-    <div class="page-selector">
-        <div class="browse-btn" [class.hidden]="activePage === 1" (click)="onPreviousSelected()">
-            <fa-icon [icon]="faAngleLeft"></fa-icon>
-            <div>Previous</div>
-        </div>
-        <div class="browse-btn--next" [class.hidden]="dataSource.data.length < 5" (click)="onNextSelected()">
-            <div>Next</div>
-            <fa-icon [icon]="faAngleRight"></fa-icon>
-        </div>
-    </div>
+    <app-page-selector class="page-selector" [hidePreviousBtn]="activePage === 1"
+        [hideNextBtn]="dataSource.data.length < 5" (selectNext)="onNextSelected()"
+        (selectPrevious)="onPreviousSelected()">
+    </app-page-selector>
 </div>

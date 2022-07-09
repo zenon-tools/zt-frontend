@@ -227,6 +227,11 @@ mat-dialog-container {
   background-color: #555555 !important;
   word-break: break-all !important;
   white-space: normal !important;
+
+  &--normal-word-break {
+    @extend .tool-tip;
+    word-break: normal !important;
+  }
 }
 
 // FA stylings

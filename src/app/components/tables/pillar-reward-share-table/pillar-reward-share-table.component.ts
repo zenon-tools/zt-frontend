@@ -23,6 +23,8 @@ export interface RewardShareRow {
 })
 export class PillarRewardShareTableComponent implements OnInit {
     @Input() pillarName!: string;
+    @Input() currentMomentumRewardShare!: number;
+    @Input() currentDelegateRewardShare!: number;
 
     rewardShareChanges$!: Observable<RewardShareChanges>;
     rewardShareChanges!: RewardShareChanges;
@@ -39,8 +41,6 @@ export class PillarRewardShareTableComponent implements OnInit {
     momentumRewardShareChartData: number[] = [];
     delegateRewardShareChartData: number[] = [];
     rewardShareDates: number[] = [];
-    currentMomentumRewardShare: number = 0;
-    currentDelegateRewardShare: number = 0;
 
     displayedColumns: string[] = [
         'momentumRewardShare',
@@ -108,20 +108,6 @@ export class PillarRewardShareTableComponent implements OnInit {
         this.rewardShareDates = this.rewardShareChanges
             .map((item) => item.momentumTimestamp)
             .reverse();
-
-        if (this.momentumRewardShareChartData.length > 0) {
-            this.currentMomentumRewardShare =
-                this.momentumRewardShareChartData[
-                    this.momentumRewardShareChartData.length - 1
-                ];
-        }
-
-        if (this.delegateRewardShareChartData.length > 0) {
-            this.currentDelegateRewardShare =
-                this.delegateRewardShareChartData[
-                    this.delegateRewardShareChartData.length - 1
-                ];
-        }
     }
 
     private getMomentumRewardShareIconHex(

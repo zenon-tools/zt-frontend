@@ -25,6 +25,19 @@
             font-weight: bold;
             font-size: variables.$font-l;
         }
+
+        .count {
+            font-size: variables.$font-s;
+            color: variables.$white-70;
+            flex: 1;
+            text-align: end;
+        }
+    }
+
+    .divider {
+        width: 100%;
+        height: 1px;
+        background-color: variables.$border-green;
     }
 
     .table-container {
@@ -35,6 +48,7 @@
         }
 
         &--visible {
+            @extend .table-container;
             opacity: 1;
         }
     }
@@ -46,34 +60,16 @@
         border: 0px;
     }
 
-    .mat-column-proposal {
-        max-width: 200px;
-        max-width: 200px;
+    .mat-column-address {
+        width: 16em;
         padding-left: calc(4em - 24px) !important;
     }
 
-    .mat-column-vote {
-        max-width: 200px;
-        max-width: 200px;
+    .mat-column-share {
+        width: 6em;
     }
 
-    .mat-column-timestamp {
-        max-width: 200px;
-        max-width: 200px;
-    }
-
-    .mat-column-url {
-        max-width: 0px;
-        max-width: 0px;
-    }
-
-    .mat-row {
-        &:hover {
-            cursor: pointer;
-        }
-    }
-
-    .proposal-cell {
+    .address-cell {
         color: inherit;
         font-size: inherit;
         font-weight: inherit;
@@ -81,64 +77,32 @@
         flex-direction: column;
         gap: variables.$spacing-xs;
 
+        fa-icon {
+            opacity: 0.7;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
         div {
             color: inherit;
             font-size: inherit;
             font-weight: inherit;
         }
 
-        .project-text {
-            font-size: variables.$font-m;
-            &--is-phase {
-                @extend .project-text;
-                font-size: variables.$font-s;
-                font-weight: normal;
-            }
+        .info-text {
+            font-size: variables.$font-s;
+            font-weight: normal;
+            color: variables.$primary-green;
         }
     }
 
-    .vote-cell {
-        color: inherit;
-        font-size: inherit;
-        font-weight: inherit;
-        gap: variables.$spacing-s;
-        display: flex;
-
-        div:last-child {
-            color: inherit;
-            font-size: inherit;
-            font-weight: inherit;
-        }
-
-        div:first-child {
-            width: variables.$spacing-m;
-            height: variables.$spacing-m;
-            align-self: center;
-        }
-    }
-
-    .open-link-icon {
-        opacity: 70%;
-        height: 1em;
-        padding-right: 0.75em;
-
-        &:hover {
-            opacity: 100%;
-        }
-    }
-
-    .no-votes {
+    .no-delegators {
         font-size: variables.$font-s;
         color: variables.$white-70;
         padding: variables.$spacing-xl;
         align-self: center;
         margin-top: variables.$spacing-l;
-    }
-
-    .divider {
-        width: 100%;
-        height: 1px;
-        background-color: variables.$border-green;
     }
 
     .page-selector {
@@ -151,15 +115,12 @@
 
 .loader {
     top: 72%;
-
-    &--center {
-        top: 50%;
-    }
 }
 
 @media only screen and (max-width: 950px) {
     .card {
         width: calc(99.5vw - 2em);
+        margin-bottom: variables.$spacing-xxl;
 
         .title-container {
             padding: variables.$spacing-l;
@@ -170,6 +131,7 @@
             width: 100%;
 
             &--visible {
+                @extend .table-container;
                 display: flex;
             }
         }
@@ -184,23 +146,23 @@
             max-width: 100%;
         }
 
-        .mat-column-proposal {
+        .mat-column-address {
             padding-right: 2em !important;
             max-width: none;
             padding-left: calc(3.4em - 24px) !important;
         }
 
-        .mat-column-vote {
+        .mat-column-delegationAmount {
             padding-right: 2em !important;
             max-width: none;
         }
 
-        .mat-column-timestamp {
+        .mat-column-share {
             padding-right: 2em !important;
             max-width: none;
         }
 
-        .mat-column-url {
+        .mat-column-delegationStartTimestamp {
             padding-right: 2em !important;
             max-width: none;
         }

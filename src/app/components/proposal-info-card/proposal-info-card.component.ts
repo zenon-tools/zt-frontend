@@ -79,6 +79,8 @@ export class ProposalInfoCardComponent implements OnInit {
     statusCardGradientStart: string = '';
     statusCardGradientEnd: string = '';
     statusCardState: StatusCardState = StatusCardState.Disabled;
+    znnFundsReceived: number = 0;
+    qsrFundsReceived: number = 0;
 
     showVotingDot: boolean = true;
 
@@ -96,9 +98,7 @@ export class ProposalInfoCardComponent implements OnInit {
         }
 
         if (this.isPhase) {
-            this.votes$ = this.zenonToolsApiService.getPhaseVotes(
-                this.phaseId
-            );
+            this.votes$ = this.zenonToolsApiService.getPhaseVotes(this.phaseId);
         } else {
             this.votes$ = this.zenonToolsApiService.getProjectVotes(
                 this.projectId
@@ -169,6 +169,16 @@ export class ProposalInfoCardComponent implements OnInit {
                 this.statusCardGradientStart = '#4e3577';
                 this.statusCardGradientEnd = '#6d48bf';
             }
+            this.znnFundsReceived = this.phases.reduce((acc, phase) => {
+                return acc + phase.status === ProposalStatus.Paid
+                    ? phase.znnFundsNeeded
+                    : 0;
+            }, 0);
+            this.qsrFundsReceived = this.phases.reduce((acc, phase) => {
+                return acc + phase.status === ProposalStatus.Paid
+                    ? phase.qsrFundsNeeded
+                    : 0;
+            }, 0);
         } else if (this.status === ProposalStatus.Active) {
             this.statusCardState = StatusCardState.PendingPhase;
             this.statusCardText = 'Waiting for a Phase to be submitted';

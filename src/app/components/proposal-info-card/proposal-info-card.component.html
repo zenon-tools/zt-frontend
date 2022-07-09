@@ -22,6 +22,22 @@
             <fa-icon [icon]="faAngleRight"></fa-icon>
         </div>
     </div>
+    <div class="info-card funding-status" *ngIf="znnFundsReceived > 0 || qsrFundsReceived > 0">
+        <div class="info-card-line">
+            <div class="info-card-line-cell">
+                <div class="label">ZNN funds received</div>
+                <div class="value">{{ znnFundsReceived / coinDecimals | number: '1.0' }} ZNN ({{ (znnFundsReceived /
+                    znnFundsNeeded) * 100 | number: '1.0-1' }}%)</div>
+            </div>
+            <div class="info-card-line-cell">
+                <div class="label">QSR funds received</div>
+                <div class="value">
+                    {{ qsrFundsReceived / coinDecimals | number: '1.0' }} QSR ({{ (qsrFundsReceived /
+                    qsrFundsNeeded) * 100 | number: '1.0-1' }}%)
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="info-card">
         <div class="info-card-line">
             <div class="info-card-line-cell">
@@ -49,7 +65,8 @@
             </div>
             <div class="info-card-line-cell" *ngIf="isPhase">
                 <div class="label">Phase ID</div>
-                <div (click)="onCopyText(phaseId)" class="value--cursor" [matTooltipClass]="'tool-tip'" matTooltip={{phaseId}}>{{ phaseId |
+                <div (click)="onCopyText(phaseId)" class="value--cursor" [matTooltipClass]="'tool-tip'"
+                    matTooltip={{phaseId}}>{{ phaseId |
                     middleEllipsis }} <fa-icon [icon]="faCopy"></fa-icon>
                 </div>
             </div>
@@ -57,7 +74,8 @@
         <div class="info-card-line" *ngIf="!isPhase">
             <div class="info-card-line-cell">
                 <div class="label">Owner address</div>
-                <div (click)="onCopyText(owner)" class="value--cursor" [matTooltipClass]="'tool-tip'" matTooltip={{owner}}>{{ owner | middleEllipsis
+                <div (click)="onCopyText(owner)" class="value--cursor" [matTooltipClass]="'tool-tip'"
+                    matTooltip={{owner}}>{{ owner | middleEllipsis
                     }} <fa-icon [icon]="faCopy"></fa-icon>
                 </div>
             </div>

@@ -46,9 +46,6 @@ export class RewardShareGraphCardComponent {
     }
 
     handleValueChanged(value: number[]) {
-        console.log(value[0]);
-        console.log(this.dates[value[0]]);
-
         this.date = new Date(
             this.dates[this.dates.length - 1 - value[0]] * 1000
         );

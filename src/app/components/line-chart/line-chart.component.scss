@@ -15,4 +15,9 @@
     margin: 0;
     padding: 0;
     border: 0;
+
+    &--no-round-borders {
+        @extend .chart;
+        border-radius: 0;
+    }
 }

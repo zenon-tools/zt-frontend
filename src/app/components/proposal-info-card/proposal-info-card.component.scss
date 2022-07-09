@@ -95,6 +95,10 @@
         }
     }
 
+    .funding-status {
+        margin-bottom: variables.$spacing-l;
+    }
+
     .info-card {
         display: flex;
         flex-direction: column;
