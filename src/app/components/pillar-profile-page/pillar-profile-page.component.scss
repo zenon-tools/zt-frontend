@@ -59,7 +59,8 @@
         .menu {
             position: absolute;
             margin-right: variables.$spacing-m;
-            right: 0;
+            // NOTE: Use hardcoded pixel value because of Safari
+            margin-left: 695px;
             padding: variables.$spacing-m variables.$spacing-m variables.$spacing-m variables.$spacing-m;
             background-color: #555555;
             border-radius: variables.$radius-s;
@@ -265,6 +266,11 @@
                 position: absolute;
                 margin-right: variables.$spacing-m;
                 right: 0;
+            }
+
+            .menu {
+                // NOTE: Use this because of Safari
+                margin-left: calc(100% - 15em);
             }
         }
 
