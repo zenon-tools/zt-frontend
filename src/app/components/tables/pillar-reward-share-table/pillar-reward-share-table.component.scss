@@ -17,8 +17,8 @@
         gap: variables.$spacing-m;
 
         .title-icon {
-            height: 1em;
-            width: 1em;
+            height: 1.2em;
+            width: 1.2em;
         }
 
         .title {
@@ -45,16 +45,26 @@
         background-color: variables.$border-green;
     }
 
-    .table-container {
-        opacity: 0;
+    .content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
+    .empty-text {
+        font-size: variables.$font-s;
+        color: variables.$white-70;
+        margin: variables.$spacing-xxl;
+        text-align: center;
+    }
+
+    .table-container {
         &--hidden {
             display: none;
         }
 
-        &--visible {
-            @extend .table-container;
-            opacity: 1;
+        &--loading {
+            opacity: 0;
         }
     }
 
@@ -101,14 +111,6 @@
         }
     }
 
-    .no-reward-share-changes {
-        font-size: variables.$font-s;
-        color: variables.$white-70;
-        padding: variables.$spacing-xl;
-        align-self: center;
-        margin-top: variables.$spacing-l;
-    }
-
     .page-selector {
         padding-top: variables.$spacing-m;
         padding-bottom: variables.$spacing-m;
@@ -118,7 +120,11 @@
 }
 
 .loader {
-    top: 84%;
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+    align-self: center;
 }
 
 @media only screen and (max-width: 950px) {
@@ -143,11 +149,6 @@
         .table-container {
             overflow-x: auto;
             width: 100%;
-
-            &--visible {
-                @extend .table-container;
-                display: flex;
-            }
         }
 
         .page-selector {

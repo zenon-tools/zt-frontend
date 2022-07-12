@@ -1,0 +1,23 @@
+@use "../../../../assets/variables.scss";
+
+.search-bar {
+    border-radius: variables.$radius-s;
+
+    :first-child {
+        font-size: variables.$font-xs;
+        color: variables.$white-70;
+        border: 1px solid variables.$border-green;
+        padding-right: 2.5em;
+    }
+
+    :last-child {
+        opacity: 0.5;
+    }
+
+    .clear-icon {
+        &:hover {
+            cursor: pointer;
+            opacity: 0.7;
+        }
+    }
+}

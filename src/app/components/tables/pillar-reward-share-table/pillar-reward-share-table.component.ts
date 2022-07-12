@@ -33,6 +33,7 @@ export class PillarRewardShareTableComponent implements OnInit {
     faAngleRight = faAngleRight;
 
     hasRewardShareChanges: boolean = false;
+    hasResults: boolean = false;
     isLoading: boolean = true;
 
     activePage: number = 1;
@@ -81,6 +82,7 @@ export class PillarRewardShareTableComponent implements OnInit {
             startIndex,
             startIndex + 5
         );
+        this.hasResults = changesToShow.length > 0;
         this.dataSource.data = changesToShow.map(
             (change: RewardShareChange, index: number): RewardShareRow => ({
                 momentumRewardShare: change.giveBlockRewardPercentage,

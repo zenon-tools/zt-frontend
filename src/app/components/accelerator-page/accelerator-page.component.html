@@ -5,18 +5,17 @@
             <fa-icon [icon]="faCircleInfo" [matTooltipClass]="'tool-tip'"
                 matTooltip="Accelerator-Z is the on-chain funding framework for Network of Momentum where anyone can apply for funding.">
             </fa-icon>
-            <a *ngIf="false" target="_blank" rel="noopener noreferrer" style="text-decoration: none;"
-                href="https://zenon.network/accelerator.html">
-                <div class="more-info">How to apply?</div>
-            </a>
+            <app-search-bar class="search-bar" (search)="onSearch($event)" (clear)="onClearSearch()"></app-search-bar>
         </div>
+        <app-search-bar class="mobile-search-bar" (search)="onSearch($event)" (clear)="onClearSearch()">
+        </app-search-bar>
         <div class="content">
             <app-proposal-card [class.hidden]="isLoading" *ngFor="let proposal of proposals$ | async;"
                 [proposal]="proposal" (click)="onProjectPressed(proposal.projectId, proposal.phaseName.length > 0)">
             </app-proposal-card>
         </div>
         <div class="end-text" *ngIf="!isLoading && ((proposals$ | async)?.length ?? 0) < 10">
-            End of projects.
+            {{ endText }}
         </div>
         <app-page-selector class="page-selector" [hidePreviousBtn]="activePage === 1"
             [hideNextBtn]="((proposals$ | async)?.length ?? 0) < 10" (selectNext)="onNextSelected()"

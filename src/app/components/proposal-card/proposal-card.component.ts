@@ -28,14 +28,15 @@ export class ProposalCardComponent implements OnInit {
     statusChipGradientEnd: string = '';
     votingStatusText: string = '';
     formattedUrl: string = '';
+    isNew: boolean = false;
 
     constructor() {}
 
     ngOnInit(): void {
         this.updateTitle();
-        this.updateStatusChip();
         this.updateVotingStatusText();
         this.formatUrl();
+        this.updateIsNew();
     }
 
     onLinkPressed(event: Event) {
@@ -46,28 +47,6 @@ export class ProposalCardComponent implements OnInit {
         this.title = this.proposal.projectName;
         if (this.isPhase()) {
             this.title = this.title + ': ' + this.proposal.phaseName;
-        }
-    }
-
-    private updateStatusChip() {
-        switch (this.proposal.status) {
-            case ProposalStatus.Voting:
-                this.statusText = 'Voting open';
-                this.statusChipGradientStart = '#6D48BF';
-                this.statusChipGradientEnd = '#4E3577';
-                break;
-            case ProposalStatus.Active:
-            case ProposalStatus.Paid:
-            case ProposalStatus.Completed:
-                this.statusText = 'Accepted';
-                this.statusChipGradientStart = '#387E28';
-                this.statusChipGradientEnd = '#28601B';
-                break;
-            case ProposalStatus.Closed:
-                this.statusText = 'Not accepted';
-                this.statusChipGradientStart = '#535F60';
-                this.statusChipGradientEnd = '#3B4748';
-                break;
         }
     }
 
@@ -90,6 +69,15 @@ export class ProposalCardComponent implements OnInit {
             default:
                 this.votingStatusText = 'Voting ended';
         }
+    }
+
+    private updateIsNew() {
+        const nowSeconds = Date.now() / 1000;
+        const dayInSeconds = 24 * 60 * 60;
+        const daysAsNew = 3;
+        this.isNew =
+            this.proposal.creationTimestamp >
+            nowSeconds - daysAsNew * dayInSeconds;
     }
 
     private formatUrl() {

@@ -19,10 +19,10 @@
                 </div>
             </div>
             <div class="info-chips">
-                <div *ngIf="proposal.phaseName.length > 0" class="chip-container phase-chip"
-                    [ngStyle]="{'background': 'linear-gradient(45deg, #535F60, #3B4748)'}">
-                    <div>Phase</div>
-                </div>
+                <app-project-status-chip *ngIf="isNew" [isNew]="true">
+                </app-project-status-chip>
+                <app-project-status-chip *ngIf="proposal.phaseName.length > 0" [isPhase]="true">
+                </app-project-status-chip>
                 <app-project-status-chip [status]="proposal.status">
                 </app-project-status-chip>
             </div>

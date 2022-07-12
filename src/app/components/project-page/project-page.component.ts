@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, take } from 'rxjs';
+import { Phase } from 'src/app/services/zenon-tools-api/interfaces/phase';
 import { Project } from 'src/app/services/zenon-tools-api/interfaces/project';
 import { ZenonToolsApiService } from 'src/app/services/zenon-tools-api/zenon-tools-api.service';
 
@@ -13,6 +14,8 @@ export class ProjectPageComponent implements OnInit {
     project$!: Observable<Project>;
     coinDecimals: number = 100000000;
     isLoading: boolean = true;
+
+    orderedPhases: Array<Phase> = [];
 
     constructor(
         private route: ActivatedRoute,
@@ -31,6 +34,12 @@ export class ProjectPageComponent implements OnInit {
                         this.scrollToFragment(fragment!, 250);
                     }
                 });
+
+                this.orderedPhases = project.phases
+                    .slice()
+                    .sort((a, b) =>
+                        a.creationTimestamp > b.creationTimestamp ? -1 : 1
+                    );
             });
         });
     }

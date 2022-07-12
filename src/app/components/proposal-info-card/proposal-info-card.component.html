@@ -3,7 +3,9 @@
         <div class="title-container">
             <div class="card-title text-glow-white">{{ name }}</div>
             <div class="info-chips">
-                <app-project-status-chip *ngIf="isPhase" [isPhase]="isPhase" class="phase-chip">
+                <app-project-status-chip *ngIf="isNew" [isNew]="true">
+                </app-project-status-chip>
+                <app-project-status-chip *ngIf="isPhase" [isPhase]="isPhase">
                 </app-project-status-chip>
                 <app-project-status-chip [status]="status">
                 </app-project-status-chip>
@@ -100,7 +102,8 @@
             </div>
         </div>
         <div class="voting-info-container">
-            <app-vote-breakdown-card [yesVotes]="yesVotes" [noVotes]="noVotes" [totalVotes]="totalVotes" [proposalStatus]="status">
+            <app-vote-breakdown-card [yesVotes]="yesVotes" [noVotes]="noVotes" [totalVotes]="totalVotes"
+                [proposalStatus]="status">
             </app-vote-breakdown-card>
         </div>
         <div class="vote-table-container">

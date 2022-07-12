@@ -53,6 +53,7 @@ import { RewardShareGraphCardComponent } from './components/reward-share-graph-c
 import { PillarDelegatorTableComponent } from './components/tables/pillar-delegator-table/pillar-delegator-table.component';
 import { PillarProfileManagementPageComponent } from './components/pillar-profile-management-page/pillar-profile-management-page.component';
 import { PageSelectorComponent } from './components/page-selector/page-selector.component';
+import { SearchBarComponent } from './components/input/search-bar/search-bar.component';
 
 @NgModule({
     declarations: [
@@ -97,6 +98,7 @@ import { PageSelectorComponent } from './components/page-selector/page-selector.
         PillarDelegatorTableComponent,
         PillarProfileManagementPageComponent,
         PageSelectorComponent,
+        SearchBarComponent,
     ],
     imports: [
         BrowserModule,

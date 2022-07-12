@@ -1,0 +1,6 @@
+<div class="search-bar input-wrapper">
+    <input class="input-field" tabindex="-1" type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" [placeholder]="placeholder" #searchInput (keyup.enter)="onSearch()">
+    <fa-icon *ngIf="(searchInputLengthSubject$ | async)! === 0" [icon]="faSearch" class="input-unit"></fa-icon>
+    <fa-icon *ngIf="(searchInputLengthSubject$ | async)! > 0" (click)="onClear()" [icon]="faXmark"
+        class="input-unit clear-icon"></fa-icon>
+</div>

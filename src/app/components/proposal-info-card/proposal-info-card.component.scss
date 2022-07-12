@@ -30,10 +30,7 @@
 
             .info-chips {
                 display: flex;
-
-                .phase-chip {
-                    margin-right: variables.$spacing-m;
-                }
+                gap: variables.$spacing-m;
             }
         }
 
@@ -179,7 +176,7 @@
                     width: 0.5em;
                     height: 0.5em;
                     border-radius: 50%;
-                    background-color: #9B6EFF;
+                    background-color: #9b6eff;
 
                     animation: blinker 1s cubic-bezier(0.5, 0, 1, 1) infinite alternate;
                     margin-right: variables.$spacing-s;
@@ -313,6 +310,10 @@
 
                 .card-title {
                     font-size: variables.$font-l;
+                }
+
+                .info-chips {
+                    gap: variables.$spacing-s;
                 }
             }
 

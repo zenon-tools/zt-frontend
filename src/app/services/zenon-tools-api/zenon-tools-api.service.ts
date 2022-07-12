@@ -82,18 +82,18 @@ export class ZenonToolsApiService {
 
     constructor(private httpClient: HttpClient) {}
 
-    getVotesByPillar(pillar: string, page: number) {
+    getVotesByPillar(pillar: string, page: number, searchText: string = '') {
         return this.httpClient
             .get<Votes>(
-                `${environment.ztApiUrl}/votes?pillar=${pillar}&page=${page}`
+                `${environment.ztApiUrl}/votes?pillar=${pillar}&page=${page}&search=${searchText}`
             )
             .pipe(shareReplay(1));
     }
 
-    getProposals(page: number) {
+    getProposals(page: number, searchText: string = '') {
         return this.httpClient
             .get<ProposalListItems>(
-                `${environment.ztApiUrl}/projects?page=${page}`
+                `${environment.ztApiUrl}/projects?page=${page}&search=${searchText}`
             )
             .pipe(shareReplay(1));
     }

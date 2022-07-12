@@ -81,6 +81,7 @@ export class ProposalInfoCardComponent implements OnInit {
     statusCardState: StatusCardState = StatusCardState.Disabled;
     znnFundsReceived: number = 0;
     qsrFundsReceived: number = 0;
+    isNew: boolean = false;
 
     showVotingDot: boolean = true;
 
@@ -92,6 +93,7 @@ export class ProposalInfoCardComponent implements OnInit {
     ngOnInit(): void {
         this.updateVotingStatusText();
         this.formatUrl();
+        this.updateIsNew();
 
         if (!this.isPhase) {
             this.updateStatusCard();
@@ -186,6 +188,14 @@ export class ProposalInfoCardComponent implements OnInit {
             this.statusCardGradientStart = '#3B4748';
             this.statusCardGradientEnd = '#535F60';
         }
+    }
+
+    private updateIsNew() {
+        const nowSeconds = Date.now() / 1000;
+        const dayInSeconds = 24 * 60 * 60;
+        const daysAsNew = 3;
+        this.isNew =
+            this.creationTimestamp > nowSeconds - daysAsNew * dayInSeconds;
     }
 
     private formatUrl() {

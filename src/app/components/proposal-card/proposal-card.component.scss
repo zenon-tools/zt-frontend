@@ -79,23 +79,7 @@
 
     .info-chips {
         display: flex;
-
-        .phase-chip {
-            margin-right: variables.$spacing-m;
-        }
-
-        .chip-container {
-            display: flex;
-            padding: variables.$spacing-s variables.$font-m variables.$spacing-s variables.$font-m;
-            background: linear-gradient(45deg, #6d48bf, #4e3577);
-            border-radius: variables.$radius-l;
-            filter: drop-shadow(0 0 0.4em #00000021);
-
-            div:first-child {
-                font-size: variables.$font-xs;
-                font-weight: bold;
-            }
-        }
+        gap: variables.$spacing-m;
     }
 }
 
@@ -115,6 +99,10 @@
         .info-items {
             align-items: center;
             text-align: center;
+        }
+
+        .info-chips {
+            gap: variables.$spacing-s;
         }
     }
 }

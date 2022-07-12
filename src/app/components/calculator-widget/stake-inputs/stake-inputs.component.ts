@@ -7,7 +7,7 @@ import {
     ViewChild,
 } from '@angular/core';
 import { BehaviorSubject, combineLatest, fromEvent, Observable } from 'rxjs';
-import { distinctUntilChanged, tap, map, startWith } from 'rxjs/operators';
+import { distinctUntilChanged, map, startWith } from 'rxjs/operators';
 import { ZenonToolsApiService } from 'src/app/services/zenon-tools-api/zenon-tools-api.service';
 import { TabSelectorItem } from '../../input/tab-selector/tab-selector.component';
 

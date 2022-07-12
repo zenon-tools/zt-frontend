@@ -15,6 +15,7 @@ export enum ProposalStatus {
 })
 export class ProjectStatusChipComponent implements OnInit {
     @Input() status: ProposalStatus = ProposalStatus.Voting;
+    @Input() isNew: boolean = false;
     @Input() isPhase: boolean = false;
 
     statusText: string = '';
@@ -24,7 +25,11 @@ export class ProjectStatusChipComponent implements OnInit {
     constructor() {}
 
     ngOnInit(): void {
-        if (this.isPhase) {
+        if (this.isNew) {
+            this.statusText = 'New';
+            this.gradientStart = '#387E28';
+            this.gradientEnd = '#28601B';
+        } else if (this.isPhase) {
             this.statusText = 'Phase';
             this.gradientStart = '#535F60';
             this.gradientEnd = '#3B4748';

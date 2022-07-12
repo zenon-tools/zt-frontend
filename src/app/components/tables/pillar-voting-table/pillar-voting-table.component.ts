@@ -42,6 +42,7 @@ export class PillarVotingTableComponent implements OnInit {
     faAngleRight = faAngleRight;
 
     hasVotes: boolean = false;
+    hasResults: boolean = false;
     isLoading: boolean = true;
 
     activePage: number = 1;
@@ -49,6 +50,11 @@ export class PillarVotingTableComponent implements OnInit {
     dataSource = new MatTableDataSource<VoteRow>();
 
     displayedColumns: string[] = ['proposal', 'vote', 'timestamp', 'url'];
+
+    activeSearchText: string = '';
+    emptyText: string = "The Pillar hasn't voted.";
+
+    itemsPerPage: number = 10;
 
     constructor(
         private zenonToolsApiService: ZenonToolsApiService,
@@ -60,8 +66,11 @@ export class PillarVotingTableComponent implements OnInit {
             this.votesObservableSubject$.subscribe(
                 (observable: Observable<Votes>) => {
                     observable.pipe(take(1)).subscribe((votes: Votes) => {
-                        this.isLoading = false;
-                        this.hasVotes = votes.length > 0;
+                         this.isLoading = false;
+                        if (this.activeSearchText.length === 0 && this.activePage === 1) {
+                            this.hasVotes = votes.length > 0;
+                        }
+                        this.hasResults = votes.length > 0;
 
                         this.dataSource.data = votes.map(
                             (vote: Vote): VoteRow => ({
@@ -81,13 +90,41 @@ export class PillarVotingTableComponent implements OnInit {
         this.votesObservableSubject$.next(
             this.zenonToolsApiService.getVotesByPillar(
                 this.pillarName,
-                this.activePage
+                this.activePage,
+                this.activeSearchText
             )
         );
     }
 
     ngOnDestroy(): void {
         this.votesObservableSubscription.unsubscribe();
+    }
+
+    onSearch(searchText: string) {
+        this.isLoading = true;
+        this.activePage = 1;
+        this.activeSearchText = searchText;
+        this.emptyText = 'No results.';
+        this.votesObservableSubject$.next(
+            this.zenonToolsApiService.getVotesByPillar(
+                this.pillarName,
+                this.activePage,
+                this.activeSearchText
+            )
+        );
+    }
+
+    onClearSearch() {
+        this.isLoading = true;
+        this.activePage = 1;
+        this.activeSearchText = '';
+        this.votesObservableSubject$.next(
+            this.zenonToolsApiService.getVotesByPillar(
+                this.pillarName,
+                this.activePage,
+                this.activeSearchText
+            )
+        );
     }
 
     onRowPressed(projectId: string) {
@@ -100,7 +137,8 @@ export class PillarVotingTableComponent implements OnInit {
         this.votesObservableSubject$.next(
             this.zenonToolsApiService.getVotesByPillar(
                 this.pillarName,
-                this.activePage
+                this.activePage,
+                this.activeSearchText
             )
         );
     }
@@ -112,7 +150,8 @@ export class PillarVotingTableComponent implements OnInit {
             this.votesObservableSubject$.next(
                 this.zenonToolsApiService.getVotesByPillar(
                     this.pillarName,
-                    this.activePage
+                    this.activePage,
+                    this.activeSearchText
                 )
             );
         }

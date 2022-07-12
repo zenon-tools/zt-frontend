@@ -40,6 +40,7 @@ export class PillarDelegatorTableComponent implements OnInit {
     faAngleRight = faAngleRight;
 
     hasDelegators: boolean = false;
+    hasResults: boolean = false;
     isLoading: boolean = true;
 
     activePage: number = 1;
@@ -52,6 +53,10 @@ export class PillarDelegatorTableComponent implements OnInit {
         'share',
         'delegationStartTimestamp',
     ];
+
+    activeSearchText: string = '';
+
+    itemsPerPage: number = 10;
 
     constructor(
         private zenonToolsApiService: ZenonToolsApiService,
@@ -68,6 +73,18 @@ export class PillarDelegatorTableComponent implements OnInit {
             this.delegators = delegators;
             this.updateDataSource();
         });
+    }
+
+    onSearch(searchText: string) {
+        this.activePage = 1;
+        this.activeSearchText = searchText;
+        this.updateDataSource();
+    }
+
+    onClearSearch() {
+        this.activePage = 1;
+        this.activeSearchText = '';
+        this.updateDataSource();
     }
 
     onNextSelected() {
@@ -87,9 +104,16 @@ export class PillarDelegatorTableComponent implements OnInit {
     }
 
     private updateDataSource() {
-        const startIndex = (this.activePage - 1) * 5;
-        const changesToShow = this.delegators.slice(startIndex, startIndex + 5);
-        this.dataSource.data = changesToShow.map(
+        const startIndex = (this.activePage - 1) * this.itemsPerPage;
+        const filteredDelegators = this.delegators.filter((item) =>
+            item.address.includes(this.activeSearchText)
+        );
+        const delegatorsToShow = filteredDelegators.slice(
+            startIndex,
+            startIndex + this.itemsPerPage
+        );
+        this.hasResults = delegatorsToShow.length > 0;
+        this.dataSource.data = delegatorsToShow.map(
             (delegator: Delegator, index: number): DelegatorRow => ({
                 address: delegator.address,
                 delegationAmount:

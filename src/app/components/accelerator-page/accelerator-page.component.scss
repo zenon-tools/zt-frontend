@@ -33,18 +33,14 @@
         opacity: 0.7;
     }
 
-    a {
+    .search-bar {
         margin-left: auto;
-        .more-info {
-            font-size: variables.$font-s;
-            color: variables.$white-70;
-
-            &:hover {
-                cursor: pointer;
-                color: white;
-            }
-        }
+        width: 18em;
     }
+}
+
+.mobile-search-bar {
+    display: none;
 }
 
 .content {
@@ -72,6 +68,21 @@
         padding-left: 1em;
         padding-right: 1em;
         align-items: flex-start;
+    }
+
+    .title-line {
+        .search-bar {
+            display: none;
+        }
+    }
+
+    .mobile-search-bar {
+        display: inline;
+        margin-top: variables.$spacing-m;
+    }
+
+    .content {
+        padding-top: variables.$spacing-l;
     }
 
     .page-selector {
