@@ -124,13 +124,13 @@ export class RewardCalculatorService {
         const holdingsInUsd =
             inputs.amount * usdPrices.znn +
             inputs.wBnbAmout * pcsPoolData.wBnbPriceUsd;
-        const rewardShare = holdingsInUsd / pcsPoolData.liquidityUsd;
+        const rewardShare = holdingsInUsd / (pcsPoolData.liquidityUsd * nomData.lpProgramParticipationRate);
         const qsrRewards =
             ((rewardShare * nomData.yearlyQsrRewardPoolForLpProgram) /
                 this.DAYS_PER_YEAR) *
             inputs.timePeriodInDays;
         const tradingFeeRewards =
-            (pcsPoolData.yearlyTradingFeesUsd / this.DAYS_PER_YEAR) *
+            ((pcsPoolData.yearlyTradingFeesUsd * nomData.lpProgramParticipationRate) / this.DAYS_PER_YEAR) *
             inputs.timePeriodInDays *
             rewardShare;
         const rewardsInUsd = qsrRewards * usdPrices.qsr + tradingFeeRewards;

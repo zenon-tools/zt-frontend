@@ -36,6 +36,18 @@
     filter: drop-shadow(0 0.8em 0.3em #0000001c);
 }
 
+.hover-background {
+    background-color: transparent;
+    border-radius: inherit;
+    width: 100%;
+    height: 100%;
+
+    &:hover {
+        cursor: pointer;
+        background-color: variables.$input-hover-dark;
+    }
+}
+
 .top-container {
     display: flex;
     height: 6em;

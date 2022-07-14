@@ -27,6 +27,10 @@ const routes: Routes = [
         component: CalculatorPageComponent,
     },
     {
+        path: 'calculator/:type',
+        component: CalculatorPageComponent,
+    },
+    {
         path: 'pillars/:name',
         component: PillarProfilePageComponent,
     },

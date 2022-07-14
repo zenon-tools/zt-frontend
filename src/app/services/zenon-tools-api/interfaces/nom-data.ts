@@ -31,4 +31,5 @@ export interface NomData {
     yearlyZnnMomentumRewardPoolForPillarsTop30: number;
     yearlyZnnMomentumRewardPoolForPillarsNotTop30: number;
     yearlyZnnDelegateRewardPoolForPillars: number;
+    lpProgramParticipationRate: number;
 }

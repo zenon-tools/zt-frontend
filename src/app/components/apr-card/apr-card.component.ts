@@ -31,6 +31,7 @@ export class AprCardComponent implements AfterViewInit, OnChanges {
     @Input() selectorLabels!: string[];
 
     @Output() selectData = new EventEmitter<number>();
+    @Output() tapCard = new EventEmitter<void>();
 
     gauge!: Chart;
 
@@ -105,8 +106,13 @@ export class AprCardComponent implements AfterViewInit, OnChanges {
         });
     }
 
-    onSelectorTapped(index: number) {
+    onSelectorTapped(event: Event, index: number) {
+        event.stopPropagation();
         this.selectorIndex = index;
         this.selectData.emit(index);
+    }
+
+    onCardTapped() {
+        this.tapCard.emit();
     }
 }

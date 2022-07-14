@@ -2,52 +2,55 @@
     <div class="icon-container">
         <img src="{{ iconPath }}" alt="APR icon">
     </div>
-    <div class="card">
-        <div class="top-container">
-            <div class="title">
-                {{ title }}
-            </div>
-            <div *ngIf="subTitleValue" class="sub-title">
-                <div>
-                    {{ subTitleText }}
-                </div>
-                <div class="sub-title-value">
-                    {{ subTitleValue == 0 ? (subTitleValue | number: '1.0-2' ) : '-' + (subTitleValue |
-                    number: '1.0-2' ) }}% </div>
-            </div>
-        </div>
+    <div class="card" (click)="onCardTapped()">
+        <div class="hover-background">
 
-        <div class="center-container">
-            <div class="gauge-bg"></div>
-            <div class="gauge-container">
-                <canvas #gaugeBg class="gauge">
-                </canvas>
+            <div class="top-container">
+                <div class="title">
+                    {{ title }}
+                </div>
+                <div *ngIf="subTitleValue" class="sub-title">
+                    <div>
+                        {{ subTitleText }}
+                    </div>
+                    <div class="sub-title-value">
+                        {{ subTitleValue == 0 ? (subTitleValue | number: '1.0-2' ) : '-' + (subTitleValue |
+                        number: '1.0-2' ) }}% </div>
+                </div>
             </div>
-            <div class="gauge-container">
-                <canvas #gauge class="gauge">
-                </canvas>
-            </div>
-            <div class="text-content">
-                <div>APR</div>
-                <div class="text-glow-white">{{ apr | number: '1.2-2'}}</div>
-                <div>%</div>
-            </div>
-        </div>
 
-        <div class="bottom-container">
-            <div *ngIf="selectorLabels" class="selector">
-                <div [class.active-selector]="selectorIndex === 0" (click)="onSelectorTapped(0)">
-                    {{ selectorLabels[0] }}
+            <div class="center-container">
+                <div class="gauge-bg"></div>
+                <div class="gauge-container">
+                    <canvas #gaugeBg class="gauge">
+                    </canvas>
                 </div>
-                <img src="../../../assets/vectors/divider.svg" alt="Divider">
-                <div [class.active-selector]="selectorIndex === 1" (click)="onSelectorTapped(1)">
-                    {{ selectorLabels[1] }}
+                <div class="gauge-container">
+                    <canvas #gauge class="gauge">
+                    </canvas>
+                </div>
+                <div class="text-content">
+                    <div>APR</div>
+                    <div class="text-glow-white">{{ apr | number: '1.2-2'}}</div>
+                    <div>%</div>
                 </div>
             </div>
-            <div class="footer">
-                <div>{{ footerPrefix }}</div>
-                {{ footerValue | number: '1.0-0'}}
-                {{ footerText }}
+
+            <div class="bottom-container">
+                <div *ngIf="selectorLabels" class="selector">
+                    <div [class.active-selector]="selectorIndex === 0" (click)="onSelectorTapped($event, 0)">
+                        {{ selectorLabels[0] }}
+                    </div>
+                    <img src="../../../assets/vectors/divider.svg" alt="Divider">
+                    <div [class.active-selector]="selectorIndex === 1" (click)="onSelectorTapped($event, 1)">
+                        {{ selectorLabels[1] }}
+                    </div>
+                </div>
+                <div class="footer">
+                    <div>{{ footerPrefix }}</div>
+                    {{ footerValue | number: '1.0-0'}}
+                    {{ footerText }}
+                </div>
             </div>
         </div>
     </div>

@@ -1,36 +1,41 @@
 <div class="market-data-cards">
     <app-market-data-card [currentValue]="(currentZnnPrice$ | async)" [label]="'ZNN'"
         [chartSeries]="(znnPriceHistory$ | async)!" [delta]="(znnPriceDelta$ | async) ?? 0"></app-market-data-card>
-    <app-market-data-card [isEnabled]="false" class="translucent" [currentValue]="(currentQsrPrice$ | async)" [label]="'QSR'"
-        [chartSeries]="(qsrPriceHistory$ | async)!" [gradientStartColor]="'#3931AA'" [gradientEndColor]="'#B07EFF'"
-        [delta]="(qsrPriceDelta$ | async) ?? 0">
+    <app-market-data-card [isEnabled]="false" class="translucent" [currentValue]="(currentQsrPrice$ | async)"
+        [label]="'QSR'" [chartSeries]="(qsrPriceHistory$ | async)!" [gradientStartColor]="'#3931AA'"
+        [gradientEndColor]="'#B07EFF'" [delta]="(qsrPriceDelta$ | async) ?? 0">
     </app-market-data-card>
     <app-market-data-card [currentValue]="(znnTradingVolume$ | async)" [label]="'ZNN trading volume, 24 h'"
         [chartSeries]="(znnTradingVolumeHistory$ | async)!" [gradientStartColor]="'#6C5211'"
         [gradientEndColor]="'#FFC945'" [valueNumberPipe]="'1.0-0'" [delta]="(znnVolumeDelta$ | async) ?? 0">
     </app-market-data-card>
-   <app-market-data-card [isEnabled]="false" class="translucent" [currentValue]="(qsrTradingVolume$ | async)" [label]="'QSR trading volume, 24 h'"
-        [chartSeries]="(znnTradingVolumeHistory$ | async)!" [gradientStartColor]="'#6E3B25'"
-        [gradientEndColor]="'#FF7E45'" [valueNumberPipe]="'1.0-0'" [delta]="(qsrVolumeDelta$ | async) ?? 0">
+    <app-market-data-card [isEnabled]="false" class="translucent" [currentValue]="(qsrTradingVolume$ | async)"
+        [label]="'QSR trading volume, 24 h'" [chartSeries]="(znnTradingVolumeHistory$ | async)!"
+        [gradientStartColor]="'#6E3B25'" [gradientEndColor]="'#FF7E45'" [valueNumberPipe]="'1.0-0'"
+        [delta]="(qsrVolumeDelta$ | async) ?? 0">
     </app-market-data-card>
 </div>
 <div class="apr-cards">
     <app-apr-card [title]="'Stake'" [apr]="stakingApr$ | async" [footerText]="'ZNN staked'"
-        [footerValue]="totalStakedZnn$ | async" [iconPath]="'../../../assets/images/stake_icon.png'">
+        [footerValue]="totalStakedZnn$ | async" [iconPath]="'../../../assets/images/stake_icon.png'"
+        (tapCard)="onSelectStake()">
     </app-apr-card>
     <app-apr-card [title]="'Delegation'" [apr]="delegateApr$ | async" [footerText]="'ZNN delegated'"
-        [footerValue]="totalDelegatedZnn$ | async" [iconPath]="'../../../assets/images/delegation_icon.png'">
+        [footerValue]="totalDelegatedZnn$ | async" [iconPath]="'../../../assets/images/delegation_icon.png'"
+        (tapCard)="onSelectDelegation()">
     </app-apr-card>
     <app-apr-card [title]="'Liquidity'" [apr]="liquidityApr$ | async" [footerPrefix]="'$'"
         [footerText]="'total liquidity'" [footerValue]="totalLiquidityUsd$ | async"
         [iconPath]="'../../../assets/images/liquidity_icon.png'" [subTitleText]="'IL past 7D:'"
-        [subTitleValue]="impermanentLoss$ | async">
+        [subTitleValue]="impermanentLoss$ | async" (tapCard)="onSelectLiquidity()">
     </app-apr-card>
     <app-apr-card [title]="'Sentinel'" [apr]="sentinelApr$ | async" [footerText]="'active Sentinels'"
-        [footerValue]="sentinelCount$ | async" [iconPath]="'../../../assets/images/sentinel_icon.png'">
+        [footerValue]="sentinelCount$ | async" [iconPath]="'../../../assets/images/sentinel_icon.png'"
+        (tapCard)="onSelectSentinel()">
     </app-apr-card>
     <app-apr-card [title]="'Pillar'" [apr]="pillarApr$ | async" [footerText]="'active Pillars'"
         [footerValue]="pillarCount$ | async" [iconPath]="'../../../assets/images/pillar_icon.png'"
-        [selectorLabels]="['Top 30', 'Others']" (selectData)="onSelectPillarAprData($event)">
+        [selectorLabels]="['Top 30', 'Others']" (selectData)="onSelectPillarAprData($event)"
+        (tapCard)="onSelectPillar()">
     </app-apr-card>
 </div>

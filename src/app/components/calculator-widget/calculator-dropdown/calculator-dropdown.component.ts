@@ -1,10 +1,13 @@
 import {
+    ChangeDetectorRef,
     Component,
     EventEmitter,
     HostListener,
     Input,
+    OnChanges,
     OnInit,
     Output,
+    SimpleChanges,
 } from '@angular/core';
 
 export enum ParticipationType {
@@ -26,7 +29,7 @@ export interface DropdownItem {
     templateUrl: './calculator-dropdown.component.html',
     styleUrls: ['./calculator-dropdown.component.scss'],
 })
-export class CalculatorDropdownComponent implements OnInit {
+export class CalculatorDropdownComponent implements OnInit, OnChanges {
     @Input() initialType: ParticipationType = ParticipationType.Stake;
     @Output() selectItem = new EventEmitter<DropdownItem>();
 
@@ -37,7 +40,7 @@ export class CalculatorDropdownComponent implements OnInit {
         }
     }
 
-    constructor() {}
+    constructor(private cdr: ChangeDetectorRef) {}
 
     dropdownItems: DropdownItem[] = [
         {
@@ -72,6 +75,16 @@ export class CalculatorDropdownComponent implements OnInit {
 
     ngOnInit(): void {
         this.selectedItem = this.dropdownItems[this.initialType - 1];
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        this.selectedItem = this.dropdownItems[this.initialType - 1];
+        if (
+            changes['initialType'] &&
+            changes['initialType'].currentValue != null
+        ) {
+            this.cdr.detectChanges();
+        }
     }
 
     onDropdownSelected() {

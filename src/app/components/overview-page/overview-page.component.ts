@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { CurrentPrice } from 'src/app/services/market-api/coin-gecko-types';
 import { MarketApiService } from 'src/app/services/market-api/market-api.service';
@@ -133,12 +134,33 @@ export class OverviewPageComponent implements OnInit {
 
     constructor(
         private zenonToolsApiService: ZenonToolsApiService,
-        private marketApiService: MarketApiService
+        private marketApiService: MarketApiService,
+        private router: Router
     ) {}
 
     ngOnInit(): void {}
 
     onSelectPillarAprData(index: number) {
         this.pillarAprDataIndexSubject.next(index);
+    }
+
+    onSelectStake() {
+        this.router.navigate(['/calculator', 'stake']);
+    }
+
+    onSelectDelegation() {
+        this.router.navigate(['/calculator', 'delegation']);
+    }
+
+    onSelectLiquidity() {
+        this.router.navigate(['/calculator', 'liquidity']);
+    }
+
+    onSelectSentinel() {
+        this.router.navigate(['/calculator', 'sentinel']);
+    }
+
+    onSelectPillar() {
+        this.router.navigate(['/calculator', 'pillar']);
     }
 }

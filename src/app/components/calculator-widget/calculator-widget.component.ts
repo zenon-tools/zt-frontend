@@ -1,5 +1,21 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { BehaviorSubject, combineLatest, map, Subject, switchMap } from 'rxjs';
+import {
+    ChangeDetectorRef,
+    Component,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output,
+    ViewChild,
+} from '@angular/core';
+import {
+    BehaviorSubject,
+    combineLatest,
+    debounceTime,
+    map,
+    Subject,
+    switchMap,
+    take,
+} from 'rxjs';
 import { RewardCalculatorService } from 'src/app/services/reward-calculator/reward-calculator.service';
 import { ZenonToolsApiService } from 'src/app/services/zenon-tools-api/zenon-tools-api.service';
 import {
@@ -19,6 +35,8 @@ import {
     faArrowUpRightFromSquare,
 } from '@fortawesome/free-solid-svg-icons';
 import { PriceInputsComponent } from './price-inputs/price-inputs.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Pillars } from 'src/app/services/zenon-tools-api/interfaces/pillar';
 
 export interface Prices {
     znn: number;
@@ -34,9 +52,11 @@ export class CalculatorWidgetComponent implements OnInit {
     @Input() isClosable: boolean = false;
     @Input() shouldScrollContent: boolean = false;
     @Input() initialPillar: string = '';
+    @Input() useRoutes: boolean = true;
     @Output() duplicateCalculator = new EventEmitter<boolean>();
     @Output() closeCalculator = new EventEmitter<boolean>();
-    @ViewChild('priceInputs', {static: false}) priceInputs!: PriceInputsComponent;
+    @ViewChild('priceInputs', { static: false })
+    priceInputs!: PriceInputsComponent;
 
     faDollarSign = faDollarSign;
     faClone = faClone;
@@ -53,6 +73,8 @@ export class CalculatorWidgetComponent implements OnInit {
     participationTypeSubject$ = new BehaviorSubject<ParticipationType>(
         ParticipationType.Stake
     );
+
+    isInitialPillarSet: boolean = false;
 
     private stakeInputsSubject$ = new BehaviorSubject<StakeInputs>({
         amount: 100,
@@ -182,14 +204,70 @@ export class CalculatorWidgetComponent implements OnInit {
         })
     );
 
+    public pillars$ = this.zenonToolsApiService.pillars$;
+
     constructor(
         private calculatorService: RewardCalculatorService,
-        private zenonToolsApiService: ZenonToolsApiService
+        private zenonToolsApiService: ZenonToolsApiService,
+        private route: ActivatedRoute,
+        private router: Router,
+        private cdr: ChangeDetectorRef
     ) {}
 
     ngOnInit(): void {
-        if (this.initialPillar.length > 0) {
+        if (!this.useRoutes && this.initialPillar.length > 0) {
             this.participationTypeSubject$.next(ParticipationType.Delegation);
+        }
+
+        if (this.useRoutes) {
+            combineLatest([this.route.params, this.route.queryParams])
+                .pipe(debounceTime(0))
+                .subscribe(([params, queryParams]) => {
+                    if (Object.keys(params).length > 0) {
+                        switch (params['type']) {
+                            case 'stake':
+                                this.participationTypeSubject$.next(
+                                    ParticipationType.Stake
+                                );
+                                break;
+                            case 'delegation':
+                                if (!this.isInitialPillarSet) {
+                                    this.pillars$
+                                        .pipe(take(1))
+                                        .subscribe((pillars: Pillars) => {
+                                            this.initialPillar =
+                                                this.pillarToNameToAddress(
+                                                    pillars,
+                                                    queryParams['pillar']
+                                                );
+
+                                            this.cdr.detectChanges();
+                                        });
+                                    this.isInitialPillarSet = true;
+                                }
+
+                                this.participationTypeSubject$.next(
+                                    ParticipationType.Delegation
+                                );
+                                break;
+                            case 'liquidity':
+                                this.participationTypeSubject$.next(
+                                    ParticipationType.Liquidity
+                                );
+                                break;
+                            case 'sentinel':
+                                this.participationTypeSubject$.next(
+                                    ParticipationType.Sentinel
+                                );
+                                break;
+                            case 'pillar':
+                                this.participationTypeSubject$.next(
+                                    ParticipationType.Pillar
+                                );
+                                break;
+                        }
+                    }
+                });
         }
     }
 
@@ -217,22 +295,52 @@ export class CalculatorWidgetComponent implements OnInit {
     }
 
     onParticipationTypeChanged(item: DropdownItem) {
-        console.log('Active selection: ' + item.label);
-        this.participationTypeSubject$.next(item.type);
+        if (this.useRoutes) {
+            switch (item.type) {
+                case ParticipationType.Stake:
+                    this.router.navigate(['/calculator', 'stake']);
+                    break;
+                case ParticipationType.Delegation:
+                    this.router.navigate(['/calculator', 'delegation']);
+                    break;
+                case ParticipationType.Liquidity:
+                    this.router.navigate(['/calculator', 'liquidity']);
+                    break;
+                case ParticipationType.Sentinel:
+                    this.router.navigate(['/calculator', 'sentinel']);
+                    break;
+                case ParticipationType.Pillar:
+                    this.router.navigate(['/calculator', 'pillar']);
+                    break;
+            }
+        } else {
+            this.participationTypeSubject$.next(item.type);
+        }
     }
 
     onStakeInputsChanged(inputs: StakeInputs) {
-        console.log('onInputStakeAmount: ' + inputs.amount.toString());
         this.stakeInputsSubject$.next(inputs);
     }
 
     onDelegationInputsChanged(inputs: DelegationInputs) {
-        console.log('onInputStakeAmount: ' + inputs.amount.toString());
         this.delegationInputsSubject$.next(inputs);
+
+        if (this.useRoutes) {
+            this.pillars$.pipe(take(1)).subscribe((pillars: Pillars) => {
+                this.router.navigate([], {
+                    relativeTo: this.route,
+                    queryParams: {
+                        pillar: this.pillarAddressToName(
+                            pillars,
+                            inputs.pillar
+                        ),
+                    },
+                });
+            });
+        }
     }
 
     onLiquidityInputsChanged(inputs: LiquidityInputs) {
-        console.log('onInputStakeAmount: ' + inputs.amount.toString());
         this.liquidityInputsSubject$.next(inputs);
     }
 
@@ -246,5 +354,17 @@ export class CalculatorWidgetComponent implements OnInit {
 
     onShowDetailsPressed() {
         this.showDetails = !this.showDetails;
+    }
+
+    private pillarAddressToName(pillars: Pillars, address: string) {
+        return pillars.get(address)?.name ?? '';
+    }
+
+    private pillarToNameToAddress(pillars: Pillars, name: string) {
+        return (
+            Array.from(pillars.entries()).find(
+                (item) => item[1].name == name
+            )?.[0] ?? ''
+        );
     }
 }
