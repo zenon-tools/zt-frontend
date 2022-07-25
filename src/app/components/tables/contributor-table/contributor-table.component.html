@@ -1,0 +1,36 @@
+<div class="card">
+    <div class="title-container text-glow-white">
+        <div class="title">Contributions</div>
+    </div>
+    <div class="divider"></div>
+    <div class="content">
+        <div class="table-container">
+            <table mat-table [dataSource]="dataSource" fixedLayout="true" class="mat-elevation-z0">
+
+                <ng-container matColumnDef="contributor">
+                    <th mat-header-cell *matHeaderCellDef>Weight (ZNN)</th>
+                    <td mat-cell *matCellDef="let row">
+                        <div class="contributor-cell">
+                            <img class="icon" [src]="row.icon">
+                            <div class="contribution-container">
+                                <div class="contribution">{{row.amount}} {{row.tokenSymbol}}</div>
+                                <div class="contributor">
+                                    <div class="pillar-name" *ngIf="row.pillarName">{{row.pillarName}}</div>
+                                    <div *ngIf="!row.pillarName">{{row.address}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="timestamp">
+                    <th mat-header-cell *matHeaderCellDef>Share</th>
+                    <td mat-cell *matCellDef="let row"> {{row.timestamp * 1000 | date: 'MM/dd/yy h:mm a'}}</td>
+                </ng-container>
+
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

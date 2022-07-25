@@ -1,0 +1,176 @@
+@use "../../../../assets/variables.scss";
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(90deg, variables.$primary-grey, #1e1e1e, variables.$primary-grey);
+    border-radius: variables.$radius-l;
+
+    filter: drop-shadow(0 0 0.1em #0000001c);
+    overflow: hidden;
+    border: 1px solid variables.$border-green;
+
+    .title-container {
+        display: flex;
+        align-items: center;
+        padding: variables.$spacing-m variables.$spacing-xl variables.$spacing-m variables.$spacing-xl;
+        gap: variables.$spacing-m;
+        height: 2.2em;
+
+        .title {
+            font-weight: bold;
+            font-size: variables.$font-l;
+        }
+    }
+
+    .contributor-cell {
+        display: flex;
+        gap: variables.$spacing-m;
+
+        .icon {
+            width: 2.7em;
+            height: 2.7em;
+            object-fit: contain;
+            background-color: black;
+            border-radius: variables.$radius-s;
+            margin-right: variables.$spacing-m;
+            -webkit-transition: variables.$animation-duration variables.$animation-curve;
+            -moz-transition: variables.$animation-duration variables.$animation-curve;
+            -o-transition: variables.$animation-duration variables.$animation-curve;
+            transition: variables.$animation-duration variables.$animation-curve;
+        }
+
+        .contribution-container {
+            display: flex;
+            flex-direction: column;
+            gap: variables.$spacing-s;
+
+            .contribution {
+                font-size: variables.$font-m;
+                font-weight: bold;
+                color: variables.$white-70;
+            }
+
+            .contributor {
+                display: flex;
+                flex-direction: row;
+                div {
+                    font-size: variables.$font-s;
+                    color: variables.$white-70;
+                }
+
+                .pillar-name {
+                    &:hover {
+                        cursor: pointer;
+                        color: white;
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+
+    .divider {
+        width: 100%;
+        height: 1px;
+        background-color: variables.$border-green;
+    }
+
+    .content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .table-container {
+        &--hidden {
+            display: none;
+        }
+
+        &--loading {
+            opacity: 0;
+        }
+    }
+
+    .mat-table {
+        min-width: 1000px;
+        max-width: 1000px;
+        border-radius: 0;
+        border: 0px;
+    }
+
+    .mat-row {
+        height: 4.2em !important;
+    }
+
+    .mat-column-contributor {
+        width: 16em;
+        padding-left: calc(4em - 24px) !important;
+    }
+
+    .mat-column-timestamp {
+        width: 6em;
+        text-align: end;
+    }
+
+    .address-cell {
+        color: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        display: flex;
+        flex-direction: column;
+        gap: variables.$spacing-xs;
+
+        fa-icon {
+            opacity: 0.7;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        div {
+            color: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+        }
+
+        .info-text {
+            font-size: variables.$font-s;
+            font-weight: normal;
+            color: variables.$primary-green;
+        }
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    .card {
+        width: calc(99.5vw - 2em);
+        margin-bottom: variables.$spacing-xxl;
+
+        .title-container {
+            padding: variables.$spacing-l variables.$spacing-l variables.$spacing-m variables.$spacing-l;
+            min-height: 1.4em;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            width: 100%;
+        }
+
+        .mat-table {
+            min-width: 100%;
+            max-width: 100%;
+        }
+
+        .mat-column-contributor {
+            padding-right: 2em !important;
+            max-width: none;
+            padding-left: calc(3.4em - 24px) !important;
+        }
+
+        .mat-column-timestamp {
+            padding-right: 2em !important;
+            max-width: none;
+        }
+    }
+}
