@@ -172,14 +172,14 @@ export class ProposalInfoCardComponent implements OnInit {
                 this.statusCardGradientEnd = '#6d48bf';
             }
             this.znnFundsReceived = this.phases.reduce((acc, phase) => {
-                return acc + phase.status === ProposalStatus.Paid
+                return acc + (phase.status === ProposalStatus.Paid
                     ? phase.znnFundsNeeded
-                    : 0;
+                    : 0);
             }, 0);
             this.qsrFundsReceived = this.phases.reduce((acc, phase) => {
-                return acc + phase.status === ProposalStatus.Paid
+                return acc + (phase.status === ProposalStatus.Paid
                     ? phase.qsrFundsNeeded
-                    : 0;
+                    : 0);
             }, 0);
         } else if (this.status === ProposalStatus.Active) {
             this.statusCardState = StatusCardState.PendingPhase;
