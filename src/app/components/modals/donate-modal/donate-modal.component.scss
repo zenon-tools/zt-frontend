@@ -1,0 +1,76 @@
+@use "../../../../assets/variables.scss";
+
+.container {
+    border-radius: variables.$radius-l;
+    width: 28em;
+    background: variables.$tertiary-grey;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid variables.$border-green;
+    padding-left: variables.$spacing-l;
+    padding-right: variables.$spacing-l;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding-top: variables.$spacing-l;
+    padding-bottom: variables.$spacing-m;
+}
+
+.title {
+    font-size: variables.$font-s;
+    font-weight: bold;
+}
+
+.info-text {
+    font-size: variables.$font-xs;
+    line-height: 1.8em;
+}
+
+.close-icon:hover {
+    cursor: pointer;
+}
+
+.address-container {
+    font-size: variables.$font-s;
+    font-weight: bold;
+    padding: variables.$spacing-l;
+    background-color: variables.$input-hover;
+    border-radius: variables.$radius-s;
+    margin-top: variables.$spacing-l;
+    margin-bottom: variables.$spacing-l;
+    display: flex;
+
+    div,
+    marquee {
+        font-size: variables.$font-m;
+        font-weight: bold;
+    }
+
+    fa-icon {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .mobile-address {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 1050px) {
+    .container {
+        width: calc(100% - 3em);
+    }
+
+    .address-container {
+        .mobile-address {
+            display: flex;
+        }
+
+        .desktop-address {
+            display: none;
+        }
+    }
+}

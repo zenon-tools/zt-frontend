@@ -22,6 +22,7 @@
             flex-direction: column;
             align-items: center;
             gap: variables.$spacing-m;
+            text-align: center;
 
             .title {
                 font-size: variables.$font-xl;
@@ -30,6 +31,7 @@
 
             .description {
                 font-size: variables.$font-s;
+                line-height: 1.8em;
             }
         }
 
@@ -133,5 +135,54 @@
 
     .contributor-table {
         width: 100%;
+    }
+}
+
+@media only screen and (max-width: 1050px) {
+    .container {
+        padding-bottom: 5em;
+        margin-left: variables.$spacing-m;
+        margin-right: variables.$spacing-m;
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: variables.$spacing-xl;
+            width: 100%;
+     
+
+            .title-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: variables.$spacing-m;
+                text-align: center;
+    
+                .title {
+                    font-size: variables.$font-xl;
+                    font-weight: bold;
+                }
+    
+                .description {
+                    font-size: variables.$font-s;
+                    line-height: 1.8em;
+                }
+            }
+        }
+
+        .donation-cards {
+            display: flex;
+            flex-direction: column;
+            gap: variables.$spacing-l;
+            width: 100%;
+
+            .donation-card {
+    
+                img {
+                    margin-top: variables.$spacing-s;
+                }
+            }
+        }
     }
 }

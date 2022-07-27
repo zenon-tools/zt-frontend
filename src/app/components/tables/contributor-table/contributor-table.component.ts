@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { Donation } from 'src/app/services/zenon-tools-api/interfaces/donation';
 
 export interface ContributionRow {
@@ -23,7 +24,7 @@ export class ContributorTableComponent implements OnChanges {
 
     displayedColumns: string[] = ['contributor', 'timestamp'];
 
-    constructor() {}
+    constructor(private router: Router) {}
 
     ngOnChanges(changes: SimpleChanges): void {
         if (
@@ -46,7 +47,11 @@ export class ContributorTableComponent implements OnChanges {
         }
     }
 
-    getIcon(donation: number) {
+    onPillarSelected(pillar: string) {
+        this.router.navigate(['/pillars', pillar]);
+    }
+
+    private getIcon(donation: number) {
         switch (donation) {
             case 100:
                 return '../../../assets/images/alien_commander.png';

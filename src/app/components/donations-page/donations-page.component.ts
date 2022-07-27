@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable, take } from 'rxjs';
 import { Donations } from 'src/app/services/zenon-tools-api/interfaces/donation';
 import { ZenonToolsApiService } from 'src/app/services/zenon-tools-api/zenon-tools-api.service';
+import { DonateModalComponent } from '../modals/donate-modal/donate-modal.component';
 
 @Component({
     selector: 'app-donations-page',
@@ -14,8 +16,12 @@ export class DonationsPageComponent implements OnInit {
     isLoading: boolean = true;
     monthlyDonations: number = 0;
     barValue: number = 0;
+    nowDate: Date = new Date();
 
-    constructor(private zenonToolsApiService: ZenonToolsApiService) {}
+    constructor(
+        public dialog: MatDialog,
+        private zenonToolsApiService: ZenonToolsApiService
+    ) {}
 
     ngOnInit(): void {
         this.donations$ = this.zenonToolsApiService.getDonations();
@@ -25,10 +31,19 @@ export class DonationsPageComponent implements OnInit {
         });
     }
 
-    computeMonthlyDonations(donations: Donations) {
-        const now = new Date();
+    onDonateSelected(donationAmount: number) {
+        this.dialog.open(DonateModalComponent, {
+            data: donationAmount,
+        });
+    }
+
+    private computeMonthlyDonations(donations: Donations) {
         const startOfMonth =
-            new Date(now.getFullYear(), now.getMonth(), 1).getTime() / 1000;
+            new Date(
+                this.nowDate.getFullYear(),
+                this.nowDate.getMonth(),
+                1
+            ).getTime() / 1000;
         this.monthlyDonations = Math.floor(
             donations.reduce((acc, donation) => {
                 return (

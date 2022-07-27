@@ -15,7 +15,7 @@
                             <div class="contribution-container">
                                 <div class="contribution">{{row.amount}} {{row.tokenSymbol}}</div>
                                 <div class="contributor">
-                                    <div class="pillar-name" *ngIf="row.pillarName">{{row.pillarName}}</div>
+                                    <div (click)="onPillarSelected(row.pillarName)" class="pillar-name" *ngIf="row.pillarName">{{row.pillarName}}</div>
                                     <div *ngIf="!row.pillarName">{{row.address}}</div>
                                 </div>
                             </div>
