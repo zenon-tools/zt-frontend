@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="header">
+        <div class="title">Donate</div>
+        <mat-icon class="close-icon" (click)="onClose()">close</mat-icon>
+    </div>
+    <div class="info-text">
+        {{ infoText }}
+    </div>
+    <div class="address-container">
+        <fa-icon (click)="onCopyAddress(donationAddress)" [icon]="faCopy"></fa-icon> &nbsp;
+        <marquee class="mobile-address" behavior="scroll" direction="left">{{ donationAddress }}</marquee>
+        <div class="desktop-address">&nbsp; {{ donationAddress }}</div>
+    </div>
+</div>

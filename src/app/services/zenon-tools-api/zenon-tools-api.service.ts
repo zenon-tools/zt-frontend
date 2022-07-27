@@ -14,6 +14,7 @@ import { Votes } from './interfaces/vote';
 import { RewardShareChanges } from './interfaces/rewardShareChange';
 import { Delegators } from './interfaces/delegator';
 import { PillarProfile } from './interfaces/pillar-profile';
+import { Donations } from './interfaces/donation';
 
 @Injectable({
     providedIn: 'root',
@@ -143,6 +144,12 @@ export class ZenonToolsApiService {
             .get<PillarProfile>(
                 `${environment.ztApiUrl}/pillar-profile?pillar=${pillar}`
             )
+            .pipe(shareReplay(1));
+    }
+
+    getDonations() {
+        return this.httpClient
+            .get<Donations>(`${environment.ztApiUrl}/donations`)
             .pipe(shareReplay(1));
     }
 

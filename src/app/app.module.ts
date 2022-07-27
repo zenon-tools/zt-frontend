@@ -54,6 +54,9 @@ import { PillarDelegatorTableComponent } from './components/tables/pillar-delega
 import { PillarProfileManagementPageComponent } from './components/pillar-profile-management-page/pillar-profile-management-page.component';
 import { PageSelectorComponent } from './components/page-selector/page-selector.component';
 import { SearchBarComponent } from './components/input/search-bar/search-bar.component';
+import { DonationsPageComponent } from './components/donations-page/donations-page.component';
+import { ContributorTableComponent } from './components/tables/contributor-table/contributor-table.component';
+import { DonateModalComponent } from './components/modals/donate-modal/donate-modal.component';
 
 @NgModule({
     declarations: [
@@ -99,6 +102,9 @@ import { SearchBarComponent } from './components/input/search-bar/search-bar.com
         PillarProfileManagementPageComponent,
         PageSelectorComponent,
         SearchBarComponent,
+        DonationsPageComponent,
+        ContributorTableComponent,
+        DonateModalComponent,
     ],
     imports: [
         BrowserModule,

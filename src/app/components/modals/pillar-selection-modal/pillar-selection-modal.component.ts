@@ -14,11 +14,9 @@ import {
     Observable,
     of,
     startWith,
-    Subject,
 } from 'rxjs';
 import {
     Pillar,
-    Pillars,
 } from 'src/app/services/zenon-tools-api/interfaces/pillar';
 
 @Component({

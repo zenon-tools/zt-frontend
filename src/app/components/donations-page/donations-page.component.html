@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="content">
+        <div class="title-container">
+            <div class="title text-glow-white">Donate to support Zenon Tools</div>
+            <div class="description">Help supply the Zenon Tools spaceship on our mission to create easy-to-use tools
+                for the Zenon community.</div>
+        </div>
+        <div class="goal-card-container">
+            <div class="goal-card">
+                <div class="labels">
+                    <div>
+                        Monthly goal - {{ nowDate | date: 'MMMM y' }}
+                    </div>
+                    <div>
+                        {{ monthlyDonations }} / 100 ZNN
+                    </div>
+                </div>
+                <div class="bar-container">
+                    <div class="bar"
+                        [ngStyle]="{'background': 'linear-gradient(90deg, #4b863e, #81FF62)', 'width': barValue + '%', 'filter': 'drop-shadow(0 0 0.3em #81ff6243)'}">
+                    </div>
+                    <div class="bar" [ngStyle]="{'width': 100 - barValue + '%'}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="donation-cards">
+            <div class="donation-card">
+                <div class="label">Alien Commander</div>
+                <div class="description">100 ZNN covers all the fixed operating costs for one month.</div>
+                <img src="../../../assets/images/alien_commander.png" alt="Alien Captain">
+                <div class="button" (click)="onDonateSelected(100)">Donate 100 ZNN</div>
+            </div>
+            <div class="donation-card">
+                <div class="label">Spaceship Engineer</div>
+                <div class="description">50 ZNN covers the main server's operating costs for one month.</div>
+                <img src="../../../assets/images/spaceship_engineer.png" alt="Spaceship Officer">
+                <div class="button" (click)="onDonateSelected(50)">Donate 50 ZNN</div>
+            </div>
+            <div class="donation-card">
+                <div class="label">Repair Robot</div>
+                <div class="description">10 ZNN covers the costs of various tooling for one month.</div>
+                <img src="../../../assets/images/repair_robot.png" alt="Deep Space Explorer">
+                <div class="button" (click)="onDonateSelected(10)">Donate 10 ZNN</div>
+            </div>
+            <div class="donation-card">
+                <div class="label">Rocket Fuel</div>
+                <div class="description">Any donation helps Zenon Tools move forward.</div>
+                <img src="../../../assets/images/rocket_fuel.png" alt="Spaceship Officer">
+                <div class="button" (click)="onDonateSelected(0)">Donate</div>
+            </div>
+        </div>
+        <app-contributor-table class="contributor-table" [contributions]="(donations$ | async) ?? []">
+        </app-contributor-table>
+    </div>
+</div>
