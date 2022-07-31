@@ -22,20 +22,24 @@ export class DonateModalComponent implements OnInit {
     ngOnInit(): void {
         switch (this.donationAmount) {
             case 100:
-                this.infoText = `Supply us with an Alien Commander by sending ${this.donationAmount} ZNN to the address below. Thank you for your
-support!`;
+                this.infoText = `Supply us with an Alien Commander by sending ${this.donationAmount} ZNN to the address below and your address/Pillar will be immortalized in the Contributions list.
+                
+                Thank you for your support!`;
                 break;
             case 50:
-                this.infoText = `Supply us with a Spaceship Engineer by sending ${this.donationAmount} ZNN to the address below. Thank you for your
-support!`;
+                this.infoText = `Supply us with a Spaceship Engineer by sending ${this.donationAmount} ZNN to the address below and your address/Pillar will be immortalized in the Contributions list.
+                
+                Thank you for your support!`;
                 break;
             case 10:
-                this.infoText = `Supply us with a Repair Robot by sending ${this.donationAmount} ZNN to the address below. Thank you for your
-support!`;
+                this.infoText = `Supply us with a Repair Robot by sending ${this.donationAmount} ZNN to the address below and your address/Pillar will be immortalized in the Contributions list.
+                
+                Thank you for your support!`;
                 break;
             default:
-                this.infoText = `Supply us with Rocket Fuel by sending any amount of ZNN or QSR to the address below. Thank you for your
-support!`;
+                this.infoText = `Supply us with Rocket Fuel by sending any amount of ZNN or QSR to the address below and your address/Pillar will be immortalized in the Contributions list.
+                
+                Thank you for your support!`;
                 break;
         }
     }

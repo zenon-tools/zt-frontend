@@ -26,6 +26,7 @@
 .info-text {
     font-size: variables.$font-xs;
     line-height: 1.8em;
+    white-space: pre-line;
 }
 
 .close-icon:hover {

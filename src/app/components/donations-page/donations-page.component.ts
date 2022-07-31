@@ -38,17 +38,13 @@ export class DonationsPageComponent implements OnInit {
     }
 
     private computeMonthlyDonations(donations: Donations) {
-        const startOfMonth =
-            new Date(
-                this.nowDate.getFullYear(),
-                this.nowDate.getMonth(),
-                1
-            ).getTime() / 1000;
+        const startTime = new Date();
+        startTime.setDate(startTime.getDate() - 30);
         this.monthlyDonations = Math.floor(
             donations.reduce((acc, donation) => {
                 return (
                     acc +
-                    (donation.momentumTimestamp >= startOfMonth &&
+                    (donation.momentumTimestamp >= (startTime.getTime() / 1000) &&
                     donation.symbol === 'ZNN'
                         ? donation.amount / Math.pow(10, donation.decimals)
                         : 0)
