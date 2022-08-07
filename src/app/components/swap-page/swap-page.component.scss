@@ -1,0 +1,121 @@
+@use "../../../assets/variables.scss";
+
+:host {
+    flex: 1;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    padding-top: variables.$spacing-l;
+    padding-bottom: variables.$spacing-xl;
+    align-items: center;
+    gap: variables.$spacing-xl;
+
+    .card {
+        width: calc(1200px + 2 * variables.$spacing-m);
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient(90deg, variables.$primary-grey, #1e1e1e, variables.$primary-grey);
+        border-radius: variables.$radius-l;
+        justify-content: center;
+        filter: drop-shadow(0 0 0.1em #0000001c);
+        border: 1px solid variables.$border-green;
+
+        iframe {
+            width: 1200px;
+            height: 196px;
+            margin: 0;
+            padding: 0;
+            border: none;
+            overflow: hidden;
+            background-color: transparent;
+            padding: 0 variables.$spacing-m variables.$spacing-m variables.$spacing-m;
+        }
+
+        .content {
+            display: flex;
+            align-items: center;
+            width: calc(1200px);
+
+            .text-container {
+                display: flex;
+                flex-direction: column;
+                width: 82%;
+
+                .header-container {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: flex-end;
+
+                    .pcs-link {
+                        font-size: variables.$font-s;
+                        opacity: 0.7;
+
+                        &:hover {
+                            cursor: pointer;
+                            opacity: 1;
+                        }
+                    }
+                }
+
+                .title-container {
+                    display: flex;
+                    padding: calc(variables.$spacing-m + 10px) calc(variables.$spacing-m + 10px) 0
+                        calc(variables.$spacing-m + 10px);
+                    gap: variables.$spacing-m;
+                    align-items: center;
+
+                    fa-icon::ng-deep svg * {
+                        color: variables.$secondary-green;
+                    }
+
+                    .card-title {
+                        font-size: variables.$font-m;
+                        font-weight: bold;
+                    }
+                }
+
+                .card-text {
+                    line-height: 1.8em;
+                    font-size: variables.$font-s;
+                    padding: calc(variables.$spacing-s + 10px) calc(variables.$spacing-m + 10px)
+                        calc(variables.$spacing-m + 10px) calc(variables.$spacing-m + 10px);
+                    color: variables.$white-70;
+
+                    b {
+                        font-weight: bold;
+                        color: inherit;
+                    }
+
+                    i {
+                        color: inherit;
+                    }
+
+                    a {
+                        color: inherit;
+                        &:hover {
+                            color: white;
+                        }
+                    }
+                }
+            }
+
+            .text-container-swap {
+                width: 100%;
+            }
+
+            .button {
+                width: 18%;
+                background-color: variables.$input-hover;
+                margin-left: 5em;
+                text-decoration: none;
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: variables.$secondary-green;
+                }
+            }
+        }
+    }
+}

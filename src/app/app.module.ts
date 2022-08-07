@@ -57,6 +57,7 @@ import { SearchBarComponent } from './components/input/search-bar/search-bar.com
 import { DonationsPageComponent } from './components/donations-page/donations-page.component';
 import { ContributorTableComponent } from './components/tables/contributor-table/contributor-table.component';
 import { DonateModalComponent } from './components/modals/donate-modal/donate-modal.component';
+import { SwapPageComponent } from './components/swap-page/swap-page.component';
 
 @NgModule({
     declarations: [
@@ -105,6 +106,7 @@ import { DonateModalComponent } from './components/modals/donate-modal/donate-mo
         DonationsPageComponent,
         ContributorTableComponent,
         DonateModalComponent,
+        SwapPageComponent,
     ],
     imports: [
         BrowserModule,

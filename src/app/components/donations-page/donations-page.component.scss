@@ -115,20 +115,7 @@
             }
 
             .button {
-                padding: variables.$spacing-m variables.$spacing-l variables.$spacing-m variables.$spacing-l;
-                font-size: variables.$font-xs;
-                font-weight: bold;
-                color: white;
-                background-color: variables.$secondary-green;
-                border-radius: variables.$radius-s;
-                filter: drop-shadow(0 0 0.8em #00000040);
                 width: 60%;
-                text-align: center;
-
-                &:hover {
-                    cursor: pointer;
-                    background-color: variables.$secondary-green-hover;
-                }
             }
         }
     }
@@ -150,7 +137,6 @@
             align-items: center;
             gap: variables.$spacing-xl;
             width: 100%;
-     
 
             .title-container {
                 display: flex;
@@ -158,12 +144,12 @@
                 align-items: center;
                 gap: variables.$spacing-m;
                 text-align: center;
-    
+
                 .title {
                     font-size: variables.$font-xl;
                     font-weight: bold;
                 }
-    
+
                 .description {
                     font-size: variables.$font-s;
                     line-height: 1.8em;
@@ -178,7 +164,6 @@
             width: 100%;
 
             .donation-card {
-    
                 img {
                     margin-top: variables.$spacing-s;
                 }
