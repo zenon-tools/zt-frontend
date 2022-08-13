@@ -15,6 +15,7 @@ import { RewardShareChanges } from './interfaces/rewardShareChange';
 import { Delegators } from './interfaces/delegator';
 import { PillarProfile } from './interfaces/pillar-profile';
 import { Donations } from './interfaces/donation';
+import { AddressDetails } from './interfaces/address-details';
 
 @Injectable({
     providedIn: 'root',
@@ -150,6 +151,14 @@ export class ZenonToolsApiService {
     getDonations() {
         return this.httpClient
             .get<Donations>(`${environment.ztApiUrl}/donations`)
+            .pipe(shareReplay(1));
+    }
+
+    getAddressDetails(address: string) {
+        return this.httpClient
+            .get<AddressDetails>(
+                `${environment.ztApiUrl}/address/${address}`
+            )
             .pipe(shareReplay(1));
     }
 

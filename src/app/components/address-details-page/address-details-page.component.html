@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="address-details-card">
+        <div class="header">
+            <div class="address-container">
+                <div class="address">{{address}}</div>
+                <div class="subtitle">Embedded Smart Contract</div>
+            </div>
+            <div class="action-items"></div>
+        </div>
+        <div class="info-card" *ngIf="!isLoading">
+            <div class="info-card-line">
+                <div class="info-card-line-cell">
+                    <div class="label">ZNN balance</div>
+                    <div class="value">
+                        {{(addressDetails?.znnBalance ?? 0) / coinDecimals | number: '1.8-8'}}
+                    </div>
+                </div>
+                <div class="info-card-line-cell">
+                    <div class="label">QSR balance</div>
+                    <div class="value">
+                        {{(addressDetails?.qsrBalance ?? 0) / coinDecimals | number: '1.8-8'}}
+                    </div>
+                </div>
+            </div>
+            <div class="info-card-line">
+                <div class="info-card-line-cell">
+                    <div class="label">USD value <fa-icon [icon]="faCircleInfo"
+                            [matTooltipClass]="'tool-tip--normal-word-break'"
+                            matTooltip="QSR price assumed to be 1/10th of ZNN price.">
+                        </fa-icon>
+                    </div>
+                    <div class="value">${{usdValue | number: '1.2-2'}}</div>
+                </div>
+                <div class="info-card-line-cell">
+                    <div class="label">QSR fused for Plasma</div>
+                    <div class="value">
+                        {{(addressDetails?.fusedQsr ?? 0) / coinDecimals | number: '1.0-8'}}
+                    </div>
+                </div>
+            </div>
+            <div class="info-card-line">
+                <div class="info-card-line-cell">
+                    <div class="label">Account chain height</div>
+                    <div class="value">
+                        {{addressDetails?.height}}
+                    </div>
+                </div>
+                <div class="info-card-line-cell">
+                    <div class="label">First active</div>
+                    <div class="value">
+                        {{((addressDetails?.activeSinceTimestamp) ?? 0) * 1000 | date:'MM/dd/yy h:mm a'}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
