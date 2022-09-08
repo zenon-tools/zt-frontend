@@ -2,12 +2,13 @@
 
 .search-bar {
     border-radius: variables.$radius-s;
+    height: 2.4rem;
 
     :first-child {
         font-size: variables.$font-xs;
         color: variables.$white-70;
         border: 1px solid variables.$border-green;
-        padding-right: 2.5em;
+        padding-right: 2.5rem;
     }
 
     :last-child {

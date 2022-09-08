@@ -1,10 +1,11 @@
 @use "../../../assets/variables.scss";
+@use "../../../assets/styles/components.scss";
 
 .voting-info-card {
     background-color: variables.$tertiary-grey;
-    border-radius: variables.$radius-s;
+    border-radius: variables.$radius-m;
     justify-content: center;
-    filter: drop-shadow(0 0 0.8em #00000040);
+    filter: drop-shadow(0 0 0.8rem #00000040);
     transition: variables.$animation-duration variables.$animation-curve;
     border: 1px solid variables.$border-green;
 
@@ -54,7 +55,7 @@
 
 .vote-bar-container {
     display: flex;
-    height: 0.3em;
+    height: 0.3rem;
     width: 100%;
 
     .vote-bar {
@@ -63,7 +64,7 @@
     }
 }
 
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: variables.$screen-width-threshold) {
     .voting-info-card {
         .voting-info {
             flex-direction: column;

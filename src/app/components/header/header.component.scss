@@ -1,4 +1,5 @@
 @use "../../../assets/variables.scss";
+@use "../../../assets/styles/components.scss";
 
 .header {
     display: flex;
@@ -46,7 +47,6 @@
         font-size: variables.$font-s;
         text-decoration: none;
         color: variables.$white-70;
-        transition-duration: variables.$animation-duration;
         display: flex;
         align-items: center;
     }
@@ -68,7 +68,7 @@
     color: variables.$primary-green !important;
 }
 
-.info-items {
+.extra-items {
     display: flex;
     align-items: center;
     margin-left: auto;
@@ -78,7 +78,6 @@
     color: variables.$white-70;
     margin-right: variables.$spacing-xxl;
     font-size: variables.$font-s;
-    transition: variables.$animation-duration variables.$animation-curve;
 
     &:hover {
         color: white;
@@ -103,7 +102,7 @@
 }
 
 .az-tab:after {
-    content: 'Accelerator-Z';
+    content: "Accelerator-Z";
     white-space: nowrap;
 }
 
@@ -121,7 +120,7 @@
     }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: variables.$screen-width-threshold) {
     .header {
         padding-top: variables.$spacing-m;
         padding-bottom: 0;
@@ -133,16 +132,19 @@
     .navigation-wrapper {
         position: fixed;
         z-index: 100;
-        bottom: 1em;
+        bottom: 1rem;
         left: 50%;
         transform: translate(-50%, -50%);
     }
 
     .navigation {
         background-color: black;
-        border-radius: 1em;
-        padding: 1em 1.5em 1em 1.5em;
-        gap: 3em;
+        border-radius: 1rem;
+        padding: 1rem 1.5rem 1rem 1.5rem;
+        gap: 2.5em;
+        a {
+            font-size: variables.$font-xs;
+        }
     }
 
     .version {
@@ -150,28 +152,32 @@
     }
 
     .az-tab:after {
-        content: 'A-Z';
+        content: "A-Z";
     }
 }
 
 @media only screen and (max-width: 480px) {
     .navigation {
-        gap: 2em;
+        gap: 1.5rem;
     }
 }
 
 @media only screen and (max-width: 390px) {
     .navigation {
-        gap: 1.4em;
+        gap: 1.2rem;
     }
 }
 
 @media only screen and (max-width: 350px) {
     .navigation {
-        gap: 1.2em;
+        gap: 1rem;
 
         a {
             font-size: variables.$font-xs;
         }
+    }
+
+    .calculator-tab:after {
+        content: "Calc.";
     }
 }

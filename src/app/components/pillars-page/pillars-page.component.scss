@@ -1,4 +1,5 @@
 @use "../../../assets/variables.scss";
+@use "../../../assets/styles/components.scss";
 
 :host {
     flex: 1;
@@ -6,10 +7,10 @@
 
 .container {
     display: flex;
-    padding-top: variables.$spacing-l;
+    padding-top: variables.$spacing-xl;
     padding-bottom: variables.$spacing-xl;
-    padding-left: 2em;
-    padding-right: 2em;
+    padding-left: 2rem;
+    padding-right: 2rem;
 
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -25,18 +26,18 @@
 }
 
 .timer-container {
-    height: 1.7em;
+    height: 1.7rem;
 }
 
 .timer {
     display: flex;
-    align-items: flex-end;
+    align-items: baseline;
     padding-left: 24px;
     text-align: start;
 
     div:first-child {
-        width: 0.5em;
-        height: 0.5em;
+        width: 0.5rem;
+        height: 0.5rem;
         border-radius: 50%;
         background-color: variables.$primary-green;
 
@@ -47,7 +48,7 @@
     div:last-child {
         color: variables.$white-70;
         font-size: variables.$font-xs;
-        height: 1em;
+        height: 1rem;
     }
 }
 
@@ -61,15 +62,14 @@
 }
 
 .mat-column-rank {
-    padding-right: 4em !important;
+    padding-right: 4rem !important;
 }
 
 .mat-column-name {
-    padding-right: 7em !important;
+    padding-right: 7rem !important;
 }
 
 ::ng-deep .mat-sort-header-content {
-    font-size: variables.$font-m;
     font-weight: bold;
     color: white;
 }
@@ -117,7 +117,7 @@
 
     &:hover .calculator-icon {
         opacity: 0.7;
-      }
+    }
 }
 
 .mat-row:nth-child(even) {

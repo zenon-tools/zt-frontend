@@ -1,43 +1,43 @@
 // Colors
-$primary-green: #6CEF4B;
-$secondary-green: #3F6036;
-$secondary-green-hover: #3F6036B3;
-$green-gradient-start: #2F6922;
-$green-gradient-end: #81FF62;
-$white-70: #FFFFFFB3;
-$white-50: #FFFFFF80;
-$white-30: #FFFFFF4D;
-$white-10: #FFFFFF1A;
+$primary-green: #6cef4b;
+$secondary-green: #3f6036;
+$secondary-green-hover: #3f6036b3;
+$green-gradient-start: #2f6922;
+$green-gradient-end: #81ff62;
+$white-70: #ffffffb3;
+$white-50: #ffffff80;
+$white-25: #ffffff40;
+$white-10: #ffffff1a;
 $background-grey: #151515;
 $primary-grey: #212121;
-$secondary-grey: #1B1B1B;
+$secondary-grey: #1b1b1b;
 $tertiary-grey: #292929;
-$primary-red: #FF4B4B;
-$primary-blue: #706AFF;
+$primary-red: #ff4b4b;
+$primary-blue: #706aff;
 $input-hover: #353535;
 $input-hover-dark: #292929;
-$border-green: #E5FFE814;
+$border-green: #e5ffe814;
 
 // Font sizes
-$font-xxxl: 1.875em; // 30px
-$font-xxl: 1.75em; // 28px
-$font-xl: 1.5em; // 24px
-$font-l: 1.125em; // 18px
-$font-m: 1em; // 16px
-$font-s: .875em; // 14px
-$font-xs: .75em; // 12px
+$font-xxxl: 1.875rem; // 30px
+$font-xxl: 1.75rem; // 28px
+$font-xl: 1.5rem; // 24px
+$font-l: 1.125rem; // 18px
+$font-m: 1rem; // 16px
+$font-s: 0.875rem; // 14px
+$font-xs: 0.75rem; // 12px
 
 // Spacing
-$spacing-xxl: 3em;
-$spacing-xl: 2em;
-$spacing-l: 1.5em;
-$spacing-m: 1em;
-$spacing-s: 0.5em;
-$spacing-xs: 0.25em;
-$spacing-screen-xl: 18em;
-$spacing-screen-l: 6.5em;
-$spacing-screen-m: 4em;
-$spacing-screen-s: 1em;
+$spacing-xxl: 3rem;
+$spacing-xl: 2rem;
+$spacing-l: 1.5rem;
+$spacing-m: 1rem;
+$spacing-s: 0.5rem;
+$spacing-xs: 0.25rem;
+$spacing-screen-xl: 18rem;
+$spacing-screen-l: 6.5rem;
+$spacing-screen-m: 4rem;
+$spacing-screen-s: 1rem;
 
 // Radius
 $radius-xl: 2em;
@@ -48,3 +48,7 @@ $radius-s: 0.5em;
 // Animation
 $animation-duration: 200ms;
 $animation-curve: ease-in-out;
+
+// Dimensions
+$content-width-basic: 1200px;
+$screen-width-threshold: 1250px;

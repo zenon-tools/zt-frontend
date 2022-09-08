@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AcceleratorPageComponent } from './components/accelerator-page/accelerator-page.component';
-import { AddressDetailsPageComponent } from './components/address-details-page/address-details-page.component';
+import { AccountsPageComponent } from './components/accounts-page/accounts-page.component';
+import { AccountDetailsPageComponent } from './components/account-details-page/account-details-page.component';
 import { CalculatorPageComponent } from './components/calculator-page/calculator-page.component';
 import { DonationsPageComponent } from './components/donations-page/donations-page.component';
 import { OverviewPageComponent } from './components/overview-page/overview-page.component';
@@ -29,6 +30,14 @@ const routes: Routes = [
         component: PillarProfileManagementPageComponent,
     },
     {
+        path: 'accounts',
+        component: AccountsPageComponent,
+    },
+    {
+        path: 'accounts/:address',
+        component: AccountDetailsPageComponent,
+    },
+    {
         path: 'accelerator',
         component: AcceleratorPageComponent,
     },
@@ -43,10 +52,6 @@ const routes: Routes = [
     {
         path: 'calculator/:type',
         component: CalculatorPageComponent,
-    },
-    {
-        path: 'accounts/:address',
-        component: AddressDetailsPageComponent,
     },
     {
         path: 'donate',

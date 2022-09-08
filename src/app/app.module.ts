@@ -45,7 +45,7 @@ import { ProposalCardComponent } from './components/proposal-card/proposal-card.
 import { ProjectPageComponent } from './components/project-page/project-page.component';
 import { ProjectStatusChipComponent } from './components/project-status-chip/project-status-chip.component';
 import { VoteBreakdownCardComponent } from './components/vote-breakdown-card/vote-breakdown-card.component';
-import { ProposalInfoCardComponent } from './components/proposal-info-card/proposal-info-card.component';
+import { ProposalInfoCardComponent } from './components/project-page/proposal-info-card/proposal-info-card.component';
 import { MiddleEllipsisPipe } from './pipes/middle-ellipsis.pipe';
 import { PillarVotingTableComponent } from './components/tables/pillar-voting-table/pillar-voting-table.component';
 import { PillarRewardShareTableComponent } from './components/tables/pillar-reward-share-table/pillar-reward-share-table.component';
@@ -57,7 +57,16 @@ import { SearchBarComponent } from './components/input/search-bar/search-bar.com
 import { DonationsPageComponent } from './components/donations-page/donations-page.component';
 import { ContributorTableComponent } from './components/tables/contributor-table/contributor-table.component';
 import { DonateModalComponent } from './components/modals/donate-modal/donate-modal.component';
-import { AddressDetailsPageComponent } from './components/address-details-page/address-details-page.component';
+import { AccountDetailsPageComponent } from './components/account-details-page/account-details-page.component';
+import { AcccountDetailsTableComponent } from './components/tables/account-details-table/account-details-table.component';
+import { TransactionsTableComponent } from './components/tables/account-details-table/transactions-table/transactions-table.component';
+import { TableTabSelectorComponent } from './components/input/table-tab-selector/table-tab-selector.component';
+import { ParticipationCardComponent } from './components/participation-card/participation-card.component';
+import { TokensTableComponent } from './components/tables/account-details-table/tokens-table/tokens-table.component';
+import { ParticipationListItemComponent } from './components/participation-card/participation-list-item/participation-list-item.component';
+import { ProposalsTableComponent } from './components/tables/account-details-table/proposals-table/proposals-table.component';
+import { PlasmaTableComponent } from './components/tables/account-details-table/plasma-table/plasma-table.component';
+import { AccountsPageComponent } from './components/accounts-page/accounts-page.component';
 
 @NgModule({
     declarations: [
@@ -106,7 +115,16 @@ import { AddressDetailsPageComponent } from './components/address-details-page/a
         DonationsPageComponent,
         ContributorTableComponent,
         DonateModalComponent,
-        AddressDetailsPageComponent,
+        AccountDetailsPageComponent,
+        AcccountDetailsTableComponent,
+        TransactionsTableComponent,
+        TableTabSelectorComponent,
+        ParticipationCardComponent,
+        TokensTableComponent,
+        ParticipationListItemComponent,
+        ProposalsTableComponent,
+        PlasmaTableComponent,
+        AccountsPageComponent,
     ],
     imports: [
         BrowserModule,

@@ -1,7 +1,7 @@
-export interface AddressDetails {
+export interface AccountDetails {
     height: number;
+    publicKey: string;
     znnBalance: number;
     qsrBalance: number;
-    activeSinceTimestamp: number;
     fusedQsr: number;
 }

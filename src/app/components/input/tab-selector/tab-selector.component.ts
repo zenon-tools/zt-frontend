@@ -15,16 +15,16 @@ export class TabSelectorComponent implements OnInit {
     @Input() initialIndex: number = 0;
     @Output() selectedValue = new EventEmitter<any>();
 
-    selectedIndex: number = 0;
+    currentIndex: number = 0;
 
     constructor() {}
 
     ngOnInit(): void {
-      this.selectedIndex = this.initialIndex;
+      this.currentIndex = this.initialIndex;
     }
 
     onTabSelected(e: MouseEvent, i: number) {
-        this.selectedIndex = i;
+        this.currentIndex = i;
         this.selectedValue.emit(this.items[i].value);
     }
 }

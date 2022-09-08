@@ -1,0 +1,115 @@
+@use "../../../../../assets/variables.scss";
+@use "../../../../../assets/styles/components.scss";
+
+.container {
+    min-height: 41rem;
+    display: flex;
+    flex-direction: column;
+
+    .content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        align-items: flex-start;
+        margin-left: variables.$spacing-xl;
+        margin-right: variables.$spacing-xl;
+
+        .table-container {
+            &--hidden {
+                display: none;
+            }
+
+            &--loading {
+                opacity: 0;
+            }
+        }
+
+        .mat-table {
+            min-width: 1200px;
+            max-width: 1200px;
+            border-radius: 0;
+            border: 0px;
+        }
+
+        .mat-column-proposal {
+            padding-left: variables.$spacing-xl !important;
+        }
+
+        .proposal-cell {
+            color: variables.$white-70;
+            font-size: variables.$font-s;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            gap: variables.$spacing-xs;
+
+            div {
+                color: inherit;
+                font-size: inherit;
+                font-weight: inherit;
+            }
+
+            .project-text {
+                font-size: variables.$font-s;
+                &--is-phase {
+                    @extend .project-text;
+                    font-size: variables.$font-s;
+                    font-weight: normal;
+                }
+            }
+        }
+
+        .mat-row {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        .loader {
+            top: unset;
+            left: unset;
+            transform: unset;
+            align-self: center;
+        }
+
+        .empty-text {
+            font-size: variables.$font-s;
+            color: variables.$white-70;
+            text-align: center;
+            align-self: center;
+        }
+    }
+
+    .page-selector {
+        margin-left: variables.$spacing-xl;
+        margin-right: variables.$spacing-xl;
+        margin-top: auto;
+    }
+}
+
+@media only screen and (max-width: variables.$screen-width-threshold) {
+    .container {
+        .content {
+            margin-left: 0;
+            margin-right: 0;
+
+            .mat-table {
+                min-width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            .mat-column-proposal {
+                padding-left: variables.$spacing-l !important;
+            }
+
+            .mat-column-proposal {
+                padding-right: variables.$spacing-m !important;
+            }
+
+            .mat-column-timestamp {
+                padding-right: variables.$spacing-m !important;
+            }
+        }
+    }
+}

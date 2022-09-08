@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="accounts">
+        <div class="title-line">
+            <div class="title text-glow-white">Accounts</div>
+            <app-search-bar class="search-bar" (search)="onSearch($event)" (clear)="onClearSearch()"></app-search-bar>
+        </div>
+        <app-search-bar class="mobile-search-bar" (search)="onSearch($event)" (clear)="onClearSearch()">
+        </app-search-bar>
+        <div class="basic-card">
+            <div class="table-container" [class.table-container--loading]="isLoading"
+                [class.table-container--hidden]="!hasItems">
+                <table *ngIf="hasItems" mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort
+                    matSortStart="desc">
+                    <ng-container matColumnDef="address">
+                        <th mat-header-cell *matHeaderCellDef>Address</th>
+                        <td mat-cell *matCellDef="let row">
+                            <div class="address-cell">
+                                <div>{{row.address | middleEllipsis}}</div>
+                                <div class="info-text" *ngIf="row.info">{{row.info}}</div>
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="znnBalance">
+                        <th mat-header-cell *matHeaderCellDef>ZNN balance</th>
+                        <td mat-cell *matCellDef="let row">{{row.znnBalance | number:
+                            '1.0-8'}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="qsrBalance">
+                        <th mat-header-cell *matHeaderCellDef>QSR balance
+                        </th>
+                        <td mat-cell *matCellDef="let row"> {{row.qsrBalance | number:
+                            '1.0-8'}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="height">
+                        <th mat-header-cell *matHeaderCellDef>Account height</th>
+                        <td mat-cell *matCellDef="let row">{{row.height}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="percentage">
+                        <th mat-header-cell *matHeaderCellDef>Share</th>
+                        <td mat-cell *matCellDef="let row">{{row.percentage | number:
+                            '1.6-6'}}%</td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowPressed(row.address)">
+                    </tr>
+                </table>
+            </div>
+            <app-loader class="loader" *ngIf="isLoading"></app-loader>
+        </div>
+        <app-page-selector class="page-selector" *ngIf="hasItems" [hidePreviousBtn]="activePage === 1"
+            [hideNextBtn]="dataSource.data.length < itemsPerPage" (selectNext)="onNextSelected()"
+            (selectPrevious)="onPreviousSelected()">
+        </app-page-selector>
+    </div>
+</div>

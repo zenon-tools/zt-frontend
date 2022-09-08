@@ -1,69 +1,11 @@
 @use "../../../../assets/variables.scss";
+@use "../../../../assets/styles/components.scss";
 
-.card {
-    display: flex;
-    flex-direction: column;
-    background: linear-gradient(90deg, variables.$primary-grey, #1e1e1e, variables.$primary-grey);
-    border-radius: variables.$radius-l;
-    width: 900px;
-    filter: drop-shadow(0 0 0.1em #0000001c);
-    overflow: hidden;
-    border: 1px solid variables.$border-green;
-
-    .title-container {
-        display: flex;
-        align-items: center;
-        padding: variables.$spacing-m variables.$spacing-xl variables.$spacing-m variables.$spacing-xl;
-        gap: variables.$spacing-m;
-        height: 2.2em;
-
-        .title-icon {
-            height: 1.2em;
-            width: 1.2em;
-        }
-
-        .title {
-            font-weight: bold;
-            font-size: variables.$font-l;
-        }
-
-        .search-bar {
-            margin-left: auto;
-            width: 14em;
-        }
-    }
+.basic-card {
+    width: variables.$content-width-basic;
 
     .mobile-search-bar {
         display: none;
-    }
-
-    .content {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        .loader {
-            top: unset;
-            left: unset;
-            transform: unset;
-        }
-    }
-
-    .empty-text {
-        font-size: variables.$font-s;
-        color: variables.$white-70;
-        margin: variables.$spacing-xxl;
-        text-align: center;
-    }
-
-    .table-container {
-        &--hidden {
-            display: none;
-        }
-
-        &--loading {
-            opacity: 0;
-        }
     }
 
     .empty-loader {
@@ -75,25 +17,22 @@
     }
 
     .mat-table {
-        min-width: 900px;
-        max-width: 900px;
+        min-width: variables.$content-width-basic;
+        max-width: variables.$content-width-basic;
         border-radius: 0;
         border: 0px;
     }
 
     .mat-column-proposal {
         max-width: 200px;
-        max-width: 200px;
-        padding-left: calc(4em - 24px) !important;
+        padding-left: variables.$spacing-xl;
     }
 
     .mat-column-vote {
         max-width: 200px;
-        max-width: 200px;
     }
 
     .mat-column-timestamp {
-        max-width: 200px;
         max-width: 200px;
     }
 
@@ -123,11 +62,12 @@
         }
 
         .project-text {
-            font-size: variables.$font-m;
+            font-size: variables.$font-s;
             &--is-phase {
                 @extend .project-text;
-                font-size: variables.$font-s;
+                font-size: variables.$font-xs;
                 font-weight: normal;
+                color: variables.$white-50;
             }
         }
     }
@@ -162,23 +102,15 @@
         }
     }
 
-    .divider {
-        width: 100%;
-        height: 1px;
-        background-color: variables.$border-green;
-    }
-
     .page-selector {
-        padding-top: variables.$spacing-m;
-        padding-bottom: variables.$spacing-m;
         margin-left: variables.$spacing-xl;
         margin-right: variables.$spacing-xl;
     }
 }
 
-@media only screen and (max-width: 950px) {
-    .card {
-        width: calc(99.5vw - 2em);
+@media only screen and (max-width: variables.$screen-width-threshold) {
+    .basic-card {
+        width: calc(99.5vw - 2rem);
 
         .title-container {
             height: 0;
@@ -193,11 +125,6 @@
         .mobile-search-bar {
             display: inline;
             margin: 0 variables.$spacing-l variables.$spacing-m variables.$spacing-l;
-        }
-
-        .table-container {
-            overflow-x: auto;
-            width: 100%;
         }
 
         .page-selector {

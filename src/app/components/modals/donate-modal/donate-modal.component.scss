@@ -1,8 +1,8 @@
 @use "../../../../assets/variables.scss";
 
 .container {
-    border-radius: variables.$radius-l;
-    width: 28em;
+    border-radius: variables.$radius-m;
+    width: 32rem;
     background: variables.$tertiary-grey;
     display: flex;
     flex-direction: column;
@@ -25,7 +25,7 @@
 
 .info-text {
     font-size: variables.$font-xs;
-    line-height: 1.8em;
+    line-height: 1.6rem;
     white-space: pre-line;
 }
 

@@ -1,4 +1,5 @@
 @use "../../../assets/variables.scss";
+@use "../../../assets/styles/components.scss";
 
 :host {
     flex: 1;
@@ -9,7 +10,7 @@
     justify-content: center;
     width: 100%;
     padding-top: variables.$spacing-l;
-    padding-bottom: 8em;
+    padding-bottom: 8rem;
 
     &--hidden {
         visibility: hidden;
@@ -37,7 +38,7 @@
 
         .instructions {
             font-size: variables.$font-s;
-            line-height: 1.8em;
+            line-height: 1.6rem;
         }
 
         .divider {
@@ -62,7 +63,7 @@
                 textarea {
                     resize: none;
                     height: 12em;
-                    padding: variables.$spacing-m + 0.1em;
+                    padding: variables.$spacing-m + 0.1rem;
                 }
             }
 
@@ -100,7 +101,7 @@
                 gap: variables.$spacing-m;
                 .instructions {
                     font-size: variables.$font-s;
-                    line-height: 1.8em;
+                    line-height: 1.6em;
                 }
 
                 .challenge {
@@ -162,7 +163,7 @@
     }
 }
 
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: variables.$screen-width-threshold) {
     .container {
         padding-bottom: 5em;
 

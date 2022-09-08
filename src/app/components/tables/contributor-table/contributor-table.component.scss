@@ -1,10 +1,11 @@
 @use "../../../../assets/variables.scss";
+@use "../../../../assets/styles/components.scss";
 
 .card {
     display: flex;
     flex-direction: column;
     background: linear-gradient(90deg, variables.$primary-grey, #1e1e1e, variables.$primary-grey);
-    border-radius: variables.$radius-l;
+    border-radius: variables.$radius-m;
 
     filter: drop-shadow(0 0 0.1em #0000001c);
     overflow: hidden;
@@ -142,14 +143,14 @@
     }
 }
 
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: variables.$screen-width-threshold) {
     .card {
-        width: calc(99.5vw - 2em);
+        width: calc(99.5vw - 2rem);
         margin-bottom: variables.$spacing-xxl;
 
         .title-container {
             padding: variables.$spacing-l variables.$spacing-l variables.$spacing-m variables.$spacing-l;
-            min-height: 1.4em;
+            min-height: 1.4rem;
         }
 
         .table-container {
@@ -163,13 +164,13 @@
         }
 
         .mat-column-contributor {
-            padding-right: 2em !important;
+            padding-right: 2rem !important;
             max-width: none;
-            padding-left: calc(3.4em - 24px) !important;
+            padding-left: calc(3.4rem - 24px) !important;
         }
 
         .mat-column-timestamp {
-            padding-right: 2em !important;
+            padding-right: 2rem !important;
             max-width: none;
         }
     }

@@ -6,7 +6,7 @@ import {
     ProposalVotes,
 } from 'src/app/services/zenon-tools-api/interfaces/proposal-vote';
 import { ZenonToolsApiService } from 'src/app/services/zenon-tools-api/zenon-tools-api.service';
-import { ProposalStatus } from '../project-status-chip/project-status-chip.component';
+import { ProposalStatus } from '../../project-status-chip/project-status-chip.component';
 import {
     faChevronDown,
     faArrowUpRightFromSquare,

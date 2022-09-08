@@ -6,7 +6,6 @@
     <div class="dropdown-list" [class.dropdown-list--open]="isOpen">
         <a *ngFor="let item of items" class="dropdown-item" (click)="onItemSelected(item)">
             <div>{{ item.label }}</div>
-            <div>{{ item.info }}</div>
         </a>
     </div>
 </div>

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { interval, map, shareReplay, startWith, switchMap } from 'rxjs';
-import { whenPageVisible } from 'src/app/utils/common';
+import Common from 'src/app/utils/common';
 import { environment } from 'src/environments/environment';
 import { NomData } from './interfaces/nom-data';
 import { PcsPoolData } from './interfaces/pcs-pool-data';
@@ -15,7 +15,14 @@ import { RewardShareChanges } from './interfaces/rewardShareChange';
 import { Delegators } from './interfaces/delegator';
 import { PillarProfile } from './interfaces/pillar-profile';
 import { Donations } from './interfaces/donation';
-import { AddressDetails } from './interfaces/address-details';
+import { AccountDetails } from './interfaces/account/account-details';
+import { ParticipationDetails } from './interfaces/account/participation-details';
+import { AccountTransactions } from './interfaces/account/account-transaction';
+import { TokenBalances } from './interfaces/account/token-balance';
+import { AzProposals } from './interfaces/account/az-proposal';
+import { PlasmaFusions } from './interfaces/account/plasma-fusion';
+import { AccountListItems } from './interfaces/account-list-item';
+import { Token } from './interfaces/token';
 
 @Injectable({
     providedIn: 'root',
@@ -29,7 +36,7 @@ export class ZenonToolsApiService {
     private pcsPoolDataIntervalMs = 1000 * 60 * 5;
 
     public intervalSecondsUntilRefresh$ = interval(1000).pipe(
-        whenPageVisible(),
+        Common.whenPageVisible(),
         map(
             (index) =>
                 this.baseDataRefreshRate -
@@ -42,7 +49,7 @@ export class ZenonToolsApiService {
 
     public nomData$ = this.dataRefreshInterval$.pipe(
         startWith(0),
-        whenPageVisible(),
+        Common.whenPageVisible(),
         switchMap(() =>
             this.httpClient.get<NomData>(`${this.baseUrl}/nom-data`)
         ),
@@ -51,7 +58,7 @@ export class ZenonToolsApiService {
 
     public pillars$ = this.dataRefreshInterval$.pipe(
         startWith(0),
-        whenPageVisible(),
+        Common.whenPageVisible(),
         switchMap(() =>
             this.httpClient.get<Pillars>(`${this.baseUrl}/pillars`)
         ),
@@ -63,7 +70,7 @@ export class ZenonToolsApiService {
         this.pillarsOffChainInfoIntervalMs
     ).pipe(
         startWith(0),
-        whenPageVisible(),
+        Common.whenPageVisible(),
         switchMap(() =>
             this.httpClient.get<PillarsOffChainInfo>(
                 `${this.baseUrl}/pillars-off-chain`
@@ -75,7 +82,7 @@ export class ZenonToolsApiService {
 
     public pcsPoolData$ = interval(this.pcsPoolDataIntervalMs).pipe(
         startWith(0),
-        whenPageVisible(),
+        Common.whenPageVisible(),
         switchMap(() =>
             this.httpClient.get<PcsPoolData>(`${this.baseUrl}/pcs-pool`)
         ),
@@ -154,11 +161,68 @@ export class ZenonToolsApiService {
             .pipe(shareReplay(1));
     }
 
-    getAddressDetails(address: string) {
+    getAccounts(page: number, searchText: string = '') {
         return this.httpClient
-            .get<AddressDetails>(
-                `${environment.ztApiUrl}/address/${address}`
+            .get<AccountListItems>(
+                `${environment.ztApiUrl}/accounts?page=${page}&search=${searchText}`
             )
+            .pipe(shareReplay(1));
+    }
+
+    getAccountDetails(address: string) {
+        return this.httpClient
+            .get<AccountDetails>(`${environment.ztApiUrl}/accounts/${address}`)
+            .pipe(shareReplay(1));
+    }
+
+    getAccountParticipation(address: string) {
+        return this.httpClient
+            .get<ParticipationDetails>(
+                `${environment.ztApiUrl}/accounts/${address}/participation`
+            )
+            .pipe(shareReplay(1));
+    }
+
+    getAccountTransactions(
+        address: string,
+        page: number,
+        getReceived: boolean = true
+    ) {
+        const endpoint = getReceived ? 'received' : 'unreceived';
+        return this.httpClient
+            .get<AccountTransactions>(
+                `${environment.ztApiUrl}/accounts/${address}/transactions/${endpoint}?page=${page}`
+            )
+            .pipe(shareReplay(1));
+    }
+
+    getAccountTokens(address: string, page: number) {
+        return this.httpClient
+            .get<TokenBalances>(
+                `${environment.ztApiUrl}/accounts/${address}/tokens?page=${page}`
+            )
+            .pipe(shareReplay(1));
+    }
+
+    getAccountAzProposals(address: string, page: number) {
+        return this.httpClient
+            .get<AzProposals>(
+                `${environment.ztApiUrl}/accounts/${address}/proposals?page=${page}`
+            )
+            .pipe(shareReplay(1));
+    }
+
+    getAccountPlasmaFusions(address: string, page: number) {
+        return this.httpClient
+            .get<PlasmaFusions>(
+                `${environment.ztApiUrl}/accounts/${address}/fusions?page=${page}`
+            )
+            .pipe(shareReplay(1));
+    }
+
+    getToken(tokenId: string) {
+        return this.httpClient
+            .get<Token>(`${environment.ztApiUrl}/tokens/${tokenId}`)
             .pipe(shareReplay(1));
     }
 

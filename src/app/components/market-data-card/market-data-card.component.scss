@@ -14,14 +14,14 @@
         text-align: center;
         width: 100%;
         background-color: variables.$primary-grey;
-        border-radius: variables.$radius-l;
+        border-radius: variables.$radius-m;
         padding: 0.5em;
     }
 }
 
 .card {
     background: radial-gradient(#161616, variables.$primary-grey);
-    border-radius: variables.$radius-l;
+    border-radius: variables.$radius-m;
     height: 100%;
     filter: drop-shadow(0 0.8em 0.3em #0000001c);
     min-width: 19em;

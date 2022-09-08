@@ -1,4 +1,4 @@
-<div class="card">
+<div class="basic-card">
     <div class="title-container text-glow-white">
         <div class="title">Voting</div>
         <div class="title-icon" [innerHTML]="'1F5F3' | twemoji"></div>
@@ -8,8 +8,8 @@
     <app-search-bar class="mobile-search-bar" *ngIf="hasVotes || activeSearchText.length > 0"
         (search)="onSearch($event)" (clear)="onClearSearch()"></app-search-bar>
     <div class="divider"></div>
-    <div class="content" *ngIf="hasVotes">
-        <div class="empty-text" *ngIf="!isLoading && !hasResults">End of results.</div>
+    <div class="table-content" *ngIf="hasVotes">
+        <div class="table-empty-text" *ngIf="!isLoading && !hasResults">End of results.</div>
         <app-loader class="loader" *ngIf="isLoading"></app-loader>
         <div class="table-container" *ngIf="hasResults" [class.table-container--loading]="isLoading"
             [class.table-container--hidden]="!hasResults">
@@ -59,7 +59,7 @@
         </div>
     </div>
     <app-loader class="loader empty-loader" *ngIf="isLoading && !hasVotes"></app-loader>
-    <div class="empty-text" *ngIf="!isLoading && !hasVotes">The Pillar hasn't voted.
+    <div class="table-empty-text" *ngIf="!isLoading && !hasVotes">The Pillar hasn't voted.
     </div>
     <div class="divider" *ngIf="hasVotes"></div>
     <app-page-selector *ngIf="hasVotes" class="page-selector" [hidePreviousBtn]="activePage === 1"
