@@ -9,8 +9,8 @@
             <div class="label">{{label}}</div>
         </div>
     </div>
-    <app-line-chart *ngIf="chartSeries.length > 1" class="line-chart" [gradientStartColor]="gradientStartColor" [gradientEndColor]="gradientEndColor"
-        [chartSeries]="chartSeries" [lineWidth]="3" [pointHoverRadius]="3" (isHovered$)="handleIsChartHovered($event)"
-        [roundCorners]="false" (hoveredValue$)="handleValueChanged($event)">
+    <app-line-chart *ngIf="chartSeries.length > 1" class="line-chart" [gradientStartColor]="gradientStartColor"
+        [gradientEndColor]="gradientEndColor" [chartSeries]="chartSeries" [lineWidth]="3" [pointHoverRadius]="3"
+        (isHovered$)="handleIsChartHovered($event)" [roundCorners]="false" (hoveredValue$)="handleValueChanged($event)">
     </app-line-chart>
 </div>

@@ -9,7 +9,7 @@ import {
     switchMap,
     tap,
 } from 'rxjs';
-import { whenPageVisible } from 'src/app/utils/common';
+import Common from 'src/app/utils/common';
 import { environment } from 'src/environments/environment';
 import { CoinGeckoResponse, MarketChart, MarketData } from './coin-gecko-types';
 
@@ -32,7 +32,7 @@ export class MarketApiService {
     private getCurrentCoinPrice(coin: string) {
         return interval(this.currentPriceIntervalMs).pipe(
             startWith(0),
-            whenPageVisible(),
+            Common.whenPageVisible(),
             switchMap(() =>
                 this.httpClient
                     .get<CoinGeckoResponse>(`${this.baseUrl}/coins/${coin}`)
@@ -45,7 +45,7 @@ export class MarketApiService {
     private getCoinPriceHistory(coin: string, currency: string) {
         return interval(this.historyIntervalMs).pipe(
             startWith(0),
-            whenPageVisible(),
+            Common.whenPageVisible(),
             switchMap(() =>
                 this.coinHistory$.pipe(
                     map((response) => response.prices.map((i) => i[1]))
@@ -56,7 +56,7 @@ export class MarketApiService {
 
     private getCoinTradingVolume(coin: string, currency: string) {
         return this.coinHistory$.pipe(
-            whenPageVisible(),
+            Common.whenPageVisible(),
             map((response) => response.total_volumes.map((i) => i[1]))
         );
     }

@@ -34,7 +34,7 @@ export class PillarDelegatorTableComponent implements OnInit {
     coinDecimals: number = 100000000;
 
     delegators$!: Observable<Delegators>;
-    delegators!: Delegators;
+    delegators?: Delegators;
 
     faAngleLeft = faAngleLeft;
     faAngleRight = faAngleRight;
@@ -105,13 +105,14 @@ export class PillarDelegatorTableComponent implements OnInit {
 
     private updateDataSource() {
         const startIndex = (this.activePage - 1) * this.itemsPerPage;
-        const filteredDelegators = this.delegators.filter((item) =>
+        const filteredDelegators = this.delegators?.filter((item) =>
             item.address.includes(this.activeSearchText)
         );
-        const delegatorsToShow = filteredDelegators.slice(
-            startIndex,
-            startIndex + this.itemsPerPage
-        );
+        const delegatorsToShow =
+            filteredDelegators?.slice(
+                startIndex,
+                startIndex + this.itemsPerPage
+            ) ?? [];
         this.hasResults = delegatorsToShow.length > 0;
         this.dataSource.data = delegatorsToShow.map(
             (delegator: Delegator, index: number): DelegatorRow => ({

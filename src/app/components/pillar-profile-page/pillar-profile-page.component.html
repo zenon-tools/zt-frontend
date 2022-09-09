@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="pillar-info-card">
+    <div class="basic-card">
         <div class="header">
             <div>
                 <img class="pillar-avatar" *ngIf="pillarOffChainInfo?.avatar" [src]="pillarOffChainInfo?.avatar">
@@ -56,8 +56,8 @@
                     <app-loader class="loader"></app-loader>
                 </div>
                 <div class="info-card" *ngIf="!isLoading">
-                    <div class="info-card-line">
-                        <div class="info-card-line-cell">
+                    <div class="info-line">
+                        <div class="info-line-cell">
                             <div class="label">Produced/target momentums <fa-icon [icon]="faCircleInfo"
                                     [matTooltipClass]="'tool-tip--normal-word-break'"
                                     matTooltip="The ratio of produced vs. target momentums during the current epoch. Missing momentums will negatively affect the rewards earned by the Pillar.">
@@ -67,7 +67,7 @@
                                 {{pillar?.producedMomentums}} / {{pillar?.expectedMomentums}}
                             </div>
                         </div>
-                        <div class="info-card-line-cell">
+                        <div class="info-line-cell">
                             <div class="label">Weight <fa-icon [icon]="faCircleInfo"
                                     [matTooltipClass]="'tool-tip--normal-word-break'"
                                     matTooltip="The amount of ZNN delegated to the Pillar.">
@@ -78,8 +78,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="info-card-line">
-                        <div class="info-card-line-cell">
+                    <div class="info-line">
+                        <div class="info-line-cell">
                             <div class="label">Rank <fa-icon [icon]="faCircleInfo"
                                     [matTooltipClass]="'tool-tip--normal-word-break'"
                                     matTooltip="The Pillar’s rank based on its weight.">
@@ -87,7 +87,7 @@
                             </div>
                             <div class="value">{{(pillar?.rank ?? 0) + 1}}</div>
                         </div>
-                        <div class="info-card-line-cell">
+                        <div class="info-line-cell">
                             <div class="label">Slot cost <fa-icon [icon]="faCircleInfo"
                                     [matTooltipClass]="'tool-tip--normal-word-break'"
                                     matTooltip="The amount of QSR the Pillar had to burn to spawn the Pillar.">
@@ -102,40 +102,42 @@
                             </div>
                         </div>
                     </div>
-                    <div class="info-card-line">
-                        <div class="info-card-line-cell">
+                    <div class="info-line">
+                        <div class="info-line-cell">
                             <div class="label">Spawned on</div>
                             <div class="value">{{(pillarProfile?.spawnTimestamp ?? -1) == 0 ? 'Genesis' :
                                 (pillarProfile?.spawnTimestamp ?? -1) == -1 ? '' :
                                 ((pillarProfile?.spawnTimestamp ?? 0) * 1000 | date:'MM/dd/yy h:mm a')}}</div>
                         </div>
-                        <div class="info-card-line-cell">
+                        <div class="info-line-cell">
                             <div class="label">Owner address</div>
-                            <div (click)="onCopyText(pillarProfile?.ownerAddress ?? '')" class="value--cursor"
+                            <div [routerLink]="['/accounts', pillarProfile?.ownerAddress ?? '']" class="value--cursor"
                                 [matTooltipClass]="'tool-tip'" matTooltip={{pillarProfile?.ownerAddress}}>{{
                                 pillarProfile?.ownerAddress ?? '' |
                                 middleEllipsis
-                                }} <fa-icon [icon]="faCopy"></fa-icon>
+                                }}
                             </div>
                         </div>
                     </div>
-                    <div class="info-card-line">
-                        <div class="info-card-line-cell">
+                    <div class="info-line">
+                        <div class="info-line-cell">
                             <div class="label">Producer address</div>
-                            <div (click)="onCopyText(pillarProfile?.producerAddress ?? '')" class="value--cursor"
-                                [matTooltipClass]="'tool-tip'" matTooltip={{pillarProfile?.producerAddress}}>{{
+                            <div [routerLink]="['/accounts', pillarProfile?.producerAddress ?? '']"
+                                class="value--cursor" [matTooltipClass]="'tool-tip'"
+                                matTooltip={{pillarProfile?.producerAddress}}>{{
                                 pillarProfile?.producerAddress ?? '' |
                                 middleEllipsis
-                                }} <fa-icon [icon]="faCopy"></fa-icon>
+                                }}
                             </div>
                         </div>
-                        <div class="info-card-line-cell">
+                        <div class="info-line-cell">
                             <div class="label">Withdraw address</div>
-                            <div (click)="onCopyText(pillarProfile?.withdrawAddress ?? '')" class="value--cursor"
-                                [matTooltipClass]="'tool-tip'" matTooltip={{pillarProfile?.withdrawAddress}}>{{
+                            <div [routerLink]="['/accounts', pillarProfile?.withdrawAddress ?? '']"
+                                class="value--cursor" [matTooltipClass]="'tool-tip'"
+                                matTooltip={{pillarProfile?.withdrawAddress}}>{{
                                 pillarProfile?.withdrawAddress ?? '' |
                                 middleEllipsis
-                                }} <fa-icon [icon]="faCopy"></fa-icon>
+                                }}
                             </div>
                         </div>
                     </div>

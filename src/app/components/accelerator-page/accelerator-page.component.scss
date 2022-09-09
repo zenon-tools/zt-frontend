@@ -1,4 +1,5 @@
 @use "../../../assets/variables.scss";
+@use "../../../assets/styles/components.scss";
 
 :host {
     flex: 1;
@@ -6,7 +7,7 @@
 
 .container {
     display: flex;
-    padding-top: variables.$spacing-l;
+    padding-top: variables.$spacing-xl;
     padding-bottom: variables.$spacing-xl;
     justify-content: center;
 }
@@ -15,7 +16,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    width: 900px;
+    width: variables.$content-width-basic;
     filter: drop-shadow(0 0.8em 0.3em #0000001c);
     padding-bottom: variables.$spacing-l;
 }
@@ -35,7 +36,7 @@
 
     .search-bar {
         margin-left: auto;
-        width: 18em;
+        width: 20rem;
     }
 }
 
@@ -59,10 +60,10 @@
 }
 
 .page-selector {
-    margin-top: variables.$spacing-l;
+    margin-top: variables.$spacing-s;
 }
 
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: variables.$screen-width-threshold) {
     .container {
         padding-bottom: variables.$spacing-xxl;
         padding-left: 1em;

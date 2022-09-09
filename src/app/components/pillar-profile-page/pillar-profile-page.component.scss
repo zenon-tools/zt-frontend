@@ -1,4 +1,5 @@
 @use "../../../assets/variables.scss";
+@use "../../../assets/styles/components.scss";
 
 :host {
     flex: 1;
@@ -7,12 +8,12 @@
 .container {
     display: flex;
     flex-direction: column;
-    padding-top: variables.$spacing-l;
+    padding-top: variables.$spacing-xl;
     padding-bottom: variables.$spacing-xxl;
-    padding-left: 2em;
-    padding-right: 2em;
+    padding-left: 2rem;
+    padding-right: 2rem;
     align-items: center;
-    gap: variables.$spacing-xxl;
+    gap: variables.$spacing-xl;
 
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -23,29 +24,21 @@
     }
 }
 
-.pillar-info-card {
-    display: flex;
-    flex-direction: column;
-    background: linear-gradient(90deg, variables.$primary-grey, #1e1e1e, variables.$primary-grey);
-    border-radius: variables.$radius-l;
-    width: 900px;
-    filter: drop-shadow(0 0 0.1em #0000001c);
-    overflow: hidden;
-    border: 1px solid variables.$border-green;
+.basic-card {
+    width: variables.$content-width-basic;
 
     .header {
         display: flex;
         justify-content: space-between;
-        padding: calc(variables.$spacing-xl + variables.$spacing-s) variables.$spacing-xl variables.$spacing-m
-            variables.$spacing-xl;
+        padding: variables.$spacing-xl variables.$spacing-xl variables.$spacing-m variables.$spacing-xl;
         background-image: url("../../../assets/images/pillar_profile_bg.png");
         background-size: cover;
 
         .pillar-avatar {
             margin: 0;
-            width: 4.5em;
-            height: 4.5em;
-            filter: drop-shadow(0 0 0.8em #00000040);
+            width: 4.5rem;
+            height: 4.5rem;
+            filter: drop-shadow(0 0 0.8rem #00000040);
         }
 
         fa-icon {
@@ -60,7 +53,7 @@
             position: absolute;
             margin-right: variables.$spacing-m;
             // NOTE: Use hardcoded pixel value because of Safari
-            margin-left: 695px;
+            margin-left: 980px;
             padding: variables.$spacing-m variables.$spacing-m variables.$spacing-m variables.$spacing-m;
             background-color: #555555;
             border-radius: variables.$radius-s;
@@ -83,9 +76,8 @@
     .pillar-info-container {
         display: flex;
         justify-content: space-between;
-        padding: variables.$spacing-xs variables.$spacing-xl calc(variables.$spacing-xl + variables.$spacing-s)
-            variables.$spacing-xl;
-        gap: variables.$spacing-xl;
+        padding: variables.$spacing-xs variables.$spacing-xl variables.$spacing-xl variables.$spacing-xl;
+        gap: variables.$spacing-l;
         flex-direction: column;
 
         .name-and-social-links {
@@ -104,8 +96,8 @@
 
                 img {
                     opacity: 70%;
-                    height: 1em;
-                    padding-left: 0.75em;
+                    height: 1rem;
+                    padding-left: 0.75rem;
                 }
 
                 img:hover {
@@ -116,7 +108,7 @@
 
         .description {
             font-size: variables.$font-s;
-            line-height: 1.8em;
+            line-height: 1.6rem;
             white-space: pre-line;
         }
 
@@ -132,7 +124,7 @@
                 justify-content: space-between;
                 gap: variables.$spacing-s;
                 flex: 1;
-                padding: variables.$spacing-l;
+                padding: variables.$spacing-m variables.$spacing-l variables.$spacing-m variables.$spacing-l;
 
                 :first-child {
                     display: flex;
@@ -152,13 +144,13 @@
                 }
 
                 .apr-btn {
-                    padding: variables.$spacing-m variables.$spacing-l variables.$spacing-m variables.$spacing-l;
+                    padding: variables.$spacing-m variables.$spacing-m variables.$spacing-m variables.$spacing-m;
                     font-size: variables.$font-xs;
                     font-weight: bold;
                     color: white;
                     background-color: variables.$secondary-green;
                     border-radius: variables.$radius-s;
-                    filter: drop-shadow(0 0 0.8em #00000040);
+                    filter: drop-shadow(0 0 0.8rem #00000040);
 
                     &:hover {
                         cursor: pointer;
@@ -170,91 +162,31 @@
     }
 }
 
-.info-card {
-    display: flex;
-    flex-direction: column;
-    gap: variables.$spacing-xl;
-    padding: variables.$spacing-l 0 variables.$spacing-l 0;
-    background-color: variables.$tertiary-grey;
-    border-radius: variables.$radius-s;
-    justify-content: center;
-    filter: drop-shadow(0 0 0.8em #00000040);
-    border: 1px solid variables.$border-green;
-
-    .info-card-line {
-        display: flex;
-        justify-content: space-between;
-        gap: 4em;
-        margin-left: variables.$spacing-l;
-        margin-right: variables.$spacing-l;
-
-        .info-card-line-cell {
-            display: flex;
-            justify-content: space-between;
-            gap: variables.$spacing-s;
-            width: 50%;
-
-            .label {
-                color: variables.$white-70;
-                font-size: variables.$font-xs;
-
-                fa-icon {
-                    opacity: 0.7;
-                }
-            }
-
-            .value {
-                font-size: variables.$font-xs;
-                font-weight: bold;
-                text-align: right;
-                white-space: nowrap;
-
-                a {
-                    font-size: inherit;
-                    font-weight: inherit;
-                }
-
-                &--cursor {
-                    @extend .value;
-                    &:hover {
-                        cursor: pointer;
-                    }
-                }
-            }
-
-            .icon-container {
-                display: flex;
-                align-items: center;
-                .icon {
-                    height: variables.$font-m;
-                    width: variables.$font-m;
-                    padding-right: variables.$spacing-s;
-                }
-            }
-        }
-    }
+.info-line {
+    margin-left: variables.$spacing-l;
+    margin-right: variables.$spacing-l;
 }
 
 .loader-container {
-    height: 10em;
+    height: 10rem;
 
     .loader {
         top: 78%;
     }
 }
 
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: variables.$screen-width-threshold) {
     .container {
         padding-bottom: variables.$spacing-xxl;
-        padding-left: 1em;
-        padding-right: 1em;
+        padding-left: 1rem;
+        padding-right: 1rem;
         align-items: center;
         gap: variables.$spacing-xl;
     }
 
-    .pillar-info-card {
+    .basic-card {
         align-items: center;
-        width: calc(99.5vw - 2em);
+        width: calc(99.5vw - 2rem);
 
         .header {
             display: flex;
@@ -270,14 +202,14 @@
 
             .menu {
                 // NOTE: Use this because of Safari
-                margin-left: calc(100% - 15em);
+                margin-left: calc(100% - 15rem);
             }
         }
 
         .pillar-info-container {
             align-items: center;
             padding: variables.$spacing-l;
-            gap: variables.$spacing-l;
+            gap: variables.$spacing-m;
 
             .name-and-social-links {
                 flex-direction: column;
@@ -328,11 +260,11 @@
         margin-right: variables.$spacing-l;
         flex-direction: column;
 
-        .info-card-line {
+        .info-line {
             gap: variables.$spacing-l;
             flex-direction: column;
 
-            .info-card-line-cell {
+            .info-line-cell {
                 width: 100%;
             }
         }

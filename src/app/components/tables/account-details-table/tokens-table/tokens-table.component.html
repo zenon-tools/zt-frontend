@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="content">
+        <div class="table-container" *ngIf="hasItems" [class.table-container--loading]="isLoading"
+            [class.table-container--hidden]="!hasItems">
+            <table mat-table [dataSource]="dataSource" fixedLayout="true" class="mat-elevation-z0">
+                <ng-container matColumnDef="token">
+                    <th mat-header-cell *matHeaderCellDef>Token</th>
+                    <td mat-cell *matCellDef="let row">{{row.token}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="balance">
+                    <th mat-header-cell *matHeaderCellDef>Balance</th>
+                    <td mat-cell *matCellDef="let row">{{row.balance | number: '1.0-8'}} {{row.symbol}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="tokenId">
+                    <th mat-header-cell *matHeaderCellDef>Token ID</th>
+                    <td mat-cell *matCellDef="let row"> {{row.tokenId}}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                </tr>
+            </table>
+        </div>
+        <app-loader class="loader" *ngIf="isLoading"></app-loader>
+        <div class="empty-text" *ngIf="!isLoading && !hasItems">Nothing to show.</div>
+    </div>
+    <div class="divider" *ngIf="hasItems"></div>
+    <app-page-selector class="page-selector" *ngIf="hasItems || activePage > 1" [hidePreviousBtn]="activePage === 1"
+        [hideNextBtn]="dataSource.data.length < itemsPerPage" (selectNext)="onNextSelected()"
+        (selectPrevious)="onPreviousSelected()">
+    </app-page-selector>
+</div>

@@ -61,7 +61,7 @@ body {
 }
 
 .text-glow-white {
-  text-shadow: 0 0 1.4em variables.$white-30;
+  text-shadow: 0 0 1.4em variables.$white-25;
 }
 
 // General input styling
@@ -100,7 +100,7 @@ input[type="number"] {
 .input-field {
   background-color: variables.$tertiary-grey;
   border-radius: variables.$radius-s;
-  height: 2.8em;
+  height: 2.6rem;
   border: 0;
   font-size: variables.$font-s;
   font-weight: bold;
@@ -114,7 +114,7 @@ input[type="number"] {
   &:focus {
     background-color: variables.$input-hover;
     outline: none !important;
-    box-shadow: 0 0 0.5em variables.$input-hover;
+    box-shadow: 0 0 0.5rem variables.$input-hover;
   }
 }
 
@@ -136,7 +136,7 @@ input[type="number"] {
 .mat-table {
   margin-left: auto;
   margin-right: auto;
-  border-radius: variables.$radius-l;
+  border-radius: variables.$radius-m;
   overflow: hidden !important;
   background-color: variables.$secondary-grey;
   border: 1px solid variables.$border-green;
@@ -240,6 +240,14 @@ mat-dialog-container {
 // FA stylings
 fa-icon.red path {
   fill: variables.$primary-red;
+}
+
+fa-icon.orange path {
+  fill: #FF7E45;
+}
+
+fa-icon.green path {
+  fill: variables.$primary-green;
 }
 
 .loader {

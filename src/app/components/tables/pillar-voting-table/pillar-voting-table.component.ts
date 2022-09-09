@@ -144,8 +144,8 @@ export class PillarVotingTableComponent implements OnInit {
     }
 
     onPreviousSelected() {
-        this.isLoading = true;
         if (this.activePage > 1) {
+            this.isLoading = true;
             this.activePage--;
             this.votesObservableSubject$.next(
                 this.zenonToolsApiService.getVotesByPillar(

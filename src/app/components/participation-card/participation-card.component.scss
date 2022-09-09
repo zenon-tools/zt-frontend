@@ -1,0 +1,60 @@
+@use "../../../assets/variables.scss";
+@use "../../../assets/styles/components.scss";
+
+.basic-card {
+    width: variables.$content-width-basic;
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: variables.$spacing-xl;
+        padding: variables.$spacing-l variables.$spacing-xl variables.$spacing-l variables.$spacing-xl;
+        height: 2.2rem;
+
+        .title {
+            font-size: variables.$font-l;
+            font-weight: bold;
+        }
+
+        .collateral {
+            display: flex;
+            gap: variables.$spacing-s;
+            div {
+                font-size: variables.$font-s;
+                color: variables.$white-70;
+            }
+        }
+    }
+
+    .list-container {
+        min-height: 5.8rem;
+        .participation-list {
+            display: flex;
+            flex-direction: column;
+            margin: 0 variables.$spacing-xl variables.$spacing-xl variables.$spacing-xl;
+            gap: variables.$spacing-m;
+        }
+    }
+}
+
+@media only screen and (max-width: variables.$screen-width-threshold) {
+    .basic-card {
+        width: calc(99.5vw - 2rem);
+
+        .header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: variables.$spacing-s;
+            padding: variables.$spacing-l;
+            height: unset;
+        }
+
+        .list-container {
+            .participation-list {
+                margin: 0 variables.$spacing-l variables.$spacing-l variables.$spacing-l;
+                gap: variables.$spacing-m;
+            }
+        }
+    }
+}

@@ -1,0 +1,15 @@
+<div class="basic-card" [class.card--loading]="isLoading">
+    <div class="title-container">
+        <app-table-tab-selector class="tab-selector" [initialIndex]="activeTab" [items]="tabItems"
+            (selectIndex)="onTabSelected($event)">
+        </app-table-tab-selector>
+        <app-dropdown class="dropdown" [initialIndex]="activeTab" [items]="dropdownItems" (selectIndex)="onTabSelected($event)"></app-dropdown>
+    </div>
+    <div class="divider"></div>
+    <app-transactions-table *ngIf="activeTab === 0" [address]="address"></app-transactions-table>
+    <app-transactions-table *ngIf="activeTab === 1" [address]="address" [showReceived]="false">
+    </app-transactions-table>
+    <app-tokens-table *ngIf="activeTab === 2" [address]="address"></app-tokens-table>
+    <app-plasma-table *ngIf="activeTab === 3" [address]="address"></app-plasma-table>
+    <app-proposals-table *ngIf="activeTab === 4" [address]="address"></app-proposals-table>
+</div>

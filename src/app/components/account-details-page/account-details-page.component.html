@@ -1,0 +1,73 @@
+<div class="root">
+    <div class="page-title text-glow-white">Account details</div>
+    <div class="container">
+        <div class="basic-card">
+            <div class="address-header">
+                <div class="address-container">
+                    <div class="card-title">
+                        <div class="desktop-address">{{address}}</div>
+                        <div class="mobile-address">{{address | middleEllipsis}}</div>
+                        <fa-icon class="fa-sm" [icon]="faCopy" (click)="onCopyAddress(address)"></fa-icon>
+                    </div>
+                    <div *ngIf="smartContractLabel" class="subtitle">{{smartContractLabel}}</div>
+                </div>
+                <div class="action-items"></div>
+            </div>
+            <div class="info-container">
+                <app-loader class="loader" *ngIf="isLoading"></app-loader>
+                <div class="info-card" *ngIf="!isLoading">
+                    <div class="info-line">
+                        <div class="info-line-cell">
+                            <div class="label">ZNN balance</div>
+                            <div class="value">
+                                {{(addressDetails?.znnBalance ?? 0) / coinDecimals | number: '1.0-8'}} ZNN
+                            </div>
+                        </div>
+                        <div class="info-line-cell">
+                            <div class="label">QSR balance</div>
+                            <div class="value">
+                                {{(addressDetails?.qsrBalance ?? 0) / coinDecimals | number: '1.0-8'}} QSR
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-line">
+                        <div class="info-line-cell">
+                            <div class="label">USD value <fa-icon [icon]="faCircleInfo"
+                                    [matTooltipClass]="'tool-tip--normal-word-break'"
+                                    matTooltip="QSR price assumed to be 1/10th of ZNN price.">
+                                </fa-icon>
+                            </div>
+                            <div class="value">${{usdValue | number: '1.0-2'}}</div>
+                        </div>
+                        <div class="info-line-cell">
+                            <div class="label">Fused Plasma</div>
+                            <div class="value">
+                                {{(addressDetails?.fusedQsr ?? 0) / coinDecimals | number: '1.0-8'}} QSR
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-line">
+                        <div class="info-line-cell">
+                            <div class="label">Account chain height</div>
+                            <div class="value">
+                                {{addressDetails?.height}}
+                            </div>
+                        </div>
+                        <div class="info-line-cell">
+                            <div class="label">Public key</div>
+                            <div *ngIf="addressDetails?.publicKey" (click)="onCopyText(addressDetails?.publicKey ?? '')"
+                                class="value--cursor" [matTooltipClass]="'tool-tip'"
+                                matTooltip={{addressDetails?.publicKey}}>
+                                {{addressDetails?.publicKey ?? '' | middleEllipsis}} <fa-icon [icon]="faCopy"></fa-icon>
+                            </div>
+                            <div *ngIf="!addressDetails?.publicKey">-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-participation-card *ngIf="hasParticipationDetails" [participationDetails]="participationDetails">
+        </app-participation-card>
+        <app-account-details-table [address]="address"></app-account-details-table>
+    </div>
+</div>

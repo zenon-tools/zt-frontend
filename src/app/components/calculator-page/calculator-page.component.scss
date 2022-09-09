@@ -1,4 +1,5 @@
 @use "../../../assets/variables.scss";
+@use "../../../assets/styles/components.scss";
 
 :host {
     flex: 1;
@@ -6,7 +7,7 @@
 
 .container {
     display: flex;
-    padding-top: variables.$spacing-l;
+    padding-top: variables.$spacing-xl;
     padding-bottom: variables.$spacing-xl;
     justify-content: center;
     gap: variables.$spacing-xl;
@@ -20,5 +21,11 @@
             opacity: 1;
             max-width: 500px;
         }
+    }
+}
+
+@media only screen and (max-width: variables.$screen-width-threshold) {
+    .duplicate {
+        display: none;
     }
 }

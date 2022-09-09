@@ -124,13 +124,17 @@ export class RewardCalculatorService {
         const holdingsInUsd =
             inputs.amount * usdPrices.znn +
             inputs.wBnbAmout * pcsPoolData.wBnbPriceUsd;
-        const rewardShare = holdingsInUsd / (pcsPoolData.liquidityUsd * nomData.lpProgramParticipationRate);
+        const rewardShare =
+            holdingsInUsd /
+            (pcsPoolData.liquidityUsd * nomData.lpProgramParticipationRate);
         const qsrRewards =
             ((rewardShare * nomData.yearlyQsrRewardPoolForLpProgram) /
                 this.DAYS_PER_YEAR) *
             inputs.timePeriodInDays;
         const tradingFeeRewards =
-            ((pcsPoolData.yearlyTradingFeesUsd * nomData.lpProgramParticipationRate) / this.DAYS_PER_YEAR) *
+            ((pcsPoolData.yearlyTradingFeesUsd *
+                nomData.lpProgramParticipationRate) /
+                this.DAYS_PER_YEAR) *
             inputs.timePeriodInDays *
             rewardShare;
         const rewardsInUsd = qsrRewards * usdPrices.qsr + tradingFeeRewards;
@@ -321,16 +325,20 @@ export class RewardCalculatorService {
             delegateRewardShare *
             (delegate?.giveDelegateRewardPercentage! / 100);
         const delegationRewards =
-            delegateRewardPoolForDelegators *
-            (delegationAmount / newDelegateWeight);
+            newDelegateWeight > 0
+                ? delegateRewardPoolForDelegators *
+                  (delegationAmount / newDelegateWeight)
+                : 0;
 
         const momentumRewardPoolForDelegators =
             (momentumRewardPoolForGroup /
                 (delegate?.rank! < 30 ? 30 : pillars.size - 30)) *
             (delegate?.giveMomentumRewardPercentage! / 100);
         const momentumRewards =
-            momentumRewardPoolForDelegators *
-            (delegationAmount / newDelegateWeight);
+            newDelegateWeight > 0
+                ? momentumRewardPoolForDelegators *
+                  (delegationAmount / newDelegateWeight)
+                : 0;
 
         return (delegationRewards + momentumRewards) / delegationAmount;
     }
@@ -452,6 +460,9 @@ export class RewardCalculatorService {
             const month = Math.floor(i / this.DAYS_PER_MONTH);
             if (month < rewardsByMonth.length) {
                 rewardsForTimePeriod += rewardsByMonth[month];
+            } else {
+                rewardsForTimePeriod +=
+                    rewardsByMonth[rewardsByMonth.length - 1];
             }
         }
 

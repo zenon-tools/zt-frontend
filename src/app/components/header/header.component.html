@@ -10,12 +10,13 @@
         <nav class="navigation">
             <a draggable="false" routerLink="/overview" routerLinkActive="active">Overview</a>
             <a draggable="false" routerLink="/pillars" routerLinkActive="active">Pillars</a>
+            <a draggable="false" routerLink="/accounts" routerLinkActive="active">Accounts</a>
             <a class="az-tab" draggable="false" routerLink="/accelerator" routerLinkActive="active"></a>
-            <a draggable="false" routerLink="/calculator" routerLinkActive="active">Calculator</a>
             <a draggable="false" routerLink="/swap" routerLinkActive="active">Swap & Bridge</a>
+            <a class="calculator-tab" draggable="false" routerLink="/calculator" routerLinkActive="active">Calculator</a>
         </nav>
     </div>
-    <div class="info-items">
+    <div class="extra-items">
         <a target="_blank" rel="noopener noreferrer" style="text-decoration: none;"
             href="https://github.com/zenon-network/syrius/releases">
             <div class="version" [matTooltipClass]="'tool-tip'" matTooltip="Get official wallet">Alphanet {{nodeVersion$

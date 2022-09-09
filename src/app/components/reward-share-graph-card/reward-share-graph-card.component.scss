@@ -1,13 +1,14 @@
 @use "../../../assets/variables.scss";
+@use "../../../assets/styles/components.scss";
 
 .card {
     display: flex;
     gap: variables.$spacing-m;
     padding: variables.$spacing-l;
     background-color: variables.$tertiary-grey;
-    border-radius: variables.$radius-s;
+    border-radius: variables.$radius-m;
     justify-content: center;
-    filter: drop-shadow(0 0 0.8em #00000040);
+    filter: drop-shadow(0 0 0.8rem #00000040);
     border: 1px solid variables.$border-green;
     transition: 0s;
 }
@@ -53,7 +54,7 @@
     align-self: center;
 }
 
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: variables.$screen-width-threshold) {
     .values {
         flex: 4;
         .value-label-wrapper {

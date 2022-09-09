@@ -1,0 +1,94 @@
+@use "../../../../../assets/variables.scss";
+@use "../../../../../assets/styles/components.scss";
+
+.container {
+    min-height: 41rem;
+    display: flex;
+    flex-direction: column;
+
+    .content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        align-items: flex-start;
+        margin-left: variables.$spacing-xl;
+        margin-right: variables.$spacing-xl;
+
+        .table-container {
+            &--hidden {
+                display: none;
+            }
+
+            &--loading {
+                opacity: 0;
+            }
+        }
+
+        .mat-table {
+            min-width: 1200px;
+            max-width: 1200px;
+            border-radius: 0;
+            border: 0px;
+        }
+
+        .mat-column-provider {
+            padding-left: variables.$spacing-xl !important;
+        }
+
+        .hover-cell {
+            display: inline-block;
+            color: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+
+            &:hover {
+                cursor: pointer;
+                color: white;
+            }
+        }
+
+        .loader {
+            top: unset;
+            left: unset;
+            transform: unset;
+            align-self: center;
+        }
+
+        .empty-text {
+            font-size: variables.$font-s;
+            color: variables.$white-70;
+            text-align: center;
+            align-self: center;
+        }
+    }
+    
+    .page-selector {
+        margin-left: variables.$spacing-xl;
+        margin-right: variables.$spacing-xl;
+        margin-top: auto;
+    }
+}
+
+@media only screen and (max-width: variables.$screen-width-threshold) {
+    .container {
+        .content {
+            margin-left: 0;
+            margin-right: 0;
+
+            .mat-table {
+                min-width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            .mat-column-provider {
+                padding-left: variables.$spacing-l !important;
+                padding-right: variables.$spacing-m !important;
+            }
+
+            .mat-column-beneficiary {
+                padding-right: variables.$spacing-m !important;
+            }
+        }
+    }
+}

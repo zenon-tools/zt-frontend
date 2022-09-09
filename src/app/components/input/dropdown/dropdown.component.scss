@@ -12,7 +12,7 @@
     border-radius: variables.$radius-s;
     transition: opacity variables.$animation-duration;
     visibility: hidden;
-    filter: drop-shadow(0 0 0.5em #00000065);
+    filter: drop-shadow(0 0 0.5rem #00000065);
     width: calc(100% - variables.$spacing-xl * 2);
     height: 50%;
     overflow-y: scroll;
@@ -37,18 +37,12 @@
     display: flex;
     align-items: center;
     gap: variables.$spacing-s;
-    background:  variables.$tertiary-grey;
-    height: 2.8em;
+    background: variables.$tertiary-grey;
+    height: 2.8rem;
 
-    padding-left: variables.$spacing-s;
-    padding-right: variables.$spacing-s;
+    padding-left: variables.$spacing-m;
+    padding-right: variables.$spacing-m;
     border-radius: variables.$radius-s;
-
-    transition: variables.$animation-duration variables.$animation-curve;
-
-    img {
-        height: 2.3em;
-    }
 
     div {
         font-weight: bold;
@@ -59,16 +53,15 @@
 
 .selected-item:hover {
     background-color: variables.$input-hover;
-  }
+}
 
 .dropdown-item {
     display: flex;
     align-items: center;
     gap: variables.$spacing-s;
-    background:  variables.$tertiary-grey;
-    height: 2.8em;
-    padding-left: variables.$spacing-s;
-    transition: variables.$animation-duration variables.$animation-curve;
+    background: variables.$tertiary-grey;
+    height: 2.8rem;
+    padding-left: variables.$spacing-m;
 
     div {
         font-weight: bold;

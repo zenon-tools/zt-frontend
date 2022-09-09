@@ -1,4 +1,4 @@
-<div class="card" [class.card--loading]="isLoading">
+<div class="basic-card">
     <div class="title-container text-glow-white">
         <div class="title">Delegators</div>
         <div class="title-icon" [innerHTML]="'1F91D' | twemoji"></div>
@@ -11,8 +11,8 @@
     <app-search-bar class="mobile-search-bar" *ngIf="hasDelegators" (search)="onSearch($event)"
         (clear)="onClearSearch()"></app-search-bar>
     <div class="divider"></div>
-    <div class="content" *ngIf="hasDelegators">
-        <div class="empty-text" *ngIf="!isLoading && !hasResults">End of results.</div>
+    <div class="table-content" *ngIf="hasDelegators">
+        <div class="table-empty-text" *ngIf="!isLoading && !hasResults">End of results.</div>
         <div class="table-container" *ngIf="hasResults" [class.table-container--loading]="isLoading"
             [class.table-container--hidden]="!hasResults">
             <table mat-table [dataSource]="dataSource" fixedLayout="true" class="mat-elevation-z0">
@@ -20,9 +20,7 @@
                     <th mat-header-cell *matHeaderCellDef>Address</th>
                     <td mat-cell *matCellDef="let row">
                         <div class="address-cell">
-                            <div>{{row.address | middleEllipsis}} <fa-icon (click)="onCopyText(row.address)"
-                                    [icon]="faCopy"></fa-icon>
-                            </div>
+                            <div [routerLink]="['/accounts', row.address]">{{row.address | middleEllipsis}}</div>
                             <div class="info-text" *ngIf="row.isSelfDelegation">Pillar self-delegation</div>
                         </div>
                     </td>
@@ -51,7 +49,7 @@
         </div>
     </div>
     <app-loader class="loader" *ngIf="isLoading && !hasDelegators"></app-loader>
-    <div class="empty-text" *ngIf="!isLoading && !hasDelegators">The Pillar has no delegators.</div>
+    <div class="table-empty-text" *ngIf="!isLoading && !hasDelegators">The Pillar has no delegators.</div>
     <div class="divider" *ngIf="hasDelegators"></div>
     <app-page-selector class="page-selector" *ngIf="hasDelegators" [hidePreviousBtn]="activePage === 1"
         [hideNextBtn]="dataSource.data.length < itemsPerPage" (selectNext)="onNextSelected()"
