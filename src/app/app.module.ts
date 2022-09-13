@@ -127,6 +127,7 @@ import { AccountsPageComponent } from './components/accounts-page/accounts-page.
         ProposalsTableComponent,
         PlasmaTableComponent,
         AccountsPageComponent,
+        SwapPageComponent,
     ],
     imports: [
         BrowserModule,

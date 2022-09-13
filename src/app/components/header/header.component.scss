@@ -75,12 +75,30 @@
 }
 
 .version {
+    display: none;
     color: variables.$white-70;
     margin-right: variables.$spacing-xxl;
     font-size: variables.$font-s;
 
     &:hover {
         color: white;
+    }
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    margin-right: variables.$spacing-xxl;
+    font-size: variables.$font-s;
+    padding: variables.$spacing-s variables.$spacing-xxl variables.$spacing-s variables.$spacing-xxl;
+    color: #71ae5f;
+    border: 1px solid variables.$secondary-green;
+    height: 1.3rem;
+    background-color: #3f60362e;
+
+    &:hover {
+        color: white;
+        background-color: variables.$secondary-green-hover;
     }
 }
 
@@ -148,6 +166,10 @@
     }
 
     .version {
+        display: none;
+    }
+
+    .button {
         display: none;
     }
 

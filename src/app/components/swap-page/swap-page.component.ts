@@ -22,7 +22,7 @@ export class SwapPageComponent implements OnInit {
     faBridgeWater = faBridgeWater;
 
     pcsUrl: string =
-        'https://pancakeswap.finance/swap?inputCurrency=0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c&outputCurrency=0x84b174628911896a3b87fa6980d05dbc2ee74836';
+        'https://pancakeswap.finance/swap?inputCurrency=BNB&outputCurrency=0x84b174628911896a3b87Fa6980D05Dbc2eE74836&chainId=56';
 
     constructor() {}
 

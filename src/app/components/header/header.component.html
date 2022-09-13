@@ -12,11 +12,12 @@
             <a draggable="false" routerLink="/pillars" routerLinkActive="active">Pillars</a>
             <a draggable="false" routerLink="/accounts" routerLinkActive="active">Accounts</a>
             <a class="az-tab" draggable="false" routerLink="/accelerator" routerLinkActive="active"></a>
-            <a draggable="false" routerLink="/swap" routerLinkActive="active">Swap & Bridge</a>
-            <a class="calculator-tab" draggable="false" routerLink="/calculator" routerLinkActive="active">Calculator</a>
+            <a class="calculator-tab" draggable="false" routerLink="/calculator"
+                routerLinkActive="active">Calculator</a>
         </nav>
     </div>
     <div class="extra-items">
+        <div class="button" routerLink='/swap'>Get ZNN</div>
         <a target="_blank" rel="noopener noreferrer" style="text-decoration: none;"
             href="https://github.com/zenon-network/syrius/releases">
             <div class="version" [matTooltipClass]="'tool-tip'" matTooltip="Get official wallet">Alphanet {{nodeVersion$
@@ -24,8 +25,11 @@
         </a>
         <div class="momentum-height">
             <fa-icon [icon]="faCube"></fa-icon>
-            <p [matTooltipClass]="'tool-tip'" matTooltip="Current momentum height" class="momentum-height-title">
-                {{momentumHeight$ | async}}</p>
+            <a target="_blank" rel="noopener noreferrer" style="text-decoration: none;"
+                href="https://explorer.zenon.org">
+                <div class="momentum-height-title" [matTooltipClass]="'tool-tip'" matTooltip="Current momentum height">
+                    {{momentumHeight$ | async}}</div>
+            </a>
         </div>
     </div>
 </header>
