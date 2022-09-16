@@ -27,6 +27,7 @@ export class LineChartComponent implements AfterViewInit, OnChanges {
     @Input() pointHoverRadius: number = 5;
     @Input() roundCorners: boolean = true;
     @Input() maxValue: number | undefined = 110;
+    @Input() minValue: number | undefined = 0;
 
     private isHovered = new Subject<boolean>();
     @Output() public isHovered$ = this.isHovered.pipe(distinctUntilChanged());
@@ -71,7 +72,7 @@ export class LineChartComponent implements AfterViewInit, OnChanges {
                         display: false,
                         grace: '1%',
                         max: this.maxValue,
-                        min: 0,
+                        min: this.minValue,
                     },
                 },
                 plugins: {
