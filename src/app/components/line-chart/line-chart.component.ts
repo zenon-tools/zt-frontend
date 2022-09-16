@@ -71,7 +71,7 @@ export class LineChartComponent implements AfterViewInit, OnChanges {
                         display: false,
                         grace: '1%',
                         max: this.maxValue,
-                        min: -10,
+                        min: 0,
                     },
                 },
                 plugins: {
