@@ -1,0 +1,45 @@
+@use "../../../../assets/variables.scss";
+
+.info-line-cell {
+    display: flex;
+    justify-content: space-between;
+    gap: variables.$spacing-s;
+
+    .label {
+        color: variables.$white-70;
+        font-size: variables.$font-xs;
+
+        fa-icon {
+            opacity: 0.7;
+        }
+    }
+
+    .value {
+        font-size: variables.$font-xs;
+        font-weight: bold;
+        text-align: right;
+        white-space: nowrap;
+
+        a {
+            font-size: inherit;
+            font-weight: inherit;
+        }
+
+        &--cursor {
+            @extend .value;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .icon-container {
+        display: flex;
+        align-items: center;
+        .icon {
+            height: variables.$font-m;
+            width: variables.$font-m;
+            padding-right: variables.$spacing-s;
+        }
+    }
+}

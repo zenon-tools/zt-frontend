@@ -1,0 +1,19 @@
+@use "../../../../assets/variables.scss";
+
+.info-items {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-xl;
+
+    .info-line {
+        display: flex;
+        justify-content: space-between;
+        gap: 4rem;
+        margin-left: variables.$spacing-l;
+        margin-right: variables.$spacing-l;
+
+        .cell {
+            flex: 1;
+        }
+    }
+}

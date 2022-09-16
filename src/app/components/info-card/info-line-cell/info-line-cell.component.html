@@ -1,0 +1,19 @@
+<div class="info-line-cell">
+    <div class="label">{{item.label}} <fa-icon *ngIf="item.toolTipText" [icon]="faCircleInfo"
+            [matTooltipClass]="'tool-tip--normal-word-break'" matTooltip="{{item.toolTipText}}">
+        </fa-icon>
+    </div>
+    <div *ngIf="!item.isExternalLink && !item.routerLink" class="value" [class.value--cursor]="item.isCopyable"
+        [matTooltipClass]="'tool-tip'" matTooltip="{{item.hoverText}}" (click)="onValuePressed(item.fullValue)">
+        {{item.value}} <fa-icon *ngIf="item.isCopyable" [icon]="faCopy"></fa-icon>
+    </div>
+    <div *ngIf="item.routerLink" class="value--cursor" [matTooltipClass]="'tool-tip'" matTooltip="{{item.hoverText}}"
+        [routerLink]="item.routerLink">
+        {{item.value}}
+    </div>
+    <div *ngIf="item.isExternalLink" class="value" [matTooltipClass]="'tool-tip'" matTooltip="{{item.hoverText}}">
+        <a target="_blank" rel="noopener noreferrer" style="text-decoration: none;" href={{item.fullValue}}>
+            {{ item.value }} <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
+        </a>
+    </div>
+</div>

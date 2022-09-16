@@ -6,9 +6,9 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ZenonToolsApiService } from './services/zenon-tools-api/zenon-tools-api.service';
 import { HttpClientModule } from '@angular/common/http';
-import { PillarsPageComponent } from './components/pillars-page/pillars-page.component';
-import { OverviewPageComponent } from './components/overview-page/overview-page.component';
-import { CalculatorPageComponent } from './components/calculator-page/calculator-page.component';
+import { PillarsPageComponent } from './components/pages/pillars-page/pillars-page.component';
+import { OverviewPageComponent } from './components/pages/overview-page/overview-page.component';
+import { CalculatorPageComponent } from './components/pages/calculator-page/calculator-page.component';
 import { MarketDataCardComponent } from './components/market-data-card/market-data-card.component';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
 import { AprCardComponent } from './components/apr-card/apr-card.component';
@@ -38,26 +38,26 @@ import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CalculatorModalComponent } from './components/modals/calculator-modal/calculator-modal.component';
 import { LoaderComponent } from './components/loader/loader.component';
-import { PillarProfilePageComponent } from './components/pillar-profile-page/pillar-profile-page.component';
+import { PillarProfilePageComponent } from './components/pages/pillar-profile-page/pillar-profile-page.component';
 import { TwemojiPipe } from './pipes/twemoji.pipe';
-import { AcceleratorPageComponent } from './components/accelerator-page/accelerator-page.component';
+import { AcceleratorPageComponent } from './components/pages/accelerator-page/accelerator-page.component';
 import { ProposalCardComponent } from './components/proposal-card/proposal-card.component';
-import { ProjectPageComponent } from './components/project-page/project-page.component';
+import { ProjectPageComponent } from './components/pages/project-page/project-page.component';
 import { ProjectStatusChipComponent } from './components/project-status-chip/project-status-chip.component';
 import { VoteBreakdownCardComponent } from './components/vote-breakdown-card/vote-breakdown-card.component';
-import { ProposalInfoCardComponent } from './components/project-page/proposal-info-card/proposal-info-card.component';
+import { ProposalInfoCardComponent } from './components/pages/project-page/proposal-info-card/proposal-info-card.component';
 import { MiddleEllipsisPipe } from './pipes/middle-ellipsis.pipe';
 import { PillarVotingTableComponent } from './components/tables/pillar-voting-table/pillar-voting-table.component';
 import { PillarRewardShareTableComponent } from './components/tables/pillar-reward-share-table/pillar-reward-share-table.component';
 import { RewardShareGraphCardComponent } from './components/reward-share-graph-card/reward-share-graph-card.component';
 import { PillarDelegatorTableComponent } from './components/tables/pillar-delegator-table/pillar-delegator-table.component';
-import { PillarProfileManagementPageComponent } from './components/pillar-profile-management-page/pillar-profile-management-page.component';
+import { PillarProfileManagementPageComponent } from './components/pages/pillar-profile-management-page/pillar-profile-management-page.component';
 import { PageSelectorComponent } from './components/page-selector/page-selector.component';
 import { SearchBarComponent } from './components/input/search-bar/search-bar.component';
-import { DonationsPageComponent } from './components/donations-page/donations-page.component';
+import { DonationsPageComponent } from './components/pages/donations-page/donations-page.component';
 import { ContributorTableComponent } from './components/tables/contributor-table/contributor-table.component';
 import { DonateModalComponent } from './components/modals/donate-modal/donate-modal.component';
-import { AccountDetailsPageComponent } from './components/account-details-page/account-details-page.component';
+import { AccountDetailsPageComponent } from './components/pages/account-details-page/account-details-page.component';
 import { AcccountDetailsTableComponent } from './components/tables/account-details-table/account-details-table.component';
 import { TransactionsTableComponent } from './components/tables/account-details-table/transactions-table/transactions-table.component';
 import { TableTabSelectorComponent } from './components/input/table-tab-selector/table-tab-selector.component';
@@ -66,7 +66,10 @@ import { TokensTableComponent } from './components/tables/account-details-table/
 import { ParticipationListItemComponent } from './components/participation-card/participation-list-item/participation-list-item.component';
 import { ProposalsTableComponent } from './components/tables/account-details-table/proposals-table/proposals-table.component';
 import { PlasmaTableComponent } from './components/tables/account-details-table/plasma-table/plasma-table.component';
-import { AccountsPageComponent } from './components/accounts-page/accounts-page.component';
+import { AccountsPageComponent } from './components/pages/accounts-page/accounts-page.component';
+import { InfoCardComponent } from './components/info-card/info-card.component';
+import { InfoItemTableComponent } from './components/info-card/info-item-table/info-item-table.component';
+import { InfoLineCellComponent } from './components/info-card/info-line-cell/info-line-cell.component';
 
 @NgModule({
     declarations: [
@@ -125,6 +128,9 @@ import { AccountsPageComponent } from './components/accounts-page/accounts-page.
         ProposalsTableComponent,
         PlasmaTableComponent,
         AccountsPageComponent,
+        InfoCardComponent,
+        InfoItemTableComponent,
+        InfoLineCellComponent,
     ],
     imports: [
         BrowserModule,

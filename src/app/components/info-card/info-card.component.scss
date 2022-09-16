@@ -1,0 +1,13 @@
+@use "../../../assets/variables.scss";
+
+.info-card {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-xl;
+    padding: variables.$spacing-l 0 variables.$spacing-l 0;
+    background-color: variables.$tertiary-grey;
+    border-radius: variables.$radius-m;
+    justify-content: center;
+    filter: drop-shadow(0 0 0.8em #00000040);
+    border: 1px solid variables.$border-green;
+}

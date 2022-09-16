@@ -1,0 +1,205 @@
+@use "../../../../assets/variables.scss";
+@use "../../../../assets/styles/components.scss";
+
+:host {
+    flex: 1;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-top: variables.$spacing-l;
+    padding-bottom: 8rem;
+
+    &--hidden {
+        visibility: hidden;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        width: 900px;
+        gap: variables.$spacing-xl;
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            gap: variables.$spacing-s;
+            .title {
+                font-size: variables.$font-s;
+                font-weight: bold;
+            }
+            .name {
+                font-size: variables.$font-xl;
+                font-weight: bold;
+            }
+        }
+
+        .instructions {
+            font-size: variables.$font-s;
+            line-height: 1.6rem;
+        }
+
+        .divider {
+            height: 1px;
+            width: 100%;
+            background-color: variables.$white-10;
+        }
+
+        .avatar-description-container {
+            .input-line {
+                display: flex;
+                flex-direction: column;
+                gap: variables.$spacing-l;
+                flex: 1;
+            }
+
+            .description-container {
+                .input-field {
+                    text-indent: 0;
+                }
+
+                textarea {
+                    resize: none;
+                    height: 12em;
+                    padding: variables.$spacing-m + 0.1rem;
+                }
+            }
+
+            .char-counter {
+                width: 100%;
+                font-size: variables.$font-s;
+                color: variables.$white-70;
+                text-align: end;
+                margin-top: variables.$spacing-xs;
+            }
+        }
+
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: variables.$spacing-l;
+
+            .input-line {
+                display: flex;
+                gap: variables.$spacing-l;
+                div {
+                    flex: 1;
+                }
+            }
+        }
+
+        .signature-container {
+            display: flex;
+            flex-direction: column;
+            gap: variables.$spacing-xl;
+
+            .challenge-container {
+                display: flex;
+                flex-direction: column;
+                gap: variables.$spacing-m;
+                .instructions {
+                    font-size: variables.$font-s;
+                    line-height: 1.6em;
+                }
+
+                .challenge {
+                    font-weight: bold;
+                    color: variables.$primary-green;
+
+                    fa-icon {
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+
+        .btn-container {
+            display: flex;
+            align-items: center;
+
+            .status-container {
+                display: flex;
+                flex-direction: column;
+                margin-top: variables.$spacing-l;
+                flex: 1;
+                gap: variables.$spacing-s;
+
+                .update-btn {
+                    padding: variables.$spacing-m;
+                    font-size: variables.$font-s;
+                    font-weight: bold;
+                    color: white;
+                    background-color: variables.$secondary-green;
+                    border-radius: variables.$radius-s;
+                    filter: drop-shadow(0 0 0.8em #00000040);
+                    text-align: center;
+
+                    &:hover {
+                        cursor: pointer;
+                        background-color: variables.$secondary-green-hover;
+                    }
+                }
+
+                .error-text {
+                    text-align: center;
+                    font-size: variables.$font-s;
+                    color: variables.$primary-red;
+
+                    &--hidden {
+                        opacity: 0;
+                    }
+                }
+            }
+
+            .loader {
+                top: 65%;
+                position: relative;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: variables.$screen-width-threshold) {
+    .container {
+        padding-bottom: 5em;
+
+        align-items: flex-start;
+        gap: variables.$spacing-xl;
+
+        .content {
+            width: calc(99.5vw - 2.5em);
+            gap: variables.$spacing-l;
+
+            .header {
+                .title {
+                    font-size: variables.$font-xs;
+                    font-weight: bold;
+                }
+                .name {
+                    font-size: variables.$font-l;
+                    font-weight: bold;
+                }
+            }
+
+            .instructions {
+                font-size: variables.$font-xs;
+            }
+
+            .links-container {
+                .input-line {
+                    flex-direction: column;
+                }
+            }
+
+            .btn-container {
+                .status-container {
+                    margin-top: variables.$spacing-m;
+                }
+            }
+        }
+    }
+}

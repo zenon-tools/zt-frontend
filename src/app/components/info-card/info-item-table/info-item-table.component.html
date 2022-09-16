@@ -1,0 +1,8 @@
+<div class="info-items">
+    <ng-container *ngFor="let row of infoItems; index as i">
+        <div class="info-line" *ngIf="i % 2 === 0 && row.label">
+            <app-info-line-cell class="cell" [item]="infoItems[i]"></app-info-line-cell>
+            <app-info-line-cell class="cell" *ngIf="infoItems[i + 1]" [item]="infoItems[i + 1]"></app-info-line-cell>
+        </div>
+    </ng-container>
+</div>
