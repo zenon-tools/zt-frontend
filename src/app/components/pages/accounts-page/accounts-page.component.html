@@ -6,7 +6,7 @@
         </div>
         <app-search-bar class="mobile-search-bar" (search)="onSearch($event)" (clear)="onClearSearch()">
         </app-search-bar>
-        <div class="basic-card">
+        <app-basic-container class="table-card">
             <div class="table-container" [class.table-container--loading]="isLoading"
                 [class.table-container--hidden]="!hasItems">
                 <table *ngIf="hasItems" mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort
@@ -51,7 +51,7 @@
                 </table>
             </div>
             <app-loader class="loader" *ngIf="isLoading"></app-loader>
-        </div>
+        </app-basic-container>
         <app-page-selector class="page-selector" *ngIf="hasItems" [hidePreviousBtn]="activePage === 1"
             [hideNextBtn]="dataSource.data.length < itemsPerPage" (selectNext)="onNextSelected()"
             (selectPrevious)="onPreviousSelected()">

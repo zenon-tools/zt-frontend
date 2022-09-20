@@ -1,189 +1,185 @@
 @use "../../../../../assets/variables.scss";
 @use "../../../../../assets/styles/components.scss";
 
-.basic-card {
-    width: variables.$content-width-basic;
+.basic-info {
+    display: flex;
+    justify-content: space-between;
+    padding: variables.$spacing-xl variables.$spacing-xl variables.$spacing-l variables.$spacing-xl;
+    gap: variables.$spacing-l;
+    flex-direction: column;
 
-    .basic-info {
+    .header {
         display: flex;
         justify-content: space-between;
-        padding: variables.$spacing-xl variables.$spacing-xl variables.$spacing-l variables.$spacing-xl;
-        gap: variables.$spacing-l;
-        flex-direction: column;
+        gap: variables.$spacing-xl;
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            gap: variables.$spacing-xl;
-
-            .card-title {
-                font-weight: bold;
-                font-size: variables.$font-xl;
-            }
-
-            .info-chips {
-                display: flex;
-                gap: variables.$spacing-m;
-            }
+        .card-title {
+            font-weight: bold;
+            font-size: variables.$font-xl;
         }
 
-        .description {
-            font-size: variables.$font-s;
-            line-height: 1.6rem;
+        .info-chips {
+            display: flex;
+            gap: variables.$spacing-m;
         }
     }
 
-    .status-card {
+    .description {
+        font-size: variables.$font-s;
+        line-height: 1.6rem;
+    }
+}
+
+.status-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: variables.$spacing-xl;
+    padding: variables.$spacing-m 0 variables.$spacing-m 0;
+    margin-left: variables.$spacing-xl;
+    margin-right: variables.$spacing-xl;
+    background: linear-gradient(45deg, #6d48bf, #4e3577);
+    border-radius: variables.$radius-s;
+    filter: drop-shadow(0 0 0.8em #00000040);
+    margin-bottom: variables.$spacing-l;
+
+    .label-container {
+        display: flex;
+        margin-left: variables.$spacing-l;
+        gap: variables.$spacing-m;
+
+        div:first-child {
+            width: 1em;
+            height: 1em;
+            align-self: flex-end;
+        }
+
+        div:last-child {
+            font-size: variables.$font-xs;
+            font-weight: bold;
+        }
+    }
+
+    .action-btn {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: variables.$spacing-xl;
-        padding: variables.$spacing-m 0 variables.$spacing-m 0;
-        margin-left: variables.$spacing-xl;
-        margin-right: variables.$spacing-xl;
-        background: linear-gradient(45deg, #6d48bf, #4e3577);
-        border-radius: variables.$radius-s;
-        filter: drop-shadow(0 0 0.8em #00000040);
-        margin-bottom: variables.$spacing-l;
+        gap: variables.$spacing-s;
+        margin-right: variables.$spacing-l;
 
-        .label-container {
-            display: flex;
-            margin-left: variables.$spacing-l;
+        div:first-child {
+            font-size: variables.$font-xs;
+            font-weight: bold;
+        }
+
+        fa-icon {
+            margin-top: 0.1em;
+        }
+
+        &:hover {
+            cursor: pointer;
             gap: variables.$spacing-m;
+        }
+    }
+}
 
-            div:first-child {
-                width: 1em;
-                height: 1em;
-                align-self: flex-end;
-            }
+.funding-status {
+    margin-bottom: variables.$spacing-l;
+}
 
-            div:last-child {
-                font-size: variables.$font-xs;
+.info-card {
+    margin-left: variables.$spacing-xl;
+    margin-right: variables.$spacing-xl;
+}
+
+.voting-container {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-l;
+    margin-top: variables.$spacing-m;
+
+    .title-line {
+        display: flex;
+        justify-content: space-between;
+        padding: variables.$spacing-l variables.$spacing-xl 0 variables.$spacing-xl;
+
+        .subtitle-container {
+            display: flex;
+            align-items: center;
+
+            .subtitle {
                 font-weight: bold;
+                font-size: variables.$font-l;
             }
         }
 
-        .action-btn {
+        .voting-status-container {
             display: flex;
             align-items: center;
-            gap: variables.$spacing-s;
-            margin-right: variables.$spacing-l;
 
-            div:first-child {
-                font-size: variables.$font-xs;
-                font-weight: bold;
+            .blinker-dot {
+                width: 0.5em;
+                height: 0.5em;
+                border-radius: 50%;
+                background-color: #9b6eff;
+
+                animation: blinker 1s cubic-bezier(0.5, 0, 1, 1) infinite alternate;
+                margin-right: variables.$spacing-s;
+
+                @keyframes blinker {
+                    from {
+                        opacity: 1;
+                    }
+                    to {
+                        opacity: 0;
+                    }
+                }
             }
 
-            fa-icon {
-                margin-top: 0.1em;
+            .voting-status-text {
+                color: variables.$white-70;
+                font-size: variables.$font-s;
+            }
+        }
+    }
+
+    .voting-info-container {
+        padding: 0 variables.$spacing-xl 0 variables.$spacing-xl;
+    }
+
+    .vote-table-container {
+        display: flex;
+        flex-direction: column;
+
+        .toggle-votes {
+            display: flex;
+            gap: variables.$spacing-s;
+            justify-content: center;
+            opacity: 0.7;
+            font-size: variables.$font-s;
+            padding-top: variables.$spacing-l;
+            padding-bottom: variables.$spacing-l;
+            background-color: variables.$secondary-grey;
+
+            .caret-down {
+                &--rotate {
+                    @extend .caret-down;
+                    transform: rotate(180deg);
+                }
             }
 
             &:hover {
                 cursor: pointer;
-                gap: variables.$spacing-m;
-            }
-        }
-    }
-
-    .funding-status {
-        margin-bottom: variables.$spacing-l;
-    }
-
-    .info-card {
-        margin-left: variables.$spacing-xl;
-        margin-right: variables.$spacing-xl;
-    }
-
-    .voting-container {
-        display: flex;
-        flex-direction: column;
-        gap: variables.$spacing-l;
-        margin-top: variables.$spacing-m;
-
-        .title-line {
-            display: flex;
-            justify-content: space-between;
-            padding: variables.$spacing-l variables.$spacing-xl 0 variables.$spacing-xl;
-
-            .subtitle-container {
-                display: flex;
-                align-items: center;
-
-                .subtitle {
-                    font-weight: bold;
-                    font-size: variables.$font-l;
-                }
-            }
-
-            .voting-status-container {
-                display: flex;
-                align-items: center;
-
-                .blinker-dot {
-                    width: 0.5em;
-                    height: 0.5em;
-                    border-radius: 50%;
-                    background-color: #9b6eff;
-
-                    animation: blinker 1s cubic-bezier(0.5, 0, 1, 1) infinite alternate;
-                    margin-right: variables.$spacing-s;
-
-                    @keyframes blinker {
-                        from {
-                            opacity: 1;
-                        }
-                        to {
-                            opacity: 0;
-                        }
-                    }
-                }
-
-                .voting-status-text {
-                    color: variables.$white-70;
-                    font-size: variables.$font-s;
-                }
+                opacity: 1;
+                background-color: variables.$input-hover;
             }
         }
 
-        .voting-info-container {
-            padding: 0 variables.$spacing-xl 0 variables.$spacing-xl;
-        }
+        .table-container {
+            display: none;
 
-        .vote-table-container {
-            display: flex;
-            flex-direction: column;
-
-            .toggle-votes {
+            &--visible {
+                @extend .table-container;
                 display: flex;
-                gap: variables.$spacing-s;
-                justify-content: center;
-                opacity: 0.7;
-                font-size: variables.$font-s;
-                padding-top: variables.$spacing-l;
-                padding-bottom: variables.$spacing-l;
-                background-color: variables.$secondary-grey;
-
-                .caret-down {
-                    &--rotate {
-                        @extend .caret-down;
-                        transform: rotate(180deg);
-                    }
-                }
-
-                &:hover {
-                    cursor: pointer;
-                    opacity: 1;
-                    background-color: variables.$input-hover;
-                }
-            }
-
-            .table-container {
-                display: none;
-
-                &--visible {
-                    @extend .table-container;
-                    display: flex;
-                }
             }
         }
     }
@@ -236,91 +232,72 @@
 }
 
 @media only screen and (max-width: variables.$screen-width-threshold) {
-    .basic-card {
-        width: calc(99.5vw - 2em);
-        margin-left: 1em;
-        margin-right: 1em;
+    .basic-info {
+        padding: variables.$spacing-l;
+        gap: variables.$spacing-l;
 
-        .basic-info {
-            padding: variables.$spacing-l;
-            gap: variables.$spacing-l;
-
-            .header {
-                flex-direction: column;
-                gap: variables.$spacing-l;
-
-                .card-title {
-                    font-size: variables.$font-l;
-                }
-
-                .info-chips {
-                    gap: variables.$spacing-s;
-                }
-            }
-
-            .description {
-                font-size: variables.$font-xs;
-            }
-        }
-
-        .status-card {
-            margin-left: variables.$spacing-l;
-            margin-right: variables.$spacing-l;
-
-            .action-btn {
-                div:first-child {
-                    display: none;
-                }
-            }
-        }
-
-        .info-card {
-            gap: variables.$spacing-l;
-            padding: variables.$spacing-m 0 variables.$spacing-m 0;
-            margin-left: variables.$spacing-l;
-            margin-right: variables.$spacing-l;
+        .header {
             flex-direction: column;
+            gap: variables.$spacing-l;
 
-            .info-line {
-                gap: variables.$spacing-l;
+            .card-title {
+                font-size: variables.$font-l;
+            }
 
-                flex-direction: column;
+            .info-chips {
+                gap: variables.$spacing-s;
+            }
+        }
 
-                .info-card-line-cell {
-                    width: 100%;
+        .description {
+            font-size: variables.$font-xs;
+        }
+    }
+
+    .status-card {
+        margin-left: variables.$spacing-l;
+        margin-right: variables.$spacing-l;
+
+        .action-btn {
+            div:first-child {
+                display: none;
+            }
+        }
+    }
+
+    .info-card {
+        margin-left: variables.$spacing-l;
+        margin-right: variables.$spacing-l;
+    }
+
+    .voting-container {
+        margin-top: variables.$spacing-s;
+
+        .title-line {
+            padding: variables.$spacing-l variables.$spacing-l 0 variables.$spacing-l;
+
+            .subtitle-container {
+                .subtitle {
+                    font-weight: bold;
+                    font-size: variables.$font-m;
+                }
+            }
+
+            .voting-status-container {
+                .voting-status-text {
+                    font-size: variables.$font-xs;
                 }
             }
         }
 
-        .voting-container {
-            margin-top: variables.$spacing-s;
+        .voting-info-container {
+            padding: 0 variables.$spacing-l 0 variables.$spacing-l;
+        }
 
-            .title-line {
-                padding: variables.$spacing-l variables.$spacing-l 0 variables.$spacing-l;
-
-                .subtitle-container {
-                    .subtitle {
-                        font-weight: bold;
-                        font-size: variables.$font-m;
-                    }
-                }
-
-                .voting-status-container {
-                    .voting-status-text {
-                        font-size: variables.$font-xs;
-                    }
-                }
-            }
-
-            .voting-info-container {
-                padding: 0 variables.$spacing-l 0 variables.$spacing-l;
-            }
-
-            .vote-table-container {
-                .table-container {
-                    overflow-x: auto;
-                    width: calc(100vw - 2em);
-                }
+        .vote-table-container {
+            .table-container {
+                overflow-x: auto;
+                width: calc(100vw - 2em);
             }
         }
     }

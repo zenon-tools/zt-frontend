@@ -1,4 +1,4 @@
-<div class="basic-card">
+<app-basic-container class="card">
     <div class="title-container text-glow-white">
         <div class="title">Reward sharing</div>
         <div class="title-icon" [innerHTML]="'1F389' | twemoji"></div>
@@ -13,7 +13,7 @@
             [dates]="rewardShareDates">
         </app-reward-share-graph-card>
     </div>
-    <div class="divider"></div>
+    <app-divider></app-divider>
     <div class="table-content" *ngIf="hasRewardShareChanges">
         <div class="table-empty-text" *ngIf="!isLoading && !hasResults">End of results.</div>
         <div class="table-container" *ngIf="hasResults" [class.table-container--loading]="isLoading"
@@ -54,9 +54,9 @@
     <div class="table-empty-text" *ngIf="!isLoading && !hasRewardShareChanges">The Pillar hasn't changed its
         reward sharing.
     </div>
-    <div class="divider" *ngIf="hasRewardShareChanges"></div>
+    <app-divider *ngIf="hasRewardShareChanges"></app-divider>
     <app-page-selector class="page-selector" *ngIf="hasRewardShareChanges" [hidePreviousBtn]="activePage === 1"
         [hideNextBtn]="dataSource.data.length < 5" (selectNext)="onNextSelected()"
         (selectPrevious)="onPreviousSelected()">
     </app-page-selector>
-</div>
+</app-basic-container>

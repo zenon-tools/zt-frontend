@@ -1,16 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-
-export interface InfoItem {
-    label?: string;
-    value?: string;
-    fullValue?: string;
-    hoverText?: string;
-    toolTipText?: string;
-    emoji?: string;
-    isCopyable?: boolean;
-    isExternalLink?: boolean;
-    routerLink?: any;
-}
+import { InfoLineCell } from '../info-line-cell/info-line-cell.component';
 
 @Component({
     selector: 'app-info-item-table',
@@ -18,7 +7,7 @@ export interface InfoItem {
     styleUrls: ['./info-item-table.component.scss'],
 })
 export class InfoItemTableComponent implements OnInit {
-    @Input() infoItems: Array<InfoItem> = [];
+    @Input() infoItems: Array<InfoLineCell> = [];
 
     constructor() {}
 

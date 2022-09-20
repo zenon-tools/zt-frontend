@@ -1,4 +1,4 @@
-<div class="basic-card">
+<app-basic-container>
     <div class="basic-info">
         <div class="header">
             <div class="card-title text-glow-white">{{ name }}</div>
@@ -24,22 +24,11 @@
             <fa-icon [icon]="faAngleRight"></fa-icon>
         </div>
     </div>
-    <div class="info-card funding-status" *ngIf="znnFundsReceived > 0 || qsrFundsReceived > 0">
-        <div class="info-line">
-            <div class="info-line-cell">
-                <div class="label">ZNN funds received</div>
-                <div class="value">{{ znnFundsReceived / coinDecimals | number: '1.0' }} ZNN ({{ (znnFundsReceived /
-                    znnFundsNeeded) * 100 | number: '1.0-1' }}%)</div>
-            </div>
-            <div class="info-line-cell">
-                <div class="label">QSR funds received</div>
-                <div class="value">
-                    {{ qsrFundsReceived / coinDecimals | number: '1.0' }} QSR ({{ (qsrFundsReceived /
-                    qsrFundsNeeded) * 100 | number: '1.0-1' }}%)
-                </div>
-            </div>
-        </div>
-    </div>
+    <app-info-card class="info-card funding-status" *ngIf="znnFundsReceived > 0 || qsrFundsReceived > 0" [infoItems]="[
+        {label: 'ZNN funds received', value: (znnFundsReceived / coinDecimals | number: '1.0') + ' ZNN (' + ((znnFundsReceived / znnFundsNeeded) * 100 | number: '1.0-1') + '%)'},
+        {label: 'QSR funds received', value: (qsrFundsReceived / coinDecimals | number: '1.0') + ' QSR (' + ((qsrFundsReceived / qsrFundsNeeded) * 100 | number: '1.0-1') + '%)'},
+        ]">
+    </app-info-card>
     <app-info-card class="info-card" [infoItems]="[
         {label: 'Funding needed', value: (znnFundsNeeded / coinDecimals | number: '1.0') + ' ZNN + ' + (qsrFundsNeeded / coinDecimals | number: '1.0') + ' QSR'},
         {label: 'Proposal URL', value: url | middleEllipsis, fullValue: url, hoverText: url, isExternalLink: true},
@@ -55,55 +44,6 @@
                 {label: 'Project ID', value: projectId | middleEllipsis, fullValue: projectId, hoverText: projectId, isCopyable: true},
         ]">
     </app-info-card>
-    <!--     <div class="info-card">
-        <div class="info-line">
-            <div class="info-line-cell">
-                <div class="label">Funding needed</div>
-                <div class="value">{{ znnFundsNeeded / coinDecimals | number: '1.0' }} ZNN + {{
-                    qsrFundsNeeded / coinDecimals | number: '1.0' }} QSR</div>
-            </div>
-            <div class="info-line-cell">
-                <div class="label">Proposal URL</div>
-                <div class="value" [matTooltipClass]="'tool-tip'" matTooltip={{url}}>
-                    <a target="_blank" rel="noopener noreferrer" style="text-decoration: none;" href={{url}}>
-                        {{ url | middleEllipsis }} <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="info-line">
-            <div class="info-line-cell">
-                <div class="label">Created</div>
-                <div class="value">{{creationTimestamp * 1000 | date:'MM/dd/yy h:mm a'}}</div>
-            </div>
-            <div class="info-line-cell" *ngIf="!isPhase">
-                <div class="label">Last updated</div>
-                <div class="value">{{lastUpdateTimestamp * 1000 | date:'MM/dd/yy h:mm a'}}</div>
-            </div>
-            <div class="info-line-cell" *ngIf="isPhase">
-                <div class="label">Phase ID</div>
-                <div (click)="onCopyText(phaseId)" class="value--cursor" [matTooltipClass]="'tool-tip'"
-                    matTooltip={{phaseId}}>{{ phaseId |
-                    middleEllipsis }} <fa-icon [icon]="faCopy"></fa-icon>
-                </div>
-            </div>
-        </div>
-        <div class="info-line" *ngIf="!isPhase">
-            <div class="info-line-cell">
-                <div class="label">Owner address</div>
-                <div [routerLink]="['/accounts', owner]" class="value--cursor" [matTooltipClass]="'tool-tip'"
-                    matTooltip={{owner}}>{{ owner | middleEllipsis
-                    }}
-                </div>
-            </div>
-            <div class="info-line-cell">
-                <div class="label" *ngIf="!isPhase">Project ID</div>
-                <div (click)="onCopyText(projectId)" class="value--cursor" [matTooltipClass]="'tool-tip'"
-                    matTooltip={{projectId}}>{{ projectId | middleEllipsis}} <fa-icon [icon]="faCopy"></fa-icon>
-                </div>
-            </div>
-        </div>
-    </div> -->
     <div class="voting-container">
         <div class="title-line">
             <div class="subtitle-container">
@@ -122,7 +62,7 @@
             </app-vote-breakdown-card>
         </div>
         <div class="vote-table-container">
-            <div class="divider"></div>
+            <app-divider></app-divider>
             <div class="toggle-votes" (click)="onToggleVotesPressed()">
                 <div *ngIf="!showVotes">Show votes</div>
                 <div *ngIf="showVotes">Hide votes</div>
@@ -161,4 +101,4 @@
             </div>
         </div>
     </div>
-</div>
+</app-basic-container>

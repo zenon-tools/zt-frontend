@@ -17,3 +17,14 @@
         }
     }
 }
+
+@media only screen and (max-width: variables.$screen-width-threshold) {
+    .info-items {
+        gap: variables.$spacing-l;
+
+        .info-line {
+            gap: variables.$spacing-l;
+            flex-direction: column;
+        }
+    }
+}

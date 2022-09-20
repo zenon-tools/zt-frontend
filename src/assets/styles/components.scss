@@ -1,103 +1,5 @@
 @use "../variables.scss";
 
-// Cards
-.basic-card {
-    display: flex;
-    flex-direction: column;
-    background: linear-gradient(90deg, variables.$primary-grey, #1e1e1e, variables.$primary-grey);
-    border-radius: variables.$radius-m;
-    filter: drop-shadow(0 0 0.1em #0000001c);
-    overflow: hidden;
-    border: 1px solid variables.$border-green;
-}
-
-.context-card {
-    display: flex;
-    flex-direction: column;
-    background-color: variables.$tertiary-grey;
-    border-radius: variables.$radius-m;
-    filter: drop-shadow(0 0 0.8rem #00000040);
-    border: 1px solid variables.$border-green;
-}
-/* 
-.info-card {
-    display: flex;
-    flex-direction: column;
-    gap: variables.$spacing-xl;
-    padding: variables.$spacing-l 0 variables.$spacing-l 0;
-    background-color: variables.$tertiary-grey;
-    border-radius: variables.$radius-m;
-    justify-content: center;
-    filter: drop-shadow(0 0 0.8em #00000040);
-    border: 1px solid variables.$border-green;
-} */
-////
-
-// Divider
-.divider {
-    height: 1px;
-    background-color: variables.$border-green;
-}
-////
-
-// Info items
-/* .info-items {
-    display: flex;
-    flex-direction: column;
-    gap: variables.$spacing-xl;
-}
-
-.info-line {
-    display: flex;
-    justify-content: space-between;
-    gap: 4rem;
-}
-
-.info-line-cell {
-    display: flex;
-    justify-content: space-between;
-    gap: variables.$spacing-s;
-    flex: 1;
-
-    .label {
-        color: variables.$white-70;
-        font-size: variables.$font-xs;
-
-        fa-icon {
-            opacity: 0.7;
-        }
-    }
-
-    .value {
-        font-size: variables.$font-xs;
-        font-weight: bold;
-        text-align: right;
-        white-space: nowrap;
-
-        a {
-            font-size: inherit;
-            font-weight: inherit;
-        }
-
-        &--cursor {
-            @extend .value;
-            &:hover {
-                cursor: pointer;
-            }
-        }
-    }
-
-    .icon-container {
-        display: flex;
-        align-items: center;
-        .icon {
-            height: variables.$font-m;
-            width: variables.$font-m;
-            padding-right: variables.$spacing-s;
-        }
-    }
-} */
-////
 
 // Tables
 .title-container {
@@ -153,10 +55,10 @@
 
 // Mobile screen
 @media only screen and (max-width: variables.$screen-width-threshold) {
-    .basic-card {
+/*     .basic-card {
         width: calc(99.5vw - 2rem);
     }
-
+ */
     .table-container {
         overflow-x: auto;
         width: 100%;

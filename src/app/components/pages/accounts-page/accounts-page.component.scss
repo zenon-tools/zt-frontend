@@ -51,7 +51,7 @@
             display: none;
         }
 
-        .basic-card {
+        .table-card {
             margin-top: variables.$spacing-xl;
             align-items: center;
             justify-content: center;
@@ -101,12 +101,6 @@
                     }
                 }
             }
-
-            .loader {
-                top: unset;
-                left: unset;
-                transform: unset;
-            }
         }
     }
 }
@@ -142,7 +136,7 @@
         margin-top: variables.$spacing-m;
     }
 
-    .basic-card {
+    .table-card {
         margin-top: variables.$spacing-l !important;
     }
 }

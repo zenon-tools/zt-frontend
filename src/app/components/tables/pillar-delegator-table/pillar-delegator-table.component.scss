@@ -1,8 +1,7 @@
 @use "../../../../assets/variables.scss";
 @use "../../../../assets/styles/components.scss";
 
-.basic-card {
-    width: variables.$content-width-basic;
+.card {
 
     .title-icon {
         height: 1.4rem;
@@ -94,8 +93,7 @@
 }
 
 @media only screen and (max-width: variables.$screen-width-threshold) {
-    .basic-card {
-        width: calc(99.5vw - 2rem);
+    .card {
         margin-bottom: variables.$spacing-xxl;
 
         .title-container {

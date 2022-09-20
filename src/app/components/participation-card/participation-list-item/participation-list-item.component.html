@@ -1,39 +1,31 @@
-<div class="context-card">
-    <div class="primary-content">
-        <div class="left-container">
-            <img src="{{iconPath}}" alt="APR icon">
-            <div class="type-and-collateral">
-                <div class="type">{{label}}</div>
-                <div class="collateral">
-                    <div>{{detailLeft}}</div>
-                    <div *ngIf="detailRight">|</div>
-                    <div>{{detailRight}}</div>
+<div class="container">
+    <app-context-container [gap]="'0'">
+        <div class="primary-content">
+            <div class="left-container">
+                <img src="{{iconPath}}" alt="APR icon">
+                <div class="type-and-collateral">
+                    <div class="type">{{label}}</div>
+                    <div class="collateral">
+                        <div>{{detailLeft}}</div>
+                        <div *ngIf="detailRight">|</div>
+                        <div>{{detailRight}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-container">
+                <div class="apr">{{apr}}</div>
+                <div class="more" [class.more--rotate]="showDetails">
+                    <fa-icon [icon]="faChevronDown" (click)="onShowDetailsPressed()">
+                    </fa-icon>
                 </div>
             </div>
         </div>
-        <div class="right-container">
-            <div class="apr">{{apr}}</div>
-            <div class="more" [class.more--rotate]="showDetails">
-                <fa-icon [icon]="faChevronDown" (click)="onShowDetailsPressed()">
-                </fa-icon>
-            </div>
+        <div class="details-content" [class.details-content--visible]="showDetails">
+            <app-divider></app-divider>
+            <app-info-line-cell *ngIf="apr" class="apr-line-mobile" [item]="{label: 'APR', value: apr}">
+            </app-info-line-cell>
+            <app-info-item-table [infoItems]="infoItems">
+            </app-info-item-table>
         </div>
-    </div>
-    <div class="details-content" [class.details-content--visible]="showDetails">
-        <div class="divider"></div>
-        <div class="info-items">
-            <div *ngIf="apr" class="info-line info-line-apr">
-                <div class="info-line-cell">
-                    <div class="label">APR</div>
-                    <div class="value">{{apr}}</div>
-                </div>
-            </div>
-            <div class="info-line" *ngFor="let row of infoItems">
-                <div class="info-line-cell" *ngFor="let cell of row">
-                    <div class="label">{{cell[0]}}</div>
-                    <div class="value">{{cell[1]}}</div>
-                </div>
-            </div>
-        </div>
-    </div>
+    </app-context-container>
 </div>

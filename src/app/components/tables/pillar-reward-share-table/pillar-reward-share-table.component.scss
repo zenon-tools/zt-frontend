@@ -1,9 +1,7 @@
 @use "../../../../assets/variables.scss";
 @use "../../../../assets/styles/components.scss";
 
-.basic-card {
-    width: variables.$content-width-basic;
-
+.card {
     .title-container {
         padding: variables.$spacing-l variables.$spacing-xl variables.$spacing-l variables.$spacing-xl;
     }
@@ -76,8 +74,7 @@
 }
 
 @media only screen and (max-width: variables.$screen-width-threshold) {
-    .basic-card {
-        width: calc(99.5vw - 2rem);
+    .card {
 
         .title-container {
             padding: variables.$spacing-l;
@@ -88,7 +85,7 @@
             gap: variables.$spacing-m;
             margin-left: variables.$spacing-l;
             margin-right: variables.$spacing-l;
-    
+
             app-reward-share-graph-card {
                 flex: 1;
             }

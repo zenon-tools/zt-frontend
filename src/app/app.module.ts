@@ -70,6 +70,9 @@ import { AccountsPageComponent } from './components/pages/accounts-page/accounts
 import { InfoCardComponent } from './components/info-card/info-card.component';
 import { InfoItemTableComponent } from './components/info-card/info-item-table/info-item-table.component';
 import { InfoLineCellComponent } from './components/info-card/info-line-cell/info-line-cell.component';
+import { ContextContainerComponent } from './components/containers/context-container/context-container.component';
+import { BasicContainerComponent } from './components/containers/basic-container/basic-container.component';
+import { DividerComponent } from './components/divider/divider.component';
 
 @NgModule({
     declarations: [
@@ -131,6 +134,9 @@ import { InfoLineCellComponent } from './components/info-card/info-line-cell/inf
         InfoCardComponent,
         InfoItemTableComponent,
         InfoLineCellComponent,
+        ContextContainerComponent,
+        BasicContainerComponent,
+        DividerComponent,
     ],
     imports: [
         BrowserModule,

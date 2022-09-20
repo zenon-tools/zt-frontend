@@ -26,7 +26,7 @@
         <app-loader class="loader" *ngIf="isLoading"></app-loader>
         <div class="empty-text" *ngIf="!isLoading && !hasItems">Nothing to show.</div>
     </div>
-    <div class="divider" *ngIf="hasItems"></div>
+    <app-divider *ngIf="hasItems"></app-divider>
     <app-page-selector class="page-selector" *ngIf="hasItems || activePage > 1" [hidePreviousBtn]="activePage === 1"
         [hideNextBtn]="dataSource.data.length < itemsPerPage" (selectNext)="onNextSelected()"
         (selectPrevious)="onPreviousSelected()">

@@ -1,4 +1,4 @@
-<div class="basic-card">
+<app-basic-container class="card">
     <div class="header">
         <div class="title">
             Participation
@@ -13,30 +13,35 @@
         <div class="participation-list" *ngIf="!isLoading">
             <app-participation-list-item *ngFor="let stake of stakeItems;" [label]="'Stake'"
                 [iconPath]="'../../../../assets/images/stake_icon.png'"
-                [detailLeft]="(stake.amount | number: '1.2-2') + ' ZNN'" [apr]="stake.apr"
-                [infoItems]=" [[['Stake start', stake.startTimestamp | date: 'MM/dd/yy h:mm a'], ['Lock-up duration', stake.lockUpDuration]]]">
+                [detailLeft]="(stake.amount | number: '1.2-2') + ' ZNN'" [apr]="stake.apr" [infoItems]="[
+                    {label: 'Stake start', value: (stake.startTimestamp | date: 'MM/dd/yy h:mm a') ?? ''},
+                    {label: 'Lock-up duration', value: stake.lockUpDuration}
+                ]">
             </app-participation-list-item>
             <app-participation-list-item *ngIf="delegationItem" [label]="'Delegation'"
                 [iconPath]="'../../../../assets/images/delegation_icon.png'" [detailLeft]="delegationItem.delegate"
                 [detailRight]="(delegationItem.amount | number: '1.2-2') + ' ZNN'" [apr]="delegationItem.apr"
-                [infoItems]=" [[['Delegation start',
-            delegationItem.startTimestamp | date: 'MM/dd/yy h:mm a']]]">
+                [infoItems]="[
+                    {label: 'Delegation start', value: (delegationItem.startTimestamp | date: 'MM/dd/yy h:mm a') ?? ''}
+                ]">
             </app-participation-list-item>
             <app-participation-list-item *ngIf="sentinelItem" [label]="'Sentinel'"
                 [iconPath]="'../../../../assets/images/sentinel_icon.png'" [detailLeft]="'5,000.00 ZNN'"
-                [detailRight]="'50,000.00 QSR'" [apr]="sentinelItem.apr" [infoItems]="[[
-            ['Spawned on', sentinelItem.startTimestamp | date: 'MM/dd/yy h:mm a'],
-            ['Is revocable',  sentinelItem.isRevocable]]]">
+                [detailRight]="'50,000.00 QSR'" [apr]="sentinelItem.apr" [infoItems]="[
+                    {label: 'Spawned on', value: (sentinelItem.startTimestamp | date: 'MM/dd/yy h:mm a') ?? ''},
+                    {label: 'Is revocable', value: sentinelItem.isRevocable}
+                ]">
             </app-participation-list-item>
             <app-participation-list-item *ngIf="pillarItem" [label]="'Pillar'"
                 [iconPath]="'../../../../assets/images/pillar_icon.png'" [detailLeft]="pillarItem.name"
                 [detailRight]="'15,000.00 ZNN'" [infoItems]="[
-            [['Spawned on', pillarItem.startTimestamp | date: 'MM/dd/yy h:mm a'],
-            ['Slot cost', (pillarItem.slotCost | number: '1.0-0') + ' QSR']],
-            [['Is revocable', pillarItem.isRevocable],
-            ['Revoke cooldown', pillarItem.revokeCooldown]]]">
+                    {label: 'Spawned on', value: (pillarItem.startTimestamp | date: 'MM/dd/yy h:mm a') ?? ''},
+                    {label: 'Slot cost', value: (pillarItem.slotCost | number: '1.0-0') + ' QSR'},
+                    {label: 'Is revocable', value: pillarItem.isRevocable},
+                    {label: 'Revoke cooldown', value: pillarItem.revokeCooldown}
+                ]">
             </app-participation-list-item>
         </div>
     </div>
     <app-loader class="loader" *ngIf="isLoading"></app-loader>
-</div>
+</app-basic-container>

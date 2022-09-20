@@ -5,12 +5,12 @@
     </div>
     <input class="input-field" type="text" id="searchInput" name="searchInput" placeholder="Search by name"
         #searchInput>
-    <div class="divider"></div>
+    <app-divider></app-divider>
     <div class="pillar-list">
         <a *ngFor="let item of filteredPillars$ | async" class="list-item" (click)="onItemSelected(item)">
             <div>{{ item.name }}</div>
             <div>{{ item.delegateApr.toFixed(2) }}% APR</div>
         </a>
     </div>
-    <div class="divider" id="bottom-divider"></div>
+    <app-divider id="bottom-divider"></app-divider>
 </div>

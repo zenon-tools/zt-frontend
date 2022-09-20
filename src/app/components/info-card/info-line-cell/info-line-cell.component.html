@@ -5,6 +5,7 @@
     </div>
     <div *ngIf="!item.isExternalLink && !item.routerLink" class="value" [class.value--cursor]="item.isCopyable"
         [matTooltipClass]="'tool-tip'" matTooltip="{{item.hoverText}}" (click)="onValuePressed(item.fullValue)">
+        <div *ngIf="item.emoji" class="emoji" [innerHTML]="item.emoji | twemoji"></div>
         {{item.value}} <fa-icon *ngIf="item.isCopyable" [icon]="faCopy"></fa-icon>
     </div>
     <div *ngIf="item.routerLink" class="value--cursor" [matTooltipClass]="'tool-tip'" matTooltip="{{item.hoverText}}"

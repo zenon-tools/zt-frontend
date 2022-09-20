@@ -6,7 +6,7 @@
         [yesVotes]="project.yesVotes" [noVotes]="project.noVotes" [totalVotes]="project.totalVotes"
         [phases]="project.phases" (showPhases)="onShowPhases()">
     </app-proposal-info-card>
-    <div *ngIf="orderedPhases.length" class="divider"></div>
+    <app-divider class="divider" *ngIf="orderedPhases.length"></app-divider>
     <div *ngIf="orderedPhases.length" id="phases" class="section-title">PHASES ({{ orderedPhases.length }})</div>
     <div *ngIf="orderedPhases.length" class="phases-container">
         <app-proposal-info-card *ngFor="let phase of orderedPhases;" [status]="phase.status" [name]="phase.name"

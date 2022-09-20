@@ -1,4 +1,4 @@
-<div class="basic-card">
+<app-basic-container class="card">
     <div class="title-container text-glow-white">
         <div class="title">Delegators</div>
         <div class="title-icon" [innerHTML]="'1F91D' | twemoji"></div>
@@ -10,7 +10,7 @@
     </div>
     <app-search-bar class="mobile-search-bar" *ngIf="hasDelegators" (search)="onSearch($event)"
         (clear)="onClearSearch()"></app-search-bar>
-    <div class="divider"></div>
+    <app-divider></app-divider>
     <div class="table-content" *ngIf="hasDelegators">
         <div class="table-empty-text" *ngIf="!isLoading && !hasResults">End of results.</div>
         <div class="table-container" *ngIf="hasResults" [class.table-container--loading]="isLoading"
@@ -50,9 +50,9 @@
     </div>
     <app-loader class="loader" *ngIf="isLoading && !hasDelegators"></app-loader>
     <div class="table-empty-text" *ngIf="!isLoading && !hasDelegators">The Pillar has no delegators.</div>
-    <div class="divider" *ngIf="hasDelegators"></div>
+    <app-divider *ngIf="hasDelegators"></app-divider>
     <app-page-selector class="page-selector" *ngIf="hasDelegators" [hidePreviousBtn]="activePage === 1"
         [hideNextBtn]="dataSource.data.length < itemsPerPage" (selectNext)="onNextSelected()"
         (selectPrevious)="onPreviousSelected()">
     </app-page-selector>
-</div>
+</app-basic-container>

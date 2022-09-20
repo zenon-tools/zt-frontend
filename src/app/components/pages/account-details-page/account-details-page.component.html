@@ -1,7 +1,7 @@
 <div class="root">
     <div class="page-title text-glow-white">Account details</div>
     <div class="container">
-        <div class="basic-card">
+        <app-basic-container class="basic-info-card">
             <div class="address-header">
                 <div class="address-container">
                     <div class="card-title">
@@ -15,68 +15,19 @@
             </div>
             <div class="info-container">
                 <app-loader class="loader" *ngIf="isLoading"></app-loader>
-                <app-info-card class="info-card" [infoItems]="[
-                {label: 'ZNN balance', value: (((addressDetails?.znnBalance ?? 0) / coinDecimals) | number: '1.0-8') ?? '0'},
-                {label: 'QSR balance', value: (((addressDetails?.qsrBalance ?? 0) / coinDecimals) | number: '1.0-8') ?? '0'},
-                {label: 'USD value', value: '$' + (usdValue | number: '1.0-2'), toolTipText: 'QSR price assumed to be 1/10th of ZNN price.'},
-                {label: 'Fused Plasma', value: ((addressDetails?.fusedQsr ?? 0) / coinDecimals | number: '1.0-8') ?? '0'},
-                {label: 'Account chain height', value: addressDetails?.height?.toString()},
-                {label: 'Public key', value: addressDetails?.publicKey ?? '' | middleEllipsis, fullValue: addressDetails?.publicKey, hoverText: addressDetails?.publicKey, isCopyable: true},
-                ]">
+                <app-info-card [infoItems]="[
+                    {label: 'ZNN balance', value: (((addressDetails?.znnBalance ?? 0) / coinDecimals) | number: '1.0-8') ?? '0'},
+                    {label: 'QSR balance', value: (((addressDetails?.qsrBalance ?? 0) / coinDecimals) | number: '1.0-8') ?? '0'},
+                    {label: 'USD value', value: '$' + (usdValue | number: '1.0-2'), toolTipText: 'QSR price assumed to be 1/10th of ZNN price.'},
+                    {label: 'Fused Plasma', value: ((addressDetails?.fusedQsr ?? 0) / coinDecimals | number: '1.0-8') ?? '0'},
+                    {label: 'Account chain height', value: addressDetails?.height?.toString()},
+                    {label: 'Public key', value: addressDetails?.publicKey ?? '' | middleEllipsis, fullValue: addressDetails?.publicKey, hoverText: addressDetails?.publicKey, isCopyable: true},
+                    ]">
                 </app-info-card>
-                <!-- <div class="info-card" *ngIf="!isLoading">
-                    <div class="info-line">
-                        <div class="info-line-cell">
-                            <div class="label">ZNN balance</div>
-                            <div class="value">
-                                {{(addressDetails?.znnBalance ?? 0) / coinDecimals | number: '1.0-8'}} ZNN
-                            </div>
-                        </div>
-                        <div class="info-line-cell">
-                            <div class="label">QSR balance</div>
-                            <div class="value">
-                                {{(addressDetails?.qsrBalance ?? 0) / coinDecimals | number: '1.0-8'}} QSR
-                            </div>
-                        </div>
-                    </div>
-                    <div class="info-line">
-                        <div class="info-line-cell">
-                            <div class="label">USD value <fa-icon [icon]="faCircleInfo"
-                                    [matTooltipClass]="'tool-tip--normal-word-break'"
-                                    matTooltip="QSR price assumed to be 1/10th of ZNN price.">
-                                </fa-icon>
-                            </div>
-                            <div class="value">${{usdValue | number: '1.0-2'}}</div>
-                        </div>
-                        <div class="info-line-cell">
-                            <div class="label">Fused Plasma</div>
-                            <div class="value">
-                                {{(addressDetails?.fusedQsr ?? 0) / coinDecimals | number: '1.0-8'}} QSR
-                            </div>
-                        </div>
-                    </div>
-                    <div class="info-line">
-                        <div class="info-line-cell">
-                            <div class="label">Account chain height</div>
-                            <div class="value">
-                                {{addressDetails?.height}}
-                            </div>
-                        </div>
-                        <div class="info-line-cell">
-                            <div class="label">Public key</div>
-                            <div *ngIf="addressDetails?.publicKey" (click)="onCopyText(addressDetails?.publicKey ?? '')"
-                                class="value--cursor" [matTooltipClass]="'tool-tip'"
-                                matTooltip={{addressDetails?.publicKey}}>
-                                {{addressDetails?.publicKey ?? '' | middleEllipsis}} <fa-icon [icon]="faCopy"></fa-icon>
-                            </div>
-                            <div *ngIf="!addressDetails?.publicKey">-</div>
-                        </div>
-                    </div>
-                </div> -->
             </div>
-        </div>
+        </app-basic-container>
         <app-participation-card *ngIf="hasParticipationDetails" [participationDetails]="participationDetails">
         </app-participation-card>
-        <app-account-details-table [address]="address"></app-account-details-table>
+        <app-account-details-table class="table" [address]="address"></app-account-details-table>
     </div>
 </div>

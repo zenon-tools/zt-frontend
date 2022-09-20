@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { InfoLineCell } from '../../info-card/info-line-cell/info-line-cell.component';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class ParticipationListItemComponent implements OnInit {
     @Input() detailLeft: any = '';
     @Input() detailRight: any = '';
     @Input() apr: string = '';
-    @Input() infoItems: Array<any> = [];
+    @Input() infoItems: Array<InfoLineCell> = [];
 
     faChevronDown = faChevronDown;
 

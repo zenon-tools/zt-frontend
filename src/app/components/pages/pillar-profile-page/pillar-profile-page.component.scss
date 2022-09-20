@@ -24,7 +24,7 @@
     }
 }
 
-.basic-card {
+.card {
     width: variables.$content-width-basic;
 
     .header {
@@ -123,7 +123,6 @@
                 align-items: center;
                 justify-content: space-between;
                 gap: variables.$spacing-s;
-                flex: 1;
                 padding: variables.$spacing-m variables.$spacing-l variables.$spacing-m variables.$spacing-l;
 
                 :first-child {
@@ -162,9 +161,16 @@
     }
 }
 
-.info-line {
-    margin-left: variables.$spacing-l;
-    margin-right: variables.$spacing-l;
+app-pillar-reward-share-table {
+    width: variables.$content-width-basic;
+}
+
+app-pillar-voting-table {
+    width: variables.$content-width-basic;
+}
+
+app-pillar-delegator-table {
+    width: variables.$content-width-basic;
 }
 
 .loader-container {
@@ -184,14 +190,13 @@
         gap: variables.$spacing-xl;
     }
 
-    .basic-card {
+    .card {
         align-items: center;
         width: calc(99.5vw - 2rem);
 
         .header {
             display: flex;
             padding: variables.$spacing-l variables.$spacing-l variables.$spacing-xs variables.$spacing-l;
-            width: 100%;
             justify-content: center;
 
             fa-icon {
@@ -231,14 +236,10 @@
         }
 
         .additional-info {
-            align-items: center;
-            width: 100%;
-
             .delegation-apr-card {
-                flex: 1;
-                flex-direction: column !important;
                 gap: variables.$spacing-m !important;
                 padding: variables.$spacing-m 0 variables.$spacing-m 0 !important;
+                justify-content: center !important;
 
                 :first-child {
                     flex-direction: column;
@@ -252,21 +253,15 @@
         }
     }
 
-    .info-card {
-        width: 100%;
-        gap: variables.$spacing-l;
-        padding: variables.$spacing-m 0 variables.$spacing-m 0;
-        margin-left: variables.$spacing-l;
-        margin-right: variables.$spacing-l;
-        flex-direction: column;
+    app-pillar-reward-share-table {
+        width: calc(99.5vw - 2rem);
+    }
 
-        .info-line {
-            gap: variables.$spacing-l;
-            flex-direction: column;
+    app-pillar-voting-table {
+        width: calc(99.5vw - 2rem);
+    }
 
-            .info-line-cell {
-                width: 100%;
-            }
-        }
+    app-pillar-delegator-table {
+        width: calc(99.5vw - 2rem);
     }
 }

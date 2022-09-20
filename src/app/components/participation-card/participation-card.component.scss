@@ -1,9 +1,7 @@
 @use "../../../assets/variables.scss";
 @use "../../../assets/styles/components.scss";
 
-.basic-card {
-    width: variables.$content-width-basic;
-
+.card {
     .header {
         display: flex;
         justify-content: space-between;
@@ -39,7 +37,7 @@
 }
 
 @media only screen and (max-width: variables.$screen-width-threshold) {
-    .basic-card {
+    .card {
         width: calc(99.5vw - 2rem);
 
         .header {

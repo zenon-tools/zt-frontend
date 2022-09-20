@@ -26,9 +26,10 @@
         padding-right: 2rem;
         align-items: center;
         gap: variables.$spacing-xl;
+        width: variables.$content-width-basic;
 
-        .basic-card {
-            width: variables.$content-width-basic;
+        .basic-info-card {
+            width: inherit;
             margin: 0 variables.$spacing-xl 0 variables.$spacing-xl;
 
             .address-header {
@@ -81,6 +82,14 @@
                 }
             }
         }
+
+        app-participation-card {
+            width: inherit;
+        }
+
+        app-account-details-table {
+            width: inherit;
+        }
     }
 }
 
@@ -98,7 +107,7 @@
         gap: variables.$spacing-l !important;
         width: calc(99.5vw - 2rem) !important;
 
-        .basic-card {
+        .basic-info-card {
             width: calc(99.5vw - 2rem) !important;
 
             .address-header {
@@ -109,7 +118,6 @@
                     width: calc(99.5vw - 2rem) !important;
 
                     .card-title {
-
                         .desktop-address {
                             display: none;
                         }

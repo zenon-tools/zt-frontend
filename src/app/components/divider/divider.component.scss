@@ -1,0 +1,6 @@
+@use "../../../assets/variables.scss";
+
+.divider {
+    height: 1px;
+    background-color: variables.$border-green;
+}

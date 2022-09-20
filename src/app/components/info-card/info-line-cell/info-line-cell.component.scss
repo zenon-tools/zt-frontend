@@ -15,14 +15,22 @@
     }
 
     .value {
+        display: flex;
         font-size: variables.$font-xs;
         font-weight: bold;
         text-align: right;
         white-space: nowrap;
+        align-items: center;
 
         a {
             font-size: inherit;
             font-weight: inherit;
+        }
+
+        .emoji {
+            height: variables.$font-m;
+            width: variables.$font-m;
+            padding-right: variables.$spacing-s;
         }
 
         &--cursor {
@@ -41,5 +49,12 @@
             width: variables.$font-m;
             padding-right: variables.$spacing-s;
         }
+    }
+}
+
+@media only screen and (max-width: variables.$screen-width-threshold) {
+    .info-line-cell {
+        width: 100%;
+        gap: variables.$spacing-s !important;
     }
 }

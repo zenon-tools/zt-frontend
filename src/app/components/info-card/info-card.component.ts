@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { InfoItem } from './info-item-table/info-item-table.component';
+import { InfoLineCell } from './info-line-cell/info-line-cell.component';
 
 @Component({
   selector: 'app-info-card',
@@ -7,7 +7,7 @@ import { InfoItem } from './info-item-table/info-item-table.component';
   styleUrls: ['./info-card.component.scss']
 })
 export class InfoCardComponent implements OnInit {
-  @Input() infoItems: Array<InfoItem> = [];
+  @Input() infoItems: Array<InfoLineCell> = [];
 
   constructor() { }
 
