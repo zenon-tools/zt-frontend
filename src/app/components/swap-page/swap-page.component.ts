@@ -21,12 +21,19 @@ export class SwapPageComponent implements OnInit {
     faCalculator = faCalculator;
     faBridgeWater = faBridgeWater;
 
+    isFirefox = false;
+
     pcsUrl: string =
         'https://pancakeswap.finance/swap?inputCurrency=BNB&outputCurrency=0x84b174628911896a3b87Fa6980D05Dbc2eE74836&chainId=56';
 
     constructor() {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        // NOTE: Use flag to fix Firefox related styling issues
+        if (navigator.userAgent.indexOf('Firefox') != -1) {
+            this.isFirefox = true;
+        }
+    }
 
     openLink(url: string) {
         window.open(url, '_blank');
