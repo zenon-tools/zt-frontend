@@ -60,4 +60,15 @@ export default class Common {
                 return returnAddress ? address : '';
         }
     }
+
+    static initiateCsvDownload(fileName: string, content: string) {
+        const link = document.createElement('a');
+        link.setAttribute(
+            'href',
+            'data:text/csv;charset=utf-8,' + encodeURIComponent(content)
+        );
+        link.setAttribute('download', fileName);
+        link.click();
+        link.remove();
+    }
 }

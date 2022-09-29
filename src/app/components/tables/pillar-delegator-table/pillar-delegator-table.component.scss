@@ -4,22 +4,34 @@
 .basic-card {
     width: variables.$content-width-basic;
 
-    .title-icon {
-        height: 1.4rem;
-        width: 1.4rem;
-    }
+    .title-container {
 
-    .count-and-search {
-        display: flex;
-        align-items: center;
-        gap: variables.$spacing-m;
-        margin-left: auto;
+        .title-icon {
+            height: 1.4rem;
+            width: 1.4rem;
+        }
 
-        .count {
-            font-size: variables.$font-s;
-            color: variables.$white-70;
-            flex: 1;
-            text-align: end;
+        .count-and-search {
+            display: flex;
+            align-items: center;
+            gap: variables.$spacing-m;
+            margin-left: auto;
+
+            .count {
+                font-size: variables.$font-s;
+                color: variables.$white-70;
+                flex: 1;
+                text-align: end;
+            }
+        }
+
+        fa-icon {
+            opacity: 0.7;
+
+            &:hover {
+                cursor: pointer;
+                opacity: 1;
+            }
         }
     }
 

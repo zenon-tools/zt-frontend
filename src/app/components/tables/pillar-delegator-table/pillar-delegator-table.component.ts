@@ -7,8 +7,9 @@ import {
     Delegators,
 } from 'src/app/services/zenon-tools-api/interfaces/delegator';
 import { ZenonToolsApiService } from 'src/app/services/zenon-tools-api/zenon-tools-api.service';
-import { faCopy } from '@fortawesome/free-solid-svg-icons';
+import { faCopy, faDownload } from '@fortawesome/free-solid-svg-icons';
 import { Clipboard } from '@angular/cdk/clipboard';
+import Common from 'src/app/utils/common';
 
 export interface DelegatorRow {
     address: string;
@@ -30,6 +31,7 @@ export class PillarDelegatorTableComponent implements OnInit {
     @Input() withdrawAddress!: string;
 
     faCopy = faCopy;
+    faDownload = faDownload;
 
     coinDecimals: number = 100000000;
 
@@ -101,6 +103,27 @@ export class PillarDelegatorTableComponent implements OnInit {
 
     onCopyText(text: string) {
         this.clipboard.copy(text);
+    }
+
+    onDownloadSelected() {
+        if (this.delegators != null && this.delegators.length > 0) {
+            let csv =
+                'Address,Weight (ZNN),Share (%),Delegation Start (UNIX)\n';
+            for (const d of this.delegators) {
+                const share = Math.min(
+                    (d.delegationAmount / this.totalWeight) * 100,
+                    100
+                );
+                csv += `${d.address},${(
+                    d.delegationAmount / this.coinDecimals
+                ).toFixed(8)},${share.toFixed(2)},${
+                    d.delegationStartTimestamp
+                }\n`;
+            }
+            const timestamp = Math.floor(new Date().getTime() / 1000);
+            const fileName = `delegators_${this.pillarName}_${timestamp}.csv`;
+            Common.initiateCsvDownload(fileName, csv);
+        }
     }
 
     private updateDataSource() {
