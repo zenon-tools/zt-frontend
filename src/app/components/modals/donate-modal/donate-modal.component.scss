@@ -1,7 +1,6 @@
 @use "../../../../assets/variables.scss";
 
 .container {
-    border-radius: variables.$radius-m;
     width: 32rem;
     background: variables.$tertiary-grey;
     display: flex;

@@ -36,10 +36,6 @@
         }
 
         .goal-card-container {
-            background: linear-gradient(90deg, variables.$primary-grey, #1e1e1e, variables.$primary-grey);
-            border-radius: variables.$radius-m;
-            filter: drop-shadow(0 0 0.8em #00000040);
-            border: 1px solid variables.$border-green;
             width: 100%;
 
             .goal-card {
@@ -79,55 +75,54 @@
         gap: variables.$spacing-m;
         width: 100%;
 
-        .donation-card {
-            background: linear-gradient(90deg, variables.$primary-grey, #1e1e1e, variables.$primary-grey);
-            border-radius: variables.$radius-m;
-            filter: drop-shadow(0 0 0.8em #00000040);
-            border: 1px solid variables.$border-green;
-            padding: variables.$spacing-l variables.$spacing-m variables.$spacing-l variables.$spacing-m;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        app-basic-container {
             flex: 1;
-            gap: variables.$spacing-m;
 
-            .label {
-                font-weight: bold;
-                font-size: variables.$font-m;
-                padding: 0 variables.$spacing-s 0 variables.$spacing-s;
-                text-align: center;
-            }
+            .donation-card {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: variables.$spacing-m;
+                padding: variables.$spacing-l variables.$spacing-m variables.$spacing-l variables.$spacing-m;
 
-            .description {
-                font-size: variables.$font-xs;
-                color: variables.$white-70;
-                text-align: center;
-                line-height: 1.6rem;
-            }
+                .label {
+                    font-weight: bold;
+                    font-size: variables.$font-m;
+                    padding: 0 variables.$spacing-s 0 variables.$spacing-s;
+                    text-align: center;
+                }
 
-            img {
-                border-radius: variables.$radius-m;
-                height: 5em;
-                margin-top: variables.$spacing-m;
-                margin-bottom: variables.$spacing-m;
-                border: 1px solid variables.$border-green;
-                filter: drop-shadow(0 0 1.8em #ffffff12);
-            }
+                .description {
+                    font-size: variables.$font-xs;
+                    color: variables.$white-70;
+                    text-align: center;
+                    line-height: 1.6rem;
+                }
 
-            .button {
-                padding: variables.$spacing-m variables.$spacing-l variables.$spacing-m variables.$spacing-l;
-                font-size: variables.$font-xs;
-                font-weight: bold;
-                color: white;
-                background-color: variables.$secondary-green;
-                border-radius: variables.$radius-s;
-                filter: drop-shadow(0 0 0.8em #00000040);
-                width: 60%;
-                text-align: center;
+                img {
+                    border-radius: variables.$radius-m;
+                    height: 5em;
+                    margin-top: variables.$spacing-m;
+                    margin-bottom: variables.$spacing-m;
+                    border: 1px solid variables.$border-green;
+                    filter: drop-shadow(0 0 1.8em #ffffff12);
+                }
 
-                &:hover {
-                    cursor: pointer;
-                    background-color: variables.$secondary-green-hover;
+                .button {
+                    padding: variables.$spacing-m variables.$spacing-l variables.$spacing-m variables.$spacing-l;
+                    font-size: variables.$font-xs;
+                    font-weight: bold;
+                    color: white;
+                    background-color: variables.$secondary-green;
+                    border-radius: variables.$radius-s;
+                    filter: drop-shadow(0 0 0.8em #00000040);
+                    width: 60%;
+                    text-align: center;
+
+                    &:hover {
+                        cursor: pointer;
+                        background-color: variables.$secondary-green-hover;
+                    }
                 }
             }
         }
@@ -150,7 +145,6 @@
             align-items: center;
             gap: variables.$spacing-xl;
             width: 100%;
-     
 
             .title-container {
                 display: flex;
@@ -158,12 +152,12 @@
                 align-items: center;
                 gap: variables.$spacing-m;
                 text-align: center;
-    
+
                 .title {
                     font-size: variables.$font-xl;
                     font-weight: bold;
                 }
-    
+
                 .description {
                     font-size: variables.$font-s;
                     line-height: 1.6rem;
@@ -177,10 +171,11 @@
             gap: variables.$spacing-l;
             width: 100%;
 
-            .donation-card {
-    
-                img {
-                    margin-top: variables.$spacing-s;
+            app-basic-container {
+                .donation-card {
+                    img {
+                        margin-top: variables.$spacing-s;
+                    }
                 }
             }
         }
