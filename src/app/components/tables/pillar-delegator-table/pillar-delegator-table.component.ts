@@ -26,7 +26,6 @@ export interface DelegatorRow {
 })
 export class PillarDelegatorTableComponent implements OnInit {
     @Input() pillarName!: string;
-    @Input() totalWeight!: number;
     @Input() ownerAddress!: string;
     @Input() withdrawAddress!: string;
 
@@ -107,11 +106,12 @@ export class PillarDelegatorTableComponent implements OnInit {
 
     onDownloadSelected() {
         if (this.delegators != null && this.delegators.length > 0) {
+            const totalWeight = this.calculateTotalWeight();
             let csv =
                 'Address,Weight (ZNN),Share (%),Delegation Start (UNIX)\n';
             for (const d of this.delegators) {
                 const share = Math.min(
-                    (d.delegationAmount / this.totalWeight) * 100,
+                    (d.delegationAmount / totalWeight) * 100,
                     100
                 );
                 csv += `${d.address},${(
@@ -136,6 +136,7 @@ export class PillarDelegatorTableComponent implements OnInit {
                 startIndex,
                 startIndex + this.itemsPerPage
             ) ?? [];
+        const totalWeight = this.calculateTotalWeight();
         this.hasResults = delegatorsToShow.length > 0;
         this.dataSource.data = delegatorsToShow.map(
             (delegator: Delegator, index: number): DelegatorRow => ({
@@ -143,7 +144,7 @@ export class PillarDelegatorTableComponent implements OnInit {
                 delegationAmount:
                     delegator.delegationAmount / this.coinDecimals,
                 share: Math.min(
-                    (delegator.delegationAmount / this.totalWeight) * 100,
+                    (delegator.delegationAmount / totalWeight) * 100,
                     100
                 ),
                 delegationStartTimestamp: delegator.delegationStartTimestamp,
@@ -151,6 +152,14 @@ export class PillarDelegatorTableComponent implements OnInit {
                     delegator.address == this.ownerAddress ||
                     delegator.address == this.withdrawAddress,
             })
+        );
+    }
+
+    private calculateTotalWeight() {
+        return (
+            this.delegators?.reduce((acc, e) => {
+                return acc + e.delegationAmount;
+            }, 1) ?? 1
         );
     }
 }
