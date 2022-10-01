@@ -29,23 +29,23 @@ export default class Common {
     static tryGetAddressLabel(address: string, returnAddress: boolean = false) {
         switch (address) {
             case 'z1qxemdeddedxplasmaxxxxxxxxxxxxxxxxsctrp':
-                return 'Plasma Smart Contract';
+                return 'Plasma Contract';
             case 'z1qxemdeddedxpyllarxxxxxxxxxxxxxxxsy3fmg':
-                return 'Pillar Smart Contract';
+                return 'Pillar Contract';
             case 'z1qxemdeddedxt0kenxxxxxxxxxxxxxxxxh9amk0':
-                return 'Token Smart Contract';
+                return 'Token Contract';
             case 'z1qxemdeddedxsentynelxxxxxxxxxxxxxwy0r2r':
-                return 'Sentinel Smart Contract';
+                return 'Sentinel Contract';
             case 'z1qxemdeddedxswapxxxxxxxxxxxxxxxxxxl4yww':
-                return 'Swap Smart Contract';
+                return 'Swap Contract';
             case 'z1qxemdeddedxstakexxxxxxxxxxxxxxxxjv8v62':
-                return 'Stake Smart Contract';
+                return 'Stake Contract';
             case 'z1qxemdeddedxsp0rkxxxxxxxxxxxxxxxx956u48':
-                return 'Spork Smart Contract';
+                return 'Spork Contract';
             case 'z1qxemdeddedxaccelerat0rxxxxxxxxxxp4tk22':
-                return 'Accelerator-Z Smart Contract';
+                return 'Accelerator-Z Contract';
             case 'z1qxemdeddedxlyquydytyxxxxxxxxxxxxflaaae':
-                return 'Liquidity Smart Contract';
+                return 'Liquidity Contract';
             case 'z1qzlytaqdahg5t02nz5096frflfv7dm3y7yxmg7':
                 return 'Binance Smart Chain Bridge';
             case 'z1qqw8f3qxx9zg92xgckqdpfws3dw07d26afsj74':
