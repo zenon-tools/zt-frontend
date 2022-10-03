@@ -83,7 +83,7 @@
         [currentDelegateRewardShare]="pillar?.giveDelegateRewardPercentage ?? 0">
     </app-pillar-reward-share-table>
     <app-pillar-voting-table [pillarName]="pillarName"></app-pillar-voting-table>
-    <app-pillar-delegator-table [pillarName]="pillarName" [totalWeight]="pillar?.weight ?? 1"
-        [ownerAddress]="pillarProfile?.ownerAddress ?? ''" [withdrawAddress]="pillarProfile?.withdrawAddress ?? ''">
+    <app-pillar-delegator-table [pillarName]="pillarName" [ownerAddress]="pillarProfile?.ownerAddress ?? ''"
+        [withdrawAddress]="pillarProfile?.withdrawAddress ?? ''">
     </app-pillar-delegator-table>
 </div>
