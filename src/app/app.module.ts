@@ -58,6 +58,7 @@ import { DonationsPageComponent } from './components/pages/donations-page/donati
 import { ContributorTableComponent } from './components/tables/contributor-table/contributor-table.component';
 import { DonateModalComponent } from './components/modals/donate-modal/donate-modal.component';
 import { AccountDetailsPageComponent } from './components/pages/account-details-page/account-details-page.component';
+import { SwapPageComponent } from './components/swap-page/swap-page.component';
 import { AcccountDetailsTableComponent } from './components/tables/account-details-table/account-details-table.component';
 import { TransactionsTableComponent } from './components/tables/account-details-table/transactions-table/transactions-table.component';
 import { TableTabSelectorComponent } from './components/input/table-tab-selector/table-tab-selector.component';
@@ -121,6 +122,7 @@ import { DividerComponent } from './components/divider/divider.component';
         DonationsPageComponent,
         ContributorTableComponent,
         DonateModalComponent,
+        SwapPageComponent,
         AccountDetailsPageComponent,
         AcccountDetailsTableComponent,
         TransactionsTableComponent,
@@ -137,6 +139,7 @@ import { DividerComponent } from './components/divider/divider.component';
         ContextContainerComponent,
         BasicContainerComponent,
         DividerComponent,
+        SwapPageComponent,
     ],
     imports: [
         BrowserModule,

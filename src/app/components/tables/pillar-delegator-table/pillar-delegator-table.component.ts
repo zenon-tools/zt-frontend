@@ -7,8 +7,9 @@ import {
     Delegators,
 } from 'src/app/services/zenon-tools-api/interfaces/delegator';
 import { ZenonToolsApiService } from 'src/app/services/zenon-tools-api/zenon-tools-api.service';
-import { faCopy } from '@fortawesome/free-solid-svg-icons';
+import { faCopy, faDownload } from '@fortawesome/free-solid-svg-icons';
 import { Clipboard } from '@angular/cdk/clipboard';
+import Common from 'src/app/utils/common';
 
 export interface DelegatorRow {
     address: string;
@@ -25,11 +26,11 @@ export interface DelegatorRow {
 })
 export class PillarDelegatorTableComponent implements OnInit {
     @Input() pillarName!: string;
-    @Input() totalWeight!: number;
     @Input() ownerAddress!: string;
     @Input() withdrawAddress!: string;
 
     faCopy = faCopy;
+    faDownload = faDownload;
 
     coinDecimals: number = 100000000;
 
@@ -103,6 +104,28 @@ export class PillarDelegatorTableComponent implements OnInit {
         this.clipboard.copy(text);
     }
 
+    onDownloadSelected() {
+        if (this.delegators != null && this.delegators.length > 0) {
+            const totalWeight = this.calculateTotalWeight();
+            let csv =
+                'Address,Weight (ZNN),Share (%),Delegation Start (UNIX)\n';
+            for (const d of this.delegators) {
+                const share = Math.min(
+                    (d.delegationAmount / totalWeight) * 100,
+                    100
+                );
+                csv += `${d.address},${(
+                    d.delegationAmount / this.coinDecimals
+                ).toFixed(8)},${share.toFixed(2)},${
+                    d.delegationStartTimestamp
+                }\n`;
+            }
+            const timestamp = Math.floor(new Date().getTime() / 1000);
+            const fileName = `delegators_${this.pillarName}_${timestamp}.csv`;
+            Common.initiateCsvDownload(fileName, csv);
+        }
+    }
+
     private updateDataSource() {
         const startIndex = (this.activePage - 1) * this.itemsPerPage;
         const filteredDelegators = this.delegators?.filter((item) =>
@@ -113,6 +136,7 @@ export class PillarDelegatorTableComponent implements OnInit {
                 startIndex,
                 startIndex + this.itemsPerPage
             ) ?? [];
+        const totalWeight = this.calculateTotalWeight();
         this.hasResults = delegatorsToShow.length > 0;
         this.dataSource.data = delegatorsToShow.map(
             (delegator: Delegator, index: number): DelegatorRow => ({
@@ -120,7 +144,7 @@ export class PillarDelegatorTableComponent implements OnInit {
                 delegationAmount:
                     delegator.delegationAmount / this.coinDecimals,
                 share: Math.min(
-                    (delegator.delegationAmount / this.totalWeight) * 100,
+                    (delegator.delegationAmount / totalWeight) * 100,
                     100
                 ),
                 delegationStartTimestamp: delegator.delegationStartTimestamp,
@@ -128,6 +152,14 @@ export class PillarDelegatorTableComponent implements OnInit {
                     delegator.address == this.ownerAddress ||
                     delegator.address == this.withdrawAddress,
             })
+        );
+    }
+
+    private calculateTotalWeight() {
+        return (
+            this.delegators?.reduce((acc, e) => {
+                return acc + e.delegationAmount;
+            }, 1) ?? 1
         );
     }
 }

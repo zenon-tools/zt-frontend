@@ -6,6 +6,8 @@
             <div class="count">{{delegators?.length ?? 0}} in total</div>
             <app-search-bar *ngIf="hasDelegators" class="search-bar" (search)="onSearch($event)"
                 (clear)="onClearSearch()"></app-search-bar>
+            <fa-icon *ngIf="hasDelegators" (click)="onDownloadSelected()" [icon]="faDownload"
+                matTooltip='Export as CSV'></fa-icon>
         </div>
     </div>
     <app-search-bar class="mobile-search-bar" *ngIf="hasDelegators" (search)="onSearch($event)"

@@ -264,3 +264,19 @@ fa-icon.green path {
     width: 90%;
   }
 }
+
+.button {
+  padding: variables.$spacing-m variables.$spacing-l variables.$spacing-m variables.$spacing-l;
+  font-size: variables.$font-xs;
+  font-weight: bold;
+  color: white;
+  background-color: variables.$secondary-green;
+  border-radius: variables.$radius-s;
+  filter: drop-shadow(0 0 0.8em #00000040);
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+    background-color: variables.$secondary-green-hover;
+  }
+}

@@ -10,6 +10,7 @@ import { PillarProfileManagementPageComponent } from './components/pages/pillar-
 import { PillarProfilePageComponent } from './components/pages/pillar-profile-page/pillar-profile-page.component';
 import { PillarsPageComponent } from './components/pages/pillars-page/pillars-page.component';
 import { ProjectPageComponent } from './components/pages/project-page/project-page.component';
+import { SwapPageComponent } from './components/swap-page/swap-page.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'overview', pathMatch: 'full' },
@@ -56,6 +57,10 @@ const routes: Routes = [
     {
         path: 'donate',
         component: DonationsPageComponent,
+    },
+    {
+        path: 'swap',
+        component: SwapPageComponent,
     },
 ];
 
