@@ -9,7 +9,7 @@
         <app-basic-container class="table-card">
             <div class="table-container" [class.table-container--loading]="isLoading"
                 [class.table-container--hidden]="!hasItems">
-                <table *ngIf="hasItems" mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort
+                <table *ngIf="hasItems" mat-table [dataSource]="dataSource" matSort
                     matSortStart="desc">
                     <ng-container matColumnDef="address">
                         <th mat-header-cell *matHeaderCellDef>Address</th>

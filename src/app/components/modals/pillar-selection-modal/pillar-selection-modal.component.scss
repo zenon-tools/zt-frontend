@@ -3,7 +3,7 @@
 .container {
     border-radius: variables.$radius-m;
     height: 80vh;
-    width: 34em;
+    width: 34rem;
     background: linear-gradient(90deg, #1b1b1b, #1f1f1f, #1b1b1b);
     display: flex;
     flex-direction: column;
@@ -32,7 +32,7 @@
     margin-left: variables.$spacing-l;
     margin-right: variables.$spacing-l;
     margin-bottom: variables.$spacing-l;
-    height: 3.5em;
+    height: 3.5rem;
 
     &::placeholder {
         color: variables.$white-70;
@@ -51,7 +51,7 @@
     justify-content: space-between;
     align-items: center;
 
-    height: 2.8em;
+    height: 2.8rem;
     padding-left: variables.$spacing-l;
     padding-right: variables.$spacing-l;
 

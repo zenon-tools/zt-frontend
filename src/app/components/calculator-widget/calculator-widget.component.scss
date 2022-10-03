@@ -2,20 +2,13 @@
 @use "../../../assets/styles/components.scss";
 
 .container {
-    display: flex;
-    background: linear-gradient(90deg, variables.$primary-grey, #1e1e1e, variables.$primary-grey);
-    border-radius: variables.$radius-m;
-    flex-direction: column;
-    width: 35em;
-    filter: drop-shadow(0 0.8em 0.3em #0000001c);
-    overflow: hidden;
-    padding-bottom: variables.$spacing-l;
-    border: 1px solid variables.$border-green;
+    width: 35rem;
 }
 
 .content {
     display: flex;
     flex-direction: column;
+    padding-bottom: variables.$spacing-l;
 }
 
 .scroll {
@@ -25,14 +18,14 @@
 
 .header {
     display: flex;
-    height: 3.8em;
+    height: 3.8rem;
     align-items: center;
     justify-content: space-between;
     padding-left: variables.$spacing-l;
     padding-right: variables.$spacing-l;
     background-color: variables.$tertiary-grey;
 
-    filter: drop-shadow(0 0.3em 0.3em #00000020);
+    filter: drop-shadow(0 0.3rem 0.3rem #00000020);
 
     .title {
         font-size: variables.$font-m;
@@ -46,8 +39,8 @@
             align-items: center;
             justify-content: center;
             background-color: transparent;
-            width: 2em;
-            height: 2em;
+            width: 2rem;
+            height: 2rem;
             border-radius: variables.$radius-s;
             transition: variables.$animation-duration variables.$animation-curve;
 
@@ -133,8 +126,8 @@
     gap: variables.$spacing-m;
     position: relative;
 
-    div:first-child {
-        font-size: variables.$font-l;
+    .title {
+        font-size: variables.$font-m;
         font-weight: bold;
         max-width: 80%;
     }
@@ -145,15 +138,19 @@
     justify-content: center;
     align-items: center;
     border-radius: variables.$radius-s;
-    height: 3.4em;
+    height: 3.4rem;
     background-color: variables.$tertiary-grey;
-    font-size: variables.$font-xs;
     padding-left: variables.$spacing-xl;
     padding-right: calc(variables.$spacing-xl - 8px);
     gap: variables.$spacing-xs;
     align-self: start;
     transition: variables.$animation-duration variables.$animation-curve;
     filter: drop-shadow(0 0 0.5em #00000072);
+
+    div {
+        font-size: variables.$font-s;
+        font-weight: bold;
+    }
 
     fa-icon {
         margin-left: variables.$spacing-s;
@@ -239,6 +236,11 @@
     }
 
     .inputs {
+        padding-left: variables.$spacing-m;
+        padding-right: variables.$spacing-m;
+    }
+
+    .price-inputs {
         padding-left: variables.$spacing-m;
         padding-right: variables.$spacing-m;
     }

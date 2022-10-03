@@ -15,6 +15,7 @@ import {
     Subject,
     switchMap,
     take,
+    shareReplay,
 } from 'rxjs';
 import { RewardCalculatorService } from 'src/app/services/reward-calculator/reward-calculator.service';
 import { ZenonToolsApiService } from 'src/app/services/zenon-tools-api/zenon-tools-api.service';
@@ -112,7 +113,8 @@ export class CalculatorWidgetComponent implements OnInit {
             return useCustomPrices
                 ? this.customPricesSubject$
                 : this.currentPricesSubject$;
-        })
+        }),
+        shareReplay(1)
     );
 
     public stakingRewards$ = combineLatest([
@@ -266,6 +268,21 @@ export class CalculatorWidgetComponent implements OnInit {
                                 );
                                 break;
                         }
+
+                        if (
+                            queryParams['znnPrice'] ||
+                            queryParams['qsrPrice']
+                        ) {
+                            const prices: Prices = { znn: 0, qsr: 0 };
+                            if (queryParams['znnPrice']) {
+                                prices.znn = Number(queryParams['znnPrice']);
+                            }
+                            if (queryParams['qsrPrice']) {
+                                prices.qsr = Number(queryParams['qsrPrice']);
+                            }
+                            this.useCustomPricesSubject$.next(true);
+                            this.customPricesSubject$.next(prices);
+                        }
                     }
                 });
         }
@@ -296,25 +313,48 @@ export class CalculatorWidgetComponent implements OnInit {
 
     onParticipationTypeChanged(item: DropdownItem) {
         if (this.useRoutes) {
-            switch (item.type) {
-                case ParticipationType.Stake:
-                    this.router.navigate(['/calculator', 'stake']);
-                    break;
-                case ParticipationType.Delegation:
-                    this.router.navigate(['/calculator', 'delegation']);
-                    break;
-                case ParticipationType.Liquidity:
-                    this.router.navigate(['/calculator', 'liquidity']);
-                    break;
-                case ParticipationType.Sentinel:
-                    this.router.navigate(['/calculator', 'sentinel']);
-                    break;
-                case ParticipationType.Pillar:
-                    this.router.navigate(['/calculator', 'pillar']);
-                    break;
+            if (this.useCustomPricesSubject$.value) {
+                this.pricesToUse$.pipe(take(1)).subscribe((prices: Prices) => {
+                    this.navigateByParticipation(item.type, {
+                        znnPrice: prices.znn,
+                        qsrPrice: prices.qsr,
+                    });
+                });
+            } else {
+                this.navigateByParticipation(item.type);
             }
         } else {
             this.participationTypeSubject$.next(item.type);
+        }
+    }
+
+    navigateByParticipation(type: ParticipationType, queryParams = {}) {
+        switch (type) {
+            case ParticipationType.Stake:
+                this.router.navigate(['/calculator', 'stake'], {
+                    queryParams: queryParams,
+                });
+                break;
+            case ParticipationType.Delegation:
+                this.router.navigate(['/calculator', 'delegation'], {
+                    queryParams: queryParams,
+                });
+                break;
+            case ParticipationType.Liquidity:
+                this.router.navigate(['/calculator', 'liquidity'], {
+                    queryParams: queryParams,
+                });
+                break;
+            case ParticipationType.Sentinel:
+                this.router.navigate(['/calculator', 'sentinel'], {
+                    queryParams: queryParams,
+                });
+                break;
+            case ParticipationType.Pillar:
+                this.router.navigate(['/calculator', 'pillar'], {
+                    queryParams: queryParams,
+                });
+                break;
         }
     }
 
@@ -327,15 +367,33 @@ export class CalculatorWidgetComponent implements OnInit {
 
         if (this.useRoutes) {
             this.pillars$.pipe(take(1)).subscribe((pillars: Pillars) => {
-                this.router.navigate([], {
-                    relativeTo: this.route,
-                    queryParams: {
-                        pillar: this.pillarAddressToName(
-                            pillars,
-                            inputs.pillar
-                        ),
-                    },
-                });
+                if (this.useCustomPricesSubject$.value) {
+                    this.pricesToUse$
+                        .pipe(take(1))
+                        .subscribe((prices: Prices) => {
+                            this.router.navigate([], {
+                                relativeTo: this.route,
+                                queryParams: {
+                                    pillar: this.pillarAddressToName(
+                                        pillars,
+                                        inputs.pillar
+                                    ),
+                                    znnPrice: prices.znn,
+                                    qsrPrice: prices.qsr,
+                                },
+                            });
+                        });
+                } else {
+                    this.router.navigate([], {
+                        relativeTo: this.route,
+                        queryParams: {
+                            pillar: this.pillarAddressToName(
+                                pillars,
+                                inputs.pillar
+                            ),
+                        },
+                    });
+                }
             });
         }
     }

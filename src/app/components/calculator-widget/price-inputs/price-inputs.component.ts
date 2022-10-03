@@ -4,8 +4,6 @@ import {
     Component,
     ElementRef,
     EventEmitter,
-    Input,
-    OnInit,
     Output,
     ViewChild,
 } from '@angular/core';
@@ -16,11 +14,9 @@ import {
     first,
     fromEvent,
     map,
-    Observable,
     startWith,
     Subject,
     switchMap,
-    tap,
 } from 'rxjs';
 import { ZenonToolsApiService } from 'src/app/services/zenon-tools-api/zenon-tools-api.service';
 import { Prices } from '../calculator-widget.component';
