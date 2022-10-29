@@ -55,10 +55,6 @@
 
 // Mobile screen
 @media only screen and (max-width: variables.$screen-width-threshold) {
-/*     .basic-card {
-        width: calc(99.5vw - 2rem);
-    }
- */
     .table-container {
         overflow-x: auto;
         width: 100%;

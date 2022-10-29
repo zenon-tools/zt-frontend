@@ -115,7 +115,7 @@
     margin-left: variables.$spacing-l;
     margin-right: variables.$spacing-l;
     background: linear-gradient(45deg, #378991, #7ea3a8);
-    filter: drop-shadow(0 0.8em 0.3em #0000001c);
+    filter: drop-shadow(0 0.8rem 0.3rem #0000001c);
     clip-path: inset(0 0 0 0);
 }
 
@@ -138,7 +138,7 @@
     justify-content: center;
     align-items: center;
     border-radius: variables.$radius-s;
-    height: 3.4rem;
+    height: 2.8rem;
     background-color: variables.$tertiary-grey;
     padding-left: variables.$spacing-xl;
     padding-right: calc(variables.$spacing-xl - 8px);
