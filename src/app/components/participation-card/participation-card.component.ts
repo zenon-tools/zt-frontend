@@ -63,12 +63,20 @@ export class ParticipationCardComponent implements OnChanges {
 
     currencyToUse: keyof CurrentPrice = 'usd';
 
-    currentZnnPrice$ = this.marketApiService.currentZnnPrice$.pipe(
+    /* currentZnnPrice$ = this.marketApiService.currentZnnPrice$.pipe(
         map((i) => i[this.currencyToUse])
     );
 
     currentQsrPrice$ = this.marketApiService.currentZnnPrice$.pipe(
         map((i) => i[this.currencyToUse] / 10)
+    ); */
+
+    currentZnnPrice$ = this.zenonToolsApiService.nomData$.pipe(
+        map((nom) => nom.znnPriceUsd)
+    );
+
+    currentQsrPrice$ = this.zenonToolsApiService.nomData$.pipe(
+        map((nom) => nom.qsrPriceUsd)
     );
 
     currentZnnPrice: number = 0;

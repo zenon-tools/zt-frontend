@@ -22,7 +22,6 @@ export class AppComponent implements OnInit {
             this.zenonToolsApiService.pcsPoolData$,
             this.zenonToolsApiService.pillars$,
             this.zenonToolsApiService.pillarsOffChainInfo$,
-            this.marketApiService.currentZnnPrice$,
         ])
             .pipe(take(1))
             .subscribe(() => {
