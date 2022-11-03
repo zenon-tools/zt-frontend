@@ -22,7 +22,8 @@ import { TokenBalances } from './interfaces/account/token-balance';
 import { AzProposals } from './interfaces/account/az-proposal';
 import { PlasmaFusions } from './interfaces/account/plasma-fusion';
 import { AccountListItems } from './interfaces/account-list-item';
-import { Token } from './interfaces/token';
+import { TokenListItems } from './interfaces/token-list-item';
+import { TokenDetails } from './interfaces/token/token-details';
 
 @Injectable({
     providedIn: 'root',
@@ -220,9 +221,17 @@ export class ZenonToolsApiService {
             .pipe(shareReplay(1));
     }
 
-    getToken(tokenId: string) {
+    getTokens(page: number, searchText: string = '') {
         return this.httpClient
-            .get<Token>(`${environment.ztApiUrl}/tokens/${tokenId}`)
+            .get<TokenListItems>(
+                `${environment.ztApiUrl}/tokens?page=${page}&search=${searchText}`
+            )
+            .pipe(shareReplay(1));
+    }
+
+    getTokenDetails(tokenId: string) {
+        return this.httpClient
+            .get<TokenDetails>(`${environment.ztApiUrl}/tokens/${tokenId}`)
             .pipe(shareReplay(1));
     }
 

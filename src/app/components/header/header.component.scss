@@ -3,65 +3,71 @@
 
 .header {
     display: flex;
+    flex-direction: column;
     padding-top: variables.$spacing-l;
     padding-bottom: variables.$spacing-xs;
     padding-left: variables.$spacing-screen-xl;
     padding-right: variables.$spacing-screen-xl;
-    gap: 5.5em;
-}
 
-.header-logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    img {
-        height: 2.2em;
-        padding-right: variables.$spacing-m;
-    }
-}
-.logo-texts {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    gap: variables.$spacing-xs;
-    :first-child {
-        font-size: variables.$font-s;
-        font-weight: bold;
-    }
-    :nth-child(2) {
-        font-size: variables.$font-xs;
-        color: variables.$white-70;
-    }
-    div {
-        width: max-content;
-    }
-}
-
-.navigation {
-    display: flex;
-    justify-content: space-evenly;
-    gap: 4em;
-    a {
-        font-weight: bold;
-        font-size: variables.$font-s;
-        text-decoration: none;
-        color: variables.$white-70;
+    .header-container {
         display: flex;
-        align-items: center;
-    }
+        gap: 5.5em;
 
-    a:active {
-        color: variables.$primary-green;
-    }
-    a:hover {
-        color: variables.$primary-green;
+        .header-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+                height: 2.2em;
+                padding-right: variables.$spacing-m;
+            }
+
+            .logo-texts {
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                flex-direction: column;
+                gap: variables.$spacing-xs;
+                :first-child {
+                    font-size: variables.$font-s;
+                    font-weight: bold;
+                }
+                :nth-child(2) {
+                    font-size: variables.$font-xs;
+                    color: variables.$white-70;
+                }
+                div {
+                    width: max-content;
+                }
+            }
+        }
     }
 }
 
 .navigation-wrapper {
     display: flex;
     justify-content: flex-start;
+
+    .navigation {
+        display: flex;
+        justify-content: space-evenly;
+        gap: 4em;
+        a {
+            font-weight: bold;
+            font-size: variables.$font-s;
+            text-decoration: none;
+            color: variables.$white-70;
+            display: flex;
+            align-items: center;
+        }
+
+        a:active {
+            color: variables.$primary-green;
+        }
+        a:hover {
+            color: variables.$primary-green;
+        }
+    }
 }
 
 .active {
@@ -72,56 +78,83 @@
     display: flex;
     align-items: center;
     margin-left: auto;
-}
 
-.version {
-    display: none;
-    color: variables.$white-70;
-    margin-right: variables.$spacing-xxl;
-    font-size: variables.$font-s;
+    .version {
+        display: none;
+        color: variables.$white-70;
+        margin-right: variables.$spacing-xxl;
+        font-size: variables.$font-s;
 
-    &:hover {
-        color: white;
+        &:hover {
+            color: white;
+        }
+    }
+
+    .button {
+        display: flex;
+        align-items: center;
+        margin-right: variables.$spacing-xxl;
+        font-size: variables.$font-s;
+        padding: variables.$spacing-s variables.$spacing-xxl variables.$spacing-s variables.$spacing-xxl;
+        color: #71ae5f;
+        border: 1px solid variables.$secondary-green;
+        height: 1.3rem;
+        background-color: #3f60362e;
+
+        &:hover {
+            color: white;
+            background-color: variables.$secondary-green-hover;
+        }
+    }
+
+    .momentum-height {
+        display: flex;
+        align-items: center;
+        fa-icon {
+            margin-right: variables.$spacing-s;
+        }
+
+        .momentum-height-title {
+            font-weight: bold;
+            font-size: variables.$font-s;
+            display: flex;
+            justify-content: space-evenly;
+            color: white;
+            align-items: center;
+        }
+    }
+
+    .menu-icon-stack {
+        display: none;
+        position: relative;
+        width: 2rem;
+        height: 2rem;
+
+        .menu-icon {
+            position: absolute;
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            width: 2rem;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            &--visible {
+                opacity: 1;
+                max-height: 500px;
+                visibility: visible;
+            }
+        }
     }
 }
 
-.button {
-    display: flex;
-    align-items: center;
-    margin-right: variables.$spacing-xxl;
-    font-size: variables.$font-s;
-    padding: variables.$spacing-s variables.$spacing-xxl variables.$spacing-s variables.$spacing-xxl;
-    color: #71ae5f;
-    border: 1px solid variables.$secondary-green;
-    height: 1.3rem;
-    background-color: #3f60362e;
-
-    &:hover {
-        color: white;
-        background-color: variables.$secondary-green-hover;
-    }
-}
-
-.momentum-height {
-    display: flex;
-    align-items: center;
-    fa-icon {
-        margin-right: variables.$spacing-s;
-    }
-}
-
-.momentum-height-title {
-    font-weight: bold;
-    font-size: variables.$font-s;
-    display: flex;
-    justify-content: space-evenly;
-    color: white;
-    align-items: center;
-}
-
-.az-tab:after {
-    content: "Accelerator-Z";
+.az-tab {
     white-space: nowrap;
+}
+
+.mobile-container {
+    display: none;
 }
 
 @media only screen and (max-width: 2000px) {
@@ -144,62 +177,73 @@
         padding-bottom: 0;
         padding-left: variables.$spacing-screen-s;
         padding-right: variables.$spacing-screen-s;
-        gap: 0;
     }
 
     .navigation-wrapper {
-        position: fixed;
-        z-index: 100;
-        bottom: 1rem;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .navigation {
-        background-color: black;
-        border-radius: 1rem;
-        padding: 1rem 1.5rem 1rem 1.5rem;
-        gap: 2.5em;
-        a {
-            font-size: variables.$font-xs;
-        }
-    }
-
-    .version {
         display: none;
     }
 
-    .button {
+    .desktop-container {
         display: none;
     }
 
-    .az-tab:after {
-        content: "A-Z";
-    }
-}
+    .mobile-container {
+        display: flex;
+        flex-direction: column;
+        gap: variables.$spacing-m;
+        width: 100%;
+        opacity: 0;
+        max-height: 0;
+        visibility: hidden;
 
-@media only screen and (max-width: 480px) {
-    .navigation {
-        gap: 1.5rem;
-    }
-}
+        &--visible {
+            opacity: 1;
+            max-height: 500px;
+            margin-top: variables.$spacing-m;
+            visibility: visible;
+        }
 
-@media only screen and (max-width: 390px) {
-    .navigation {
-        gap: 1.2rem;
-    }
-}
+        .navigation-wrapper {
+            display: flex;
+            justify-content: flex-start;
 
-@media only screen and (max-width: 350px) {
-    .navigation {
-        gap: 1rem;
+            .navigation {
+                padding: variables.$spacing-m 0rem variables.$spacing-m 0rem;
+                gap: variables.$spacing-xl;
+                flex-direction: column;
+                a {
+                    font-size: variables.$font-xs;
+                }
+            }
+        }
 
-        a {
+        .momentum-height-mobile {
+            text-align: center;
             font-size: variables.$font-xs;
+            background-color: variables.$tertiary-grey;
+            margin-left: variables.$spacing-xxl;
+            margin-right: variables.$spacing-xxl;
+            padding-top: variables.$spacing-s;
+            padding-bottom: variables.$spacing-s;
+            border-radius: variables.$radius-s;
         }
     }
 
-    .calculator-tab:after {
-        content: "Calc.";
+    .extra-items {
+        .version {
+            display: none;
+        }
+
+        .button {
+            display: none;
+        }
+
+        .momentum-height {
+            display: none;
+        }
+
+        .menu-icon-stack {
+            display: unset;
+        }
     }
 }

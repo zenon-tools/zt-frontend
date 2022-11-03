@@ -1,4 +1,4 @@
-export interface Token {
+export interface TokenDetails {
     name: string;
     symbol: string;
     domain: string;
@@ -9,4 +9,8 @@ export interface Token {
     isBurnable: boolean;
     isMintable: boolean;
     isUtility: boolean;
+    totalBurned: number;
+    lastUpdateTimestamp: number;
+    creationTimestamp: number;
+    holderCount: number;
 }

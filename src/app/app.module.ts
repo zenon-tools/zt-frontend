@@ -74,6 +74,8 @@ import { InfoLineCellComponent } from './components/info-card/info-line-cell/inf
 import { ContextContainerComponent } from './components/containers/context-container/context-container.component';
 import { BasicContainerComponent } from './components/containers/basic-container/basic-container.component';
 import { DividerComponent } from './components/divider/divider.component';
+import { TokensPageComponent } from './components/pages/tokens-page/tokens-page.component';
+import { TokenDetailsPageComponent } from './components/pages/token-details-page/token-details-page.component';
 
 @NgModule({
     declarations: [
@@ -140,6 +142,8 @@ import { DividerComponent } from './components/divider/divider.component';
         BasicContainerComponent,
         DividerComponent,
         SwapPageComponent,
+        TokensPageComponent,
+        TokenDetailsPageComponent,
     ],
     imports: [
         BrowserModule,

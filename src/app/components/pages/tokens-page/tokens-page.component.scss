@@ -1,0 +1,161 @@
+@use "../../../../assets/variables.scss";
+@use "../../../../assets/styles/components.scss";
+
+:host {
+    flex: 1;
+}
+
+.container {
+    display: flex;
+    padding-top: variables.$spacing-xl;
+    padding-bottom: variables.$spacing-xl;
+    justify-content: center;
+
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .tokens {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: variables.$content-width-basic;
+        filter: drop-shadow(0 0.8rem 0.3rem #0000001c);
+        padding-bottom: variables.$spacing-l;
+
+        .title-line {
+            display: flex;
+            align-items: baseline;
+            gap: variables.$spacing-m;
+
+            .title {
+                font-size: variables.$font-xl;
+                font-weight: bold;
+            }
+
+            fa-icon {
+                opacity: 0.7;
+            }
+
+            .search-bar {
+                margin-left: auto;
+                width: 20rem;
+            }
+        }
+
+        .mobile-search-bar {
+            display: none;
+        }
+
+        .table-card {
+            margin-top: variables.$spacing-xl;
+            align-items: center;
+            justify-content: center;
+
+            .table-container {
+                min-height: 41rem;
+
+                &--hidden {
+                    display: none;
+                }
+
+                &--loading {
+                    opacity: 0;
+                }
+
+                .mat-table {
+                    min-width: variables.$content-width-basic;
+                    max-width: variables.$content-width-basic;
+                    border-radius: 0;
+                    border: 0px;
+
+                    .mat-row {
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+
+                    .token-cell {
+                        color: inherit;
+                        font-size: inherit;
+                        font-weight: inherit;
+                        display: flex;
+                        align-items: center;
+                        gap: variables.$spacing-s;
+
+                        .token-icon {
+                            width: 1.6rem;
+                            height: 1.6rem;
+                            object-fit: contain;
+                            background-color: black;
+                            border-radius: variables.$radius-s;
+                        }
+
+                        .token-name {
+                            color: inherit;
+                            font-size: inherit;
+                            font-weight: inherit;
+                        }
+
+                        .info-text {
+                            font-size: variables.$font-xs;
+                            font-weight: normal;
+                            color: variables.$white-50;
+                        }
+                    }
+
+                    .link-cell {
+                        text-decoration: none;
+                        font-size: inherit;
+                        font-weight: inherit;
+                        color: inherit;
+
+                        &:hover {
+                            color: white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.page-selector {
+    margin-top: variables.$spacing-s;
+}
+
+@media only screen and (max-width: variables.$screen-width-threshold) {
+    .container {
+        padding-bottom: variables.$spacing-xxl;
+        padding-left: 1em;
+        padding-right: 1em;
+        justify-content: unset;
+    }
+
+    .table-container {
+        width: calc(99.5vw - 2rem);
+    }
+
+    .title-line {
+        .search-bar {
+            display: none;
+        }
+    }
+
+    .mobile-search-bar {
+        display: inline !important;
+        margin-top: variables.$spacing-m;
+    }
+
+    .page-selector {
+        margin-top: variables.$spacing-m;
+    }
+
+    .table-card {
+        margin-top: variables.$spacing-l !important;
+    }
+}

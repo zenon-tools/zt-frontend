@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import { map } from 'rxjs';
 import { ZenonToolsApiService } from 'src/app/services/zenon-tools-api/zenon-tools-api.service';
-import { faCube } from '@fortawesome/free-solid-svg-icons';
+import {
+    faCube,
+    faXmark,
+    faBars,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-header',
@@ -10,6 +14,10 @@ import { faCube } from '@fortawesome/free-solid-svg-icons';
 })
 export class HeaderComponent {
     faCube = faCube;
+    faXmark = faXmark;
+    faBars = faBars;
+
+    showMenu: boolean = false;
 
     momentumHeight$ = this.zenonToolsApiService.nomData$.pipe(
         map((nom) => nom.momentumHeight)
@@ -21,4 +29,7 @@ export class HeaderComponent {
 
     constructor(private zenonToolsApiService: ZenonToolsApiService) {}
 
+    onToggleMenu() {
+        this.showMenu = !this.showMenu;
+    }
 }

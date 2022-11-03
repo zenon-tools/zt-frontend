@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="tokens">
+        <div class="title-line">
+            <div class="title text-glow-white">Tokens</div>
+            <app-search-bar class="search-bar" (search)="onSearch($event)" (clear)="onClearSearch()"></app-search-bar>
+        </div>
+        <app-search-bar class="mobile-search-bar" (search)="onSearch($event)" (clear)="onClearSearch()">
+        </app-search-bar>
+        <app-basic-container class="table-card">
+            <div class="table-container" [class.table-container--loading]="isLoading"
+                [class.table-container--hidden]="!hasItems">
+                <table *ngIf="hasItems" mat-table [dataSource]="dataSource" matSort matSortStart="desc">
+                    <ng-container matColumnDef="token">
+                        <th mat-header-cell *matHeaderCellDef>Token</th>
+                        <td mat-cell *matCellDef="let row">
+                            <div class="token-cell">
+                                <img class="token-icon" *ngIf="row.icon" [src]="row.icon">
+                                <div class="token-name">{{row.name | middleEllipsis}}</div>
+                                <div class="info-text">{{row.symbol}}</div>
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="domain">
+                        <th mat-header-cell *matHeaderCellDef>Domain</th>
+                        <td mat-cell *matCellDef="let row">
+                            <a class="link-cell" target="_blank" rel="noopener noreferrer" href="{{'https://' + row.domain}}">
+                                {{row.domain | middleEllipsis: 30}}
+                            </a>
+                        </td>
+
+                    </ng-container>
+
+                    <ng-container matColumnDef="totalSupply">
+                        <th mat-header-cell *matHeaderCellDef>Total supply</th>
+                        <td mat-cell *matCellDef="let row">{{row.totalSupply | number:
+                            '1.0-8'}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="maxSupply">
+                        <th mat-header-cell *matHeaderCellDef>Max supply</th>
+                        <td mat-cell *matCellDef="let row">{{row.maxSupply | number:
+                            '1.0-8'}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="tokenStandard">
+                        <th mat-header-cell *matHeaderCellDef>ID</th>
+                        <td mat-cell *matCellDef="let row">{{row.tokenStandard | middleEllipsis}}</td>
+
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                        (click)="onRowPressed(row.tokenStandard)">
+                    </tr>
+                </table>
+            </div>
+            <app-loader class="loader" *ngIf="isLoading"></app-loader>
+        </app-basic-container>
+        <app-page-selector class="page-selector" *ngIf="hasItems" [hidePreviousBtn]="activePage === 1"
+            [hideNextBtn]="dataSource.data.length < itemsPerPage" (selectNext)="onNextSelected()"
+            (selectPrevious)="onPreviousSelected()">
+        </app-page-selector>
+    </div>
+</div>

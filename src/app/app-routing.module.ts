@@ -11,6 +11,8 @@ import { PillarProfilePageComponent } from './components/pages/pillar-profile-pa
 import { PillarsPageComponent } from './components/pages/pillars-page/pillars-page.component';
 import { ProjectPageComponent } from './components/pages/project-page/project-page.component';
 import { SwapPageComponent } from './components/swap-page/swap-page.component';
+import { TokensPageComponent } from './components/pages/tokens-page/tokens-page.component';
+import { TokenDetailsPageComponent } from './components/pages/token-details-page/token-details-page.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'overview', pathMatch: 'full' },
@@ -37,6 +39,14 @@ const routes: Routes = [
     {
         path: 'accounts/:address',
         component: AccountDetailsPageComponent,
+    },
+    {
+        path: 'tokens',
+        component: TokensPageComponent,
+    },
+    {
+        path: 'tokens/:token',
+        component: TokenDetailsPageComponent,
     },
     {
         path: 'accelerator',

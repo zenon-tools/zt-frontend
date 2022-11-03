@@ -10,8 +10,8 @@ import {
     AccountListItems,
 } from 'src/app/services/zenon-tools-api/interfaces/account-list-item';
 import { Clipboard } from '@angular/cdk/clipboard';
-import { Token } from 'src/app/services/zenon-tools-api/interfaces/token';
 import Common from 'src/app/utils/common';
+import { TokenDetails } from 'src/app/services/zenon-tools-api/interfaces/token/token-details';
 
 export interface AccountRow {
     address: string;
@@ -71,9 +71,9 @@ export class AccountsPageComponent implements OnInit {
 
     ngOnInit(): void {
         this.zenonToolsApiService
-            .getToken(this.znnTokenId)
+            .getTokenDetails(this.znnTokenId)
             .pipe(take(1))
-            .subscribe((znn: Token) => {
+            .subscribe((znn: TokenDetails) => {
                 this.accountsObservableSubscription =
                     this.accountsObservableSubject$.subscribe(
                         (observable: Observable<AccountListItems>) => {

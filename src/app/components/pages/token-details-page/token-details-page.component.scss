@@ -1,0 +1,153 @@
+@use "../../../../assets/variables.scss";
+@use "../../../../assets/styles/components.scss";
+
+:host {
+    flex: 1;
+}
+
+.root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .page-title {
+        width: variables.$content-width-basic;
+        font-weight: bold;
+        font-size: variables.$font-xl;
+        padding-top: variables.$spacing-xl;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        padding-top: variables.$spacing-xl;
+        padding-bottom: variables.$spacing-xxl;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        align-items: center;
+        gap: variables.$spacing-xl;
+        width: variables.$content-width-basic;
+
+        .basic-info-card {
+            width: inherit;
+            margin: 0 variables.$spacing-xl 0 variables.$spacing-xl;
+
+            .address-header {
+                display: flex;
+                align-items: center;
+                padding: variables.$spacing-l variables.$spacing-xl variables.$spacing-l variables.$spacing-xl;
+                height: 2.2rem;
+
+                .address-container {
+                    display: flex;
+                    flex-direction: column;
+                    gap: variables.$spacing-s;
+
+                    .card-title {
+                        display: flex;
+                        align-items: center;
+                        gap: variables.$spacing-s;
+
+                        div {
+                            font-size: variables.$font-l;
+                            font-weight: bold;
+                        }
+
+                        fa-icon {
+                            cursor: pointer;
+                        }
+
+                        .mobile-address {
+                            display: none;
+                        }
+                    }
+
+                    .subtitle {
+                        font-size: variables.$font-xs;
+                        color: variables.$white-70;
+                    }
+                }
+            }
+
+            .info-container {
+                display: flex;
+                flex-direction: column;
+                gap: variables.$spacing-l;
+                margin: 0 variables.$spacing-xl variables.$spacing-xl variables.$spacing-xl;
+                min-height: 10rem;
+
+                .info-line {
+                    margin-left: variables.$spacing-l;
+                    margin-right: variables.$spacing-l;
+                }
+            }
+        }
+
+        app-participation-card {
+            width: inherit;
+        }
+
+        app-account-details-table {
+            width: inherit;
+        }
+    }
+}
+
+@media only screen and (max-width: variables.$screen-width-threshold) {
+    .page-title {
+        width: calc(99.5vw - 2rem) !important;
+    }
+
+    .container {
+        padding-top: variables.$spacing-l !important;
+        padding-bottom: 4rem !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        align-items: center;
+        gap: variables.$spacing-l !important;
+        width: calc(99.5vw - 2rem) !important;
+
+        .basic-info-card {
+            width: calc(99.5vw - 2rem) !important;
+
+            .address-header {
+                height: unset !important;
+                padding: variables.$spacing-l !important;
+
+                .address-container {
+                    width: calc(99.5vw - 2rem) !important;
+
+                    .card-title {
+                        .desktop-address {
+                            display: none;
+                        }
+
+                        .mobile-address {
+                            display: unset !important;
+                        }
+                    }
+                }
+            }
+
+            .info-container {
+                margin: 0 variables.$spacing-l variables.$spacing-l variables.$spacing-l !important;
+
+                .info-card {
+                    gap: variables.$spacing-l;
+                    padding: variables.$spacing-m 0 variables.$spacing-m 0;
+                    margin: 0;
+                    flex-direction: column;
+
+                    .info-line {
+                        gap: variables.$spacing-l;
+                        flex-direction: column;
+
+                        .info-line-cell {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

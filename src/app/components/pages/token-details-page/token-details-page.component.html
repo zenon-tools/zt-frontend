@@ -1,0 +1,34 @@
+<div class="root">
+    <div class="page-title text-glow-white">Token details</div>
+    <div class="container">
+        <app-basic-container class="basic-info-card">
+            <div class="address-header">
+                <div class="address-container">
+                    <div class="card-title">
+                        <div class="desktop-address">{{tokenStandard}}</div>
+                        <div class="mobile-address">{{tokenStandard | middleEllipsis}}</div>
+                    </div>
+                    <div class="subtitle">{{tokenDetails?.domain ?? ''}}</div>
+                </div>
+                <div class="action-items"></div>
+            </div>
+            <div class="info-container">
+                <app-loader class="loader" *ngIf="isLoading"></app-loader>
+                <app-info-card [infoItems]="[
+                    {label: 'Total supply', value: (((tokenDetails?.totalSupply ?? 0) | number: '1.0-8') ?? '0'), toolTipText: 'The current amount of tokens.'},
+                    {label: 'Max supply', value: (((tokenDetails?.maxSupply ?? 0) | number: '1.0-8') ?? '0'), toolTipText: 'The maximum amount of tokens that can be minted.'},
+                    {label: 'Total minted', value: (((tokenDetails?.totalBurned ?? 0) + (tokenDetails?.totalSupply ?? 0) | number: '1.0-8') ?? '0'), toolTipText: 'The total amount of tokens minted to date.'},
+                    {label: 'Total burned', value: (((tokenDetails?.totalBurned ?? 0) | number: '1.0-8') ?? '0'), toolTipText: 'The total amount of tokens burned to date.'},
+                    {label: 'Token ID', value: tokenStandard | middleEllipsis, fullValue: tokenStandard, hoverText: tokenStandard, isCopyable: true},
+                    {label: 'Owner ID', value: (tokenDetails?.owner ?? '') | middleEllipsis, fullValue: tokenDetails?.owner, hoverText: tokenDetails?.owner, isCopyable: true},
+                    {label: 'Created', value: (tokenDetails?.creationTimestamp ?? 0 * 1000 | date: 'MM/dd/yy h:mm a') ?? ''},
+                    {label: 'Last updated', value: (tokenDetails?.lastUpdateTimestamp ?? 0 * 1000 | date: 'MM/dd/yy h:mm a') ?? ''},
+                    {label: 'Holders', value: (tokenDetails?.holderCount ?? 0 * 1000 | date: 'MM/dd/yy h:mm a') ?? ''},
+                    {label: 'Decimals', value: ((tokenDetails?.decimals ?? 0 | number: '1.0-0') ?? '')}
+                    ]">
+                </app-info-card>
+            </div>
+        </app-basic-container>
+        <!--  <app-account-details-table class="table" [address]="address"></app-account-details-table> -->
+    </div>
+</div>
