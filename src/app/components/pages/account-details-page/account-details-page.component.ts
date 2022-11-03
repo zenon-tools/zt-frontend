@@ -27,12 +27,20 @@ export class AccountDetailsPageComponent implements OnInit {
 
     currencyToUse: keyof CurrentPrice = 'usd';
 
-    currentZnnPrice$ = this.marketApiService.currentZnnPrice$.pipe(
+    /* currentZnnPrice$ = this.marketApiService.currentZnnPrice$.pipe(
         map((i) => i[this.currencyToUse])
+    ); */
+
+    /* currentQsrPrice$ = this.marketApiService.currentZnnPrice$.pipe(
+        map((i) => i[this.currencyToUse] / 10)
+    ); */
+
+    currentZnnPrice$ = this.zenonToolsApiService.nomData$.pipe(
+        map((nom) => nom.znnPriceUsd)
     );
 
-    currentQsrPrice$ = this.marketApiService.currentZnnPrice$.pipe(
-        map((i) => i[this.currencyToUse] / 10)
+    currentQsrPrice$ = this.zenonToolsApiService.nomData$.pipe(
+        map((nom) => nom.qsrPriceUsd)
     );
 
     smartContractLabel: string = '';
