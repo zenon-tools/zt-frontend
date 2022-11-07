@@ -55,6 +55,8 @@ export default class Common {
                 return 'Binance Smart Chain Bridge';
             case 'z1qqw8f3qxx9zg92xgckqdpfws3dw07d26afsj74':
                 return 'Liquidity Mining Treasury';
+            case 'z1qqs774auqksj94mtnes4qwvvzc8x8955en039j':
+                return 'Bridge Liquidity Treasury';
             case 'z1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqsggv2f':
                 return 'Empty Address';
             case 'z1qquatn97szsv7m8ztna509cunu2tks4wtzveku':
