@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { Observable, take } from 'rxjs';
@@ -59,6 +59,8 @@ export class PillarDelegatorTableComponent implements OnInit {
 
     itemsPerPage: number = 10;
 
+    isInitialized: boolean = false;
+
     constructor(
         private zenonToolsApiService: ZenonToolsApiService,
         private clipboard: Clipboard
@@ -73,7 +75,23 @@ export class PillarDelegatorTableComponent implements OnInit {
             this.hasDelegators = delegators.length > 0;
             this.delegators = delegators;
             this.updateDataSource();
+            this.isInitialized = true;
         });
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if (
+            (changes['pillarName'] &&
+                changes['pillarName'].currentValue != null) ||
+            (changes['ownerAddress'] &&
+                changes['ownerAddress'].currentValue != null) ||
+            (changes['withdrawAddress'] &&
+                changes['withdrawAddress'].currentValue != null)
+        ) {
+            if (this.isInitialized) {
+                this.updateDataSource();
+            }
+        }
     }
 
     onSearch(searchText: string) {

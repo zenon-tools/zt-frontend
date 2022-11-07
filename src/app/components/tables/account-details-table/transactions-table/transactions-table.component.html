@@ -20,8 +20,8 @@
                                 <div>To</div>
                             </div>
                             <div>&nbsp;</div>
-                            <div *ngIf="row.isIncoming" [routerLink]="['/accounts', row.fromAddress]">{{row.fromLabel | middleEllipsis: 28}}</div>
-                            <div *ngIf="!row.isIncoming" [routerLink]="['/accounts', row.toAddress]">{{row.toLabel | middleEllipsis: 28}}</div>
+                            <div *ngIf="row.isIncoming" [routerLink]="['/accounts', row.fromAddress]" [matTooltipClass]="'tool-tip'" matTooltip="{{row.fromAddress}}">{{row.fromLabel | middleEllipsis: 28}}</div>
+                            <div *ngIf="!row.isIncoming" [routerLink]="['/accounts', row.toAddress]" [matTooltipClass]="'tool-tip'" matTooltip="{{row.toAddress}}">{{row.toLabel | middleEllipsis: 28}}</div>
                         </div>
                     </td>
                 </ng-container>

@@ -22,7 +22,7 @@
                     <th mat-header-cell *matHeaderCellDef>Address</th>
                     <td mat-cell *matCellDef="let row">
                         <div class="address-cell">
-                            <div [routerLink]="['/accounts', row.address]">{{row.address | middleEllipsis}}</div>
+                            <div [routerLink]="['/accounts', row.address]"  [matTooltipClass]="'tool-tip'" matTooltip="{{row.addresss}}">{{row.address | middleEllipsis}}</div>
                             <div class="info-text" *ngIf="row.isSelfDelegation">Pillar self-delegation</div>
                         </div>
                     </td>

@@ -6,7 +6,8 @@
                 <ng-container matColumnDef="from">
                     <th mat-header-cell *matHeaderCellDef>From</th>
                     <td mat-cell *matCellDef="let row">
-                        <div class="from-to-cell" [routerLink]="['/accounts', row.fromAddress]">{{row.fromLabel |
+                        <div class="from-to-cell" [routerLink]="['/accounts', row.fromAddress]"
+                            [matTooltipClass]="'tool-tip'" matTooltip="{{row.fromAddress}}">{{row.fromLabel |
                             middleEllipsis: 28}}
                         </div>
                     </td>
@@ -15,7 +16,8 @@
                 <ng-container matColumnDef="to">
                     <th mat-header-cell *matHeaderCellDef>To</th>
                     <td mat-cell *matCellDef="let row">
-                        <div class="from-to-cell" [routerLink]="['/accounts', row.toAddress]">{{row.toLabel |
+                        <div class="from-to-cell" [routerLink]="['/accounts', row.toAddress]"
+                            [matTooltipClass]="'tool-tip'" matTooltip="{{row.toAddress}}">{{row.toLabel |
                             middleEllipsis: 28}}
                         </div>
                     </td>
