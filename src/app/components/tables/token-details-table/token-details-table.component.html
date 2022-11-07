@@ -1,0 +1,18 @@
+<app-basic-container class="card">
+    <div class="tab-container">
+        <app-table-tab-selector class="tab-selector" [initialIndex]="activeTab" [items]="tabItems"
+            (selectIndex)="onTabSelected($event)">
+        </app-table-tab-selector>
+        <app-dropdown class="dropdown" [initialIndex]="activeTab" [items]="dropdownItems"
+            (selectIndex)="onTabSelected($event)"></app-dropdown>
+        <app-search-bar #searchBar class="search-bar" (search)="onSearch($event)" (clear)="onClearSearch()">
+        </app-search-bar>
+    </div>
+    <app-divider></app-divider>
+    <app-holders-table #holdersTable *ngIf="activeTab === 0" [tokenStandard]="tokenStandard" [decimals]="decimals"
+        [totalSupply]="totalSupply" [symbol]="symbol" [owner]="owner">
+    </app-holders-table>
+    <app-token-transactions-table #transactionsTable *ngIf="activeTab === 1" [tokenStandard]="tokenStandard" [decimals]="decimals"
+        [symbol]="symbol">
+    </app-token-transactions-table>
+</app-basic-container>

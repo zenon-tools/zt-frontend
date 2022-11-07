@@ -3,24 +3,25 @@
         <div class="table-container" *ngIf="hasItems" [class.table-container--loading]="isLoading"
             [class.table-container--hidden]="!hasItems">
             <table mat-table [dataSource]="dataSource" fixedLayout="true" class="mat-elevation-z0">
-                <ng-container matColumnDef="token">
-                    <th mat-header-cell *matHeaderCellDef>Token</th>
-                    <td mat-cell *matCellDef="let row">{{row.token}}</td>
+
+                <ng-container matColumnDef="address">
+                    <th mat-header-cell *matHeaderCellDef>Address</th>
+                    <td mat-cell *matCellDef="let row">
+                        <div class="address-cell">
+                            <div [routerLink]="['/accounts', row.address]">{{row.addressLabel | middleEllipsis: 28}}</div>
+                            <div class="info-text" *ngIf="row.isOwner">Token owner</div>
+                        </div>
+                    </td>
                 </ng-container>
 
                 <ng-container matColumnDef="balance">
                     <th mat-header-cell *matHeaderCellDef>Balance</th>
-                    <td mat-cell *matCellDef="let row">{{row.balance | number: '1.0-8'}} {{row.symbol}}</td>
+                    <td mat-cell *matCellDef="let row">{{row.balance | number: '1.0-8'}} {{symbol}}</td>
                 </ng-container>
 
-                <ng-container matColumnDef="tokenId">
-                    <th mat-header-cell *matHeaderCellDef>Token ID</th>
-                    <td mat-cell *matCellDef="let row">
-                        <div class="id-cell" [routerLink]="['/tokens', row.tokenId]">
-                            {{row.tokenId}}
-                        </div>
-                    </td>
-
+                <ng-container matColumnDef="share">
+                    <th mat-header-cell *matHeaderCellDef>Share</th>
+                    <td mat-cell *matCellDef="let row"> {{row.share | number: '1.2-2'}}%</td>
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

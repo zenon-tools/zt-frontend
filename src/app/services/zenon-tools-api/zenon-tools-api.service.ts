@@ -24,6 +24,8 @@ import { PlasmaFusions } from './interfaces/account/plasma-fusion';
 import { AccountListItems } from './interfaces/account-list-item';
 import { TokenListItems } from './interfaces/token-list-item';
 import { TokenDetails } from './interfaces/token/token-details';
+import { TokenHolders } from './interfaces/token/token-holders';
+import { TokenTransactions } from './interfaces/token/token-transactions';
 
 @Injectable({
     providedIn: 'root',
@@ -232,6 +234,26 @@ export class ZenonToolsApiService {
     getTokenDetails(tokenId: string) {
         return this.httpClient
             .get<TokenDetails>(`${environment.ztApiUrl}/tokens/${tokenId}`)
+            .pipe(shareReplay(1));
+    }
+
+    getTokenHolders(tokenId: string, page: number, searchText: string = '') {
+        return this.httpClient
+            .get<TokenHolders>(
+                `${environment.ztApiUrl}/tokens/${tokenId}/holders?page=${page}&search=${searchText}`
+            )
+            .pipe(shareReplay(1));
+    }
+
+    getTokenTransactions(
+        tokenId: string,
+        page: number,
+        searchText: string = ''
+    ) {
+        return this.httpClient
+            .get<TokenTransactions>(
+                `${environment.ztApiUrl}/tokens/${tokenId}/transactions?page=${page}&search=${searchText}`
+            )
             .pipe(shareReplay(1));
     }
 

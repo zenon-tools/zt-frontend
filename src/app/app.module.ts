@@ -76,6 +76,9 @@ import { BasicContainerComponent } from './components/containers/basic-container
 import { DividerComponent } from './components/divider/divider.component';
 import { TokensPageComponent } from './components/pages/tokens-page/tokens-page.component';
 import { TokenDetailsPageComponent } from './components/pages/token-details-page/token-details-page.component';
+import { TokenDetailsTableComponent } from './components/tables/token-details-table/token-details-table.component';
+import { HoldersTableComponent } from './components/tables/token-details-table/holders-table/holders-table.component';
+import { TokenTransactionsTableComponent } from './components/tables/token-details-table/token-transactions-table/token-transactions-table.component';
 
 @NgModule({
     declarations: [
@@ -144,6 +147,9 @@ import { TokenDetailsPageComponent } from './components/pages/token-details-page
         SwapPageComponent,
         TokensPageComponent,
         TokenDetailsPageComponent,
+        TokenDetailsTableComponent,
+        HoldersTableComponent,
+        TokenTransactionsTableComponent,
     ],
     imports: [
         BrowserModule,

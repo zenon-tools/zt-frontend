@@ -9,6 +9,7 @@ import { MarketApiService } from 'src/app/services/market-api/market-api.service
 import { CurrentPrice } from 'src/app/services/market-api/coin-gecko-types';
 import { ParticipationDetails } from 'src/app/services/zenon-tools-api/interfaces/account/participation-details';
 import Common from 'src/app/utils/common';
+import { Pillars } from 'src/app/services/zenon-tools-api/interfaces/pillar';
 
 @Component({
     selector: 'app-account-details-page',
@@ -56,43 +57,52 @@ export class AccountDetailsPageComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.route.params.subscribe((params) => {
-            this.address = params['address'];
-            this.smartContractLabel = Common.tryGetAddressLabel(this.address);
+        this.zenonToolsApiService.pillars$
+            .pipe(take(1))
+            .subscribe((pillars: Pillars) => {
+                this.route.params.subscribe((params) => {
+                    this.address = params['address'];
+                    this.smartContractLabel = Common.tryGetAddressLabel(
+                        this.address,
+                        pillars
+                    );
 
-            this.zenonToolsApiService
-                .getAccountDetails(this.address)
-                .pipe(take(1))
-                .subscribe((details: AccountDetails) => {
-                    this.isLoading = false;
-                    this.addressDetails = details;
-
-                    combineLatest([
-                        this.currentZnnPrice$,
-                        this.currentQsrPrice$,
-                    ])
+                    this.zenonToolsApiService
+                        .getAccountDetails(this.address)
                         .pipe(take(1))
-                        .subscribe(([znnPrice, qsrPrice]) => {
-                            this.usdValue =
-                                (details.znnBalance / this.coinDecimals) *
-                                    znnPrice +
-                                (details.qsrBalance / this.coinDecimals) *
-                                    qsrPrice;
+                        .subscribe((details: AccountDetails) => {
+                            this.isLoading = false;
+                            this.addressDetails = details;
+
+                            combineLatest([
+                                this.currentZnnPrice$,
+                                this.currentQsrPrice$,
+                            ])
+                                .pipe(take(1))
+                                .subscribe(([znnPrice, qsrPrice]) => {
+                                    this.usdValue =
+                                        (details.znnBalance /
+                                            this.coinDecimals) *
+                                            znnPrice +
+                                        (details.qsrBalance /
+                                            this.coinDecimals) *
+                                            qsrPrice;
+                                });
+                        });
+
+                    this.zenonToolsApiService
+                        .getAccountParticipation(this.address)
+                        .pipe(take(1))
+                        .subscribe((details: ParticipationDetails) => {
+                            this.hasParticipationDetails =
+                                Object.keys(details.delegation).length > 0 ||
+                                details.stakes.length > 0 ||
+                                Object.keys(details.sentinel).length > 0 ||
+                                Object.keys(details.pillar).length > 0;
+                            this.participationDetails = details;
                         });
                 });
-
-            this.zenonToolsApiService
-                .getAccountParticipation(this.address)
-                .pipe(take(1))
-                .subscribe((details: ParticipationDetails) => {
-                    this.hasParticipationDetails =
-                        Object.keys(details.delegation).length > 0 ||
-                        details.stakes.length > 0 ||
-                        Object.keys(details.sentinel).length > 0 ||
-                        Object.keys(details.pillar).length > 0;
-                    this.participationDetails = details;
-                });
-        });
+            });
     }
 
     onCopyAddress(address: string) {

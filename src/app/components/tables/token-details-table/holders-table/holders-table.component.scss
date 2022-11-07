@@ -32,19 +32,39 @@
             border: 0px;
         }
 
-        .mat-column-token {
-            padding-left: variables.$spacing-xl !important;
-        }
-
-        .id-cell {
+        .address-cell {
             color: inherit;
             font-size: inherit;
             font-weight: inherit;
+            display: flex;
+            flex-direction: column;
+            gap: variables.$spacing-xs;
 
-            &:hover {
-                cursor: pointer;
-                color: white;
+            div {
+                color: inherit;
+                font-size: inherit;
+                font-weight: inherit;
+
+                &:hover {
+                    cursor: pointer;
+                    color: white;
+                }
             }
+
+            .info-text {
+                color: variables.$primary-green;
+                font-size: variables.$font-xs;
+                font-weight: normal;
+
+                &:hover {
+                    cursor: pointer;
+                    color: variables.$primary-green;
+                }
+            }
+        }
+
+        .mat-column-address {
+            padding-left: variables.$spacing-xl !important;
         }
 
         .loader {
@@ -80,8 +100,9 @@
                 max-width: 100% !important;
             }
 
-            .mat-column-token {
+            .mat-column-address {
                 padding-left: variables.$spacing-l !important;
+                padding-right: variables.$spacing-m !important;
             }
 
             .mat-column-balance {

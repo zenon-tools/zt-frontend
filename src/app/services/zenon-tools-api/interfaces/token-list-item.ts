@@ -7,6 +7,7 @@ export interface TokenListItem {
     totalSupply: number;
     maxSupply: number;
     decimals: number;
+    holderCount: number;
 }
 
 export type TokenListItems = Array<TokenListItem>;

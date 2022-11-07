@@ -42,19 +42,47 @@
                     display: flex;
                     flex-direction: column;
                     gap: variables.$spacing-s;
+                    width: 100%;
 
                     .card-title {
                         display: flex;
                         align-items: center;
                         gap: variables.$spacing-s;
 
-                        div {
+                        .icon {
+                            width: 1.6rem;
+                            height: 1.6rem;
+                            object-fit: contain;
+                            background-color: black;
+                            border-radius: variables.$radius-s;
+                        }
+
+                        .title {
                             font-size: variables.$font-l;
                             font-weight: bold;
                         }
 
-                        fa-icon {
-                            cursor: pointer;
+                        .properties {
+                            display: flex;
+                            gap: variables.$spacing-s;
+                        }
+
+                        .symbol {
+                            font-size: variables.$font-s;
+                            color: variables.$white-70;
+                        }
+
+                        .desktop-container {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            gap: variables.$spacing-s;
+
+                            .title {
+                                display: flex;
+                                gap: variables.$spacing-s;
+                                align-items: center;
+                            }
                         }
 
                         .mobile-address {
@@ -83,11 +111,7 @@
             }
         }
 
-        app-participation-card {
-            width: inherit;
-        }
-
-        app-account-details-table {
+        app-token-details-table {
             width: inherit;
         }
     }

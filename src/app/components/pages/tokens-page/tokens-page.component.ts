@@ -23,6 +23,7 @@ export interface TokenRow {
     totalSupply: number;
     maxSupply: number;
     icon: string;
+    holderCount: number;
 }
 
 @Component({
@@ -58,6 +59,7 @@ export class TokensPageComponent implements OnInit {
         'domain',
         'totalSupply',
         'tokenStandard',
+        'holderCount',
     ];
 
     tokensWithIcon: string[] = [
@@ -72,12 +74,6 @@ export class TokensPageComponent implements OnInit {
         private route: ActivatedRoute,
         private clipboard: Clipboard
     ) {}
-
-    getTokenIconPath(id: string) {
-        return this.tokensWithIcon.includes(id)
-            ? `../../../assets/images/tokens/${id}_50.png`
-            : '';
-    }
 
     ngOnInit(): void {
         this.tokensObservableSubscription =
@@ -96,11 +92,14 @@ export class TokensPageComponent implements OnInit {
                                     symbol: item.symbol,
                                     domain: item.domain,
                                     tokenStandard: item.tokenStandard,
-                                    totalSupply: item.totalSupply / Math.pow(10, item.decimals),
+                                    totalSupply:
+                                        item.totalSupply /
+                                        Math.pow(10, item.decimals),
                                     maxSupply: item.maxSupply,
                                     icon: this.getTokenIconPath(
                                         item.tokenStandard
                                     ),
+                                    holderCount: item.holderCount,
                                 })
                             );
                         });
@@ -172,5 +171,11 @@ export class TokensPageComponent implements OnInit {
 
     onCopyText(text: string) {
         this.clipboard.copy(text);
+    }
+
+    private getTokenIconPath(id: string) {
+        return this.tokensWithIcon.includes(id)
+            ? `../../../assets/images/tokens/${id}_50.png`
+            : '';
     }
 }

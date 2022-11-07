@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { Observable, Subject, Subscription, take } from 'rxjs';
 import {
     TokenBalance,
@@ -36,7 +37,10 @@ export class TokensTableComponent implements OnChanges {
     itemsObservableSubject$ = new Subject<Observable<TokenBalances>>();
     itemsObservableSubscription!: Subscription;
 
-    constructor(private zenonToolsApiService: ZenonToolsApiService) {}
+    constructor(
+        private zenonToolsApiService: ZenonToolsApiService,
+        private router: Router
+    ) {}
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes['address'] && changes['address'].currentValue != null) {

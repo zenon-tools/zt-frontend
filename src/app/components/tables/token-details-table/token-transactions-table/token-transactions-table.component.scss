@@ -8,7 +8,6 @@
 
     .content {
         display: flex;
-        align-items: center;
         justify-content: center;
         flex: 1;
         align-items: flex-start;
@@ -32,11 +31,11 @@
             border: 0px;
         }
 
-        .mat-column-token {
+        .mat-column-from  {
             padding-left: variables.$spacing-xl !important;
         }
 
-        .id-cell {
+        .from-to-cell {
             color: inherit;
             font-size: inherit;
             font-weight: inherit;
@@ -80,11 +79,16 @@
                 max-width: 100% !important;
             }
 
-            .mat-column-token {
+            .mat-column-from {
                 padding-left: variables.$spacing-l !important;
+                padding-right: variables.$spacing-m !important;
             }
 
-            .mat-column-balance {
+            .mat-column-to {
+                padding-right: variables.$spacing-m !important;
+            }
+
+            .mat-column-value {
                 padding-right: variables.$spacing-m !important;
             }
         }

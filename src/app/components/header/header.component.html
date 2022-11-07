@@ -48,14 +48,14 @@
     <div class="mobile-container" [class.mobile-container--visible]="showMenu">
         <div class="navigation-wrapper">
             <nav class="navigation">
-                <a draggable="false" routerLink="/overview" routerLinkActive="active">Overview</a>
-                <a draggable="false" routerLink="/pillars" routerLinkActive="active">Pillars</a>
-                <a draggable="false" routerLink="/accounts" routerLinkActive="active">Accounts</a>
-                <a draggable="false" routerLink="/tokens" routerLinkActive="active">Tokens</a>
+                <a draggable="false" routerLink="/overview" routerLinkActive="active" (click)="onToggleMenu()">Overview</a>
+                <a draggable="false" routerLink="/pillars" routerLinkActive="active" (click)="onToggleMenu()">Pillars</a>
+                <a draggable="false" routerLink="/accounts" routerLinkActive="active" (click)="onToggleMenu()">Accounts</a>
+                <a draggable="false" routerLink="/tokens" routerLinkActive="active" (click)="onToggleMenu()">Tokens</a>
                 <a class="az-tab" draggable="false" routerLink="/accelerator"
-                    routerLinkActive="active">Accelerator-Z</a>
-                <a draggable="false" routerLink="/calculator" routerLinkActive="active">Calculator</a>
-                <a draggable="false" routerLink="/swap" routerLinkActive="active">Get ZNN</a>
+                    routerLinkActive="active" (click)="onToggleMenu()">Accelerator-Z</a>
+                <a draggable="false" routerLink="/calculator" routerLinkActive="active" (click)="onToggleMenu()">Calculator</a>
+                <a draggable="false" routerLink="/swap" routerLinkActive="active" (click)="onToggleMenu()">Get ZNN</a>
             </nav>
         </div>
         <div class="momentum-height-mobile">

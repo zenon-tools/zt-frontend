@@ -7,6 +7,7 @@ import {
     PlasmaFusions,
 } from 'src/app/services/zenon-tools-api/interfaces/account/plasma-fusion';
 import Common from 'src/app/utils/common';
+import { Pillars } from 'src/app/services/zenon-tools-api/interfaces/pillar';
 
 export interface Fusionrow {
     providerAddress: string;
@@ -49,39 +50,49 @@ export class PlasmaTableComponent implements OnChanges {
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes['address'] && changes['address'].currentValue != null) {
-            this.isLoading = true;
-            this.activePage = 1;
-            this.itemsObservableSubscription =
-                this.itemsObservableSubject$.subscribe(
-                    (observable: Observable<PlasmaFusions>) => {
-                        observable
-                            .pipe(take(1))
-                            .subscribe((fusions: PlasmaFusions) => {
-                                this.isLoading = false;
+            this.zenonToolsApiService.pillars$
+                .pipe(take(1))
+                .subscribe((pillars: Pillars) => {
+                    this.isLoading = true;
+                    this.activePage = 1;
+                    this.itemsObservableSubscription =
+                        this.itemsObservableSubject$.subscribe(
+                            (observable: Observable<PlasmaFusions>) => {
+                                observable
+                                    .pipe(take(1))
+                                    .subscribe((fusions: PlasmaFusions) => {
+                                        this.isLoading = false;
 
-                                this.hasItems = fusions.length > 0;
+                                        this.hasItems = fusions.length > 0;
 
-                                this.dataSource.data = fusions.map(
-                                    (item: PlasmaFusion): Fusionrow => ({
-                                        providerAddress: item.address,
-                                        beneficiaryAddress: item.beneficiary,
-                                        providerLabel:
-                                            Common.tryGetAddressLabel(
-                                                item.address,
-                                                true
-                                            ),
-                                        beneficiaryLabel:
-                                            Common.tryGetAddressLabel(
-                                                item.beneficiary,
-                                                true
-                                            ),
-                                        fusedQsr: item.qsrAmount,
-                                        timestamp: item.momentumTimestamp,
-                                    })
-                                );
-                            });
-                    }
-                );
+                                        this.dataSource.data = fusions.map(
+                                            (
+                                                item: PlasmaFusion
+                                            ): Fusionrow => ({
+                                                providerAddress: item.address,
+                                                beneficiaryAddress:
+                                                    item.beneficiary,
+                                                providerLabel:
+                                                    Common.tryGetAddressLabel(
+                                                        item.address,
+                                                        pillars,
+                                                        true
+                                                    ),
+                                                beneficiaryLabel:
+                                                    Common.tryGetAddressLabel(
+                                                        item.beneficiary,
+                                                        pillars,
+                                                        true
+                                                    ),
+                                                fusedQsr: item.qsrAmount,
+                                                timestamp:
+                                                    item.momentumTimestamp,
+                                            })
+                                        );
+                                    });
+                            }
+                        );
+                });
 
             this.itemsObservableSubject$.next(
                 this.zenonToolsApiService.getAccountPlasmaFusions(

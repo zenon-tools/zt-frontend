@@ -1,13 +1,17 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable, Subject, Subscription, take } from 'rxjs';
-import {
-    AccountTransaction,
-    AccountTransactions,
-} from 'src/app/services/zenon-tools-api/interfaces/account/account-transaction';
 import { ZenonToolsApiService } from 'src/app/services/zenon-tools-api/zenon-tools-api.service';
-import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import {
+    faArrowDown,
+    faArrowUp,
+    faArrowRight,
+} from '@fortawesome/free-solid-svg-icons';
 import Common from 'src/app/utils/common';
+import {
+    TokenTransaction,
+    TokenTransactions,
+} from 'src/app/services/zenon-tools-api/interfaces/token/token-transactions';
 import { Pillars } from 'src/app/services/zenon-tools-api/interfaces/pillar';
 
 export interface TransactionRow {
@@ -19,38 +23,43 @@ export interface TransactionRow {
     symbol: string;
     method: string;
     timestamp: number;
-    isIncoming: boolean;
 }
 
 @Component({
-    selector: 'app-transactions-table',
-    templateUrl: './transactions-table.component.html',
-    styleUrls: ['./transactions-table.component.scss'],
+    selector: 'app-token-transactions-table',
+    templateUrl: './token-transactions-table.component.html',
+    styleUrls: ['./token-transactions-table.component.scss'],
 })
-export class TransactionsTableComponent implements OnChanges {
-    @Input() address!: string;
-    @Input() showReceived: boolean = true;
+export class TokenTransactionsTableComponent implements OnChanges {
+    @Input() tokenStandard!: string;
+    @Input() decimals!: number;
+    @Input() symbol!: string;
 
     faArrowDown = faArrowDown;
     faArrowUp = faArrowUp;
+    faArrowRight = faArrowRight;
 
     isLoading: boolean = true;
     hasItems: boolean = true;
 
     dataSource = new MatTableDataSource<TransactionRow>();
 
-    displayedColumns: string[] = ['fromTo', 'method', 'value', 'timestamp'];
+    displayedColumns: string[] = ['from', 'to', 'method', 'value', 'timestamp'];
 
     itemsPerPage: number = 10;
     activePage: number = 1;
+    activeSearchText: string = '';
 
-    itemsObservableSubject$ = new Subject<Observable<AccountTransactions>>();
+    itemsObservableSubject$ = new Subject<Observable<TokenTransactions>>();
     itemsObservableSubscription!: Subscription;
 
     constructor(private zenonToolsApiService: ZenonToolsApiService) {}
 
     ngOnChanges(changes: SimpleChanges) {
-        if (changes['address'] && changes['address'].currentValue != null) {
+        if (
+            changes['tokenStandard'] &&
+            changes['tokenStandard'].currentValue != null
+        ) {
             this.zenonToolsApiService.pillars$
                 .pipe(take(1))
                 .subscribe((pillars: Pillars) => {
@@ -58,11 +67,11 @@ export class TransactionsTableComponent implements OnChanges {
                     this.activePage = 1;
                     this.itemsObservableSubscription =
                         this.itemsObservableSubject$.subscribe(
-                            (observable: Observable<AccountTransactions>) => {
+                            (observable: Observable<TokenTransactions>) => {
                                 observable
                                     .pipe(take(1))
                                     .subscribe(
-                                        (transactions: AccountTransactions) => {
+                                        (transactions: TokenTransactions) => {
                                             this.isLoading = false;
 
                                             this.hasItems =
@@ -71,7 +80,7 @@ export class TransactionsTableComponent implements OnChanges {
                                             this.dataSource.data =
                                                 transactions.map(
                                                     (
-                                                        item: AccountTransaction
+                                                        item: TokenTransaction
                                                     ): TransactionRow => ({
                                                         fromAddress:
                                                             item.address,
@@ -93,15 +102,12 @@ export class TransactionsTableComponent implements OnChanges {
                                                             item.amount /
                                                             Math.pow(
                                                                 10,
-                                                                item.decimals
+                                                                this.decimals
                                                             ),
-                                                        symbol: item.symbol,
+                                                        symbol: this.symbol,
                                                         method: item.method,
                                                         timestamp:
                                                             item.momentumTimestamp,
-                                                        isIncoming:
-                                                            item.toAddress ==
-                                                            this.address,
                                                     })
                                                 );
                                         }
@@ -111,10 +117,9 @@ export class TransactionsTableComponent implements OnChanges {
                 });
 
             this.itemsObservableSubject$.next(
-                this.zenonToolsApiService.getAccountTransactions(
-                    this.address,
-                    this.activePage,
-                    this.showReceived
+                this.zenonToolsApiService.getTokenTransactions(
+                    this.tokenStandard,
+                    this.activePage
                 )
             );
         }
@@ -124,10 +129,10 @@ export class TransactionsTableComponent implements OnChanges {
         this.isLoading = true;
         this.activePage++;
         this.itemsObservableSubject$.next(
-            this.zenonToolsApiService.getAccountTransactions(
-                this.address,
+            this.zenonToolsApiService.getTokenTransactions(
+                this.tokenStandard,
                 this.activePage,
-                this.showReceived
+                this.activeSearchText
             )
         );
     }
@@ -137,10 +142,38 @@ export class TransactionsTableComponent implements OnChanges {
             this.isLoading = true;
             this.activePage--;
             this.itemsObservableSubject$.next(
-                this.zenonToolsApiService.getAccountTransactions(
-                    this.address,
+                this.zenonToolsApiService.getTokenTransactions(
+                    this.tokenStandard,
                     this.activePage,
-                    this.showReceived
+                    this.activeSearchText
+                )
+            );
+        }
+    }
+
+    onSearch(searchText: string) {
+        this.activePage = 1;
+        this.activeSearchText = searchText;
+        this.isLoading = true;
+        this.itemsObservableSubject$.next(
+            this.zenonToolsApiService.getTokenTransactions(
+                this.tokenStandard,
+                this.activePage,
+                this.activeSearchText
+            )
+        );
+    }
+
+    onClearSearch() {
+        if (this.activeSearchText.length > 0) {
+            this.activePage = 1;
+            this.activeSearchText = '';
+            this.isLoading = true;
+            this.itemsObservableSubject$.next(
+                this.zenonToolsApiService.getTokenTransactions(
+                    this.tokenStandard,
+                    this.activePage,
+                    this.activeSearchText
                 )
             );
         }

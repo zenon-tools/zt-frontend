@@ -35,14 +35,18 @@ export class DropdownComponent implements OnInit, OnChanges {
     selectedItem!: DropdownItem;
     isOpen: boolean = false;
 
+    isInitialized: boolean = false;
+
     constructor() {}
 
     ngOnInit(): void {
         this.selectedItem = this.items[this.initialIndex];
+        this.isInitialized = true;
     }
 
     ngOnChanges(changes: SimpleChanges) {
         if (
+            this.isInitialized &&
             changes['initialIndex'] &&
             changes['initialIndex'].currentValue != this.selectedItem.value
         ) {

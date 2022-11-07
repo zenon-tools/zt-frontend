@@ -11,14 +11,14 @@
 
     .header-container {
         display: flex;
-        gap: 5.5em;
+        gap: 5.5rem;
 
         .header-logo {
             display: flex;
             justify-content: center;
             align-items: center;
             img {
-                height: 2.2em;
+                height: 2.2rem;
                 padding-right: variables.$spacing-m;
             }
 
@@ -51,7 +51,7 @@
     .navigation {
         display: flex;
         justify-content: space-evenly;
-        gap: 4em;
+        gap: 4rem;
         a {
             font-weight: bold;
             font-size: variables.$font-s;
@@ -171,6 +171,14 @@
     }
 }
 
+@media only screen and (max-width: 1600px) {
+    .navigation-wrapper {
+        .navigation {
+            gap: 3rem;
+        }
+    }
+}
+
 @media only screen and (max-width: variables.$screen-width-threshold) {
     .header {
         padding-top: variables.$spacing-m;
@@ -226,6 +234,9 @@
             padding-top: variables.$spacing-s;
             padding-bottom: variables.$spacing-s;
             border-radius: variables.$radius-s;
+            a {
+                font-weight: bold;
+            }
         }
     }
 

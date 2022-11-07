@@ -2,9 +2,7 @@
 @use "../../../../assets/styles/components.scss";
 
 .card {
-
     .title-container {
-
         .title-icon {
             height: 1.4rem;
             width: 1.4rem;
@@ -87,6 +85,11 @@
             color: variables.$primary-green;
             font-size: variables.$font-xs;
             font-weight: normal;
+
+            &:hover {
+                cursor: pointer;
+                color: variables.$primary-green;
+            }
         }
     }
 

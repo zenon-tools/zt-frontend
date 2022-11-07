@@ -12,6 +12,7 @@ import {
 import { Clipboard } from '@angular/cdk/clipboard';
 import Common from 'src/app/utils/common';
 import { TokenDetails } from 'src/app/services/zenon-tools-api/interfaces/token/token-details';
+import { Pillars } from 'src/app/services/zenon-tools-api/interfaces/pillar';
 
 export interface AccountRow {
     address: string;
@@ -70,55 +71,69 @@ export class AccountsPageComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.zenonToolsApiService
-            .getTokenDetails(this.znnTokenId)
+        this.zenonToolsApiService.pillars$
             .pipe(take(1))
-            .subscribe((znn: TokenDetails) => {
-                this.accountsObservableSubscription =
-                    this.accountsObservableSubject$.subscribe(
-                        (observable: Observable<AccountListItems>) => {
-                            observable
-                                .pipe(take(1))
-                                .subscribe((transactions: AccountListItems) => {
-                                    this.isLoading = false;
+            .subscribe((pillars: Pillars) => {
+                this.zenonToolsApiService
+                    .getTokenDetails(this.znnTokenId)
+                    .pipe(take(1))
+                    .subscribe((znn: TokenDetails) => {
+                        this.accountsObservableSubscription =
+                            this.accountsObservableSubject$.subscribe(
+                                (observable: Observable<AccountListItems>) => {
+                                    observable
+                                        .pipe(take(1))
+                                        .subscribe(
+                                            (
+                                                transactions: AccountListItems
+                                            ) => {
+                                                this.isLoading = false;
 
-                                    this.hasItems = transactions.length > 0;
+                                                this.hasItems =
+                                                    transactions.length > 0;
 
-                                    this.dataSource.data = transactions.map(
-                                        (
-                                            item: AccountListItem
-                                        ): AccountRow => ({
-                                            address: item.address,
-                                            info: Common.tryGetAddressLabel(
-                                                item.address
-                                            ),
-                                            znnBalance:
-                                                item.znnBalance /
-                                                this.coinDecimals,
-                                            qsrBalance:
-                                                item.qsrBalance /
-                                                this.coinDecimals,
-                                            height: item.blockCount,
-                                            percentage:
-                                                (item.znnBalance /
-                                                    znn.totalSupply) *
-                                                100,
-                                        })
-                                    );
-                                });
-                        }
-                    );
+                                                this.dataSource.data =
+                                                    transactions.map(
+                                                        (
+                                                            item: AccountListItem
+                                                        ): AccountRow => ({
+                                                            address:
+                                                                item.address,
+                                                            info: Common.tryGetAddressLabel(
+                                                                item.address,
+                                                                pillars
+                                                            ),
+                                                            znnBalance:
+                                                                item.znnBalance /
+                                                                this
+                                                                    .coinDecimals,
+                                                            qsrBalance:
+                                                                item.qsrBalance /
+                                                                this
+                                                                    .coinDecimals,
+                                                            height: item.blockCount,
+                                                            percentage:
+                                                                (item.znnBalance /
+                                                                    znn.totalSupply) *
+                                                                100,
+                                                        })
+                                                    );
+                                            }
+                                        );
+                                }
+                            );
 
-                this.route.queryParams.subscribe((param) => {
-                    const page = parseInt(param['page'] ?? 1);
-                    this.activePage = page;
-                    this.accountsObservableSubject$.next(
-                        this.zenonToolsApiService.getAccounts(
-                            page,
-                            this.activeSearchText
-                        )
-                    );
-                });
+                        this.route.queryParams.subscribe((param) => {
+                            const page = parseInt(param['page'] ?? 1);
+                            this.activePage = page;
+                            this.accountsObservableSubject$.next(
+                                this.zenonToolsApiService.getAccounts(
+                                    page,
+                                    this.activeSearchText
+                                )
+                            );
+                        });
+                    });
             });
     }
 

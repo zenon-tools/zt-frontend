@@ -1,0 +1,52 @@
+@use "../../../../assets/variables.scss";
+@use "../../../../assets/styles/components.scss";
+
+.card {
+    .tab-container {
+        display: flex;
+        align-items: center;
+        padding: variables.$spacing-m variables.$spacing-xl variables.$spacing-m variables.$spacing-xl;
+
+        .dropdown {
+            display: none;
+            width: 100%;
+        }
+
+        .tab-selector {
+            width: 100%;
+        }
+    }
+
+    .content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-width: variables.$screen-width-threshold) {
+    .card {
+        width: calc(99.5vw - 2rem);
+
+        .tab-container {
+            display: flex;
+            align-items: center;
+            padding: variables.$spacing-m variables.$spacing-l variables.$spacing-m variables.$spacing-l;
+            flex-direction: column;
+            gap: variables.$spacing-m;
+
+            .dropdown {
+                display: unset;
+                z-index: 1000;
+            }
+
+            .tab-selector {
+                display: none;
+            }
+
+            .search-bar {
+                width: 100%;
+            }
+        }
+    }
+}

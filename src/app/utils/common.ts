@@ -6,6 +6,7 @@ import {
     repeatWhen,
     fromEvent,
 } from 'rxjs';
+import { Pillars } from '../services/zenon-tools-api/interfaces/pillar';
 
 export default class Common {
     static whenPageVisible() {
@@ -26,7 +27,11 @@ export default class Common {
         };
     }
 
-    static tryGetAddressLabel(address: string, returnAddress: boolean = false) {
+    static tryGetAddressLabel(
+        address: string,
+        pillars: Pillars,
+        returnAddress: boolean = false
+    ) {
         switch (address) {
             case 'z1qxemdeddedxplasmaxxxxxxxxxxxxxxxxsctrp':
                 return 'Plasma Contract';
@@ -57,6 +62,9 @@ export default class Common {
             case 'z1qzyzqtszv6fnw56rpnlq0npqt70tux0cl0yn5k':
                 return 'Alien Valley Plasma Bot';
             default:
+                if ((pillars.get(address)?.name ?? '').length > 0) {
+                    return pillars.get(address)?.name ?? '';
+                }
                 return returnAddress ? address : '';
         }
     }

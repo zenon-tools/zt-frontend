@@ -24,7 +24,8 @@
                     <ng-container matColumnDef="domain">
                         <th mat-header-cell *matHeaderCellDef>Domain</th>
                         <td mat-cell *matCellDef="let row">
-                            <a class="link-cell" target="_blank" rel="noopener noreferrer" href="{{'https://' + row.domain}}">
+                            <a onclick="event.stopPropagation();" class="link-cell" target="_blank" rel="noopener noreferrer"
+                                href="{{'https://' + row.domain}}">
                                 {{row.domain | middleEllipsis: 30}}
                             </a>
                         </td>
@@ -46,7 +47,11 @@
                     <ng-container matColumnDef="tokenStandard">
                         <th mat-header-cell *matHeaderCellDef>ID</th>
                         <td mat-cell *matCellDef="let row">{{row.tokenStandard | middleEllipsis}}</td>
+                    </ng-container>
 
+                    <ng-container matColumnDef="holderCount">
+                        <th mat-header-cell *matHeaderCellDef>Holders</th>
+                        <td mat-cell *matCellDef="let row">{{row.holderCount}}</td>
                     </ng-container>
 
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

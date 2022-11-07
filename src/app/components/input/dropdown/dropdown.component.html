@@ -3,7 +3,7 @@
         <div>{{ selectedItem.label }}</div>
         <mat-icon>expand_more</mat-icon>
     </div>
-    <div class="dropdown-list" [class.dropdown-list--open]="isOpen">
+    <div *ngIf="items" class="dropdown-list" [class.dropdown-list--open]="isOpen">
         <a *ngFor="let item of items" class="dropdown-item" (click)="onItemSelected(item)">
             <div>{{ item.label }}</div>
         </a>
