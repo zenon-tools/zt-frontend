@@ -5,9 +5,22 @@
             <div class="address-header">
                 <div class="address-container">
                     <div class="card-title">
-                        <div class="desktop-address">{{address}}</div>
-                        <div class="mobile-address">{{address | middleEllipsis}}</div>
-                        <fa-icon class="fa-sm" [icon]="faCopy" (click)="onCopyAddress(address)"></fa-icon>
+                        <div class="address">
+                            <div class="desktop-address">{{address}}</div>
+                            <div class="mobile-address">{{address | middleEllipsis}}</div>
+                            <fa-icon class="fa-sm" [icon]="faCopy" (click)="onCopyAddress(address)"></fa-icon>
+                        </div>
+                        <div *ngIf="rewardsCount > 0" class="export-rewards-btn" (click)="onExportRewardsSelected()"
+                            matTooltip='Export reward transactions as CSV'>
+                            <div>Export rewards</div>
+                            <fa-icon [icon]="faDownload"></fa-icon>
+                        </div>
+                        <fa-icon *ngIf="rewardsCount > 0" class="menu-icon fa-lg" [icon]="faEllipsisH"
+                            (click)="onMenuSelected()"></fa-icon>
+                        <div *ngIf="rewardsCount > 0" class="menu" [class.menu--open]="isMenuOpen"
+                            (click)="onExportRewardsSelected()">
+                            Export rewards
+                        </div>
                     </div>
                     <div *ngIf="smartContractLabel" class="subtitle">{{smartContractLabel}}</div>
                 </div>

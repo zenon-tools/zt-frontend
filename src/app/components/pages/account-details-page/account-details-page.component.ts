@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ZenonToolsApiService } from 'src/app/services/zenon-tools-api/zenon-tools-api.service';
 import { combineLatest, map, take } from 'rxjs';
 import { AccountDetails } from 'src/app/services/zenon-tools-api/interfaces/account/account-details';
-import { faCopy, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import {
+    faCopy,
+    faCircleInfo,
+    faDownload,
+    faEllipsisH,
+} from '@fortawesome/free-solid-svg-icons';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { MarketApiService } from 'src/app/services/market-api/market-api.service';
 import { CurrentPrice } from 'src/app/services/market-api/coin-gecko-types';
 import { ParticipationDetails } from 'src/app/services/zenon-tools-api/interfaces/account/participation-details';
 import Common from 'src/app/utils/common';
 import { Pillars } from 'src/app/services/zenon-tools-api/interfaces/pillar';
+import { MatDialog } from '@angular/material/dialog';
+import { ExportRewardsModalComponent } from '../../modals/export-rewards-modal/export-rewards-modal.component';
 
 @Component({
     selector: 'app-account-details-page',
@@ -17,8 +24,17 @@ import { Pillars } from 'src/app/services/zenon-tools-api/interfaces/pillar';
     styleUrls: ['./account-details-page.component.scss'],
 })
 export class AccountDetailsPageComponent implements OnInit {
+    @HostListener('document:click', ['$event.target'])
+    onClick(target: Element) {
+        if (!target.closest('.menu-icon')) {
+            this.isMenuOpen = false;
+        }
+    }
+
     faCopy = faCopy;
     faCircleInfo = faCircleInfo;
+    faDownload = faDownload;
+    faEllipsisH = faEllipsisH;
 
     address: string = '';
     usdValue: number = 0;
@@ -48,8 +64,11 @@ export class AccountDetailsPageComponent implements OnInit {
 
     participationDetails?: ParticipationDetails;
     hasParticipationDetails: boolean = false;
+    isMenuOpen: boolean = false;
+    rewardsCount: number = 0;
 
     constructor(
+        public dialog: MatDialog,
         private route: ActivatedRoute,
         private zenonToolsApiService: ZenonToolsApiService,
         private marketApiService: MarketApiService,
@@ -68,25 +87,32 @@ export class AccountDetailsPageComponent implements OnInit {
                     );
 
                     this.zenonToolsApiService
-                        .getAccountDetails(this.address)
+                        .getAccountRewardsCount(this.address)
                         .pipe(take(1))
-                        .subscribe((details: AccountDetails) => {
-                            this.isLoading = false;
-                            this.addressDetails = details;
+                        .subscribe((count: number) => {
+                            this.rewardsCount = count;
 
-                            combineLatest([
-                                this.currentZnnPrice$,
-                                this.currentQsrPrice$,
-                            ])
+                            this.zenonToolsApiService
+                                .getAccountDetails(this.address)
                                 .pipe(take(1))
-                                .subscribe(([znnPrice, qsrPrice]) => {
-                                    this.usdValue =
-                                        (details.znnBalance /
-                                            this.coinDecimals) *
-                                            znnPrice +
-                                        (details.qsrBalance /
-                                            this.coinDecimals) *
-                                            qsrPrice;
+                                .subscribe((details: AccountDetails) => {
+                                    this.isLoading = false;
+                                    this.addressDetails = details;
+
+                                    combineLatest([
+                                        this.currentZnnPrice$,
+                                        this.currentQsrPrice$,
+                                    ])
+                                        .pipe(take(1))
+                                        .subscribe(([znnPrice, qsrPrice]) => {
+                                            this.usdValue =
+                                                (details.znnBalance /
+                                                    this.coinDecimals) *
+                                                    znnPrice +
+                                                (details.qsrBalance /
+                                                    this.coinDecimals) *
+                                                    qsrPrice;
+                                        });
                                 });
                         });
 
@@ -111,6 +137,16 @@ export class AccountDetailsPageComponent implements OnInit {
 
     onCopyText(text: string) {
         this.clipboard.copy(text);
+    }
+
+    onExportRewardsSelected() {
+        this.dialog.open(ExportRewardsModalComponent, {
+            data: this.address,
+        });
+    }
+
+    onMenuSelected() {
+        this.isMenuOpen = !this.isMenuOpen;
     }
 
     convertToDaysAndHours(milliseconds: number) {

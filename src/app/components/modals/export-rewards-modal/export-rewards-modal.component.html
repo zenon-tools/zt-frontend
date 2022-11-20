@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="header">
+        <div class="title">Export rewards as CSV</div>
+        <mat-icon class="close-icon" (click)="onClose()">close</mat-icon>
+    </div>
+    <div class="info-text">
+        Export the account’s received reward transactions in CSV format. Price information is provided by CoinGecko and
+        based on the historical daily price at 00:00 UTC on the given date. QSR rewards have no price
+        information.
+    </div>
+    <div class="selectors">
+        <div>
+            <div class="input-label">Year</div>
+            <app-tab-selector [items]="yearItems" (selectedValue)="onYearChanged($event)">
+            </app-tab-selector>
+        </div>
+        <div>
+            <div class="input-label">Currency</div>
+            <app-tab-selector [items]="currencyItems" (selectedValue)="onCurrencyChanged($event)">
+            </app-tab-selector>
+        </div>
+        <div class="include-qsr-selector">
+            <div class="input-label">Include QSR rewards</div>
+            <app-tab-selector [initialIndex]="1" [items]="includeQsrItems" (selectedValue)="onIncludeQsrChanged($event)">
+            </app-tab-selector>
+        </div>
+    </div>
+    <div class="button" *ngIf="!isLoading" (click)="onExportSelected()">Export rewards <fa-icon [icon]="faDownload">
+        </fa-icon>
+    </div>
+    <div class="loader-container" *ngIf="isLoading">
+        <app-loader class="loader"></app-loader>
+    </div>
+</div>

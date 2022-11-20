@@ -79,6 +79,7 @@ import { TokenDetailsPageComponent } from './components/pages/token-details-page
 import { TokenDetailsTableComponent } from './components/tables/token-details-table/token-details-table.component';
 import { HoldersTableComponent } from './components/tables/token-details-table/holders-table/holders-table.component';
 import { TokenTransactionsTableComponent } from './components/tables/token-details-table/token-transactions-table/token-transactions-table.component';
+import { ExportRewardsModalComponent } from './components/modals/export-rewards-modal/export-rewards-modal.component';
 
 @NgModule({
     declarations: [
@@ -150,6 +151,7 @@ import { TokenTransactionsTableComponent } from './components/tables/token-detai
         TokenDetailsTableComponent,
         HoldersTableComponent,
         TokenTransactionsTableComponent,
+        ExportRewardsModalComponent,
     ],
     imports: [
         BrowserModule,

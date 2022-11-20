@@ -42,23 +42,79 @@
                     display: flex;
                     flex-direction: column;
                     gap: variables.$spacing-s;
+                    width: 100%;
 
                     .card-title {
                         display: flex;
+                        justify-content: space-between;
                         align-items: center;
-                        gap: variables.$spacing-s;
 
-                        div {
-                            font-size: variables.$font-l;
-                            font-weight: bold;
+                        .address {
+                            display: flex;
+                            align-items: center;
+                            gap: variables.$spacing-s;
+
+                            div {
+                                font-size: variables.$font-l;
+                                font-weight: bold;
+                            }
+
+                            fa-icon {
+                                cursor: pointer;
+                            }
+
+                            .mobile-address {
+                                display: none;
+                            }
                         }
 
-                        fa-icon {
-                            cursor: pointer;
+                        .export-rewards-btn {
+                            display: flex;
+                            align-items: center;
+                            opacity: 0.7;
+                            gap: variables.$spacing-s;
+
+                            &:hover {
+                                cursor: pointer;
+                                opacity: 1;
+                            }
+
+                            div {
+                                font-size: variables.$font-xs;
+                            }
                         }
 
-                        .mobile-address {
+                        .menu-icon {
                             display: none;
+                            opacity: 0.7;
+                            &:hover {
+                                cursor: pointer;
+                                opacity: 1;
+                            }
+                        }
+
+                        .menu {
+                            display: none;
+                            position: absolute;
+                            margin-right: variables.$spacing-m;
+                            // NOTE: Use hardcoded pixel value because of Safari
+                            margin-left: 980px;
+                            padding: variables.$spacing-m variables.$spacing-m variables.$spacing-m variables.$spacing-m;
+                            background-color: #555555;
+                            border-radius: variables.$radius-s;
+                            font-size: variables.$font-xs;
+                            visibility: hidden;
+                            opacity: 0;
+
+                            &:hover {
+                                cursor: pointer;
+                                background-color: #686868;
+                            }
+
+                            &--open {
+                                opacity: 1;
+                                visibility: visible;
+                            }
                         }
                     }
 
@@ -118,12 +174,28 @@
                     width: calc(99.5vw - 2rem) !important;
 
                     .card-title {
-                        .desktop-address {
-                            display: none;
+                        .address {
+                            .desktop-address {
+                                display: none;
+                            }
+
+                            .mobile-address {
+                                display: unset !important;
+                            }
                         }
 
-                        .mobile-address {
+                        .export-rewards-btn {
+                            display: none !important;
+                        }
+
+                        .menu-icon {
                             display: unset !important;
+                        }
+
+                        .menu {
+                            display: unset !important;
+                            // NOTE: Use this because of Safari
+                            margin-left: calc(100% - 12rem) !important;
                         }
                     }
                 }

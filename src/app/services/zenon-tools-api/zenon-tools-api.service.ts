@@ -223,6 +223,27 @@ export class ZenonToolsApiService {
             .pipe(shareReplay(1));
     }
 
+    getAccountRewardsCsv(
+        address: string,
+        year: string,
+        timezone: string,
+        currency: string,
+        includeQsr: boolean
+    ) {
+        return this.httpClient.get<String>(
+            `${environment.ztApiUrl}/accounts/${address}/rewards/csv?year=${year}&timezone=${timezone}&currency=${currency}&qsr=${includeQsr}`,
+            { responseType: 'text' as any }
+        );
+    }
+
+    getAccountRewardsCount(address: string) {
+        return this.httpClient
+            .get<number>(
+                `${environment.ztApiUrl}/accounts/${address}/rewards/count`
+            )
+            .pipe(shareReplay(1));
+    }
+
     getTokens(page: number, searchText: string = '') {
         return this.httpClient
             .get<TokenListItems>(
