@@ -5,4 +5,5 @@ export interface PillarProfile {
     spawnTimestamp: number;
     slotCostQsr: number;
     votingActivity: number;
+    producedMomentumCount: number;
 }

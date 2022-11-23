@@ -29,6 +29,8 @@ export interface PillarRow {
     avatar: string;
     isActive: boolean;
     address: string;
+    votingActivity: number;
+    producedMomentumCount: number;
 }
 
 @Component({
@@ -64,9 +66,10 @@ export class PillarsPageComponent implements OnInit {
         'weight',
         'momentums',
         'rewardSharing',
-        //'apr',
         'delegateApr',
-        'social',
+        'producedMomentumCount',
+        'votingActivity',
+        //'social',
     ];
 
     ngOnInit(): void {
@@ -99,7 +102,8 @@ export class PillarsPageComponent implements OnInit {
         );
     }
 
-    onCalculatorPressed(pillarName: string) {
+    onCalculatorPressed(event: Event, pillarName: string) {
+        event.stopPropagation();
         this.dialog.open(CalculatorModalComponent, {
             data: pillarName,
         });

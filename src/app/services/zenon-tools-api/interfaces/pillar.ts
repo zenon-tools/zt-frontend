@@ -10,6 +10,8 @@ export interface Pillar {
     epochDelegateRewards: number;
     apr: number;
     delegateApr: number;
+    votingActivity: number;
+    producedMomentumCount: number;
 }
 
 export type Pillars = Map<string, Pillar>;

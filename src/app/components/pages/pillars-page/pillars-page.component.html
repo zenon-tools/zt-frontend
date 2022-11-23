@@ -1,100 +1,164 @@
 <div class="container">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort matSortStart="desc">
-        <ng-container matColumnDef="rank">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">#</th>
-            <td mat-cell *matCellDef="let row" (click)="onRowPressed(row.name)"> {{row.rank + 1}} </td>
-        </ng-container>
+    <div class="pillars">
+        <div class="title-line">
+            <div class="title text-glow-white">Pillars</div>
+        </div>
+        <app-basic-container class="table-card">
+            <div class="table-container">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort matSortStart="desc">
+                    <ng-container matColumnDef="rank">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">#
+                        </th>
+                        <td mat-cell *matCellDef="let row" (click)="onRowPressed(row.name)"> {{row.rank + 1}} </td>
+                    </ng-container>
 
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef>Pillar</th>
-            <td mat-cell *matCellDef="let row" (click)="onRowPressed(row.name)">
-                <div class="name-cell">
-                    <img class="pillar-avatar" [src]="row.avatar" *ngIf="row.avatar">
-                    {{row.name}}
-                </div>
-            </td>
-        </ng-container>
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef>Pillar</th>
+                        <td mat-cell *matCellDef="let row" (click)="onRowPressed(row.name)">
+                            <div class="name-cell">
+                                <img class="default-avatar" src="../../../assets/images/default_pillar_avatar.png"
+                                    *ngIf="!row.avatar">
+                                <img class="pillar-avatar" [src]="row.avatar" *ngIf="row.avatar">
+                                {{row.name}}
+                            </div>
+                        </td>
+                    </ng-container>
 
-        <ng-container matColumnDef="weight">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">Weight (ZNN)
-            </th>
-            <td mat-cell *matCellDef="let row" (click)="onRowPressed(row.name)"> {{row.weight / 100000000 | number:
-                '1.0-0'}} </td>
-        </ng-container>
+                    <ng-container matColumnDef="weight">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
+                            Weight
+                        </th>
+                        <td mat-cell *matCellDef="let row" (click)="onRowPressed(row.name)"> {{row.weight / 100000000 |
+                            number:
+                            '1.0-0'}} </td>
+                    </ng-container>
 
-        <ng-container matColumnDef="momentums">
-            <th mat-header-cell *matHeaderCellDef>Produced/target<br>momentums</th>
-            <td mat-cell class="momentum-info-cell" *matCellDef="let row" (click)="onRowPressed(row.name)">
-                {{row.producedMomentums}} /
-                {{row.expectedMomentums}}
-                <fa-icon class="red" *ngIf="!row.isActive" [icon]="faCircleInfo" [matTooltipClass]="'tool-tip'"
-                    matTooltip="Issue with producing momentums. This may affect the Pillar's rewards">
-                </fa-icon>
-            </td>
-        </ng-container>
+                    <ng-container matColumnDef="momentums">
+                        <th mat-header-cell *matHeaderCellDef>Momentums <fa-icon class="column-info-icon fa-xs"
+                                [icon]="faCircleInfo" [matTooltipClass]="'tool-tip--normal-word-break'"
+                                matTooltip="The ratio of produced vs. target momentums during the current epoch. Missing momentums will negatively affect the rewards earned by the Pillar.">
+                            </fa-icon>
+                        </th>
+                        <td mat-cell class="momentum-info-cell" *matCellDef="let row" (click)="onRowPressed(row.name)">
+                            {{row.producedMomentums}} /
+                            {{row.expectedMomentums}}
+                            <fa-icon class="red" *ngIf="!row.isActive" [icon]="faCircleInfo"
+                                [matTooltipClass]="'tool-tip'"
+                                matTooltip="Issue with producing momentums. This may affect the Pillar's rewards">
+                            </fa-icon>
+                        </td>
+                    </ng-container>
 
-        <ng-container matColumnDef="rewardSharing">
-            <th mat-header-cell *matHeaderCellDef>Momentum/delegate<br>rewards sharing</th>
-            <td mat-cell *matCellDef="let row" (click)="onRowPressed(row.name)"> {{row.giveMomentumRewardPercentage}}% /
-                {{row.giveDelegateRewardPercentage}}% </td>
-        </ng-container>
+                    <ng-container matColumnDef="rewardSharing">
+                        <th mat-header-cell *matHeaderCellDef>Reward share <fa-icon class="column-info-icon fa-xs"
+                                [icon]="faCircleInfo" [matTooltipClass]="'tool-tip--normal-word-break'"
+                                matTooltip="The Pillar's momentum ahd delegate reward share percentages.">
+                            </fa-icon>
+                        </th>
+                        <td mat-cell *matCellDef="let row" (click)="onRowPressed(row.name)">
+                            {{row.giveMomentumRewardPercentage}}% /
+                            {{row.giveDelegateRewardPercentage}}% </td>
+                    </ng-container>
 
-        <!-- <ng-container matColumnDef="apr">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by pillar APR">Pillar APR
-            </th>
-            <td mat-cell *matCellDef="let row"> {{row.apr | number: '1.2-2'}}% </td>
-        </ng-container> -->
+                    <ng-container matColumnDef="delegateApr">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header
+                            sortActionDescription="Sort by delegation APR">
+                            <div class="sort-header">
+                                <div>APR</div>
+                                <fa-icon class="column-info-icon fa-xs" [icon]="faCircleInfo"
+                                    [matTooltipClass]="'tool-tip--normal-word-break'"
+                                    matTooltip="The current APR for delegators calculated in real time.">
+                                </fa-icon>
+                            </div>
+                        </th>
+                        <td mat-cell id="calculator-icon" class="delegate-apr-cell" *matCellDef="let row"
+                            (click)="onRowPressed(row.name)">
+                            {{row.delegateApr | number: '1.2-2'}}%
+                            <fa-icon (click)="onCalculatorPressed($event, row.address)" class="calculator-icon"
+                                [icon]="faCalculator" [matTooltipClass]="'tool-tip'" matTooltip="Estimate your rewards">
+                            </fa-icon>
+                        </td>
+                    </ng-container>
 
-        <ng-container matColumnDef="delegateApr">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by delegate APR">
-                Delegation
-                APR</th>
-            <td mat-cell id="calculator-icon" class="delegate-apr-cell" *matCellDef="let row"
-                (click)="onCalculatorPressed(row.address)"> {{row.delegateApr | number: '1.2-2'}}%
-                <fa-icon class="calculator-icon" [icon]="faCalculator" [matTooltipClass]="'tool-tip'"
-                    matTooltip="Estimate your rewards">
-                </fa-icon>
-            </td>
-        </ng-container>
+                    <ng-container matColumnDef="producedMomentumCount">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header
+                            sortActionDescription="Sort by produced momentums">
+                            <div class="sort-header">
+                                <div>Total produced</div>
+                                <fa-icon class="column-info-icon fa-xs" [icon]="faCircleInfo"
+                                    [matTooltipClass]="'tool-tip--normal-word-break'"
+                                    matTooltip="The total amount of momentums produced by the Pillar.">
+                                </fa-icon>
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let row" (click)="onRowPressed(row.name)"> {{row.producedMomentumCount
+                            |
+                            number:
+                            '1.0-0'}}</td>
+                    </ng-container>
 
-        <ng-container matColumnDef="social">
-            <th mat-header-cell *matHeaderCellDef>Social</th>
-            <td mat-cell *matCellDef="let row">
-                <div class="social-links">
-                    <a target="_blank" rel="noopener noreferrer" href={{row.links.telegram}} *ngIf="row.links.telegram">
-                        <img src="../../../assets/vectors/telegram_logo.svg" alt="Telegram logo">
-                    </a>
-                    <a target="_blank" rel="noopener noreferrer" href={{row.links.twitter}} *ngIf="row.links.twitter">
-                        <img src="../../../assets/vectors/twitter_logo.svg" alt="Twitter logo">
-                    </a>
-                    <a target="_blank" rel="noopener noreferrer" href={{row.links.website}} *ngIf="row.links.website">
-                        <img src="../../../assets/vectors/globe.svg" alt="Globe icon">
-                    </a>
-                    <a target="_blank" rel="noopener noreferrer" href={{row.links.github}} *ngIf="row.links.github">
-                        <img src="../../../assets/vectors/github_logo.svg" alt="Github logo">
-                    </a>
-                    <a target="_blank" rel="noopener noreferrer" href={{row.links.medium}} *ngIf="row.links.medium">
-                        <img src="../../../assets/vectors/medium_logo.svg" alt="Medium logo">
-                    </a>
-                    <a target="_blank" rel="noopener noreferrer" href="mailto:{{row.links.email}}"
-                        *ngIf="row.links.email">
-                        <img src="../../../assets/vectors/email.svg" alt="Email icon">
-                    </a>
-                </div>
-            </td>
-        </ng-container>
+                    <ng-container matColumnDef="votingActivity">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header
+                            sortActionDescription="Sort by voting activity">
+                            <div class="sort-header">
+                                <div>Voting</div>
+                                <fa-icon class="column-info-icon fa-xs" [icon]="faCircleInfo"
+                                    [matTooltipClass]="'tool-tip--normal-word-break'"
+                                    matTooltip="The percentage of Accelerator-Z proposals the Pillar has voted on. Proposals submitted before the Pillar was spawned are not accounted for.">
+                                </fa-icon>
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let row" (click)="onRowPressed(row.name)"> {{row.votingActivity |
+                            number:
+                            '1.0-0'}}% </td>
+                    </ng-container>
 
-        <ng-container matColumnDef="headerTimer">
-            <th *matHeaderCellDef colspan="8">
-                <div class="timer">
-                    <div></div>
-                    <div>Next update in {{intervalSecondsUntilRefresh$ | async}} s</div>
-                </div>
-            </th>
-        </ng-container>
+                    <!-- <ng-container matColumnDef="social">
+                        <th mat-header-cell *matHeaderCellDef> </th>
+                        <td mat-cell *matCellDef="let row">
+                            <div class="social-links">
+                                <a target="_blank" rel="noopener noreferrer" href={{row.links.telegram}}
+                                    *ngIf="row.links.telegram">
+                                    <img src="../../../assets/vectors/telegram_logo.svg" alt="Telegram logo">
+                                </a>
+                                <a target="_blank" rel="noopener noreferrer" href={{row.links.twitter}}
+                                    *ngIf="row.links.twitter">
+                                    <img src="../../../assets/vectors/twitter_logo.svg" alt="Twitter logo">
+                                </a>
+                                <a target="_blank" rel="noopener noreferrer" href={{row.links.website}}
+                                    *ngIf="row.links.website">
+                                    <img src="../../../assets/vectors/globe.svg" alt="Globe icon">
+                                </a>
+                                <a target="_blank" rel="noopener noreferrer" href={{row.links.github}}
+                                    *ngIf="row.links.github">
+                                    <img src="../../../assets/vectors/github_logo.svg" alt="Github logo">
+                                </a>
+                                <a target="_blank" rel="noopener noreferrer" href={{row.links.medium}}
+                                    *ngIf="row.links.medium">
+                                    <img src="../../../assets/vectors/medium_logo.svg" alt="Medium logo">
+                                </a>
+                                <a target="_blank" rel="noopener noreferrer" href="mailto:{{row.links.email}}"
+                                    *ngIf="row.links.email">
+                                    <img src="../../../assets/vectors/email.svg" alt="Email icon">
+                                </a>
+                            </div>
+                        </td>
+                    </ng-container> -->
 
-        <tr mat-header-row class="timer-container" *matHeaderRowDef="['headerTimer']"></tr>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+                    <ng-container matColumnDef="headerTimer">
+                        <th *matHeaderCellDef colspan="8">
+                            <div class="timer">
+                                <div></div>
+                                <div>Next update in {{intervalSecondsUntilRefresh$ | async}} s</div>
+                            </div>
+                        </th>
+                    </ng-container>
+
+                    <tr mat-header-row class="timer-container" *matHeaderRowDef="['headerTimer']"></tr>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+        </app-basic-container>
+    </div>
 </div>

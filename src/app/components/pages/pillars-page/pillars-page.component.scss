@@ -7,10 +7,9 @@
 
 .container {
     display: flex;
-    padding-top: variables.$spacing-xl;
+    padding-top: variables.$spacing-xl + 0.25rem;
     padding-bottom: variables.$spacing-xl;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    justify-content: center;
 
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -19,10 +18,72 @@
     &::-webkit-scrollbar {
         display: none;
     }
-}
 
-.mat-table {
-    min-width: 1200px;
+    .pillars {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: variables.$content-width-basic;
+        filter: drop-shadow(0 0.8rem 0.3rem #0000001c);
+        padding-bottom: variables.$spacing-l;
+
+        .title-line {
+            display: flex;
+            align-items: center;
+            gap: variables.$spacing-m;
+
+            .title {
+                font-size: variables.$font-xl;
+                font-weight: bold;
+            }
+
+            fa-icon {
+                opacity: 0.7;
+            }
+        }
+
+        .table-card {
+            margin-top: variables.$spacing-xl;
+            align-items: center;
+            justify-content: center;
+
+            .table-container {
+                .mat-table {
+                    min-width: variables.$content-width-basic;
+                    max-width: variables.$content-width-basic;
+                    border-radius: 0;
+                    border: 0px;
+
+                    .mat-row {
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+
+                    .address-cell {
+                        color: inherit;
+                        font-size: inherit;
+                        font-weight: inherit;
+                        display: flex;
+                        flex-direction: column;
+                        gap: variables.$spacing-xs;
+
+                        div:first-child {
+                            color: inherit;
+                            font-size: inherit;
+                            font-weight: inherit;
+                        }
+
+                        .info-text {
+                            font-size: variables.$font-xs;
+                            font-weight: normal;
+                            color: variables.$white-50;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 .timer-container {
@@ -62,11 +123,64 @@
 }
 
 .mat-column-rank {
-    padding-right: 4rem !important;
+    padding-right: 1.5rem !important;
 }
 
 .mat-column-name {
-    padding-right: 7rem !important;
+    padding-right: 3rem !important;
+
+    .default-avatar {
+        opacity: 0.5;
+        width: 2.7em;
+        height: 2.7em;
+        object-fit: contain;
+        background-color: black;
+        border-radius: variables.$radius-s;
+        margin-right: variables.$spacing-m;
+    }
+}
+
+.mat-column-weight {
+    padding-right: 2.5rem !important;
+}
+
+.mat-column-momentums {
+    padding-right: 2rem !important;
+}
+
+.mat-column-rewardSharing {
+    padding-right: 2.5rem !important;
+}
+
+.mat-column-delegateApr {
+    padding-right: 2.5rem !important;
+}
+
+.mat-column-votingActivity {
+    padding-right: 1rem !important;
+}
+
+.mat-column-producedMomentumCount {
+    padding-right: 1rem !important;
+}
+
+.column-info-icon {
+    opacity: 0.7;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.sort-header {
+    display: flex;
+    align-items: center;
+    gap: variables.$spacing-xs;
+    font-weight: inherit;
+
+    div {
+        font-weight: inherit;
+    }
 }
 
 ::ng-deep .mat-sort-header-content {
@@ -84,6 +198,7 @@
 
 .pillar-avatar {
     &:hover {
+        z-index: 2;
         transform: scale(3);
     }
 }
@@ -143,42 +258,30 @@
     }
 }
 
-@media only screen and (max-width: 1600px) {
-    .mat-column-rank {
-        padding-right: 3em !important;
-    }
-
-    .mat-column-name {
-        padding-right: 5em !important;
-    }
-
-    .mat-header-cell {
-        padding-right: 4em;
-    }
-}
-
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: variables.$screen-width-threshold) {
     .container {
         padding-bottom: variables.$spacing-xxl;
         padding-left: 1em;
         padding-right: 1em;
+        justify-content: unset;
     }
 
-    .mat-column-rank {
-        padding-right: 2em !important;
+    .table-container {
+        width: calc(99.5vw - 2rem);
     }
 
-    .mat-column-name {
-        padding-right: 4em !important;
-    }
-
-    .mat-header-cell {
-        padding-right: 3em;
+    .table-card {
+        margin-top: variables.$spacing-l !important;
     }
 
     .delegate-apr-cell {
         .calculator-icon {
             display: none;
         }
+    }
+
+    .mat-column-rank,
+    .mat-column-name {
+        padding-right: 1em !important;
     }
 }
