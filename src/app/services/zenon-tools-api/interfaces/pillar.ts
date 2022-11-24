@@ -12,6 +12,7 @@ export interface Pillar {
     delegateApr: number;
     votingActivity: number;
     producedMomentumCount: number;
+    dailyMomentumAvg: number;
 }
 
 export type Pillars = Map<string, Pillar>;

@@ -6,4 +6,6 @@ export interface PillarProfile {
     slotCostQsr: number;
     votingActivity: number;
     producedMomentumCount: number;
+    delegatorCount: number;
+    dailyMomentumAvg: number;
 }

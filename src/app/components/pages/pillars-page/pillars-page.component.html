@@ -80,18 +80,18 @@
                         </td>
                     </ng-container>
 
-                    <ng-container matColumnDef="producedMomentumCount">
+                    <ng-container matColumnDef="dailyMomentumAvg">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header
-                            sortActionDescription="Sort by produced momentums">
+                            sortActionDescription="Sort by average produced momentums">
                             <div class="sort-header">
-                                <div>Total produced</div>
+                                <div>Avg. produced</div>
                                 <fa-icon class="column-info-icon fa-xs" [icon]="faCircleInfo"
                                     [matTooltipClass]="'tool-tip--normal-word-break'"
-                                    matTooltip="The total amount of momentums produced by the Pillar.">
+                                    matTooltip="The average daily momentums produced by the Pillar since it was spawned.">
                                 </fa-icon>
                             </div>
                         </th>
-                        <td mat-cell *matCellDef="let row" (click)="onRowPressed(row.name)"> {{row.producedMomentumCount
+                        <td mat-cell *matCellDef="let row" (click)="onRowPressed(row.name)"> {{row.dailyMomentumAvg
                             |
                             number:
                             '1.0-0'}}</td>

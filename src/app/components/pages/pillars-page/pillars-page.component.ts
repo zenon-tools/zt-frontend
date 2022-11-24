@@ -31,6 +31,7 @@ export interface PillarRow {
     address: string;
     votingActivity: number;
     producedMomentumCount: number;
+    dailyMomentumAvg: number;
 }
 
 @Component({
@@ -67,7 +68,7 @@ export class PillarsPageComponent implements OnInit {
         'momentums',
         'rewardSharing',
         'delegateApr',
-        'producedMomentumCount',
+        'dailyMomentumAvg',
         'votingActivity',
         //'social',
     ];
