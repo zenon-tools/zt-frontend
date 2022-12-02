@@ -3,7 +3,8 @@
         <div class="title-line">
             <div class="title text-glow-white">Projects</div>
             <fa-icon [icon]="faCircleInfo" [matTooltipClass]="'tool-tip'"
-                matTooltip="Accelerator-Z is the on-chain funding framework for Network of Momentum where anyone can apply for funding.">
+                matTooltip="Accelerator-Z is the on-chain funding framework for Network of Momentum where anyone can apply for funding."
+                #tooltip="matTooltip" (click)="tooltip.toggle()">
             </fa-icon>
             <app-search-bar class="search-bar" (search)="onSearch($event)" (clear)="onClearSearch()"></app-search-bar>
         </div>

@@ -36,7 +36,8 @@
                     <ng-container matColumnDef="momentums">
                         <th mat-header-cell *matHeaderCellDef>Momentums <fa-icon class="column-info-icon fa-xs"
                                 [icon]="faCircleInfo" [matTooltipClass]="'tool-tip--normal-word-break'"
-                                matTooltip="The ratio of produced vs. target momentums during the current epoch. Missing momentums will negatively affect the rewards earned by the Pillar.">
+                                matTooltip="The ratio of produced vs. target momentums during the current epoch. Missing momentums will negatively affect the rewards earned by the Pillar."
+                                #tooltip="matTooltip" (click)="tooltip.toggle()">
                             </fa-icon>
                         </th>
                         <td mat-cell class="momentum-info-cell" *matCellDef="let row" (click)="onRowPressed(row.name)">
@@ -44,7 +45,8 @@
                             {{row.expectedMomentums}}
                             <fa-icon class="red" *ngIf="!row.isActive" [icon]="faCircleInfo"
                                 [matTooltipClass]="'tool-tip'"
-                                matTooltip="Issue with producing momentums. This may affect the Pillar's rewards">
+                                matTooltip="Issue with producing momentums. This may affect the Pillar's rewards"
+                                #tooltip="matTooltip" (click)="tooltip.toggle()">
                             </fa-icon>
                         </td>
                     </ng-container>
@@ -52,7 +54,8 @@
                     <ng-container matColumnDef="rewardSharing">
                         <th mat-header-cell *matHeaderCellDef>Reward share <fa-icon class="column-info-icon fa-xs"
                                 [icon]="faCircleInfo" [matTooltipClass]="'tool-tip--normal-word-break'"
-                                matTooltip="The Pillar's momentum ahd delegate reward share percentages.">
+                                matTooltip="The Pillar's momentum and delegate reward share percentages."
+                                #tooltip="matTooltip" (click)="tooltip.toggle()">
                             </fa-icon>
                         </th>
                         <td mat-cell *matCellDef="let row" (click)="onRowPressed(row.name)">
@@ -67,7 +70,8 @@
                                 <div>APR</div>
                                 <fa-icon class="column-info-icon fa-xs" [icon]="faCircleInfo"
                                     [matTooltipClass]="'tool-tip--normal-word-break'"
-                                    matTooltip="The current APR for delegators calculated in real time.">
+                                    matTooltip="The current APR for delegators calculated in real time."
+                                    #tooltip="matTooltip" (click)="tooltip.toggle()">
                                 </fa-icon>
                             </div>
                         </th>
@@ -87,7 +91,8 @@
                                 <div>Avg. produced</div>
                                 <fa-icon class="column-info-icon fa-xs" [icon]="faCircleInfo"
                                     [matTooltipClass]="'tool-tip--normal-word-break'"
-                                    matTooltip="The average daily momentums produced by the Pillar since it was spawned.">
+                                    matTooltip="The average daily momentums produced by the Pillar since it was spawned."
+                                    #tooltip="matTooltip" (click)="tooltip.toggle()">
                                 </fa-icon>
                             </div>
                         </th>
@@ -104,7 +109,8 @@
                                 <div>Voting</div>
                                 <fa-icon class="column-info-icon fa-xs" [icon]="faCircleInfo"
                                     [matTooltipClass]="'tool-tip--normal-word-break'"
-                                    matTooltip="The percentage of Accelerator-Z proposals the Pillar has voted on. Proposals submitted before the Pillar was spawned are not accounted for.">
+                                    matTooltip="The percentage of Accelerator-Z proposals the Pillar has voted on. Proposals submitted before the Pillar was spawned are not accounted for."
+                                    #tooltip="matTooltip" (click)="tooltip.toggle()">
                                 </fa-icon>
                             </div>
                         </th>

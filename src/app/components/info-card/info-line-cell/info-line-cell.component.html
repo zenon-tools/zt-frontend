@@ -1,6 +1,7 @@
 <div class="info-line-cell">
     <div class="label">{{item.label}} <fa-icon *ngIf="item.toolTipText" [icon]="faCircleInfo"
-            [matTooltipClass]="'tool-tip--normal-word-break'" matTooltip="{{item.toolTipText}}">
+            [matTooltipClass]="'tool-tip--normal-word-break'" matTooltip="{{item.toolTipText}}" #tooltip="matTooltip"
+            (click)="tooltip.toggle()">
         </fa-icon>
     </div>
     <div *ngIf="!item.isExternalLink && !item.routerLink" class="value" [class.value--cursor]="item.isCopyable"
