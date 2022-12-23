@@ -21,6 +21,7 @@ export class TokenDetailsPageComponent implements OnInit {
     tokensWithIcon: string[] = [
         'zts1znnxxxxxxxxxxxxx9z4ulx',
         'zts1qsrxxxxxxxxxxxxxmrhjll',
+        'zts1gs8cvx7z8dsglk8srtu0nm'
     ];
 
     constructor(
