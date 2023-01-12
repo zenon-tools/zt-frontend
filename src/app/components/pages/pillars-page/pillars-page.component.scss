@@ -194,6 +194,26 @@
     font-weight: inherit;
     display: flex;
     align-items: center;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        color: inherit !important;
+        font-size: inherit !important;
+        font-weight: inherit !important;
+
+        :first-child {
+            color: inherit !important;
+            font-size: inherit !important;
+            font-weight: inherit !important;
+        }
+
+        .zt {
+            color: inherit !important;
+            font-size: variables.$font-xs !important;
+            font-weight: 400 !important;
+        }
+    }
 }
 
 .pillar-avatar {

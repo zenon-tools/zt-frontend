@@ -2,8 +2,10 @@
     <app-basic-container class="card">
         <div class="header">
             <div>
-                <img class="pillar-avatar" *ngIf="pillarOffChainInfo?.avatar" [src]="pillarOffChainInfo?.avatar">
-                <img class="pillar-avatar" *ngIf="!pillarOffChainInfo?.avatar"
+                <img class="pillar-avatar" *ngIf="pillarOffChainInfo?.avatar && pillarName !== 'Anvil'"
+                    [src]="pillarOffChainInfo?.avatar">
+                <img class="pillar-avatar" *ngIf="pillarName === 'Anvil'" src="../../../assets/images/anvil_logo.gif">
+                <img class="pillar-avatar" *ngIf="!pillarOffChainInfo?.avatar && pillarName !== 'Anvil'"
                     src="../../../assets/images/default_pillar_avatar.png">
             </div>
             <fa-icon class="menu-icon fa-lg" [icon]="faEllipsisH" (click)="onMenuSelected()"></fa-icon>
