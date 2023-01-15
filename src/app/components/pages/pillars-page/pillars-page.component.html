@@ -19,7 +19,7 @@
                                 <img class="default-avatar" src="../../../assets/images/default_pillar_avatar.png"
                                     *ngIf="!row.avatar && row.name !== 'Anvil'">
                                 <img class="pillar-avatar" src="../../../assets/images/anvil_logo.gif"
-                                    *ngIf="row.avatar && row.name === 'Anvil'">
+                                    *ngIf="!row.avatar && row.name === 'Anvil'">
                                 <img class="pillar-avatar" [src]="row.avatar" *ngIf="row.avatar && row.name !== 'Anvil'">
                                 <div clas="name-container">
                                     <div> {{row.name}} </div>
