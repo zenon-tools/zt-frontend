@@ -123,11 +123,11 @@
 }
 
 .mat-column-rank {
-    padding-right: 1.5rem !important;
+    padding-right: 1.2rem !important;
 }
 
 .mat-column-name {
-    padding-right: 3rem !important;
+    padding-right: 2.5rem !important;
 
     .default-avatar {
         opacity: 0.5;
@@ -141,26 +141,30 @@
 }
 
 .mat-column-weight {
-    padding-right: 2.5rem !important;
-}
-
-.mat-column-momentums {
     padding-right: 2rem !important;
 }
 
+.mat-column-momentums {
+    padding-right: 1.5rem !important;
+}
+
 .mat-column-rewardSharing {
-    padding-right: 2.5rem !important;
+    padding-right: 2rem !important;
 }
 
 .mat-column-delegateApr {
-    padding-right: 2.5rem !important;
+    padding-right: 2rem !important;
 }
 
 .mat-column-votingActivity {
     padding-right: 1rem !important;
 }
 
-.mat-column-dailyMomentumAvg {
+.mat-column-delegateApr30d {
+    padding-right: 1rem !important;
+}
+
+.mat-column-uptime30d {
     padding-right: 1rem !important;
 }
 

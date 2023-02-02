@@ -68,9 +68,9 @@ export class PillarsPageComponent implements OnInit {
         'momentums',
         'rewardSharing',
         'delegateApr',
-        'dailyMomentumAvg',
+        'delegateApr30d',
+        'uptime30d',
         'votingActivity',
-        //'social',
     ];
 
     ngOnInit(): void {

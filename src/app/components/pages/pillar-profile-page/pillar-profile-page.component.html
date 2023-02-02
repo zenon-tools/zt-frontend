@@ -62,9 +62,11 @@
                 </div>
 
                 <app-info-card *ngIf="!isLoading" [infoItems]="[
+                    {label: 'Delegation APR 30D', value: (((pillar?.delegateApr30d ?? 0) | number: '1.2-2') ?? '0') + '%', toolTipText: 'The average delegation APR in the past 30 days.'},
+                    {label: 'Uptime 30D', value: (((pillar?.uptime30d ?? 0) | number: '1.0-0') ?? '0') + '%', toolTipText: 'The uptime of the Pillar in the past 30 days.'},
                     {label: 'Produced/target momentums', value: pillar?.producedMomentums +  ' / ' + pillar?.expectedMomentums, toolTipText: 'The ratio of produced vs. target momentums during the current epoch. Missing momentums will negatively affect the rewards earned by the Pillar.'},
-                    {label: 'Avg. produced momentums', value: ((pillarProfile?.dailyMomentumAvg ?? 0) | number: '1.0-0') ?? '', toolTipText: 'The average daily momentums produced by the Pillar since it was spawned.'},
                     {label: 'Total produced momentums', value: ((pillar?.producedMomentumCount ?? 0) | number: '1.0-0') ?? ''},
+                    {label: 'Avg. produced momentums', value: ((pillarProfile?.dailyMomentumAvg ?? 0) | number: '1.0-0') ?? '', toolTipText: 'The average daily momentums produced by the Pillar since it was spawned.'},
                     {label: 'Rank', value: ((pillar?.rank ?? 0) + 1).toString(), toolTipText: 'The Pillar\'s rank based on its weight.'},
                     {label: 'Weight', value: ((pillar?.weight ?? 0) / coinDecimals | number: '1.0-0') + ' ZNN', toolTipText: 'The amount of ZNN delegated to the Pillar.'},
                     {label: 'Delegator count', value: ((pillarProfile?.delegatorCount ?? 0) | number: '1.0-0') ?? ''},
