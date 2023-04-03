@@ -22,7 +22,6 @@ export class MarketDataCardComponent {
     @Input() public valueNumberPipe: string = '1.2-2';
     @Input() public delta!: number;
     @Input() public dates: string[] = [];
-    @Input() public isEnabled: boolean = true;
 
     faCircleInfo = faCircleInfo;
 

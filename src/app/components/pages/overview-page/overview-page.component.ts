@@ -15,31 +15,19 @@ export class OverviewPageComponent implements OnInit {
 
     currencyToUse: keyof CurrentPrice = 'usd';
     znnPriceHistory$ = this.marketApiService.znnPriceHistory7d$;
-    qsrPriceHistory$ = this.marketApiService.znnPriceHistory7d$.pipe(
-        map((history) => {
-            return history.map((item: number): number => {
-                return item / 10;
-            });
-        })
-    );
+    qsrPriceHistory$ = this.marketApiService.qsrPriceHistory7d$;
     znnTradingVolume$ = this.marketApiService.znnTradingVolume7d$.pipe(
         map((history) => {
             return history[history.length - 1];
         })
     );
-    qsrTradingVolume$ = this.marketApiService.znnTradingVolume7d$.pipe(
+    qsrTradingVolume$ = this.marketApiService.qsrTradingVolume7d$.pipe(
         map((history) => {
-            return history[history.length - 1] / 10;
+            return history[history.length - 1];
         })
     );
     znnTradingVolumeHistory$ = this.marketApiService.znnTradingVolume7d$;
-    qsrTradingVolumeHistory$ = this.marketApiService.znnTradingVolume7d$.pipe(
-        map((history) => {
-            return history.map((item: number): number => {
-                return item / 10;
-            });
-        })
-    );
+    qsrTradingVolumeHistory$ = this.marketApiService.qsrTradingVolume7d$;
     znnPriceDelta$ = this.znnPriceHistory$.pipe(
         map((history) => {
             return (
@@ -47,7 +35,7 @@ export class OverviewPageComponent implements OnInit {
             );
         })
     );
-    qsrPriceDelta$ = this.znnPriceHistory$.pipe(
+    qsrPriceDelta$ = this.qsrPriceHistory$.pipe(
         map((history) => {
             return (
                 ((history[history.length - 1] - history[0]) / history[0]) * 100

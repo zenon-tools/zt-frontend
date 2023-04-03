@@ -1,7 +1,7 @@
 <div class="market-data-cards">
     <app-market-data-card [currentValue]="(currentZnnPrice$ | async)" [label]="'ZNN'"
         [chartSeries]="(znnPriceHistory$ | async)!" [delta]="(znnPriceDelta$ | async) ?? 0"></app-market-data-card>
-    <app-market-data-card [isEnabled]="false" class="translucent" [currentValue]="(currentQsrPrice$ | async)"
+    <app-market-data-card [currentValue]="(currentQsrPrice$ | async)"
         [label]="'QSR'" [chartSeries]="(qsrPriceHistory$ | async)!" [gradientStartColor]="'#3931AA'"
         [gradientEndColor]="'#B07EFF'" [delta]="(qsrPriceDelta$ | async) ?? 0">
     </app-market-data-card>
@@ -9,8 +9,8 @@
         [chartSeries]="(znnTradingVolumeHistory$ | async)!" [gradientStartColor]="'#6C5211'"
         [gradientEndColor]="'#FFC945'" [valueNumberPipe]="'1.0-0'" [delta]="(znnVolumeDelta$ | async) ?? 0">
     </app-market-data-card>
-    <app-market-data-card [isEnabled]="false" class="translucent" [currentValue]="(qsrTradingVolume$ | async)"
-        [label]="'QSR trading volume, 24 h'" [chartSeries]="(znnTradingVolumeHistory$ | async)!"
+    <app-market-data-card [currentValue]="(qsrTradingVolume$ | async)"
+        [label]="'QSR trading volume, 24 h'" [chartSeries]="(qsrTradingVolumeHistory$ | async)!"
         [gradientStartColor]="'#6E3B25'" [gradientEndColor]="'#FF7E45'" [valueNumberPipe]="'1.0-0'"
         [delta]="(qsrVolumeDelta$ | async) ?? 0">
     </app-market-data-card>

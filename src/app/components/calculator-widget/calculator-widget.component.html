@@ -63,8 +63,7 @@
                 </app-result-item>
                 <div *ngIf="rewards.hasTradingFeeRewards" class="result-divider"></div>
 
-                <app-result-item [label]="'Rewards in USD'" [value]="'*$' + (rewards.rewardsInUsd | number: '1.2-2')"
-                    [info]="'*If QSR price is 1/10th of ZNN price.'">
+                <app-result-item [label]="'Rewards in USD'" [value]="'$' + (rewards.rewardsInUsd | number: '1.2-2')">
                 </app-result-item>
                 <div class="result-divider"></div>
 

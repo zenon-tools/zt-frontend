@@ -3,11 +3,11 @@ import { Injectable } from '@angular/core';
 import {
     interval,
     map,
+    Observable,
     pluck,
     shareReplay,
     startWith,
     switchMap,
-    tap,
 } from 'rxjs';
 import Common from 'src/app/utils/common';
 import { environment } from 'src/environments/environment';
@@ -21,11 +21,14 @@ export class MarketApiService {
     private currentPriceIntervalMs = 1000 * 60 * 5;
     private historyIntervalMs = 1000 * 60 * 10;
 
-    private coinHistory$ = this.getCoinHistory('zenon', 'usd');
+    private znnHistory$ = this.getCoinHistory('zenon', 'usd');
+    private qsrHistory$ = this.getCoinHistory('quasar', 'usd');
 
     public currentZnnPrice$ = this.getCurrentCoinPrice('zenon');
-    public znnPriceHistory7d$ = this.getCoinPriceHistory('zenon', 'usd');
-    public znnTradingVolume7d$ = this.getCoinTradingVolume('zenon', 'usd');
+    public znnPriceHistory7d$ = this.getCoinPriceHistory(this.znnHistory$);
+    public znnTradingVolume7d$ = this.getCoinTradingVolume(this.znnHistory$);
+    public qsrPriceHistory7d$ = this.getCoinPriceHistory(this.qsrHistory$);
+    public qsrTradingVolume7d$ = this.getCoinTradingVolume(this.qsrHistory$);
 
     constructor(private httpClient: HttpClient) {}
 
@@ -42,20 +45,20 @@ export class MarketApiService {
         );
     }
 
-    private getCoinPriceHistory(coin: string, currency: string) {
+    private getCoinPriceHistory(coinHistory: Observable<MarketChart>) {
         return interval(this.historyIntervalMs).pipe(
             startWith(0),
             Common.whenPageVisible(),
             switchMap(() =>
-                this.coinHistory$.pipe(
+                coinHistory.pipe(
                     map((response) => response.prices.map((i) => i[1]))
                 )
             )
         );
     }
 
-    private getCoinTradingVolume(coin: string, currency: string) {
-        return this.coinHistory$.pipe(
+    private getCoinTradingVolume(coinHistory: Observable<MarketChart>) {
+        return coinHistory.pipe(
             Common.whenPageVisible(),
             map((response) => response.total_volumes.map((i) => i[1]))
         );

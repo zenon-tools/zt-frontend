@@ -31,7 +31,7 @@
                 <app-info-card [infoItems]="[
                     {label: 'ZNN balance', value: ((((addressDetails?.znnBalance ?? 0) / coinDecimals) | number: '1.0-8') ?? '0') + ' ZNN'},
                     {label: 'QSR balance', value: ((((addressDetails?.qsrBalance ?? 0) / coinDecimals) | number: '1.0-8') ?? '0') + ' QSR'},
-                    {label: 'USD value', value: '$' + (usdValue | number: '1.0-2'), toolTipText: 'QSR price assumed to be 1/10th of ZNN price.'},
+                    {label: 'USD value', value: '$' + (usdValue | number: '1.0-2'), toolTipText: 'The combined value of the ZNN & QSR balances.'},
                     {label: 'Fused Plasma', value: (((addressDetails?.fusedQsr ?? 0) / coinDecimals | number: '1.0-8') ?? '0') + ' QSR'},
                     {label: 'Account chain height', value: addressDetails?.height?.toString()},
                     {label: 'Public key', value: ((addressDetails?.publicKey ?? '') == '' ? '-' : (addressDetails?.publicKey ?? '-')) | middleEllipsis, fullValue: addressDetails?.publicKey, hoverText: addressDetails?.publicKey, isCopyable: (addressDetails?.publicKey ?? '') != ''},

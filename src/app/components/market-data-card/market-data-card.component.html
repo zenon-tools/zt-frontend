@@ -1,10 +1,5 @@
 <div class="container">
-    <div *ngIf="!isEnabled" class="waiting-text">Waiting for a market <fa-icon [icon]="faCircleInfo"
-            [matTooltipClass]="'tool-tip'" matTooltip="There is no market for QSR yet. This is placeholder for now."
-            #tooltip="matTooltip" (click)="tooltip.toggle()">
-        </fa-icon>
-    </div>
-    <div class="card" [class.card--translucent]="!isEnabled">
+    <div class="card">
         <div class="header">
             <div class="value-label-wrapper">
                 <div class="value-delta-wrapper">
