@@ -24,11 +24,6 @@
         [footerValue]="totalDelegatedZnn$ | async" [iconPath]="'../../../assets/images/delegation_icon.png'"
         (tapCard)="onSelectDelegation()">
     </app-apr-card>
-    <app-apr-card [title]="'Liquidity'" [apr]="liquidityApr$ | async" [footerPrefix]="'$'"
-        [footerText]="'total liquidity'" [footerValue]="totalLiquidityUsd$ | async"
-        [iconPath]="'../../../assets/images/liquidity_icon.png'" [subTitleText]="'IL past 7D:'"
-        [subTitleValue]="impermanentLoss$ | async" (tapCard)="onSelectLiquidity()">
-    </app-apr-card>
     <app-apr-card [title]="'Sentinel'" [apr]="sentinelApr$ | async" [footerText]="'active Sentinels'"
         [footerValue]="sentinelCount$ | async" [iconPath]="'../../../assets/images/sentinel_icon.png'"
         (tapCard)="onSelectSentinel()">

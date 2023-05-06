@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { interval, map, shareReplay } from 'rxjs';
 import { Prices } from 'src/app/components/calculator-widget/calculator-widget.component';
 import { DelegationInputs } from 'src/app/components/calculator-widget/delegation-inputs/delegation-inputs.component';
-import { LiquidityInputs } from 'src/app/components/calculator-widget/liquidity-inputs/liquidity-inputs.component';
 import { PillarInputs } from 'src/app/components/calculator-widget/pillar-inputs/pillar-inputs.component';
 import { SentinelInputs } from 'src/app/components/calculator-widget/sentinel-inputs/sentinel-inputs.component';
 import { StakeInputs } from 'src/app/components/calculator-widget/stake-inputs/stake-inputs.component';
@@ -109,45 +108,6 @@ export class RewardCalculatorService {
             hasZnnRewards: true,
             hasQsrRewards: false,
             hasTradingFeeRewards: false,
-        };
-    }
-
-    computeLiquidityRewards(
-        nomData: NomData,
-        usdPrices: Prices,
-        pcsPoolData: PcsPoolData,
-        inputs: LiquidityInputs
-    ): Rewards {
-        const roi =
-            (nomData.lpApr / this.DAYS_PER_YEAR) * inputs.timePeriodInDays;
-
-        const holdingsInUsd =
-            inputs.amount * usdPrices.znn +
-            inputs.wBnbAmout * pcsPoolData.wBnbPriceUsd;
-        const rewardShare =
-            holdingsInUsd /
-            (pcsPoolData.liquidityUsd * nomData.lpProgramParticipationRate);
-        const qsrRewards =
-            ((rewardShare * nomData.yearlyQsrRewardPoolForLpProgram) /
-                this.DAYS_PER_YEAR) *
-            inputs.timePeriodInDays;
-        const tradingFeeRewards =
-            ((pcsPoolData.yearlyTradingFeesUsd *
-                nomData.lpProgramParticipationRate) /
-                this.DAYS_PER_YEAR) *
-            inputs.timePeriodInDays *
-            rewardShare;
-        const rewardsInUsd = qsrRewards * usdPrices.qsr + tradingFeeRewards;
-        return {
-            znnRewards: 0,
-            qsrRewards: qsrRewards,
-            tradingFeeRewards: tradingFeeRewards,
-            rewardsInUsd: rewardsInUsd,
-            roi: roi,
-            holdingsInUsd: holdingsInUsd,
-            hasZnnRewards: false,
-            hasQsrRewards: true,
-            hasTradingFeeRewards: true,
         };
     }
 

@@ -88,19 +88,7 @@ export class OverviewPageComponent implements OnInit {
     totalDelegatedZnn$ = this.zenonToolsApiService.nomData$.pipe(
         map((nom) => nom.totalDelegatedZnn)
     );
-
-    impermanentLoss$ = this.zenonToolsApiService.pcsPoolData$.pipe(
-        map((pcsPool) => pcsPool.impermanentLossPast7d)
-    );
-
-    liquidityApr$ = this.zenonToolsApiService.nomData$.pipe(
-        map((nom) => nom.lpApr)
-    );
-
-    totalLiquidityUsd$ = this.zenonToolsApiService.pcsPoolData$.pipe(
-        map((pcsPool) => pcsPool.liquidityUsd)
-    );
-
+    
     sentinelApr$ = this.zenonToolsApiService.nomData$.pipe(
         map((nom) => nom.sentinelApr)
     );
@@ -146,10 +134,6 @@ export class OverviewPageComponent implements OnInit {
 
     onSelectDelegation() {
         this.router.navigate(['/calculator', 'delegation']);
-    }
-
-    onSelectLiquidity() {
-        this.router.navigate(['/calculator', 'liquidity']);
     }
 
     onSelectSentinel() {

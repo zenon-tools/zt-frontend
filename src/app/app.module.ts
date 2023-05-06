@@ -22,7 +22,6 @@ import { CalculatorWidgetComponent } from './components/calculator-widget/calcul
 import { CalculatorDropdownComponent } from './components/calculator-widget/calculator-dropdown/calculator-dropdown.component';
 import { StakeInputsComponent } from './components/calculator-widget/stake-inputs/stake-inputs.component';
 import { SentinelInputsComponent } from './components/calculator-widget/sentinel-inputs/sentinel-inputs.component';
-import { LiquidityInputsComponent } from './components/calculator-widget/liquidity-inputs/liquidity-inputs.component';
 import { PillarInputsComponent } from './components/calculator-widget/pillar-inputs/pillar-inputs.component';
 import { DelegationInputsComponent } from './components/calculator-widget/delegation-inputs/delegation-inputs.component';
 import { InputFieldComponent } from './components/input/input-field/input-field.component';
@@ -96,7 +95,6 @@ import { ExportRewardsModalComponent } from './components/modals/export-rewards-
         CalculatorDropdownComponent,
         StakeInputsComponent,
         SentinelInputsComponent,
-        LiquidityInputsComponent,
         PillarInputsComponent,
         DelegationInputsComponent,
         InputFieldComponent,

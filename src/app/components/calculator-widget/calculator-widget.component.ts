@@ -24,7 +24,6 @@ import {
     ParticipationType,
 } from './calculator-dropdown/calculator-dropdown.component';
 import { DelegationInputs } from './delegation-inputs/delegation-inputs.component';
-import { LiquidityInputs } from './liquidity-inputs/liquidity-inputs.component';
 import { PillarInputs } from './pillar-inputs/pillar-inputs.component';
 import { SentinelInputs } from './sentinel-inputs/sentinel-inputs.component';
 import { StakeInputs } from './stake-inputs/stake-inputs.component';
@@ -88,11 +87,6 @@ export class CalculatorWidgetComponent implements OnInit {
         addToPillarWeight: true,
         timePeriodInDays: 30,
     });
-    public liquidityInputsSubject$ = new BehaviorSubject<LiquidityInputs>({
-        amount: 100,
-        wBnbAmout: 1.5,
-        timePeriodInDays: 30,
-    });
     public sentinelInputsSubject$ = new BehaviorSubject<SentinelInputs>({
         amount: 1,
         timePeriodInDays: 30,
@@ -147,22 +141,6 @@ export class CalculatorWidgetComponent implements OnInit {
         )
     );
 
-    public liquidityRewards$ = combineLatest([
-        this.zenonToolsApiService.nomData$,
-        this.zenonToolsApiService.pcsPoolData$,
-        this.liquidityInputsSubject$,
-        this.pricesToUse$,
-    ]).pipe(
-        map(([nomData, pcsPoolData, inputs, prices]) =>
-            this.calculatorService.computeLiquidityRewards(
-                nomData,
-                prices,
-                pcsPoolData,
-                inputs
-            )
-        )
-    );
-
     public sentinelRewards$ = combineLatest([
         this.zenonToolsApiService.nomData$,
         this.sentinelInputsSubject$,
@@ -194,8 +172,6 @@ export class CalculatorWidgetComponent implements OnInit {
                     return this.stakingRewards$;
                 case ParticipationType.Delegation:
                     return this.delegationRewards$;
-                case ParticipationType.Liquidity:
-                    return this.liquidityRewards$;
                 case ParticipationType.Sentinel:
                     return this.sentinelRewards$;
                 case ParticipationType.Pillar:
@@ -250,11 +226,6 @@ export class CalculatorWidgetComponent implements OnInit {
 
                                 this.participationTypeSubject$.next(
                                     ParticipationType.Delegation
-                                );
-                                break;
-                            case 'liquidity':
-                                this.participationTypeSubject$.next(
-                                    ParticipationType.Liquidity
                                 );
                                 break;
                             case 'sentinel':
@@ -340,11 +311,6 @@ export class CalculatorWidgetComponent implements OnInit {
                     queryParams: queryParams,
                 });
                 break;
-            case ParticipationType.Liquidity:
-                this.router.navigate(['/calculator', 'liquidity'], {
-                    queryParams: queryParams,
-                });
-                break;
             case ParticipationType.Sentinel:
                 this.router.navigate(['/calculator', 'sentinel'], {
                     queryParams: queryParams,
@@ -396,10 +362,6 @@ export class CalculatorWidgetComponent implements OnInit {
                 }
             });
         }
-    }
-
-    onLiquidityInputsChanged(inputs: LiquidityInputs) {
-        this.liquidityInputsSubject$.next(inputs);
     }
 
     onSentinelInputsChanged(inputs: SentinelInputs) {

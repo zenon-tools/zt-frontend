@@ -108,68 +108,6 @@
     background-color: rgba(255, 255, 255, 0.06);
 }
 
-.pcs-banner {
-    position: relative;
-    border-radius: variables.$radius-s;
-    margin-top: variables.$spacing-m;
-    margin-left: variables.$spacing-l;
-    margin-right: variables.$spacing-l;
-    background: linear-gradient(45deg, #378991, #7ea3a8);
-    filter: drop-shadow(0 0.8rem 0.3rem #0000001c);
-    clip-path: inset(0 0 0 0);
-}
-
-.pcs-content {
-    display: flex;
-    flex-direction: column;
-    padding: variables.$spacing-l;
-    gap: variables.$spacing-m;
-    position: relative;
-
-    .title {
-        font-size: variables.$font-m;
-        font-weight: bold;
-        max-width: 80%;
-    }
-}
-
-.pcs-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: variables.$radius-s;
-    height: 2.8rem;
-    background-color: variables.$tertiary-grey;
-    padding-left: variables.$spacing-xl;
-    padding-right: calc(variables.$spacing-xl - 8px);
-    gap: variables.$spacing-xs;
-    align-self: start;
-    transition: variables.$animation-duration variables.$animation-curve;
-    filter: drop-shadow(0 0 0.5em #00000072);
-
-    div {
-        font-size: variables.$font-s;
-        font-weight: bold;
-    }
-
-    fa-icon {
-        margin-left: variables.$spacing-s;
-    }
-
-    &:hover {
-        cursor: pointer;
-        background-color: variables.$input-hover;
-    }
-}
-
-.pcs-bunny {
-    position: absolute;
-    top: 50%;
-    transform: translate(0%, -50%);
-    right: variables.$spacing-xs;
-    width: 33%;
-}
-
 .details {
     margin-left: variables.$spacing-l;
     margin-right: variables.$spacing-l;

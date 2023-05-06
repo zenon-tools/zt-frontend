@@ -34,8 +34,6 @@
                 <app-delegation-inputs *ngIf="type == ParticipationType.Delegation"
                     (delegationInputs)="onDelegationInputsChanged($event)" [initialPillar]="initialPillar">
                 </app-delegation-inputs>
-                <app-liquidity-inputs *ngIf="type == ParticipationType.Liquidity"
-                    (liquidityInputs)="onLiquidityInputsChanged($event)"></app-liquidity-inputs>
                 <app-sentinel-inputs *ngIf="type == ParticipationType.Sentinel"
                     (sentinelInputs)="onSentinelInputsChanged($event)"></app-sentinel-inputs>
                 <app-pillar-inputs *ngIf="type == ParticipationType.Pillar"
@@ -74,10 +72,6 @@
                 <app-result-item *ngIf="type == ParticipationType.Stake || type == ParticipationType.Delegation"
                     [label]="'Holdings value'" [value]="'$' + (rewards.holdingsInUsd | number: '1.2-2')">
                 </app-result-item>
-                <app-result-item *ngIf="type == ParticipationType.Liquidity" [label]="'Holdings value'"
-                    [value]="'$' + (rewards.holdingsInUsd | number: '1.2-2')"
-                    [info]="(liquidityInputsSubject$ | async)!.amount + ' wZNN + ' + ((liquidityInputsSubject$ | async)!.wBnbAmout | number: '1.0-3') + ' wBNB'">
-                </app-result-item>
                 <app-result-item *ngIf="type == ParticipationType.Sentinel" [label]="'Holdings value'"
                     [value]="'$' + (rewards.holdingsInUsd | number: '1.2-2')"
                     [info]="(sentinelInputsSubject$ | async)!.amount * 5 + 'k ZNN + ' + (sentinelInputsSubject$ | async)!.amount * 50 + 'k QSR'">
@@ -86,18 +80,6 @@
                     [value]="'$' + (rewards.holdingsInUsd | number: '1.2-2')"
                     [info]="(pillarInputsSubject$ | async)!.amount * 15 + 'k ZNN + ' + (pillarInputsSubject$ | async)!.slotCost / 1000 + 'k QSR'">
                 </app-result-item>
-            </div>
-
-            <div class="pcs-banner" *ngIf="type == ParticipationType.Liquidity">
-                <img class="pcs-bunny" src="../../../assets/images/bunny-color.png" alt="PCS bunny">
-                <div class="pcs-content">
-                    <div class="title">Add liquidity on PancakeSwap</div>
-                    <a class="pcs-button" target="_blank" rel="noopener noreferrer" style="text-decoration: none;"
-                        href="https://pancakeswap.finance/info/pool/0xe6b03fcb16daf3462ddfb8b0afb3f0e87d38d884">
-                        <div>View pool</div>
-                        <fa-icon [icon]="faArrowUpRightFromSquare" class="fa-lg"></fa-icon>
-                    </a>
-                </div>
             </div>
 
             <div class="details">

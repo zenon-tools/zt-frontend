@@ -57,12 +57,14 @@ export default class Common {
                 return 'Liquidity Mining Treasury';
             case 'z1qqs774auqksj94mtnes4qwvvzc8x8955en039j':
                 return 'Bridge Liquidity Treasury';
+            case 'z1qxemdeddedxdrydgexxxxxxxxxxxxxxxmqgr0d':
+                return 'Bridge Contract';
+            case 'z1qxemdeddedxhtlcxxxxxxxxxxxxxxxxxygecvw':
+                return 'HTLC Contract';
             case 'z1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqsggv2f':
                 return 'Empty Address';
             case 'z1qquatn97szsv7m8ztna509cunu2tks4wtzveku':
                 return 'Zenon Tools Donation Address';
-            case 'z1qzyzqtszv6fnw56rpnlq0npqt70tux0cl0yn5k':
-                return 'Alien Valley Plasma Bot';
             default:
                 if ((pillars.get(address)?.name ?? '').length > 0) {
                     return pillars.get(address)?.name ?? '';
