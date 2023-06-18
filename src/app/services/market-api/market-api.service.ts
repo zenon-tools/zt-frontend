@@ -21,10 +21,10 @@ export class MarketApiService {
     private currentPriceIntervalMs = 1000 * 60 * 5;
     private historyIntervalMs = 1000 * 60 * 10;
 
-    private znnHistory$ = this.getCoinHistory('zenon', 'usd');
+    private znnHistory$ = this.getCoinHistory('zenon-2', 'usd');
     private qsrHistory$ = this.getCoinHistory('quasar', 'usd');
 
-    public currentZnnPrice$ = this.getCurrentCoinPrice('zenon');
+    public currentZnnPrice$ = this.getCurrentCoinPrice('zenon-2');
     public znnPriceHistory7d$ = this.getCoinPriceHistory(this.znnHistory$);
     public znnTradingVolume7d$ = this.getCoinTradingVolume(this.znnHistory$);
     public qsrPriceHistory7d$ = this.getCoinPriceHistory(this.qsrHistory$);
