@@ -34,6 +34,8 @@
                 <app-delegation-inputs *ngIf="type == ParticipationType.Delegation"
                     (delegationInputs)="onDelegationInputsChanged($event)" [initialPillar]="initialPillar">
                 </app-delegation-inputs>
+                <app-liquidity-inputs *ngIf="type == ParticipationType.Liquidity"
+                    (liquidityInputs)="onLiquidityInputsChanged($event)"></app-liquidity-inputs>
                 <app-sentinel-inputs *ngIf="type == ParticipationType.Sentinel"
                     (sentinelInputs)="onSentinelInputsChanged($event)"></app-sentinel-inputs>
                 <app-pillar-inputs *ngIf="type == ParticipationType.Pillar"
@@ -46,13 +48,27 @@
                 (customPrices)="onCustomPricesChanged($event)"></app-price-inputs>
 
             <div class="results" *ngIf="rewardsToDisplay$ | async as rewards">
-                <app-result-item *ngIf="rewards.hasZnnRewards" [label]="'ZNN rewards'"
-                    [value]="(rewards.znnRewards | number: '1.2-2') + ' ZNN'" [valueColor]="'#6CEF4B'">
+                <app-result-item *ngIf="rewards.hasZnnRewards && type != ParticipationType.Liquidity"
+                    [label]="'ZNN rewards'" [value]="(rewards.znnRewards | number: '1.2-2') + ' ZNN'"
+                    [valueColor]="'#6CEF4B'">
+                </app-result-item>
+                <app-result-item *ngIf="rewards.hasZnnRewards && type == ParticipationType.Liquidity"
+                    [label]="'ZNN rewards'" [value]="(rewards.znnRewards | number: '1.2-2') + ' ZNN'"
+                    [valueColor]="'#6CEF4B'"
+                    [info]="'Current multiplier: ' + ((rewardMultiplier$ | async | number: '1.1-1')) + 'x'"
+                    [tooltipText]="'The ZNN reward multiplier is based on how much liquidity the pool has. More liquidity means a higher multiplier.'">
                 </app-result-item>
                 <div *ngIf="rewards.hasZnnRewards" class="result-divider"></div>
 
-                <app-result-item *ngIf="rewards.hasQsrRewards" [label]="'QSR rewards'"
-                    [value]="(rewards.qsrRewards | number: '1.2-2') + ' QSR'" [valueColor]="'#706AFF'">
+                <app-result-item *ngIf="rewards.hasQsrRewards && type != ParticipationType.Liquidity"
+                    [label]="'QSR rewards'" [value]="(rewards.qsrRewards | number: '1.2-2') + ' QSR'"
+                    [valueColor]="'#706AFF'">
+                </app-result-item>
+                <app-result-item *ngIf="rewards.hasQsrRewards && type == ParticipationType.Liquidity"
+                    [label]="'QSR rewards'" [value]="(rewards.qsrRewards | number: '1.2-2') + ' QSR'"
+                    [valueColor]="'#706AFF'"
+                    [info]="'Current multiplier: ' + ((rewardMultiplier$ | async | number: '1.1-1')) + 'x'"
+                    [tooltipText]="'The QSR reward multiplier is based on how much liquidity the pool has. More liquidity means a higher multiplier.'">
                 </app-result-item>
                 <div *ngIf="rewards.hasQsrRewards" class="result-divider"></div>
 
@@ -72,6 +88,10 @@
                 <app-result-item *ngIf="type == ParticipationType.Stake || type == ParticipationType.Delegation"
                     [label]="'Holdings value'" [value]="'$' + (rewards.holdingsInUsd | number: '1.2-2')">
                 </app-result-item>
+                <app-result-item *ngIf="type == ParticipationType.Liquidity" [label]="'Holdings value'"
+                    [value]="'$' + (rewards.holdingsInUsd | number: '1.2-2')"
+                    [info]="((liquidityInputsSubject$ | async)!.amount | number: '1.0-3') + ' wZNN + ' + ((liquidityInputsSubject$ | async)!.pairedTokenAmount | number: '1.0-3') + ' wETH'">
+                </app-result-item>
                 <app-result-item *ngIf="type == ParticipationType.Sentinel" [label]="'Holdings value'"
                     [value]="'$' + (rewards.holdingsInUsd | number: '1.2-2')"
                     [info]="(sentinelInputsSubject$ | async)!.amount * 5 + 'k ZNN + ' + (sentinelInputsSubject$ | async)!.amount * 50 + 'k QSR'">
@@ -80,6 +100,18 @@
                     [value]="'$' + (rewards.holdingsInUsd | number: '1.2-2')"
                     [info]="(pillarInputsSubject$ | async)!.amount * 15 + 'k ZNN + ' + (pillarInputsSubject$ | async)!.slotCost / 1000 + 'k QSR'">
                 </app-result-item>
+            </div>
+
+            <div class="uniswap-banner" *ngIf="false">
+                <img class="uniswap-bunny" src="../../../assets/images/uniswap-logo.png" alt="uniswap logo">
+                <div class="uniswap-content">
+                    <div class="title">Add liquidity on Uniswap</div>
+                    <a class="uniswap-button" target="_blank" rel="noopener noreferrer" style="text-decoration: none;"
+                        href="https://v2.info.uniswap.org/pair/0xdac866A3796F85Cb84A914d98fAeC052E3b5596D">
+                        <div>View pool</div>
+                        <fa-icon [icon]="faArrowUpRightFromSquare" class="fa-lg uniswap-pink"></fa-icon>
+                    </a>
+                </div>
             </div>
 
             <div class="details">

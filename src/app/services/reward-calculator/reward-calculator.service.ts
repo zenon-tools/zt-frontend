@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { interval, map, shareReplay } from 'rxjs';
 import { Prices } from 'src/app/components/calculator-widget/calculator-widget.component';
 import { DelegationInputs } from 'src/app/components/calculator-widget/delegation-inputs/delegation-inputs.component';
+import { LiquidityInputs } from 'src/app/components/calculator-widget/liquidity-inputs/liquidity-inputs.component';
 import { PillarInputs } from 'src/app/components/calculator-widget/pillar-inputs/pillar-inputs.component';
 import { SentinelInputs } from 'src/app/components/calculator-widget/sentinel-inputs/sentinel-inputs.component';
 import { StakeInputs } from 'src/app/components/calculator-widget/stake-inputs/stake-inputs.component';
 import { NomData } from '../zenon-tools-api/interfaces/nom-data';
-import { PcsPoolData } from '../zenon-tools-api/interfaces/pcs-pool-data';
+import { LiquidityPoolData } from '../zenon-tools-api/interfaces/liquidity-pool-data';
 import { Pillars } from '../zenon-tools-api/interfaces/pillar';
 
 export interface Rewards {
@@ -108,6 +109,53 @@ export class RewardCalculatorService {
             hasZnnRewards: true,
             hasQsrRewards: false,
             hasTradingFeeRewards: false,
+        };
+    }
+
+    computeLiquidityRewards(
+        nomData: NomData,
+        usdPrices: Prices,
+        poolData: LiquidityPoolData,
+        inputs: LiquidityInputs
+    ): Rewards {
+        const holdingsInUsd =
+            inputs.amount * usdPrices.znn +
+            inputs.pairedTokenAmount * poolData.pairedTokenPriceUsd;
+        const weightedRewardShare =
+            (inputs.lpTokenAmount * inputs.lockUpMonths) /
+            nomData.znnEthLpInfo.totalStaked.weightedAmount;
+        const poolRewardShare =
+            inputs.lpTokenAmount / poolData.lpTokenTotalSupply;
+
+        const znnRewards =
+            ((weightedRewardShare * nomData.yearlyZnnRewardPoolForLps) /
+                this.DAYS_PER_YEAR) *
+            inputs.timePeriodInDays;
+        const qsrRewards =
+            ((weightedRewardShare * nomData.yearlyQsrRewardPoolForLps) /
+                this.DAYS_PER_YEAR) *
+            inputs.timePeriodInDays;
+        const tradingFeeRewards =
+            (poolData.yearlyTradingFeesUsd / this.DAYS_PER_YEAR) *
+            inputs.timePeriodInDays *
+            poolRewardShare;
+        const rewardsInUsd =
+            znnRewards * usdPrices.znn +
+            qsrRewards * usdPrices.qsr +
+            tradingFeeRewards;
+
+        const roi = holdingsInUsd > 0 ? rewardsInUsd / holdingsInUsd : 0;
+
+        return {
+            znnRewards: znnRewards,
+            qsrRewards: qsrRewards,
+            tradingFeeRewards: tradingFeeRewards,
+            rewardsInUsd: rewardsInUsd,
+            roi: roi * 100,
+            holdingsInUsd: holdingsInUsd,
+            hasZnnRewards: true,
+            hasQsrRewards: true,
+            hasTradingFeeRewards: true,
         };
     }
 

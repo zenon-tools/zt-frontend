@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
     ngOnInit(): void {
         combineLatest([
             this.zenonToolsApiService.nomData$,
-            this.zenonToolsApiService.pcsPoolData$,
+            this.zenonToolsApiService.znnEthPoolData$,
             this.zenonToolsApiService.pillars$,
             this.zenonToolsApiService.pillarsOffChainInfo$,
         ])

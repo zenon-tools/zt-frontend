@@ -1,7 +1,11 @@
 <div class="container">
     <div class="label-info">
         <div class="label">{{ label }}</div>
-        <div class="info" *ngIf="info">{{ info }}</div>
+        <div class="info-container">
+            <div class="info" *ngIf="info">{{ info }}</div>
+            <fa-icon class="fa-xs" *ngIf="tooltipText" [icon]="faCircleInfo"
+                [matTooltipClass]="'tool-tip--normal-word-break'" matTooltip="{{ tooltipText }}"></fa-icon>
+        </div>
     </div>
     <div class="value" [ngStyle]="{ 'color': valueColor }">{{ value }}</div>
 </div>

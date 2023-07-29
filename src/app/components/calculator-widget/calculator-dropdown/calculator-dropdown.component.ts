@@ -13,6 +13,7 @@ import {
 export enum ParticipationType {
     Stake = 1,
     Delegation,
+    Liquidity,
     Sentinel,
     Pillar,
 }
@@ -51,6 +52,11 @@ export class CalculatorDropdownComponent implements OnInit, OnChanges {
             type: ParticipationType.Delegation,
             label: 'Delegation',
             iconPath: '../../../assets/images/delegation_icon.png',
+        },
+        {
+            type: ParticipationType.Liquidity,
+            label: 'Liquidity',
+            iconPath: '../../../assets/images/liquidity_icon.png',
         },
         {
             type: ParticipationType.Sentinel,

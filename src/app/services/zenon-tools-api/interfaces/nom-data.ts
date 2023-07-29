@@ -1,6 +1,12 @@
-export interface TotalStakedZnn {
+export interface TotalStaked {
     weightedAmount: number;
     amount: number;
+}
+
+export interface LpInfo {
+    avgStakingLockupTimeInDays: number;
+    participationRate: number;
+    totalStaked: TotalStaked;
 }
 
 export interface NomData {
@@ -9,8 +15,9 @@ export interface NomData {
     nodeVersion: string;
     znnPriceUsd: number;
     qsrPriceUsd: number;
-    totalStakedZnn: TotalStakedZnn;
+    totalStakedZnn: TotalStaked;
     avgStakingLockupTimeInDays: number;
+    znnEthLpInfo: LpInfo;
     totalDelegatedZnn: number;
     sentinelCount: number;
     pillarCount: number;
@@ -27,9 +34,8 @@ export interface NomData {
     yearlyQsrRewardPoolForStakers: number;
     yearlyQsrRewardPoolForLps: number;
     yearlyQsrRewardPoolForSentinels: number;
-    yearlyQsrRewardPoolForLpProgram: number;
     yearlyZnnMomentumRewardPoolForPillarsTop30: number;
     yearlyZnnMomentumRewardPoolForPillarsNotTop30: number;
     yearlyZnnDelegateRewardPoolForPillars: number;
-    lpProgramParticipationRate: number;
+    orbitalRewardMultiplier: number;
 }

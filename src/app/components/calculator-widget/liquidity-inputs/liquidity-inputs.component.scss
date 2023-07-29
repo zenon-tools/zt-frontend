@@ -1,0 +1,58 @@
+@use "../../../../assets/variables.scss";
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-l;
+
+    .input-label-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.3rem;
+
+        .input-label {
+            margin: 0;
+        }
+
+        .token-toggle {
+            display: flex;
+            align-items: center;
+            font-size: variables.$font-xs;
+            opacity: 0.7;
+
+            &:hover {
+                cursor: pointer;
+                opacity: 1;
+            }
+        }
+    }
+
+    .input-unit {
+        color: variables.$primary-green;
+    }
+
+    .input-extra-row {
+        display: flex;
+        justify-content: space-between;
+
+        .input-extra-info {
+            color: variables.$primary-green;
+        }
+
+        .token-toggle {
+            display: flex;
+            align-items: center;
+            margin-top: 0.3rem;
+            font-size: variables.$font-xs;
+            opacity: 0.7;
+
+
+            &:hover {
+                cursor: pointer;
+                opacity: 1.0;
+            }
+
+        }
+    }
+}

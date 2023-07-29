@@ -37,6 +37,7 @@ import {
 import { PriceInputsComponent } from './price-inputs/price-inputs.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Pillars } from 'src/app/services/zenon-tools-api/interfaces/pillar';
+import { LiquidityInputs } from './liquidity-inputs/liquidity-inputs.component';
 
 export interface Prices {
     znn: number;
@@ -85,6 +86,13 @@ export class CalculatorWidgetComponent implements OnInit {
         amount: 10000,
         pillar: '',
         addToPillarWeight: true,
+        timePeriodInDays: 30,
+    });
+    public liquidityInputsSubject$ = new BehaviorSubject<LiquidityInputs>({
+        amount: 100,
+        pairedTokenAmount: 1.5,
+        lpTokenAmount: 0.00001,
+        lockUpMonths: 1,
         timePeriodInDays: 30,
     });
     public sentinelInputsSubject$ = new BehaviorSubject<SentinelInputs>({
@@ -141,6 +149,22 @@ export class CalculatorWidgetComponent implements OnInit {
         )
     );
 
+    public liquidityRewards$ = combineLatest([
+        this.zenonToolsApiService.nomData$,
+        this.zenonToolsApiService.znnEthPoolData$,
+        this.liquidityInputsSubject$,
+        this.pricesToUse$,
+    ]).pipe(
+        map(([nomData, poolData, inputs, prices]) =>
+            this.calculatorService.computeLiquidityRewards(
+                nomData,
+                prices,
+                poolData,
+                inputs
+            )
+        )
+    );
+
     public sentinelRewards$ = combineLatest([
         this.zenonToolsApiService.nomData$,
         this.sentinelInputsSubject$,
@@ -172,6 +196,8 @@ export class CalculatorWidgetComponent implements OnInit {
                     return this.stakingRewards$;
                 case ParticipationType.Delegation:
                     return this.delegationRewards$;
+                case ParticipationType.Liquidity:
+                    return this.liquidityRewards$;
                 case ParticipationType.Sentinel:
                     return this.sentinelRewards$;
                 case ParticipationType.Pillar:
@@ -183,6 +209,10 @@ export class CalculatorWidgetComponent implements OnInit {
     );
 
     public pillars$ = this.zenonToolsApiService.pillars$;
+
+    public rewardMultiplier$ = this.zenonToolsApiService.nomData$.pipe(
+        map((nom) => nom.orbitalRewardMultiplier)
+    );
 
     constructor(
         private calculatorService: RewardCalculatorService,
@@ -226,6 +256,11 @@ export class CalculatorWidgetComponent implements OnInit {
 
                                 this.participationTypeSubject$.next(
                                     ParticipationType.Delegation
+                                );
+                                break;
+                            case 'liquidity':
+                                this.participationTypeSubject$.next(
+                                    ParticipationType.Liquidity
                                 );
                                 break;
                             case 'sentinel':
@@ -311,6 +346,11 @@ export class CalculatorWidgetComponent implements OnInit {
                     queryParams: queryParams,
                 });
                 break;
+            case ParticipationType.Liquidity:
+                this.router.navigate(['/calculator', 'liquidity'], {
+                    queryParams: queryParams,
+                });
+                break;
             case ParticipationType.Sentinel:
                 this.router.navigate(['/calculator', 'sentinel'], {
                     queryParams: queryParams,
@@ -362,6 +402,10 @@ export class CalculatorWidgetComponent implements OnInit {
                 }
             });
         }
+    }
+
+    onLiquidityInputsChanged(inputs: LiquidityInputs) {
+        this.liquidityInputsSubject$.next(inputs);
     }
 
     onSentinelInputsChanged(inputs: SentinelInputs) {

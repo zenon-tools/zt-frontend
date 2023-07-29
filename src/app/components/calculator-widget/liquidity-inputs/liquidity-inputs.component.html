@@ -1,0 +1,29 @@
+<div class="container">
+    <div>
+        <div class="input-label-row">
+            <div class="input-label">Provided liquidity</div>
+            <div class="token-toggle" (click)="onTokenToggled()">
+                <div *ngIf="(useBaseTokenAmount$ | async)">LP token</div>
+                <div *ngIf="!(useBaseTokenAmount$ | async)">wZNN</div>
+                <mat-icon>swap_vert</mat-icon>
+            </div>
+        </div>
+        <div class="input-wrapper">
+            <input class="input-field" type="number" onwheel="return false;" id="liquidityAmountInput"
+                name="liquidityAmountInput" [(ngModel)]="liquidityAmountToShow" #liquidityAmountInput>
+            <div class="input-unit" *ngIf="(useBaseTokenAmount$ | async)">wZNN</div>
+            <div class="input-unit" *ngIf="!(useBaseTokenAmount$ | async)">ZNNETHLP</div>
+        </div>
+        <div class="input-extra-row" *ngIf="(requiredPairedTokenAmount$ | async) as amount">
+            <div *ngIf="useBaseTokenAmount$ | async" class="input-extra-info">Needs {{ amount
+                | number: '1.0-3'}} ETH to match
+                liquidity.</div>
+        </div>
+    </div>
+    <div>
+        <div class="input-label">Lock-up duration in months</div>
+        <app-tab-selector [items]="lockUpDurationItems" (selectedValue)="onLockUpDurationChanged($event)">
+        </app-tab-selector>
+    </div>
+    <app-time-period-selector (selectedValue)="onTimePeriodChanged($event)"></app-time-period-selector>
+</div>

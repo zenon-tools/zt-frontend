@@ -79,6 +79,7 @@ import { TokenDetailsTableComponent } from './components/tables/token-details-ta
 import { HoldersTableComponent } from './components/tables/token-details-table/holders-table/holders-table.component';
 import { TokenTransactionsTableComponent } from './components/tables/token-details-table/token-transactions-table/token-transactions-table.component';
 import { ExportRewardsModalComponent } from './components/modals/export-rewards-modal/export-rewards-modal.component';
+import { LiquidityInputsComponent } from './components/calculator-widget/liquidity-inputs/liquidity-inputs.component';
 
 @NgModule({
     declarations: [
@@ -150,6 +151,7 @@ import { ExportRewardsModalComponent } from './components/modals/export-rewards-
         HoldersTableComponent,
         TokenTransactionsTableComponent,
         ExportRewardsModalComponent,
+        LiquidityInputsComponent,
     ],
     imports: [
         BrowserModule,

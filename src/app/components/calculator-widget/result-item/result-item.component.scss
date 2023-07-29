@@ -25,10 +25,20 @@
     font-weight: bold;
 }
 
-.info {
-    font-size: variables.$font-xs;
-    color: variables.$white-50;
+.info-container {
+    display: flex;
+    align-items: center;
+    gap: variables.$spacing-xs;
     padding-top: variables.$spacing-xs;
+
+    .info {
+        font-size: variables.$font-xs;
+        color: variables.$white-50;
+    }
+
+    fa-icon {
+        opacity: 0.5
+    }
 }
 
 @media only screen and (max-width: 800px) {

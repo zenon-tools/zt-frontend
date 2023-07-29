@@ -4,7 +4,7 @@ import { interval, map, shareReplay, startWith, switchMap } from 'rxjs';
 import Common from 'src/app/utils/common';
 import { environment } from 'src/environments/environment';
 import { NomData } from './interfaces/nom-data';
-import { PcsPoolData } from './interfaces/pcs-pool-data';
+import { LiquidityPoolData } from './interfaces/liquidity-pool-data';
 import { Pillars } from './interfaces/pillar';
 import { PillarsOffChainInfo } from './interfaces/pillar-off-chain-info';
 import { Project } from './interfaces/project';
@@ -36,7 +36,7 @@ export class ZenonToolsApiService {
     private baseDataRefreshRate = 15;
     private intervalMs = this.baseDataRefreshRate * 1000;
     private pillarsOffChainInfoIntervalMs = 1000 * 60 * 5;
-    private pcsPoolDataIntervalMs = 1000 * 60 * 5;
+    private liquidityPoolDataIntervalMs = 1000 * 60 * 5;
 
     public intervalSecondsUntilRefresh$ = interval(1000).pipe(
         Common.whenPageVisible(),
@@ -83,11 +83,11 @@ export class ZenonToolsApiService {
         shareReplay(1)
     );
 
-    public pcsPoolData$ = interval(this.pcsPoolDataIntervalMs).pipe(
+    public znnEthPoolData$ = interval(this.liquidityPoolDataIntervalMs).pipe(
         startWith(0),
         Common.whenPageVisible(),
         switchMap(() =>
-            this.httpClient.get<PcsPoolData>(`${this.baseUrl}/pcs-pool`)
+            this.httpClient.get<LiquidityPoolData>(`${this.baseUrl}/znn-eth-pool`)
         ),
         shareReplay(1)
     );
